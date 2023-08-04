@@ -1,0 +1,860 @@
+/* 외부 폰트 호출 */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap');
+
+/* 공통 적용 스타일 */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(./img/lost-places-g9fd4f9572_1920.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* 홈 화면 스타일 */
+#h_top {
+    text-align: right;
+    padding: 5px 10px;
+    font-family: 'Amatic SC', cursive;
+}
+
+#h_bot {
+    background-image: url(./img/foot_back.jpg);
+    border-bottom: 1px solid orange;
+    border-top: 1px solid orange;
+}
+
+
+#login_menu li {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+#login_menu li a {
+    color: white;
+    font-size: 1.5em;
+}
+
+#login_menu li a:hover {
+    color: red;
+}
+
+#logo {
+    font-family: 'Amatic SC', cursive;
+    font-size: 3rem;
+    margin: 0 3rem;
+    text-shadow: 0px 0px 20px red;
+}
+
+#h_bot * {
+    display: inline-block;
+    color: snow;
+}
+
+#h_bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px white inset;
+}
+
+#nav_menu {
+    line-height: 4.5;
+    font-family: 'Black And White Picture', sans-serif;
+}
+
+#nav_menu li {
+    margin: 0 5vw;
+    font-size: 1.7em;
+}
+
+#nav_menu a {
+    text-shadow: 0 0 20px red;
+}
+
+#nav_menu a:hover {
+    color: red;
+}
+
+
+#section1 {
+    background-image: url('./img/main.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 120vh;
+    box-shadow: 0px 0px 100px white inset;
+    opacity: 0.8;
+    font-family: 'Black And White Picture', sans-serif;
+    position: relative;
+}
+
+#main h1 {
+    color: #bb0000;
+    font-size: 7rem;
+    text-shadow: 10px 0px 8px black;
+}
+
+#main {
+    position: absolute;
+    top: 50vh;
+}
+
+#section2 {
+    box-shadow: 0px 0px 100px white inset;
+    padding-bottom: 20vh;
+}
+
+#intro h1 {
+    font-family: 'Black And White Picture', sans-serif;
+    color: #bb0000;
+    text-shadow: 0px 0px 8px white;
+    font-size: 5em;
+    padding: 10vh 0;
+}
+
+.content {
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.content ul {
+    margin: 0 0 1em 1em;
+}
+
+.content li {
+    font-family: 'Hahmlet', serif;
+    font-size: 1.1em;
+}
+
+.content img {
+    border-radius: 10px;
+}
+
+.content h3 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 3em;
+}
+
+.content * {
+    width: 25vw;
+}
+
+#intro {
+    text-align: center;
+}
+
+#thema {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.carousel-inner {
+    text-align: center;
+    line-height: 50vh;
+}
+
+.carousel-inner p {
+    font-size: 3em;
+    font-family: 'Hahmlet', serif;
+}
+
+#home_footer {
+    background-image: url(./img/foot_back.jpg);
+}
+
+#foot_top {
+    text-align: center;
+    font-family: 'Hahmlet', serif;
+    color: orange;
+    border-top: solid orange 1px;
+}
+
+#foot_top a {
+    color: white;
+}
+
+#foot_top a:hover {
+    color: orange;
+}
+
+#foot_top * {
+    display: inline-block;
+}
+
+#foot_top ul {
+    margin: 5px 0;
+}
+
+#foot_top li {
+    margin: 0 0.5em;
+}
+
+#foot_bot {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Hahmlet', serif;
+
+}
+
+#foot_bot li {
+    color: orange;
+}
+
+#foot_bot span {
+    color: white;
+}
+
+#icon * {
+    width: 24px;
+}
+
+#icon {
+    line-height: 5em;
+}
+
+#icon article {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* 로그인화면 스타일*/
+
+#login_main {
+    text-align: center;
+}
+
+#login_main section {
+    margin: 50px 0;
+}
+
+.info {
+    display: inline-block;
+}
+
+.info ul {
+    list-style-type: none
+}
+
+.info li {
+    margin-bottom: 10px;
+}
+
+.info input {
+    height: 3em;
+    width: 400px;
+    font-size: 20px;
+}
+
+#login_box {
+    display: inline-block;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px red;
+    margin-bottom: 20px;
+}
+
+.info p {
+    font-size: 4em;
+    font-family: 'Black And White Picture', sans-serif;
+    margin-bottom: 10px;
+}
+
+#login_text {
+    display: inline-block;
+}
+
+#login_text h2 {
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 5rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px 0px 3px red;
+}
+
+.login_btn button {
+    width: 404px;
+    height: 6vh;
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.8em;
+    border: none;
+    border-radius: 10px;
+    box-shadow: black 0 0 10px;
+    background-color: white;
+}
+
+.login_btn button:hover {
+    background-color: black;
+    color: white;
+}
+
+.another_btn {
+    margin-top: 20px;
+}
+
+.another_btn * {
+    color: black;
+    margin: 0px 10px;
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 20px;
+}
+
+.another_btn *:hover {
+    color: orangered;
+}
+
+/* 회원가입화면 스타일*/
+
+#join_main section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+#join_text {
+    display: inline-block;
+}
+
+#join_text h2 {
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 5rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px 0px 3px red;
+}
+
+#join_box {
+    display: inline-block;
+    background-color: white;
+    padding: 1rem;
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px red;
+}
+
+#join_box select{
+    height: 74px;
+    width: 122px;
+}
+#join_box ul {
+    margin-bottom: 10px;
+}
+
+.user_info {
+    text-align: left;
+}
+
+.user_info li {
+    margin: 10px 0;
+}
+
+.user_info input {
+    width: 400px;
+    height: 3em;
+}
+
+
+
+#Tel * {
+    display: inline-block;
+}
+
+#Tel input {
+    width: 300px;
+}
+
+
+#Btn {
+    margin: 25px 0;
+}
+
+#Btn * {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+}
+
+#Btn *:hover {
+    background-color: black;
+    color: white;
+}
+
+/* 소개 화면 */
+#intro_main {
+    text-align: center;
+    color: white;
+    font-family: 'Hahmlet', serif;
+}
+
+#intro_main h1 {
+    font-size: 5em;
+    font-family: 'Amatic SC', cursive;
+    margin-bottom: 10vh;
+}
+
+#intro_main p {
+    font-size: 1.5em;
+}
+
+#intro_mid img {
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: black 0 0 10px inset;
+}
+
+#intro_mid {
+    box-shadow: 0 0 50px white;
+    padding: 35vh 0;
+}
+
+#intro_mid article {
+    text-shadow: 0 0 10px red;
+}
+
+#intro_main section {
+    margin: 35vh 0;
+}
+
+#intro_main article * {
+    margin: 20px;
+}
+
+.notice_img {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#intro_bot iframe {
+    width: 60vw;
+}
+
+#info_box {
+    display: inline-block;
+    width: 60vw;
+    margin-top: 50px;
+}
+
+#info_box * {
+    text-align: left;
+}
+
+#info_box td {
+    padding: 10px 50px 0px 0px;
+    font-size: 1.5rem;
+}
+
+/* 게시판 화면 스타일 */
+
+#notice_main section {
+    text-align: center;
+    margin: 80px 0;
+}
+
+#notice_list {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.604);
+    margin-top: 20px;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+}
+
+#notice_list * {
+    padding: 10px;
+    color: white;
+    font-family: 'Hahmlet', serif;
+}
+
+#notice_list tr {
+    border-bottom: 1px solid gray;
+}
+
+#notice_list .t_title {
+    text-align: left;
+    width: 400px;
+}
+
+#notice_list .t_num {
+    width: 70px;
+}
+
+#notice_list .t_writer {
+    width: 100px;
+}
+
+#notice_list .t_date {
+    width: 70px;
+}
+
+#notice_list .t_check {
+    width: 70px;
+}
+
+#notice_text {
+    display: inline-block;
+}
+
+#notice_text h2 {
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 5rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px 0px 3px red;
+}
+
+.pagination {
+    justify-content: center;
+    margin: 50px 0;
+}
+
+#notice_list a:hover {
+    color: red;
+}
+
+#search_box {
+    text-align: right;
+    border-top: 1px solid orange;
+}
+
+#search_box * {
+    color: black;
+}
+
+/* 게시글 화면 스타일 */
+#post_main {
+    text-align: center;
+}
+
+#post_main p {
+    margin: 0;
+}
+
+#post_main section {
+    margin: 50px 0;
+}
+
+#post_text {
+    display: inline-block;
+}
+
+#post_text h2 {
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 5rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 3px 0px 3px red;
+}
+
+#post_board {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.768);
+    color: white;
+    border-top: orange 1px solid;
+    border-bottom: orange 1px solid;
+    font-family: 'Hahmlet', serif;
+}
+
+#post_info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-bottom: gray 1px solid;
+}
+
+#post_area {
+    text-align: left;
+    height: 30vh;
+    padding: 10px 20px;
+    border-bottom: gray 1px solid;
+}
+
+#post_title {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 30px;
+    border-bottom: gray 1px solid;
+}
+
+#comment_area {
+    display: flex;
+    padding: 10px 20px;
+    border-bottom: gray 1px solid;
+}
+
+#comment_box {
+    display: flex;
+    padding: 10px 20px;
+}
+
+.zone li {
+    text-align: left;
+    list-style-type: disclosure-closed;
+    list-style-position: inside;
+}
+
+.zone .li1 {
+    list-style-type: none;
+}
+
+/* 반응형 웹 구현 */
+
+@media screen and (max-width:1231px){
+
+    #nav_menu li{
+        margin: 0 2vw;
+    }
+
+    #main h1{
+        font-size: 5rem;
+    }
+
+    .content li{
+        font-size: 0.9em;
+    }
+
+    .content ul{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:895px)
+    {
+        #h_bot{
+            display: inline-block;
+            text-align: center;
+        }
+
+        #main h1{
+            font-size: 5.5rem;
+        }
+
+        #nav_menu li{
+            margin: 0 4vw;
+        }
+
+        #thema{
+            display: inline-block;
+        }
+
+        #section2{
+            text-align: center;
+        }
+
+        .content *{
+            width: 80vw;
+        }
+
+        .content{
+            margin-bottom: 10vh;
+        }
+
+        .content ul{
+            margin: 0;
+            text-align: left;
+            padding: 1rem;
+        }
+
+        .carousel-inner p{
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .notice_img{
+            display: inline-block;
+        }
+
+        .notice_img article{
+            margin-bottom: 20vh;
+        }
+
+        #info_box td{
+            padding-right: 2vw;
+            font-size: 1rem;
+        }
+
+    }
+
+
+/* 반응형 웹 구현(모바일 화면) */
+@media screen and (max-width:680px) {
+    header {
+        text-align: center;
+    }
+
+    #h_bot {
+        display: inline-block;
+    }
+
+    #nav_menu {
+        font-size: 7px;
+    }
+
+    #main {
+        top: 40vh;
+    }
+
+    #main h1 {
+        font-size: 2em;
+    }
+
+    #section1 {
+        height: 80vh;
+    }
+
+    #thema {
+        display: inline-block;
+    }
+
+    .content * {
+        width: 90vw;
+    }
+
+    .content {
+        margin-left: 4vw;
+        margin-bottom: 5vw;
+    }
+
+    .content li {
+        font-size: 0.7em;
+    }
+
+    #carouselExampleInterval {
+        height: 40vh;
+    }
+
+    .carousel-inner {
+        line-height: 40vh;
+    }
+
+    .carousel-inner p {
+        font-size: 0.8em;
+    }
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        width: 0.7rem;
+    }
+
+    #login_menu li a {
+        font-size: 0.5em;
+    }
+
+    #foot_top,
+    #foot_bot {
+        font-size: 0.5em;
+    }
+
+    #login_text {
+        font-size: 3.0em;
+    }
+
+    #login_box * {
+        width: 90vw;
+    }
+
+    .info p {
+        font-size: 2em;
+    }
+
+    #join_text {
+        font-size: 3em;
+    }
+
+    #join_box * {
+        width: 90vw;
+    }
+
+    .user_info select {
+        height: 3em;
+        display: block;
+    }
+
+    #Tel input {
+        width: 89vw;
+    }
+
+    #Tel select {
+        width: 40vw;
+        margin-bottom: 2vh;
+    }
+
+    .join_btn {
+        margin-bottom: 15px;
+    }
+
+    #intro_main p {
+        font-size: 0.8em;
+    }
+
+    #intro_mid {
+        box-shadow: 0 0 50px white;
+        padding: 25vh 0;
+    }
+
+    .notice_img {
+        display: inline-block;
+    }
+
+    #info_box td {
+        padding: 0;
+        font-size: 0.5rem;
+    }
+
+    #info_box {
+        width: 80vw;
+    }
+
+    #intro_bot iframe {
+        width: 80vw;
+    }
+
+    #notice_list {
+        font-size: 0.5rem;
+    }
+
+    #post_area {
+        height: auto;
+        width: auto;
+    }
+
+    #icon article {
+        margin: 0 5px;
+    }
+
+    #icon * {
+        width: 16px;
+    }
+
+    #notice_list * {
+        padding: 8px;
+    }
+
+    #post_info {
+        font-size: 0.8em;
+    }
+
+}
+
