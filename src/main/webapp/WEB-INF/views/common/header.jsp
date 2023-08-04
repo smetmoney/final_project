@@ -27,7 +27,7 @@
 
         <div class="position-absolute top-0 end-0" style="padding-top: 10px;">
             <a href="#">로그인</a>
-            <a href="#" style="margin: 20px;">가입하기</a>
+            <a href="#" style="margin: 20px;">제발제발</a>
         </div>
 
         <!-- header -->
