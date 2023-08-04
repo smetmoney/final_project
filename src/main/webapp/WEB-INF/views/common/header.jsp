@@ -26,12 +26,11 @@
 <header>
 
         <div class="position-absolute top-0 end-0" style="padding-top: 10px;">
-            <a href="#">로그인</a>
+            <a href="#">그만!</a>
             <a href="#" style="margin: 20px;">제발제발발발발</a>
         </div>
 
         <!-- header -->
-        <div class="header">
 
             <!-- logo image -->
          <div class="position-relative" style="text-align: center;
