@@ -1,18 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page session="false" %>
+<!-- css파일은 header에서 불러옵니다!! -->
 <jsp:include page="common/header.jsp" />
-<style>
-	.bodyDiv{
-		background-color: white;
-		height: 1000px;
-	}
-</style>
 <div class="bodyDiv">
+	<h1>우리들의 작업공간</h1>
 </div>
-<jsp:include page="common/footer_minjun.jsp" />
-<style>
-	body{
-		background-color: black;
-	}
-</style>
+<jsp:include page="common/footer.jsp" />

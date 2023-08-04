@@ -7,44 +7,23 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <title>Text Game</title>
-	<style>
-	   .navbar-collapse {
-		    display: flex!important;
-		    flex-basis: auto;
-		    justify-content: center;
-		}
-		.position-absolute a{
-			color: white;
-		}
-		*{
-			font-weight:bold;
-			text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
-		}
-	</style>
 <head>
 <header>
-
-        <div class="position-absolute top-0 end-0" style="padding-top: 10px;">
-            <a href="#">그만!</a>
-            <a href="#" style="margin: 20px;">제발제발발발발</a>
-        </div>
-
-        <!-- header -->
-
-            <!-- logo image -->
-         <div class="position-relative" style="text-align: center;
-             padding-top: 3%;"><a href="#"><img
-                     src="resources/headerIMG/poe_logo6.png" id="logo_image"></a></div>
-
-
+	<div id="memberBox">
+        <a id="loginLink" href="#">로그인</a>
+        <a id="joinLink" href="#">회원가입</a>
+	</div>
+    <!-- logo image -->
+    <div id="logoBox">
+    	<a href="#">
+    		<img src="resources/images/headerIMG/poe_logo6.png" id="logo_image">
+  		</a>
+	</div>
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-      
-        <!-- 로고/브랜드 -->
-        <!-- <a class="navbar-brand" href="#">로고</a> -->
-        
         <!-- 토글 버튼 -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
