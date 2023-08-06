@@ -46,7 +46,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">드롭다운 메뉴1</a></li>
-                <li><a class="dropdown-item" href="#">드롭다운 메뉴2</a></li>
+                <li><a class="dropdown-item" href="freeboard_list">드롭다운 메뉴2</a></li>
                 <li><a class="dropdown-item" href="#">드롭다운 메뉴3</a></li>
               </ul>
             </li>
