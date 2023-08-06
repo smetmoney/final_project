@@ -1,4 +1,4 @@
-package com.bitc.project;
+package com.bitc.project.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
