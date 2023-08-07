@@ -26,15 +26,15 @@
 
         <div id="icon">
             <article>
-                <a href="#"><img src="resources/images/footerIMG/facebook.png"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/footerIMG/facebook.png"></a>
             </article>
                 
             <article>
-                <a href="#"><img src="resources/images/footerIMG/twitter.png"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/footerIMG/twitter.png"></a>
             </article>
 
             <article>
-                <a href="#"><img src="resources/images/footerIMG/instagram.png"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/footerIMG/instagram.png"></a>
             </article>
         </div>
     </div>

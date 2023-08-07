@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 <title>Text Game</title>
 <head>
 <header>
@@ -17,7 +17,7 @@
     <!-- logo image -->
     <div id="logoBox">
     	<a href="#">
-    		<img src="resources/images/headerIMG/poe_logo6.png" id="logo_image">
+    		<img src="${pageContext.request.contextPath}/resources/images/headerIMG/poe_logo6.png" id="logo_image">
   		</a>
 	</div>
     <!-- 네비게이션 바 -->
