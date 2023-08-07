@@ -15,7 +15,7 @@
         <c:forEach items="${posts}" var="post">
             <tr>
                 <td>${post.id}</td>
-                <td><a href="/freeboard/${post.id}">${post.title}</a></td>
+                <td><a href="/freeBoard/${post.id}">${post.title}</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -24,10 +24,10 @@
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <!-- 토글 버튼 -->
+<!--         토글 버튼
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
         <!-- 네비게이션 메뉴 -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
@@ -42,12 +42,11 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                드롭다운 메뉴
+                게시판
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">드롭다운 메뉴1</a></li>
-                <li><a class="dropdown-item" href="freeboard_list">드롭다운 메뉴2</a></li>
-                <li><a class="dropdown-item" href="#">드롭다운 메뉴3</a></li>
+                <li><a class="dropdown-item" href="freeBoard/freeboard_list">자유게시판</a></li>
+                <li><a class="dropdown-item" href="imageBoard/imageBoard_list">이미지게시판</a></li>
               </ul>
             </li>
           </ul>
