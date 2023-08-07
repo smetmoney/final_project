@@ -12,6 +12,6 @@ import lombok.RequiredArgsConstructor;
 public class freeBoardController {
 	
 	@GetMapping("freeBoard_list")
-	public void go() {}
+	public void freeBoardList() {}
 	
 }

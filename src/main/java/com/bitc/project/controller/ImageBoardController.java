@@ -12,5 +12,5 @@ import lombok.RequiredArgsConstructor;
 public class ImageBoardController {
 
 	@GetMapping("imgBoard_list")
-	public void go() {}
+	public void imgBoardList() {}
 }
