@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>글 작성</h1>
-    <form action="/create" method="post" enctype="multipart/form-data">
+    <form action="create" method="post" enctype="multipart/form-data">
         <label for="title">제목:</label>
         <input type="text" id="title" name="title" required><br>
         <label for="content">내용:</label>
