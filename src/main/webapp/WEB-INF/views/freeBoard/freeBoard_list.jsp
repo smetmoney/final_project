@@ -1,10 +1,6 @@
 <!-- freeboard_list.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>자유게시판</title>
-</head>
+<jsp:include page="../common/header.jsp" />
 <body>
     <h1>자유게시판 목록</h1>
     <table>
@@ -20,4 +16,4 @@
         </c:forEach>
     </table>
 </body>
-</html>
+<jsp:include page="../common/footer.jsp" />

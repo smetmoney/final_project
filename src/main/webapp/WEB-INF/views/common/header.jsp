@@ -44,8 +44,8 @@
                 게시판
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="freeBoard/freeBoard_list">자유게시판</a></li>
-                <li><a class="dropdown-item" href="imageBoard/imgBoard_list">이미지게시판</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/freeBoard/freeBoard_list">자유게시판</a></li>
+                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/imageBoard/imgBoard_list">이미지게시판</a></li>
               </ul>
             </li>
           </ul>
