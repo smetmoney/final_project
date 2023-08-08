@@ -1,7 +1,8 @@
 <!-- freeboard_list.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/header.jsp" />\
+<!-- style 태그는 추후 통합 하겠읍니다. -->
 <style>
      #imgBoardTitle{
          text-align: center;
@@ -26,7 +27,6 @@
     <div id="imgBoardTitle">
         <h1>이미지 게시판</h1>
     </div>
-    ${imgBoardList}
     <c:choose>
     <c:when test="${!empty imgBoardList}">
     	<c:forEach items="${imgBoardList}" var="img">
