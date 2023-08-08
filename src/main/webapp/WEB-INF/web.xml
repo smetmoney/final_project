@@ -3,6 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- 8/9 인코딩 필터 추가 
+		사유 : 한글 오지게 깨짐 -->
+	<filter>
+	     <filter-name>encoding</filter-name>
+	     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	     <init-param>
+	          <param-name>encoding</param-name>
+	          <param-value>UTF-8</param-value>
+	     </init-param>
+	</filter>
+	
+	<filter-mapping>
+	      <filter-name>encoding</filter-name>
+	      <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -32,7 +48,7 @@
 	
 	<!-- 내가 건든거 -->
 	
-	    <!-- JPA 설정 -->
+    <!-- JPA 설정 -->
     <persistence-unit-ref>
         <persistence-unit-ref-name>persistence/YourPersistenceUnit</persistence-unit-ref-name>
         <persistence-unit-name>your-persistence-unit-name</persistence-unit-name>
