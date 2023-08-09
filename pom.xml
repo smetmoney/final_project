@@ -82,7 +82,8 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>runtime</scope>
+			<!-- log4j가 실행시에만 동작하도록 하는 부분 주석(빌드시에도 사용 가능)  -->
+			<!-- <scope>runtime</scope> -->
 		</dependency>
 
 		<!-- @Inject -->
@@ -218,6 +219,38 @@
 	        <artifactId>spring-boot-starter-data-jpa</artifactId>
 	        <version>2.5.4</version>
 	    </dependency>
+	    
+	    <!-- 채팅 -->
+	    <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<!-- 웹 소캣 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- JSON 라이브러리 -->
+	    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.11.3</version>
+		</dependency>
+		<!-- SecurityContextHolder사용을 위한 추가  -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>6.1.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>6.1.2</version>
+		</dependency>
+				
+		
+	    
 		
 	</dependencies>
     <build>
