@@ -3,6 +3,7 @@ package com.bitc.project.vo;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -15,4 +16,6 @@ public class ImageBoardVO {
 	private int vcnt;			// 조회수
 	private int lcnt;			// 좋아요수
 	private String imageURL;	// 이미지 경로
+	
+	private MultipartFile file;
 }

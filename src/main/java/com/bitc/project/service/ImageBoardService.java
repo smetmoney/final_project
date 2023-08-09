@@ -13,5 +13,5 @@ public interface ImageBoardService {
 	/**
 	 * 게시글 작성
 	 */
-	public String createImageBoard() throws Exception;
+	public int createImageBoard(ImageBoardVO vo) throws Exception;
 }

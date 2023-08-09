@@ -18,5 +18,4 @@ public class FreeBoardVO {
     private String content;
     private String imageUrl;
     
-    
 }
