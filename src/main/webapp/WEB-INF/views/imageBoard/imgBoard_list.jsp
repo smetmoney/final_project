@@ -53,11 +53,15 @@
 				    <div class="imgBoardContent">
 				        <ul class="contentList">
 				            <li id="thumbnailImg" class="imgBoard">
-					            <div id="imgBox" style="background-image: url('${img.imageURL}')">
+					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${img.imageURL}')">
 					            </div>
 				            </li>
 				            <li class="imgBoard">제목 : ${img.title}</li>
-				            <li class="imgBoard"><span>작성일 : ${img.date}</span><span>조회수 : ${img.vcnt}</span></li>
+				            <li class="imgBoard">
+				            	<span>작성일 : ${img.date} </span>
+				            	<span>조회수 : ${img.vcnt} </span>
+				            	<span>좋아용 : ${img.lcnt}</span>
+			            	</li>
 				        </ul>
 				    </div>
 			    </c:forEach>

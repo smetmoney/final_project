@@ -128,7 +128,7 @@ CREATE TABLE test_imageBoard (
     VCNT INT DEFAULT 0,							-- 조회수
     LCNT INT DEFAULT 0,							-- 좋아요 수
     ImageURL VARCHAR(255)						-- 이미지 경로
-)
+);
 
 
 INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg')
