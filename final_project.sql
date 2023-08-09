@@ -1,13 +1,18 @@
 -- 멤버 정보 테이블
 CREATE TABLE MEMBER (
     IDN INT AUTO_INCREMENT PRIMARY KEY, 	-- 식별값
-    ID VARCHAR(255) NOT NULL, 				-- 로그인용 ID
+    ID VARCHAR(255) NOT NULL UNIQUE, 				-- 로그인용 ID
     NNAME VARCHAR(255) NOT NULL,			-- 닉네임	
     PASS VARCHAR(255) NOT NULL,				-- 비밀번호
     EMAIL VARCHAR(255) NOT NULL,			-- 이메일
     NAME VARCHAR(255),						-- 이름
     STOPU BOOLEAN DEFAULT FALSE				-- 정지 유저 구분
 );
+
+DROP TABLE MEMBER;
+
+DESC MEMBER;
+SELECT * FROM MEMBER;
 
 -- 유저 정보 테이블
 CREATE TABLE USER (
@@ -16,6 +21,10 @@ CREATE TABLE USER (
     -- SAVE (임시) 								-- 임시
     FOREIGN KEY (IDN) REFERENCES MEMBER(IDN) 	-- 식별값 불러오기
 );
+
+DROP TABLE USER;
+
+SELECT * FROM USER;
 
 -- 자유게시판 테이블 생성
 CREATE TABLE FreeBoard (
@@ -26,8 +35,14 @@ CREATE TABLE FreeBoard (
     Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
     VNT INT DEFAULT 0,							-- 조회수
     LIKE_COUNT INT DEFAULT 0,					-- 좋아요 수
-    FOREIGN KEY (Auth) REFERENCES MEMBER(ID)	-- ID값 불러오기
+   	CONSTRAINT fk_idn FOREIGN KEY (Auth) 
+    REFERENCES MEMBER(ID)
+--    INDEX(IDN)									-- ID값 불러오기
 );
+
+SELECT * FROM FreeBoard;
+
+SHOW INDEXES FROM MEMBER;
 
 -- 이미지 게시판 테이블 생성
 CREATE TABLE ImageBoard (
@@ -80,6 +95,8 @@ CREATE TABLE QnA (
     QuestionTitle VARCHAR(255), 						-- Q&A 제목
     QuestionContent TEXT         						-- Q&A 내용
 );	
+
+SELECT * FROM QnA;
 
 -- 업적 테이블
 CREATE TABLE Achievements (

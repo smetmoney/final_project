@@ -11,14 +11,14 @@
 <head>
 <header>
 	<div id="memberBox">
-        <a id="loginLink" href="#">로그인</a>
-        <a id="joinLink" href="#">회원가입</a>
+        <a id="loginLink" href="${pageContext.request.contextPath}/login/login">로그인</a>
+        <a id="joinLink" href="${pageContext.request.contextPath}/join/join">회원가입</a>
 	</div>
     <!-- logo image -->
     <div id="logoBox">
-    	<a href="#">
-    		<img src="${pageContext.request.contextPath}/resources/images/headerIMG/poe_logo6.png" id="logo_image">
-  		</a>
+		<a href="${pageContext.request.contextPath}/">
+		    <img src="${pageContext.request.contextPath}/resources/images/headerIMG/poe_logo6.png" id="logo_image">
+		</a>
 	</div>
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
