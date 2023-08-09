@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/chat")
+@Log4j
 public class ChatController {
 
 	@GetMapping("chat")
