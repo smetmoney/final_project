@@ -8,9 +8,11 @@ import lombok.Data;
 
 @Data
 public class ImageBoardVO {
-	private String title;
-	private String content;
-	private Date date;
-	private String url;
-	private int count;
+	private String title;		// 제목
+	private String content;		// 글내용
+	private String Auth;		// 작성자
+	private Date date;			// 작성일
+	private int vcnt;			// 조회수
+	private int lcnt;			// 좋아요수
+	private String imageURL;	// 이미지 경로
 }

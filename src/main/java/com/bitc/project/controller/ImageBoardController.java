@@ -16,17 +16,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bitc.project.service.ImageBoardService;
 import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/imageBoard")
 public class ImageBoardController {
 
-	@GetMapping("imgBoard_list")
-	public void imgBoardList() {}
+	private final ImageBoardService is;
 	
+	@GetMapping("imgBoard_list")
+	public void imgBoardList(Model model) throws Exception {
+		List<ImageBoardVO> list = is.imageBoardList();
+		System.out.println(list);
+		model.addAttribute("imgBoardList",list);
+	}
+	/*
 	@GetMapping("imgBoard_form")
 	public void imgBoardForm() {}
 	
@@ -38,4 +46,5 @@ public class ImageBoardController {
 		model.addAttribute("imgBoardList",list);
 		return "imageBoard/imgBoard_list";
 	}
+	*/
 }
