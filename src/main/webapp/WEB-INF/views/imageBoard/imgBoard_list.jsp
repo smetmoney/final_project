@@ -22,6 +22,11 @@
          width: 300px;
          height: 300px;
      }
+     #imgBox{
+     	width: 350px;
+        height: 300px;
+        background-size: cover;
+     }
 </style>
 <div class="mainWrap">
     <div id="imgBoardTitle">
@@ -32,9 +37,12 @@
     	<c:forEach items="${imgBoardList}" var="img">
 		    <div id="imgBoardContent">
 		        <ul id="contentList">
-		            <li id="thumbnailImg" class="imgBoard"><img src="${img.url}" alt="ThumbnailImg"></li>
+		            <li id="thumbnailImg" class="imgBoard">
+			            <div id="imgBox" style="background-image: url('${img.imageURL}')">
+			            </div>
+		            </li>
 		            <li class="imgBoard">제목 : ${img.title}</li>
-		            <li class="imgBoard"><span>작성일 : ${img.date}</span><span>조회수 : ${img.count}</span></li>
+		            <li class="imgBoard"><span>작성일 : ${img.date}</span><span>조회수 : ${img.vcnt}</span></li>
 		        </ul>
 		    </div>
 	    </c:forEach>

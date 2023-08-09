@@ -102,7 +102,19 @@ CREATE TABLE Message (
 );
 
 
+-- 민준 테스트용
+CREATE TABLE test_imageBoard (
+    Title VARCHAR(255) NOT NULL,				-- 글 제목
+    CONTENT TEXT,								-- 글 내용
+    Auth VARCHAR(255),							-- 작성자
+    Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
+    VCNT INT DEFAULT 0,							-- 조회수
+    LCNT INT DEFAULT 0,							-- 좋아요 수
+    ImageURL VARCHAR(255)						-- 이미지 경로
+)
 
+
+INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg')
 
 
 
