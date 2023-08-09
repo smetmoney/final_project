@@ -16,18 +16,50 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/imgBank/**" location="/imgBank/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+	 
+	 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <beans:property name="prefix" value="/WEB-INF/views/" />
+	    <beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	 
+	<!-- multipart/form-data 형식 전달된 데이터를 처리하는 bean -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/>
+		<beans:property name="maxInMemorySize" value="10240"/> <!-- default 10kb -->
+		<beans:property name="defaultEncoding" value="UTF-8"/>
 	</beans:bean>
 	
+	<beans:bean id="uploadDir" class="java.lang.String">
+		<beans:constructor-arg value="/resources/imgBank"/>
+	</beans:bean>
+
 	<websocket:handlers>
 		<websocket:mapping handler="chattingHandler" path="/chatting"/>
 		<websocket:sockjs websocket-enabled="true"/>
 	</websocket:handlers>
 	<beans:bean id="chattingHandler" class="com.bitc.project.handler.ChattingHandler"/>
+
 	<context:component-scan base-package="com.bitc.project" />
+	<context:component-scan base-package="com.bitc.project.service"/>		
+	<!-- 로그인 페이지 매핑 -->
+    <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <beans:property name="mappings">
+            <beans:props>
+                <beans:prop key="/login/login.jsp">loginController</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+
+    <!-- 회원가입 페이지 매핑 -->
+    <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <beans:property name="mappings">
+            <beans:props>
+                <beans:prop key="/join/join.jsp">joinController</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
 	
 </beans:beans>
