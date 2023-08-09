@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">메뉴1</a>
+              <a class="nav-link" href="chat/chat">채팅</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">메뉴2</a>
