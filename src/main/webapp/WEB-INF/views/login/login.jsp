@@ -32,6 +32,12 @@
                 
             </div>
         </form>
+        
+        <!-- 에러 메시지가 있다면 표시 -->
+		<c:if test="${not empty error}">
+		    <p class="error">${error}</p>
+		</c:if>
+
         <div class="caption">
             <a href="${pageContext.request.contextPath}/">홈으로</a>
             <a href="${pageContext.request.contextPath}/join/join">회원가입</a>

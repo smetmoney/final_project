@@ -6,6 +6,8 @@ import com.bitc.project.model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 	
-    Member findByEmail(String email);  // 추가
+    Member findByEmail(String email);   // 추가
+    
+    Member findById(String id);			// 추가
     // 다른 회원 관련 메서드도 추가 가능
 }
