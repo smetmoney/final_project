@@ -121,6 +121,7 @@ CREATE TABLE Message (
 
 -- 민준 테스트용
 CREATE TABLE test_imageBoard (
+	BNO INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,				-- 글 제목
     CONTENT TEXT,								-- 글 내용
     Auth VARCHAR(255),							-- 작성자
@@ -128,8 +129,7 @@ CREATE TABLE test_imageBoard (
     VCNT INT DEFAULT 0,							-- 조회수
     LCNT INT DEFAULT 0,							-- 좋아요 수
     ImageURL VARCHAR(255)						-- 이미지 경로
-)
-
+);
 
 INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg')
 

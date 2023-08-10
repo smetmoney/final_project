@@ -51,13 +51,20 @@
 		    <c:when test="${!empty imgBoardList}">
 		    	<c:forEach items="${imgBoardList}" var="img">
 				    <div class="imgBoardContent">
+						<input type="hidden" value="${img.bno}"/>
 				        <ul class="contentList">
 				            <li id="thumbnailImg" class="imgBoard">
-					            <div id="imgBox" style="background-image: url('${img.imageURL}')">
+					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${img.imageURL}')">
 					            </div>
 				            </li>
-				            <li class="imgBoard">제목 : ${img.title}</li>
-				            <li class="imgBoard"><span>작성일 : ${img.date}</span><span>조회수 : ${img.vcnt}</span></li>
+				            <li class="imgBoard">
+				            	<a href="imgBoard_detail">제목 : ${img.title}</a>
+				            </li>
+				            <li class="imgBoard">
+				            	<span>작성일 : ${img.date} </span>
+				            	<span>조회수 : ${img.vcnt} </span>
+				            	<span>좋아용 : ${img.lcnt}</span>
+			            	</li>
 				        </ul>
 				    </div>
 			    </c:forEach>

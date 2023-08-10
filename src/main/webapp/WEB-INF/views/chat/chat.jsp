@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -35,7 +36,7 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var sock = new SockJS('http://localhost:8080/chatting');
+var sock = new SockJS('http://localhost:8080/project/chat/chat');
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 sock.onopen = onOpen;
@@ -86,7 +87,7 @@ function onMessage(msg) {
 //채팅창에서 나갔을 때
 function onClose(evt) {
 	
-	var user = '${pr.username}';
+	var user = '${username}';
 	var str = user + " 님이 퇴장하셨습니다.";
 	
 	$("#msgArea").append(str);
@@ -94,7 +95,7 @@ function onClose(evt) {
 //채팅창에 들어왔을 때
 function onOpen(evt) {
 	
-	var user = '${pr.username}';
+	var user = '${username}';
 	var str = user + "님이 입장하셨습니다.";
 	
 	$("#msgArea").append(str);
