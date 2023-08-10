@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/join")
 public class JoinController {
 
-    private final MemberService memberService;  // 추가
+    private final MemberService memberService;  	// 추가
 
     @Autowired
     public JoinController(MemberService memberService) {
@@ -29,6 +29,6 @@ public class JoinController {
     @PostMapping("join")
     public String join(MemberDTO memberDTO) {
         memberService.registerNewMember(memberDTO);  // 추가
-        return "redirect:/login/login";  // 회원가입 후 로그인 페이지로 리다이렉트
+        return "redirect:/login/login";  			// 회원가입 후 로그인 페이지로 리다이렉트
     }
 }
