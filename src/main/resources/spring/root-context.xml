@@ -9,7 +9,7 @@
 	
 	<!-- 집에서 할때 변경하기 -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:property-placeholder location="classpath:prop/db.properties"/>
+	<context:property-placeholder location="classpath:prop/db-minjun.properties"/>
 
 	<!-- hikari config -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">

@@ -50,4 +50,14 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		return dao.createImageBoard(vo);
 	}
 
+	@Override
+	public void updateCnt(int bno) throws Exception {
+		dao.updateCnt(bno);
+	}
+
+	@Override
+	public ImageBoardVO read(int bno) throws Exception {
+		return dao.read(bno);
+	}
+
 }
