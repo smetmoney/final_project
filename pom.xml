@@ -235,6 +235,15 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.11.3</version>
 		</dependency>
+		<!-- 웹소캣? -->
+		<dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-api</artifactId>
+		    <version>1.1</version>
+		</dependency>
+		
+		
+		
 		<!-- SecurityContextHolder사용을 위한 추가  -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>

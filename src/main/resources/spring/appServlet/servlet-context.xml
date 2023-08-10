@@ -37,7 +37,7 @@
 	</beans:bean>
 
 	<websocket:handlers allowed-origins="*" >
-		<websocket:mapping handler="chattingHandler" path="/chatting"/>
+		<websocket:mapping handler="chattingHandler" path="/chat/chat"/>
 		<websocket:sockjs websocket-enabled="true"/>
 	</websocket:handlers>
 	<beans:bean id="chattingHandler" class="com.bitc.project.handler.ChattingHandler"/>
