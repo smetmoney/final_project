@@ -4,11 +4,10 @@ pageEncoding="UTF-8"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- SockJS CDN -->
+<!-- SockJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -39,7 +38,7 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var sock = new SockJS('http://localhost:8080/project/chat/chat');
+var sock = new SockJS('chat');
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 sock.onopen = onOpen;
