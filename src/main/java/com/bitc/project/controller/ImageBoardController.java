@@ -34,13 +34,4 @@ public class ImageBoardController {
 		is.createImageBoard(vo);
 		return "redirect:imgBoard_list";
 	}
-	
-	@GetMapping("imgBoard_detail")
-	public String imgBoard_detail(int bno,Model model) throws Exception 
-	{
-		is.updateCnt(bno);
-		ImageBoardVO vo = is.read(bno);
-		model.addAttribute("vo",vo);
-		return "redirect:imgBoard_detail";
-	}
 }
