@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="../common/header.jsp" />
@@ -18,7 +17,6 @@
 	    <span>좋아용 : ${vo.lcnt}</span>
     </div>
 <jsp:include page="../common/footer.jsp" />
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,4 +28,3 @@
     <img src="/uploads/${post.imageUrl}" alt="이미지">
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git

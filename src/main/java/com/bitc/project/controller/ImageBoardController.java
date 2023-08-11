@@ -34,7 +34,6 @@ public class ImageBoardController {
 		is.createImageBoard(vo);
 		return "redirect:imgBoard_list";
 	}
-<<<<<<< HEAD
 	
 	@GetMapping("read")
 	public String read(int bno,Model model) throws Exception 
@@ -48,6 +47,4 @@ public class ImageBoardController {
 	
 	@GetMapping("imgBoard_detail")
 	public void imgBoard_detail() {}
-=======
->>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
 }

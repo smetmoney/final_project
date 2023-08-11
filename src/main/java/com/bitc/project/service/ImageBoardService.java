@@ -14,4 +14,9 @@ public interface ImageBoardService {
 	 * 게시글 작성
 	 */
 	public int createImageBoard(ImageBoardVO vo) throws Exception;
+	
+	public void updateCnt(int bno)  throws Exception;
+	
+	public ImageBoardVO read(int bno) throws Exception;
+	
 }
