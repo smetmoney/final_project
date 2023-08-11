@@ -1,7 +1,7 @@
+<!-- freeboard_list.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<jsp:include page="../common/header.jsp" />
+<jsp:include page="../common/header.jsp" />\
 <!-- style 태그는 추후 통합 하겠읍니다. -->
 <style>
      #imgBoardTitle{
@@ -51,14 +51,19 @@
 		    <c:when test="${!empty imgBoardList}">
 		    	<c:forEach items="${imgBoardList}" var="img">
 				    <div class="imgBoardContent">
+						<input type="hidden" value="${img.bno}"/>
 				        <ul class="contentList">
 				            <li id="thumbnailImg" class="imgBoard">
-					            <div id="imgBox" style="background-image: url('${path}${img.imageURL}')">
+					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${img.imageURL}')">
 					            </div>
 				            </li>
 				            <li class="imgBoard">
+<<<<<<< HEAD
 				            	<a href="read?bno=${img.bno}">제목 : ${img.title}</a>
 				            	<span>${img.bno}</span>
+=======
+				            	<a href="imgBoard_detail">제목 : ${img.title}</a>
+>>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
 				            </li>
 				            <li class="imgBoard">
 				            	<span>작성일 : ${img.date} </span>

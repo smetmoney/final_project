@@ -50,6 +50,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		return dao.createImageBoard(vo);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void updateCnt(int bno) throws Exception {
 		dao.updateCnt(bno);
@@ -61,4 +62,6 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		return dao.read(bno);
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
 }
