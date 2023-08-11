@@ -45,7 +45,9 @@
 
 	<context:component-scan base-package="com.bitc.project" />
 	<context:component-scan base-package="com.bitc.project.service"/>		
+	
 	<!-- 로그인 페이지 매핑 -->
+	<!-- 
     <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <beans:property name="mappings">
             <beans:props>
@@ -53,8 +55,11 @@
             </beans:props>
         </beans:property>
     </beans:bean>
+	 -->
 
+	 
     <!-- 회원가입 페이지 매핑 -->
+    <!--
     <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <beans:property name="mappings">
             <beans:props>
@@ -62,5 +67,6 @@
             </beans:props>
         </beans:property>
     </beans:bean>
-	
+	 -->
+	 
 </beans:beans>

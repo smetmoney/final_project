@@ -134,7 +134,7 @@ CREATE TABLE test_imageBoard (
 INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg')
 
 
-
+select * from test_imageBOard;
 
 
 

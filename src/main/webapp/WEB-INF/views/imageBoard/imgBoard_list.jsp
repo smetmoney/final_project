@@ -57,7 +57,8 @@
 					            </div>
 				            </li>
 				            <li class="imgBoard">
-				            	<a href="imgBoard_detail?bno=${img.bno}">제목 : ${img.title}</a>
+				            	<a href="read?bno=${img.bno}">제목 : ${img.title}</a>
+				            	<span>${img.bno}</span>
 				            </li>
 				            <li class="imgBoard">
 				            	<span>작성일 : ${img.date} </span>

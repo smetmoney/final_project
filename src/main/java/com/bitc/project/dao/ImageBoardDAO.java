@@ -13,7 +13,7 @@ public interface ImageBoardDAO {
 	@Select("SELECT * FROM test_imageBoard limit 0,6")
 	List<ImageBoardVO> imageBoardList()throws Exception;
 	
-	@Insert("INSERT INTO test_imageBoard VALUES(null,#{title},#{content},#{auth},now(),0,0,#{imageURL})")
+	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL})")
 	int createImageBoard(ImageBoardVO vo);
 	
 	@Update("UPDATE test_imageBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")

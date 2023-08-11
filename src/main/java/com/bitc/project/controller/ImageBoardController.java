@@ -30,17 +30,21 @@ public class ImageBoardController {
 	public void imgBoardForm() {}
 	
 	@PostMapping("create")
-	public String create(ImageBoardVO vo,Model model) throws Exception {
+	public String create(ImageBoardVO vo) throws Exception {
 		is.createImageBoard(vo);
 		return "redirect:imgBoard_list";
 	}
 	
-	@GetMapping("imgBoard_detail")
-	public String imgBoard_detail(int bno,Model model) throws Exception 
+	@GetMapping("read")
+	public String read(int bno,Model model) throws Exception 
 	{
+		System.out.println(bno);
 		is.updateCnt(bno);
 		ImageBoardVO vo = is.read(bno);
 		model.addAttribute("vo",vo);
-		return "redirect:imgBoard_detail";
+		return "/imageBoard/imgBoard_detail";
 	}
+	
+	@GetMapping("imgBoard_detail")
+	public void imgBoard_detail() {}
 }

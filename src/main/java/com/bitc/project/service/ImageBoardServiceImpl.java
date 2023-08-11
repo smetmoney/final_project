@@ -53,6 +53,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	@Override
 	public void updateCnt(int bno) throws Exception {
 		dao.updateCnt(bno);
+		
 	}
 
 	@Override
