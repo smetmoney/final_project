@@ -17,14 +17,3 @@
 	    <span>좋아용 : ${vo.lcnt}</span>
     </div>
 <jsp:include page="../common/footer.jsp" />
-<!DOCTYPE html>
-<html>
-<head>
-    <title>자유게시판 - 글 상세보기</title>
-</head>
-<body>
-    <h1>${post.title}</h1>
-    <p>${post.content}</p>
-    <img src="/uploads/${post.imageUrl}" alt="이미지">
-</body>
-</html>

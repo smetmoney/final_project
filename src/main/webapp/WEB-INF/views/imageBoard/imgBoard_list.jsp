@@ -58,12 +58,8 @@
 					            </div>
 				            </li>
 				            <li class="imgBoard">
-<<<<<<< HEAD
 				            	<a href="read?bno=${img.bno}">제목 : ${img.title}</a>
 				            	<span>${img.bno}</span>
-=======
-				            	<a href="imgBoard_detail">제목 : ${img.title}</a>
->>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
 				            </li>
 				            <li class="imgBoard">
 				            	<span>작성일 : ${img.date} </span>
