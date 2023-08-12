@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class ImageBoardVO {
+	private int bno;			// 글번호
 	private String title;		// 제목
 	private String content;		// 글내용
 	private String Auth;		// 작성자

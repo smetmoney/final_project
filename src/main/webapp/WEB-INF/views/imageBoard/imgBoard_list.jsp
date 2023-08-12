@@ -56,7 +56,9 @@
 					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${img.imageURL}')">
 					            </div>
 				            </li>
-				            <li class="imgBoard">제목 : ${img.title}</li>
+				            <li class="imgBoard">
+				            	<a href="read?bno=${img.bno}">제목 : ${img.title}</a>
+				            </li>
 				            <li class="imgBoard">
 				            	<span>작성일 : ${img.date} </span>
 				            	<span>조회수 : ${img.vcnt} </span>
@@ -65,6 +67,30 @@
 				        </ul>
 				    </div>
 			    </c:forEach>
+			    <br/>
+   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
+					<tr>
+						<th colspan="5">
+							<c:if test="${pm.first}">
+								<a href="imgBoard_list?page=1">[&laquo;]</a>
+							</c:if>
+							<c:if test="${pm.prev}">
+								<a href="imgBoard_list?page=${pm.startPage-1}">[&lt;]</a>
+							</c:if>
+							<c:forEach var="i" 
+									   begin="${pm.startPage}" 
+									   end ="${pm.endPage}">
+								<a href="imgBoard_list?page=${i}">[${i}]</a>
+							</c:forEach>
+							<c:if test="${pm.next}">
+								<a href="imgBoard_list?page=${pm.endPage+1}">[&gt;]</a>
+							</c:if>
+							<c:if test="${pm.last}">
+								<a href="imgBoard_list?page=${pm.maxPage}">[&raquo;]</a>
+							</c:if>
+						</th>
+					</tr>
+				</c:if>
 		    </c:when>
 		    <c:otherwise>
 		    	<h2>게시글이 존재하지 않습니다.</h2>
