@@ -14,7 +14,7 @@ public interface QnaDAO {
 		/**
 		 * @return 전체 QnA 목록
 		 */
-		@Select("SELECT * FROM QnA")
+		@Select("SELECT * FROM QnA ORDER BY QnAID")
 		List<QnaVO> qnaList()throws Exception;
 		
 		/**

@@ -97,6 +97,7 @@ CREATE TABLE QnA (
 );	
 
 SELECT * FROM QnA;
+INSERT INTO QnA (QuestionTitle, QuestionContent)  VALUES('제목','내용 4 ');
 
 -- 업적 테이블
 CREATE TABLE Achievements (

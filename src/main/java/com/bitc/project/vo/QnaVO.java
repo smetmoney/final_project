@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class QnaVO {
 
-	private String QuestionTitle;
-	private String QuestionContent;
+	private int QnAID;
+	private String questionTitle;
+	private String questionContent;
 }
