@@ -11,5 +11,5 @@ public class MemberDTO {
     private String email;
     private String name;
     private boolean stopu;
-
+    
 }

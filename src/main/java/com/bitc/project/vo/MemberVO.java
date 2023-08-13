@@ -13,4 +13,8 @@ public class MemberVO {
 	private String NAME;	// 이름
 	private boolean STOPU;	// 정지 유저
 	
+	public String getPass() {
+		return PASS;
+	}
+	
 }

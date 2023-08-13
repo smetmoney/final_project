@@ -1,13 +1,9 @@
-package com.bitc.project.repository;
+/*
+ * import org.springframework.data.jpa.repository.JpaRepository; import
+ * org.springframework.stereotype.Repository;
+ */
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.bitc.project.model.Member;
-
-public interface MemberRepository extends JpaRepository<Member, Integer> {
-	
-    Member findByEmail(String email);   // 추가
-    
-    Member findById(String id);			// 추가
-    // 다른 회원 관련 메서드도 추가 가능
-}
+/*
+ * @Repository public interface MemberRepository extends JpaRepository<Member,
+ * Long> { Member findByUsername(String username); }
+ */

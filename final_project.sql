@@ -46,7 +46,7 @@ CREATE TABLE FreeBoard (
     LIKE_COUNT INT DEFAULT 0,					-- 좋아요 수
    	CONSTRAINT fk_idn FOREIGN KEY (Auth) 
     REFERENCES MEMBER(ID)
---    INDEX(IDN)									-- ID값 불러오기
+--    INDEX(IDN)								-- ID값 불러오기
 );
 
 SELECT * FROM FreeBoard;
