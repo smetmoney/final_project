@@ -12,23 +12,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+	/*
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public MemberServiceImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
+    */
 
     public void registerNewMember(MemberDTO memberDTO) {
         Member newMember = new Member();
         newMember.setId(Long.valueOf(memberDTO.getId()));
-        newMember.setNname(memberDTO.getNname());
-        newMember.setPass(passwordEncoder.encode(memberDTO.getPass()));  // 비밀번호 인코딩
+        // newMember.setNname(memberDTO.getNname());
+        // newMember.setPass(passwordEncoder.encode(memberDTO.getPass()));  // 비밀번호 인코딩
         newMember.setEmail(memberDTO.getEmail());
         newMember.setName(memberDTO.getName());
-        newMember.setStopu(Boolean.valueOf(memberDTO.getStopu()));
+        // newMember.setStopu(Boolean.valueOf(memberDTO.getStopu()));
         
-        memberRepository.save(newMember);
+        // memberRepository.save(newMember);
     }
 
 

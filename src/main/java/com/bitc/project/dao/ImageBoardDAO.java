@@ -2,6 +2,7 @@ package com.bitc.project.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -25,4 +26,10 @@ public interface ImageBoardDAO {
 
 	@Select("SELECT * FROM test_imageBoard ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
+	
+	@Delete("DELETE FROM test_imageBoard WHERE bno = #{bno}")
+	int delete(int bno);
+	
+	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
+	int update(ImageBoardVO vo);
 }

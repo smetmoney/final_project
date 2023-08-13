@@ -61,7 +61,9 @@
 				            </li>
 				            <li class="imgBoard">
 				            	<span>작성일 : ${img.date} </span>
-				            	<span>조회수 : ${img.vcnt} </span>
+			            	</li>
+			            	<li class="imgBoard">
+					           	<span>조회수 : ${img.vcnt} </span>
 				            	<span>좋아용 : ${img.lcnt}</span>
 			            	</li>
 				        </ul>
