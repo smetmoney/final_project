@@ -1,19 +1,17 @@
 package com.bitc.project.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 
 import com.bitc.project.dao.ImageBoardDAO;
+import com.bitc.project.util.Criteria;
 import com.bitc.project.util.FileUtils;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
@@ -37,9 +35,8 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	}
 	
 	@Override
-	public List<ImageBoardVO> imageBoardList() throws Exception {
-		List<ImageBoardVO> list = dao.imageBoardList();
-		return list;
+	public List<ImageBoardVO> imageBoardList(Criteria cri) throws Exception {
+		return dao.imageBoardList(cri);
 	}
 
 	@Override
@@ -48,6 +45,22 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		vo.setImageURL(uploadDir+imageURL);
 		System.out.println(vo.getImageURL());
 		return dao.createImageBoard(vo);
+	}
+
+	@Override
+	public void updateCnt(int bno) throws Exception {
+		dao.updateCnt(bno);
+		
+	}
+
+	@Override
+	public ImageBoardVO read(int bno) throws Exception {
+		return dao.read(bno);
+	}
+
+	@Override
+	public PageMaker getPageMaker(Criteria cri) throws Exception {
+		return new PageMaker(cri,dao.totalCount());
 	}
 
 }
