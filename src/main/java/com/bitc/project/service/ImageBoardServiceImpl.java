@@ -41,10 +41,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 
 	@Override
 	public int createImageBoard(ImageBoardVO vo) throws Exception {
-		String imageURL = FileUtils.uploadFile(realPath, vo.getFile());
-		vo.setImageURL(uploadDir+imageURL);
-		System.out.println(vo.getImageURL());
-		return dao.createImageBoard(vo);
+		return dao.createImageBoard(saveFile(vo));
 	}
 
 	@Override
@@ -61,6 +58,22 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	@Override
 	public PageMaker getPageMaker(Criteria cri) throws Exception {
 		return new PageMaker(cri,dao.totalCount());
+	}
+
+	@Override
+	public int delete(int bno) throws Exception {
+		return dao.delete(bno);
+	}
+
+	@Override
+	public int update(ImageBoardVO vo) throws Exception {
+		return dao.update(saveFile(vo));
+	}
+	
+	public ImageBoardVO saveFile(ImageBoardVO vo) throws Exception {
+		String imageURL = FileUtils.uploadFile(realPath, vo.getFile());
+		vo.setImageURL(uploadDir+imageURL);
+		return vo;
 	}
 
 }

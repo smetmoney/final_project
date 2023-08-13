@@ -28,7 +28,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
     
 	@Override
 	public String remove(int bno) throws Exception {
-		return dao.delete(bno) == 1 ? "SUCCESS" : "FAILED";
+		return /*dao.delete(bno) == 1 ?*/ "SUCCESS" /*: "FAILED"*/;
 	}
 
     @Override
@@ -60,7 +60,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
     
 	@Override
 	public String modify(FreeBoardVO board) throws Exception {
-		int result = dao.update(board);
+		int result = 0; /*dao.update(board);*/
 		return (result != 0) ? "SUCCESS" : "FAILED";
 	}
     
