@@ -22,5 +22,9 @@ public interface MemberDAO {
 	List<MemberVO> selectAllMember();
 
 	void insertMember(MemberVO member);
+
+	MemberVO selectMemberById(String id);
+
+	List<MemberVO> selectAllMembers();
 	
 }

@@ -39,7 +39,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
     @Override
     public String regist(FreeBoardVO board) throws Exception {
-        int result = dao.create(board);
+        int result = dao.createFreeBoard(board);
         return (result != 0) ? "SUCCESS" : "FAILED";
     }
 

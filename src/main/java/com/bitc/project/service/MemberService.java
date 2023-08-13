@@ -2,13 +2,17 @@ package com.bitc.project.service;
 
 import java.util.List;
 
-import com.bitc.project.dto.MemberDTO;  
+import com.bitc.project.vo.MemberVO;  
 
 public interface MemberService {
-    void registerNewMember(MemberDTO memberDTO);  
+	
+    void registerNewMember(MemberVO membervo);  
     
-    MemberDTO findMemberById(String id);
-    List<MemberDTO> findAllMembers();
-    void updateMember(MemberDTO memberDTO);
+    MemberVO findMemberById(String id);
+    
+    List<MemberVO> findAllMembers();
+    
+    void updateMember(MemberVO membervo);
+    
     void deleteMember(String id);
 }
