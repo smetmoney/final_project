@@ -15,6 +15,7 @@
 	.qnaList{
 		padding-left:15%;
 		background-color:skyblue;	
+		padding-top:20px;
 	}
 	.qnaList table{width:75%;}
 	.qnaList table tr{
@@ -59,7 +60,8 @@
 			            	<div class="editQna">
 								<c:choose>
 									<c:when test="${userId eq 'admin'}">
-										<form action="editQna" method="Get" >
+										<form action="editQna" method="GET" >
+										 	<input type="hidden" name="qnaId" value="${con.qnaId}">
 											<input type="submit" value="QnA 수정">
 										</form>
 									</c:when>

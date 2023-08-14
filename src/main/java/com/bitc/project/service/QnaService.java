@@ -14,7 +14,7 @@ public interface QnaService {
 	/**
 	 * 질의응답 등록하기
 	 */
-	public int newQna(QnaVO vo) throws Exception;
+	public String newQna(QnaVO vo) throws Exception;
 	
 	/**
 	 * 특정 질의응답 불러오기

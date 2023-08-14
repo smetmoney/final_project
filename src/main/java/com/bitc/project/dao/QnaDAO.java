@@ -20,7 +20,7 @@ public interface QnaDAO {
 		/**
 		 * 새 QnA 작성
 		 */
-		@Insert("INSERT INTO QnA (QuestionTitle,QuestionContent) VALUES(#{QuestionTitle},#{QuestionContent})")
+		@Insert("INSERT INTO QnA (QuestionTitle,QuestionContent) VALUES(#{questionTitle},#{questionContent})")
 		int createQna(QnaVO vo);
 		
 		/**

@@ -21,8 +21,10 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int newQna(QnaVO vo) throws Exception {
-		return dao.createQna(vo);
+	public String newQna(QnaVO vo) throws Exception {
+		int result = dao.createQna(vo);
+		String message = (result != 0) ? "SUCCESS" : "FAILED";
+		return message;
 	}
 
 	@Override
