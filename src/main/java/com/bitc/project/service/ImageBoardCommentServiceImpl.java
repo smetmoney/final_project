@@ -26,13 +26,13 @@ public class ImageBoardCommentServiceImpl implements ImageBoardCommentService {
 	}
 
 	@Override
-	public int modify(ImageBoardCommentVO vo) {
-		return dao.modify(vo);
+	public String modify(ImageBoardCommentVO vo) {
+		return dao.modify(vo) > 0 ? "댓글 수정 완료" : "댓글 수정 실패";
 	}
 
 	@Override
-	public String delete(ImageBoardCommentVO vo) {
-		return dao.delete(vo) > 0 ? "댓글 삭제 완료" : "댓글 삭제 실패";
+	public String delete(int cno) {
+		return dao.delete(cno) > 0 ? "success" : "fail";
 	}
 
 }
