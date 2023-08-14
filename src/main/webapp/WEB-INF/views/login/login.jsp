@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nike KR L</title>
+    <title>FINAL_PROJECT</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 </head>
 <body>
@@ -18,13 +18,13 @@
        <img src="${pageContext.request.contextPath}/resources/images/loginIMG/login2.png/">
       <br><br><br>
         <h1>환영합니다</h1>
-        <form action="nike_log.html" method="get">
+        <form action="login" method="post">
             <div class="int-area">
-                <input type="text" name="id" id="id" autocomplete="off" required>
-                <label for="id">ID</label>
+                <input type="text" name="ID" id="ID" autocomplete="off" required>
+                <label for="ID">ID</label>
             </div>
             <div class="int-area">
-                <input type="password" name="pw" id="pw" autocomplete="off" required>
+                <input type="password" name="pass" id="pass" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="login_btn">

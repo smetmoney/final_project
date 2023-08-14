@@ -6,14 +6,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>path of forum</title>
+        <title>FINAL_PROJECT</title>
 
         <!-- css CDN추가 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-            crossorigin="anonymous">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
 
     </style>
@@ -22,7 +17,7 @@
         	alt="main_image">
         <!-- <img src="./img/backGround.jpg" id="main_image" alt="main_image"> -->
         <!-- <div class="position-absolute top-0 end-0" style="padding-top: 10px;">
-            <a href="#">Login</a><a href="#" style="margin: 20px;">Register</a>
+            <a href="#">Login</a><a href="#" style="margin: 20px;">Register</a>	
         </div> -->
         <!-- header -->
         <div class="header">
@@ -163,6 +158,7 @@
                                     <option>여성</option>
                                     <option>선택안함</option>
                                 </select>
+                             </div>
                             </span>
                             <br><br>
                             개인정보 처리방침 동의여부 :&nbsp;<input type="radio"
@@ -170,10 +166,10 @@
                                 value="Y">동의 &nbsp;
                             <input type="radio" name="agree" value="N">비동의
                             <br><br>
-                            <a href="./poe_home.html"><div class="row wide"><div
-                                        class="element">
-                                        <input type="submit" name="submit"
-                                            value="Create Account">
+                            <a href="./poe_home.html">
+                            	<div class="row wide">
+                            		<div class="element">
+                                        <input type="submit" name="submit" value="계정 생성">
                                     </div>
                                 </div>
                             </a>
