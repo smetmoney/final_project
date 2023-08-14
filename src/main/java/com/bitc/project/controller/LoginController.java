@@ -14,22 +14,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.vo.MemberVO;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
 @RequestMapping	("/login")
+@RequiredArgsConstructor
 public class LoginController {
 	
-	/*
-	 * @GetMapping("login") public 
-	 * void join() {}
-	 */
+	@GetMapping("login") public 
+	void join() {}
+
 	
     @Autowired
     private MemberDAO memberDAO;
-
+    
+    /*
     @GetMapping("login")
     public String loginForm() {
         return "login"; 								// 로그인 페이지로 이동
     }
+    */
 
     @PostMapping("login")
     public String loginProcess(HttpServletRequest request, HttpServletResponse response,
