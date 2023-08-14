@@ -13,13 +13,14 @@ import com.bitc.project.vo.MemberVO;
 @Mapper
 public interface MemberDAO {
 
-	@Insert("INSERT INTO MEMBER (ID, NNAME, PASS, EMAIL, NAME, STOPU) VALUES (#{vo.id}, #{vo.nname}, #{vo.pass}, #{vo.email}, #{vo.name}, #{vo.stopu})")
+	@Insert("INSERT INTO member (id, nname, pass, email, name, stopu) VALUES (#{vo.id}, #{vo.nname}, #{vo.pass}, #{vo.email}, #{vo.name}, #{vo.stopu})")
 	int createMember(@Param("vo") MemberVO vo);
 
 	void updateMember(@Param("vo") MemberVO vo);
 
 	void deleteMember(@Param("id") String id);
 
+	@Select("SELECT * FROM MEMBER WHERE id = #{id}")
 	MemberVO getMemberById(@Param("id") String id);
 
 	List<MemberVO> selectAllMember();
@@ -36,6 +37,6 @@ public interface MemberDAO {
 	@Select("SELECT * FROM MEMBER WHERE ID = #{id}")
 	MemberVO getMemberByIdWithBLOBs(@Param("id") String id);
 
-	@Update("UPDATE MEMBER SET NNAME = #{nname}, PASS = #{pass}, EMAIL = #{email}, NAME = #{name}, STOPU = #{stopu} WHERE ID = #{id}")
+	@Update("UPDATE MEMBER SET nname = #{nname}, pass = #{pass}, email = #{email}, name = #{name}, stopu = #{stopu} WHERE id = #{id}")
 	int updateMemberWithBLOBs(@Param("member") MemberVO member);
 }

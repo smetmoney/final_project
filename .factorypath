@@ -96,11 +96,18 @@
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\catalina.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\ecj-4.20.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\el-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jakarta.servlet.jsp.jstl-3.0.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jakarta.servlet.jsp.jstl-api-3.0.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jasper-el.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jasper.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jaspic-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jsp-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jstl-1.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\taglibs-standard-impl-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\taglibs-standard-jstlel-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\taglibs-standard-spec-1.2.5.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\tomcat-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\tomcat-coyote.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\tomcat-dbcp.jar" enabled="true" runInBatchMode="false"/>
