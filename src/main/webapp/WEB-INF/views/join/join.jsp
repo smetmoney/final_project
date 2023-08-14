@@ -54,7 +54,6 @@
                 </div>
             </nav>
 
-
             <!-- main -->
             <form id="join_form" method="get" action="./poe_home.html">
                 <div id="enter1">

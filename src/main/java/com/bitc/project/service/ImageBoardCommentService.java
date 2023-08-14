@@ -9,11 +9,11 @@ public interface ImageBoardCommentService {
 	List<ImageBoardCommentVO> getCommentList(int bno);
 		
 	// 댓글 작성
-	int create(ImageBoardCommentVO vo);
+	String create(ImageBoardCommentVO vo);
 	
 	// 댓글 수정
 	int modify(ImageBoardCommentVO vo);
 	
 	// 댓글 삭제
-	int delete(ImageBoardCommentVO vo);
+	String delete(ImageBoardCommentVO vo);
 }

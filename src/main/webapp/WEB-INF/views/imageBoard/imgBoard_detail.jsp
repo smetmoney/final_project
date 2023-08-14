@@ -65,33 +65,51 @@
 				<button>삭제</button>
 			</a>
 		</div>	
-		<form id="infoForm" action="modify" method="post">
+		<form id="modifyForm" action="modify" method="post">
 			<input type="hidden" name="bno" value="${vo.bno}">
 		</form>
+		
 	    <div id="commentWrap">
-    		<h3>댓글 : </h3>
-    		<table border=1>
-    			<tr>
-    				<td>작성자 : </td>
-    				<td>(gd)</td>
-    			</tr>
-    			<tr>
-					<td>내&nbsp;&nbsp;&nbsp;용 : </td>
-					<td>(뭘보노)</td>
-    			</tr>
-    			<tr>
-    				<td>작성일 : </td>
-    				<td>(2023/01/01)</td>
-    			</tr>
-    		</table>
+	    	<h4>댓글 목록 : </h4>
+			<c:if test="${!empty comments}">
+				<c:forEach var="comment" items="${comments}">
+	    		<table border=1 id="commentTable${comment.commentNO}">
+	    			<tr>
+	    				<td>작성자 :</td>
+	    				<td> ${comment.commenterID}</td>
+	    				<td>
+	    					<button class="commentModify" data-commenter="${comment.commenterID}" data-cno="${comment.commentNO}" data-bno="${comment.imageBoardBNO}" data-text="${comment.commentContent}">
+	    						수정
+	    					</button>
+    					</td>
+	    				<td>
+	    					<button class="commentDelete" data-cno="${comment.commentNO}" data-bno="${comment.imageBoardBNO}">
+	    						삭제
+	    					</button>
+    					</td>
+	    			</tr>
+	    			<tr>
+						<td>내&nbsp;&nbsp;&nbsp;용 :</td>
+						<td id="commentContent"> ${comment.commentContent}</td>
+	    			</tr>
+	    			<tr>
+	    				<td>작성일 :</td>
+	    				<td> ${comment.commentDate}</td>
+	    			</tr>
+	    		</table>
+				</c:forEach>
+			</c:if>
     		<div id="commentWriteBox">
     			<ul>
-    				<li>(닉네임)</li>
+    				<!-- 추후 로그인멤버로 수정 -->
+    				<li>${vo.auth}</li>
     				<li>
-    					<input id="commentWriteArea" type="text" placeholder="댓글을 남겨보세요">
+    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
+						<input type="hidden" id="commenterID" name="commenterID" value="${vo.auth}">
+						<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
    					</li>
     				<li>
-    					<input type="button" value="등록">
+    					<button id="commentWrite">등록</button>
     				</li>
     			</ul>
     		</div>
@@ -99,12 +117,85 @@
     </div>
 <jsp:include page="../common/footer.jsp" />
 <script>
+	// 게시글 수정 (게시글작성자 == 로그인멤버)
 	$("#modify_btn").on("click",function(e){
-		$("form").attr("action","modify");
-		$("form").submit();
+		$("#modifyForm").attr("action","modify");
+		$("#modifyForm").submit();
 	})
+	// 게시글 삭제 (게시글작성자 == 로그인멤버)
 	$("#delete_btn").on("click",function(e){
-		$("form").attr("action","delete");
-		$("form").submit();
+		$("#modifyForm").attr("action","delete");
+		$("#modifyForm").submit();
 	})
+	// 댓글 수정(진행중)
+	$(".commentModify").on("click",function(){
+		let cno = $(this).attr('data-cno');
+		let bno = $(this).attr('data-bno');
+		let text = $(this).attr('data-text');
+		let commenter = $(this).attr('data-commenter');
+		let table = $(this).closest('table');
+		
+		let str = "<div><ul><li>`\${commenter}`</li><ul><div>"
+		table.append(str);
+		
+		console.log(`\${cno}:\${bno}:\${text}`);
+	})
+	// 댓글 삭제
+	$(".commentDelete").on("click",function(){
+		let cno = $(this).attr('data-cno');
+		let bno = $(this).attr('data-bno');
+		if(confirm('정말로 삭제?')){
+	 		$.ajax({
+				type : "POST",
+				url : "commentDelete",
+				data : {
+					imageBoardBNO : bno,
+					commentNO : cno
+				},
+				dataType : "text",
+				success : function(result){
+					alert(result);
+					location.reload();
+				}
+			}); 
+		}else{
+			return;
+		}
+	})
+	
+	// 댓글 삽입 요청 처리
+	$("#commentWrite").click(function(){
+		let auth = $("#commenterID").val();
+		let text = $("#commentWriteArea").val();
+		let bno = $("#bno").val();
+					
+		console.log(auth,bno,text);
+		
+		if(text.trim() == ''){
+			alert('댓글 내용을 입력하세요!');
+			return;
+		}
+		
+ 		$.ajax({
+			type : "POST",
+			url : "commentWrite",
+			data : {
+				imageBoardBNO : bno,
+				commentContent : text,
+				commenterID : auth
+			},
+			dataType : "text",
+			success : function(result){
+				alert(result);
+				location.reload();
+			}
+		}); 
+	});
+	
+    $("#commentWriteArea").on('keydown', function(e) {
+        if (e.keyCode === 13) { // 13 == enter
+            e.preventDefault(); 
+            $("#commentWrite").click();
+        }
+    });
 </script>

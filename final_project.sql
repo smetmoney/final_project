@@ -151,3 +151,7 @@ CREATE TABLE test_Comments (
     FOREIGN KEY (ImageBoardBNO) REFERENCES test_imageBoard(BNO)	-- 외부 게시판 값 불러오기
     -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
+
+SELECT * FROM test_comments;
+
+INSERT INTO test_comments VALUES(0,10,'댓글테스트','테스트',now());
