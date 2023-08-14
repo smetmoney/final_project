@@ -37,8 +37,10 @@
 		width:100%;
 		height: 30px;
 	}
-	table{
+	.commentBox{
+		padding: 10px;
 		margin-bottom: 10px;
+		border: 1px black solid;
 	}
 	#modifyWrap{
 		margin: 10px 0;
@@ -46,6 +48,9 @@
 		width: 60%;
 		display: inline-block;
 	} 
+	.hide2{
+		display: none;
+	}
 </style>
 	<div id="boardWrap">
 		<div id="contentWrap">
@@ -73,30 +78,38 @@
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
 				<c:forEach var="comment" items="${comments}">
-	    		<table border=1 id="commentTable${comment.commentNO}">
-	    			<tr>
-	    				<td>작성자 :</td>
-	    				<td> ${comment.commenterID}</td>
-	    				<td>
-	    					<button class="commentModify" data-commenter="${comment.commenterID}" data-cno="${comment.commentNO}" data-bno="${comment.imageBoardBNO}" data-text="${comment.commentContent}">
-	    						수정
-	    					</button>
-    					</td>
-	    				<td>
-	    					<button class="commentDelete" data-cno="${comment.commentNO}" data-bno="${comment.imageBoardBNO}">
-	    						삭제
-	    					</button>
-    					</td>
-	    			</tr>
-	    			<tr>
-						<td>내&nbsp;&nbsp;&nbsp;용 :</td>
-						<td id="commentContent"> ${comment.commentContent}</td>
-	    			</tr>
-	    			<tr>
-	    				<td>작성일 :</td>
-	    				<td> ${comment.commentDate}</td>
-	    			</tr>
-	    		</table>
+					<div class="commentBox">
+						<div id="show${comment.commentNO}">
+							<ul>
+								<li>작성자 : ${comment.commenterID}</li>
+								<li>작성일 : ${comment.commentDate}</li>
+						        <li id="commentContent${comment.commentNO}">
+						            내 용 : ${comment.commentContent}
+						        </li>
+							</ul>
+								<button class="commentModify" data-cno='${comment.commentNO}'>
+									수정
+								</button>
+								<button class="commentDelete" data-cno='${comment.commentNO}'>
+									삭제
+								</button>
+						</div>
+						<div id="hide${comment.commentNO}" style="display: none">
+							<ul>
+								<li>작성자 : ${comment.commenterID}</li>
+								<li>작성일 : ${comment.commentDate}</li>
+						        <li>
+						            내 용 : <input type="text" id="modText${comment.commentNO}" value="${comment.commentContent}">
+						        </li>
+							</ul>
+								<button class="modSubmit" data-cno='${comment.commentNO}'>
+									수정완료
+								</button>
+								<button class="modCancle" data-cno='${comment.commentNO}'>
+									취소
+								</button>
+						</div>
+					</div>
 				</c:forEach>
 			</c:if>
     		<div id="commentWriteBox">
@@ -129,40 +142,49 @@
 	})
 	// 댓글 수정(진행중)
 	$(".commentModify").on("click",function(){
-		let cno = $(this).attr('data-cno');
-		let bno = $(this).attr('data-bno');
-		let text = $(this).attr('data-text');
-		let commenter = $(this).attr('data-commenter');
-		let table = $(this).closest('table');
-		
-		let str = "<div><ul><li>`\${commenter}`</li><ul><div>"
-		table.append(str);
-		
-		console.log(`\${cno}:\${bno}:\${text}`);
+		let cno = $(this).data('cno');
+		$(this).parent("div").hide();
+		$("#hide"+cno).show();
 	})
+	$(".modCancle").on("click",function(){
+		let cno = $(this).data('cno');
+		$(this).parent("div").hide();
+		$("#show"+cno).show();
+	})
+	$(".modSubmit").on("click",function(){
+		let cno = $(this).data('cno');
+		let text = $("#modText"+cno).val();
+		$.ajax({
+			type : "PATCH",
+			url : "commentMod/"+cno,
+			headers : {
+				"Content-Type" : "application/json"
+			},
+			data : JSON.stringify({
+				commentNO : cno,
+				commentContent : text
+			}),
+			dataType : "text",
+			success : function(data){
+				alert(data);
+				location.reload();
+			}
+		});
+	});
 	// 댓글 삭제
-	$(".commentDelete").on("click",function(){
-		let cno = $(this).attr('data-cno');
-		let bno = $(this).attr('data-bno');
-		if(confirm('정말로 삭제?')){
-	 		$.ajax({
-				type : "POST",
-				url : "commentDelete",
-				data : {
-					imageBoardBNO : bno,
-					commentNO : cno
-				},
-				dataType : "text",
-				success : function(result){
-					alert(result);
-					location.reload();
-				}
-			}); 
-		}else{
-			return;
-		}
-	})
-	
+	$(".commentDelete").on("click", function () {
+	    let cno = $(this).attr('data-cno');
+	        $.ajax({
+	            type: "DELETE",
+	            url: cno,
+	            dataType: "text",
+	            success: function (result) {
+	                alert(result);
+	                location.reload();
+	            }
+	        });
+	    }
+	);
 	// 댓글 삽입 요청 처리
 	$("#commentWrite").click(function(){
 		let auth = $("#commenterID").val();
@@ -175,7 +197,6 @@
 			alert('댓글 내용을 입력하세요!');
 			return;
 		}
-		
  		$.ajax({
 			type : "POST",
 			url : "commentWrite",

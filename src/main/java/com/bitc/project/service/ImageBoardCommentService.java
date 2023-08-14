@@ -12,8 +12,8 @@ public interface ImageBoardCommentService {
 	String create(ImageBoardCommentVO vo);
 	
 	// 댓글 수정
-	int modify(ImageBoardCommentVO vo);
+	String modify(ImageBoardCommentVO vo);
 	
 	// 댓글 삭제
-	String delete(ImageBoardCommentVO vo);
+	String delete(int cno);
 }

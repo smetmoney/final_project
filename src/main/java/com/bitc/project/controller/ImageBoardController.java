@@ -9,9 +9,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitc.project.service.ImageBoardCommentService;
 import com.bitc.project.service.ImageBoardService;
@@ -91,29 +96,37 @@ public class ImageBoardController {
 			String message = ics.create(vo);
 			entity = new ResponseEntity<>(message,headers,HttpStatus.OK);
 		} catch (Exception e) {
-			entity = new ResponseEntity<>(
-					e.getMessage(),
-					headers,
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			entity = new ResponseEntity<>(e.getMessage(),headers,HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
 	
-	@PostMapping("commentDelete")
-	public ResponseEntity<String> commentDelete(ImageBoardCommentVO vo) {
-		ResponseEntity<String> entity = null;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
-		try {
-			String message = ics.delete(vo);
-			entity = new ResponseEntity<>(message,headers,HttpStatus.OK);
-		} catch (Exception e) {
-			entity = new ResponseEntity<>(
-					e.getMessage(),
-					headers,
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return entity;
+/*
+	@PostMapping("commentDelete") 
+	public ResponseEntity<String> commentDelete(int cno){
+		 ResponseEntity<String> entity = null;
+		 HttpHeaders header = new HttpHeaders();
+		 header.setContentType(MediaType.APPLICATION_JSON); 
+		 String message = ics.delete(cno); 
+		 try { 
+			 entity = new ResponseEntity<>(message,header,HttpStatus.OK); 
+	 	 } catch (Exception e) {
+	 		 entity = new ResponseEntity<>(e.getMessage(),header,HttpStatus.BAD_REQUEST);
+	 	 } 
+		 return entity; 
+	 }
+*/	
+	@DeleteMapping("{cno}")
+	@ResponseBody
+	public String commentDelete(@PathVariable(name="cno") int cno) throws Exception{
+		String result = ics.delete(cno);
+		return result;
+	}
+	 
+	@PatchMapping("commentMod/{cno}")
+	@ResponseBody
+	public String commentModify(@PathVariable(name="cno") int cno,@RequestBody ImageBoardCommentVO vo) throws Exception{
+		vo.setCommentNO(cno);
+		return ics.modify(vo);
 	}
 }

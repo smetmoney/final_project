@@ -19,10 +19,10 @@ public interface ImageBoardCommentDAO {
 	int create(ImageBoardCommentVO vo);
 
 	// 댓글 수정
-	@Update("UPDATE test_Comments SET commentContent = #{commentContent},commentDate = #{commentDate} WHERE imageBoardBNO = #{imageBoardBNO} AND commentNO = #{commentNO}")
+	@Update("UPDATE test_Comments SET commentContent = #{commentContent} WHERE commentNO = #{commentNO}")
 	int modify(ImageBoardCommentVO vo);
 	
 	// 댓글 삭제
-	@Delete("DELETE FROM test_Comments WHERE imageBoardBNO = #{imageBoardBNO} AND commentNO = #{commentNO}")
-	int delete(ImageBoardCommentVO vo);
+	@Delete("DELETE FROM test_Comments WHERE commentNO = #{cno}")
+	int delete(int cno);
 }
