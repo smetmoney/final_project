@@ -22,7 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class ImageBoardController {
 
 	private final ImageBoardService is;
-
+	
+	
 	@GetMapping("imgBoard_list")
 	public void imgBoardList(Criteria cri, Model model) throws Exception {
 		cri.setPerPageNum(6);
