@@ -13,7 +13,7 @@ import com.bitc.project.vo.MemberVO;
 @Mapper
 public interface MemberDAO {
 
-	@Insert("INSERT INTO member (id, nname, pass, email, name, stopu) VALUES (#{vo.id}, #{vo.nname}, #{vo.pass}, #{vo.email}, #{vo.name}, #{vo.stopu})")
+	@Insert("INSERT INTO member (id, nname, pass, email, name, stopu, birthdate,gender) VALUES (#{vo.id}, #{vo.nname}, #{vo.pass}, #{vo.email}, #{vo.name}, #{vo.stopu}, #{vo.birthdate}, #{vo.gender})")
 	int createMember(@Param("vo") MemberVO vo);
 
 	void updateMember(@Param("vo") MemberVO vo);
@@ -25,6 +25,7 @@ public interface MemberDAO {
 
 	List<MemberVO> selectAllMember();
 
+	@Insert("INSERT INTO member (id, nname, pass, email, name, birthdate,gender) VALUES (#{ID}, #{NNAME}, #{PASS}, #{EAMIL}, #{NAME}, #{birthdate}, #{gender})")
 	void insertMember(MemberVO member);
 
 	MemberVO selectMemberById(String id);
