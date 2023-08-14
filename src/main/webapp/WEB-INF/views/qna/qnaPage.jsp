@@ -1,4 +1,4 @@
-<!-- qna_page.jsp -->
+<!-- qnaPage.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,6 +22,17 @@
 		border: 1px solid black;
 		padding :10px;
 	}
+	.qnaList table th{
+		width:100%;
+		display:inline-block;
+		font-size : 20px;
+	}
+	.qnaList table tr td{font-size:18px;}
+	.editQna form{
+		display:inline-block;
+		width:20%;	
+	}
+	.editQna{display:inline-block;}
 	
 </style>
 
@@ -32,7 +43,7 @@
 	<div class="newQna">
 		<c:choose>
 			<c:when test="${userId eq 'admin'}">
-				<form action="new_qna" method="Get" >
+				<form action="newQna" method="Get" >
 					<input type="submit" value="새로운 QnA 작성하기">
 				</form>
 			</c:when>
@@ -44,7 +55,18 @@
 				<table>
 			        <c:forEach items="${qnaList}" var="con">
 			        	<tr>
-			            	<th>Q. ${con.questionTitle}</th>
+			            	<th>
+			            	<div class="editQna">
+								<c:choose>
+									<c:when test="${userId eq 'admin'}">
+										<form action="editQna" method="Get" >
+											<input type="submit" value="QnA 수정">
+										</form>
+									</c:when>
+								</c:choose>
+							</div>
+			            	Q. ${con.questionTitle}
+			            	</th>
 			        	</tr>
 			            <tr class="qnaContent" style="display:none;">
 			                <td>A. ${con.questionContent}</td>
@@ -62,12 +84,26 @@
 </div>
 
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $(".qnaList table tr th").click(function() {
-      var contentRow = $(this).closest("tr").next(".qnaContent");
-      contentRow.slideToggle("slow");
+        var contentRow = $(this).closest("tr").next(".qnaContent");
+        contentRow.slideToggle("slow", function() {
+            if (contentRow.is(":visible")) {
+                adjustBodyHeight(contentRow.outerHeight());
+            } else {
+                resetBodyHeight(contentRow.outerHeight());
+            }
+        });
     });
-  });
+
+    function adjustBodyHeight(newHeight) {
+        $(".mainWrap").css("height", "+=" + newHeight);
+    }
+
+    function resetBodyHeight(newHeight) {
+        $(".mainWrap").css("height", "-=" + newHeight);
+    }
+});
 </script>
 
 
