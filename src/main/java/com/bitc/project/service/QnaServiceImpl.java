@@ -22,7 +22,12 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int newQna(QnaVO vo) throws Exception {
-		return dao.createImageBoard(vo);
+		return dao.createQna(vo);
+	}
+
+	@Override
+	public QnaVO qnaLoad(int qnaId) throws Exception {
+		return dao.qnaload(qnaId);
 	}
 
 }

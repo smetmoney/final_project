@@ -21,6 +21,13 @@ public interface QnaDAO {
 		 * 새 QnA 작성
 		 */
 		@Insert("INSERT INTO QnA (QuestionTitle,QuestionContent) VALUES(#{QuestionTitle},#{QuestionContent})")
-		int createImageBoard(QnaVO vo);
+		int createQna(QnaVO vo);
+		
+		/**
+		 * 특정 qna 로드
+		 */
+		@Select("SELECT * FROM QnA WHERE QnAID = #{qnaId}")
+		QnaVO qnaload(int qnaId)throws Exception;
+		
 
 }

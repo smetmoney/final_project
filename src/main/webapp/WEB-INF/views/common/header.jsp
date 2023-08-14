@@ -37,7 +37,7 @@
               <a class="nav-link" href="#">메뉴2</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="qna/qna_page">QNA</a>
+              <a class="nav-link" href="qna/qnaPage">QNA</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
