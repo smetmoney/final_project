@@ -78,6 +78,7 @@ function joincheck() {
                         </span>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <br><br>
                 <strong>이메일</strong>
                 <div class="enter2">
@@ -86,6 +87,119 @@ function joincheck() {
                         <div class="mail1">
                             <span class="box3">
                                 <input type="text" placeholder="이메일" name="EMAIL" class="email">
+=======
+            </nav>
+
+            <!-- main -->
+            <form id="join_form" method="get" action="./poe_home.html">
+                <div id="enter1">
+                    <div id="content">
+                        <div class="enter2">
+                            <strong>아이디</strong>
+                            <div style="margin-top: 10px;">
+                                <span class="box1">
+                                    <input type="text" name="Id"
+                                        placeholder="아이디"
+                                        class="int">
+                                </span>
+                            </div>
+                            <br><br>
+                            <strong>비밀번호</strong>
+                            <div style="margin-top: 10px;">
+                                <span class="box2"><input type="password"
+                                        name="password" placeholder="8-10자 사이의 대,소문자를 구분해서 작성해주세요" class="int"></span>
+                            </div>
+                            <br><br>
+                            <strong>비밀번호 재확인</strong>
+                            <div style="margin-top: 10px;">
+                                <span class="box2"><input type="password"
+                                        name="password" placeholder="다시 입력해주세요"
+                                        class="int"></span>
+                            </div>
+                        </div>
+                        <br><br>
+                        <strong>이메일</strong>
+                        <div class="enter2">
+                            <div class="mail">
+                                <strong></strong>
+                                <div class="mail1">
+                                    <span class="box3">
+                                        <input type="text" placeholder="이메일"
+                                            name="e-mail" class="email">
+                                    </span>
+                                </div>
+                                &nbsp;
+                                <div class="mail2">
+                                    <span class="box3">
+                                        <select name="e=mail" class="email">
+                                            <option>선택</option>
+                                            <option>@naver.com</option>
+                                            <option>@daum.net</option>
+                                            <option>@gmail.com</option>
+                                            <option>@hanmail.com</option>
+                                            <option>직접입력</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                            <br><br>
+                            <strong>이름</strong>
+                            <div style="margin-top: 10px;">
+                                <span class="box2">
+                                    <input type="text" name="name"
+                                        placeholder="성함"
+                                        class="int">
+                                </span>
+                            </div>
+                            <br><br>
+                            <strong>생년월일</strong>
+                            <div id="birth">
+                                <div id="birth_yy" style="padding-left: 0px;">
+                                    <span class="box4">
+                                        <input type="text" placeholder="년(4자)"
+                                            id="brith_year" class="int2">&nbsp;
+                                    </span>
+                                </div>
+                                <div id="birth_mm">
+                                    <span class="box4">
+                                        <select name="year" placeholder="월"
+                                            id="birth_month" class="int2">
+                                            <option>1월</option>
+                                            <option>2월</option>
+                                            <option>3월</option>
+                                            <option>4월</option>
+                                            <option>5월</option>
+                                            <option>6월</option>
+                                            <option>7월</option>
+                                            <option>8월</option>
+                                            <option>9월</option>
+                                            <option>10월</option>
+                                            <option>11월</option>
+                                            <option>12월</option>
+
+                                        </select>
+                                        &nbsp;
+                                    </span>
+                                </div>
+                                <div id="birth_dd">
+                                    <span class="box4">
+                                        <input type="text" placeholder="일"
+                                            id="brith_day" class="int2">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <span>
+                            <div class="enter3">
+                                <select name="성별" class="sex" placeholder="성별">
+                                    <option>성별</option>
+                                    <option>남성</option>
+                                    <option>여성</option>
+                                    <option>선택안함</option>
+                                </select>
+                             </div>
+>>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
                             </span>
                         </div>
                         &nbsp;

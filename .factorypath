@@ -102,6 +102,7 @@
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jasper.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jaspic-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jsp-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\jstl-1.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\workspace\spring\tomcat_9_0_78\lib\taglibs-standard-impl-1.2.5.jar" enabled="true" runInBatchMode="false"/>

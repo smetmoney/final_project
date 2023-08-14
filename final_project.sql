@@ -158,9 +158,20 @@ CREATE TABLE test_imageBoard (
     ImageURL VARCHAR(255)						-- 이미지 경로
 );
 
-INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg');
+-- 이미지 게시판 댓글 테이블 
+CREATE TABLE test_Comments (
+    CommentNO INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
+    ImageBoardBNO INT,										-- 이미지게시판 댓글 번호
+    CommentContent TEXT,									-- 이미지게시판 댓글 내용
+    CommenterID VARCHAR(255),								-- 이미지게시판 댓글 작성자
+    CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,			-- 댓글 작성시간
+    FOREIGN KEY (ImageBoardBNO) REFERENCES test_imageBoard(BNO)	-- 외부 게시판 값 불러오기
+    -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
+);
 
+SELECT * FROM test_comments;
 
+<<<<<<< HEAD
 select * from test_imageBOard;
 
 
@@ -184,3 +195,6 @@ DROP TABLE Message;
 
 
 
+=======
+INSERT INTO test_comments VALUES(0,10,'댓글테스트','테스트',now());
+>>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
