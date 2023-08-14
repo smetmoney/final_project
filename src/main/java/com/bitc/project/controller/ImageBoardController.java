@@ -1,17 +1,24 @@
 package com.bitc.project.controller;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bitc.project.service.ImageBoardCommentService;
 import com.bitc.project.service.ImageBoardService;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.FileUtils;
 import com.bitc.project.util.PageMaker;
+import com.bitc.project.vo.ImageBoardCommentVO;
 import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +29,8 @@ import lombok.RequiredArgsConstructor;
 public class ImageBoardController {
 
 	private final ImageBoardService is;
-
+	private final ImageBoardCommentService ics;
+	
 	@GetMapping("imgBoard_list")
 	public void imgBoardList(Criteria cri, Model model) throws Exception {
 		cri.setPerPageNum(6);
@@ -46,6 +54,7 @@ public class ImageBoardController {
 	{
 		is.updateCnt(bno);
 		ImageBoardVO vo = is.read(bno);
+		model.addAttribute("comments",ics.getCommentList(bno));
 		model.addAttribute("vo",vo);
 		return "/imageBoard/imgBoard_detail";
 	}
@@ -70,5 +79,41 @@ public class ImageBoardController {
 	public String update(ImageBoardVO vo) throws Exception{
 		is.update(vo);
 		return "redirect:imgBoard_list";
+	}
+	
+	@PostMapping("commentWrite")
+	public ResponseEntity<String> commentWrite(ImageBoardCommentVO vo) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
+		try {
+			String message = ics.create(vo);
+			entity = new ResponseEntity<>(message,headers,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(
+					e.getMessage(),
+					headers,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
+	
+	@PostMapping("commentDelete")
+	public ResponseEntity<String> commentDelete(ImageBoardCommentVO vo) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(new MediaType("application","json",Charset.forName("UTF-8")));
+		try {
+			String message = ics.delete(vo);
+			entity = new ResponseEntity<>(message,headers,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(
+					e.getMessage(),
+					headers,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
 	}
 }
