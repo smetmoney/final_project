@@ -16,5 +16,9 @@ public class MemberVO {
 	public String getPass() {
 		return PASS;
 	}
+
+	public String getStopu() {
+		return null;
+	}
 	
 }

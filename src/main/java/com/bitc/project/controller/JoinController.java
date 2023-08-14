@@ -9,27 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.vo.MemberVO;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
-@RequestMapping	("/join")
+@RequestMapping("/join")
+@RequiredArgsConstructor
 public class JoinController {
-	
+
+	@GetMapping("join") 
+	public void join() {}
+
+
+	@Autowired
+	private MemberDAO memberDAO;
+
 	/*
 	 * @GetMapping("join") 
-	 * public void join() {}
+	 * public String joinForm() { 
+	 * return "join"; // 회원 가입 페이지로
+	 * 이동 }
 	 */
-	
-    @Autowired
-    private MemberDAO memberDAO;
 
-    @GetMapping("/join")
-    public String joinForm() {
-        return "joinForm"; 				// 회원 가입 페이지로 이동
-    }
-
-    @PostMapping("/join")
-    public String join(MemberVO member) {
-        memberDAO.insertMember(member); // 회원 정보 데이터베이스에 삽입
-        return "redirect:/login"; 		// 로그인 페이지로 리다이렉트
-    }
+	@PostMapping("join")
+	public String join(MemberVO member) {
+		memberDAO.insertMember(member); // 회원 정보 데이터베이스에 삽입
+		return "redirect:login"; // 로그인 페이지로 리다이렉트
+	}
 
 }
