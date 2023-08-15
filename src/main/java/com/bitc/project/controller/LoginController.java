@@ -23,7 +23,6 @@ public class LoginController {
 	
 	@GetMapping("login") public 
 	void join() {}
-
 	
     @Autowired
     private MemberDAO memberDAO;
@@ -36,20 +35,41 @@ public class LoginController {
     */
 
     @PostMapping("login")
-    public String loginProcess(HttpServletRequest request, HttpServletResponse response,
-                               @RequestParam String id, @RequestParam String pass) {
-        MemberVO member = memberDAO.getMemberById(id);
-        if (member != null && member.getPass().equals(pass)) {
+    public String loginProcess(HttpServletRequest request,
+    						   HttpServletResponse response,
+                               @RequestParam String ID, 
+                               @RequestParam String pass
+                               ) {
+        
+        if (ID != null) {
         	
-            // 로그인 성공
-        	
-            HttpSession session = request.getSession();
-            session.setAttribute("loggedInUser", member); // 세션에 사용자 정보 저장
-            return "redirect:home"; 				 // 로그인 성공 시 이동할 페이지
+        	ID = request.getParameter("ID");
+            MemberVO member = memberDAO.selectMemberById(ID);
+
+            if (member != null && member.getPass().equals(pass)) {
+                // 로그인 성공
+            	
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedInUser", member); // 세션에 사용자 정보 저장
+
+                // 로그인 성공 시 이동할 페이지
+                return "redirect:/";
+                
+            } else {
+                return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
+            }
         } else {
         	
-            return "login"; 						// 로그인 실패 시 다시 로그인 페이지로 이동
+            return "login"; // 아이디가 없음
+            
         }
+
+    }
+
+    // 로그인 에러 처리
+    @GetMapping("loginError")
+    public String loginError() {
+        return "loginError";
     }
 
 }

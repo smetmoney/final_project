@@ -30,6 +30,6 @@ public interface FreeBoardService {
     String modify(FreeBoardVO board) throws Exception;
     
     // 페이징 처리된 게시글
-    List<FreeBoardVO> listCriteria(Criteria cri) throws Exception;
+    List<FreeBoardVO> freeBoardList(Criteria cri) throws Exception;
 }
 

@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberVO> findAllMembers() {
-        return memberDAO.selectAllMembers();
+        return memberDAO.selectAllMember();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteMember(String id) {
-        memberDAO.deleteMember(id);
+    public void deleteMember(String ID) {
+        memberDAO.deleteMember(ID);
     }
 }

@@ -1,34 +1,36 @@
 package com.bitc.project.vo;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
-@Entity
 @Data
 public class FreeBoardVO {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String title;
-    
-    private String content;
-    
-    private String imageUrl;
-    
-    private String auth;
-    
-    private Date date;
-    
-    private int vnt;
-    
-    private int likeCount;
-    
+	private int bno;			// 글번호
+	
+	private String title;		// 제목
+	
+	private String content;		// 글내용
+	
+	private String Auth;		// 작성자
+	
+	private String date;		// 작성일
+	
+	private int vcnt;			// 조회수
+	
+	private int lcnt;			// 좋아요수
+	
+	private String freeBoardURL;	// 이미지 경로
+	
+	private MultipartFile file;
+	
+	public void setDate(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		this.date = sdf.format(date);
+	}
+	
 }

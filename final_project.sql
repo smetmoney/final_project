@@ -1,22 +1,24 @@
 -- 멤버 정보 테이블
 CREATE TABLE MEMBER (
     IDN INT AUTO_INCREMENT PRIMARY KEY, 	-- 식별값
-    ID VARCHAR(255) NOT NULL UNIQUE, 				-- 로그인용 ID
+    ID VARCHAR(255) NOT NULL UNIQUE, 		-- 로그인용 ID
     NNAME VARCHAR(255) NOT NULL,			-- 닉네임	
     PASS VARCHAR(255) NOT NULL,				-- 비밀번호
     EMAIL VARCHAR(255) NOT NULL,			-- 이메일
     NAME VARCHAR(255),						-- 이름
+    BIRTHDATE DATE,							-- 생년월일 추가
+    GENDER VARCHAR(10),						-- 성별 추가
     STOPU BOOLEAN DEFAULT FALSE				-- 정지 유저 구분
 );
 
 -- 집에서 사용할 DB
 -- 관리자 계정 만듬
-INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME)
-VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN');
+INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER)
+VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN','1111-11-11','남성');
 
 -- 첫번째 유저
-INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME)
-VALUES('USER1','NNAME1','12345','USER1@naver.com','NAME1');
+INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER)
+VALUES('USER1','NNAME1','12345','USER1@naver.com','NAME1','1995-07-14','남성');
 
 DROP TABLE MEMBER;
 
@@ -51,6 +53,8 @@ CREATE TABLE FreeBoard (
 
 SELECT * FROM FreeBoard;
 
+DROP TABLE FreeBoard;
+
 SHOW INDEXES FROM MEMBER;
 
 -- 이미지 게시판 테이블 생성
@@ -67,6 +71,8 @@ CREATE TABLE ImageBoard (
     FOREIGN KEY (Auth) REFERENCES MEMBER(ID)	-- ID값 불러오기
 );
 
+DROP TABLE ImageBoard;
+
 -- 자유게시판 댓글 테이블
 CREATE TABLE FreeBoardComments (
     CommentID INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
@@ -78,6 +84,8 @@ CREATE TABLE FreeBoardComments (
     FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
 
+DROP TABLE FreeBoardComments;
+
 -- 이미지 게시판 댓글 테이블 
 CREATE TABLE ImageBoardComments (
     CommentID INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
@@ -88,6 +96,7 @@ CREATE TABLE ImageBoardComments (
     FOREIGN KEY (ImageBoardBNO) REFERENCES ImageBoard(BNO),	-- 외부 게시판 값 불러오기
     FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
+DROP TABLE ImageBoardComments;
 
 -- 구매내역 테이블
 CREATE TABLE Bought (
@@ -97,6 +106,8 @@ CREATE TABLE Bought (
     PointSpent INT DEFAULT 0, 							-- 사용된 포인트
     FOREIGN KEY (UserID) REFERENCES MEMBER(ID)			-- 구매한 사람 ID 값 불러오기
 );
+
+DROP TABLE Bought;
 
 -- 간단한 Q&A 테이블 생성
 CREATE TABLE QnA (
@@ -119,6 +130,8 @@ CREATE TABLE Achievements (
     FOREIGN KEY (UserID) REFERENCES MEMBER(ID)			-- 업적 달성한 사람 ID 값 불러오기
 );
 
+DROP TABLE Achievements;
+
 -- 쪽지 테이블 생성
 CREATE TABLE Message (
     MessageID INT AUTO_INCREMENT PRIMARY KEY,		-- 메세지 식별값
@@ -129,6 +142,8 @@ CREATE TABLE Message (
     FOREIGN KEY (SenderID) REFERENCES MEMBER(ID),	-- 보낸 사람 ID 값 불러오기
     FOREIGN KEY (ReceiverID) REFERENCES MEMBER(ID)	-- 받는 사람 ID 값 불러오기
 );
+
+DROP TABLE Message;
 
 
 -- 민준 테스트용
@@ -143,10 +158,24 @@ CREATE TABLE test_imageBoard (
     ImageURL VARCHAR(255)						-- 이미지 경로
 );
 
-INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(),0,0,'../resources/images/test/testImg.jpg');
+-- 이미지 게시판 댓글 테이블 
+CREATE TABLE test_Comments (
+    CommentNO INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
+    ImageBoardBNO INT,										-- 이미지게시판 댓글 번호
+    CommentContent TEXT,									-- 이미지게시판 댓글 내용
+    CommenterID VARCHAR(255),								-- 이미지게시판 댓글 작성자
+    CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,			-- 댓글 작성시간
+    FOREIGN KEY (ImageBoardBNO) REFERENCES test_imageBoard(BNO)	-- 외부 게시판 값 불러오기
+    -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
+);
 
+alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
+-- (0 : flase(안삭제), 1 : true(삭제))
+
+SELECT * FROM test_comments;
 
 select * from test_imageBOard;
+
 
 
 -- 공지사항 테이블 생성
@@ -165,3 +194,15 @@ CREATE TABLE noticeBoard (
 
 SELECT * FROM noticeBoard;
 drop table noticeBoard;
+
+-- 드랍전용 sql문
+DROP TABLE MEMBER;
+DROP TABLE USER;
+DROP TABLE FreeBoard;
+DROP TABLE ImageBoard;
+DROP TABLE FreeBoardComments;
+DROP TABLE ImageBoardComments;
+DROP TABLE Bought;
+DROP TABLE Achievements;
+DROP TABLE Message;
+
