@@ -21,7 +21,7 @@ public interface ImageBoardDAO {
 	@Select("SELECT * FROM test_imageBoard WHERE bno = #{bno}")
 	ImageBoardVO read(int bno);
 
-	@Select("SELECT count(*) FROM test_imageBoard")
+	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
 	int totalCount();
 
 	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
