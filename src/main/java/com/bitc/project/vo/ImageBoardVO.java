@@ -18,6 +18,7 @@ public class ImageBoardVO {
 	private int lcnt;			// 좋아요수
 	private String imageURL;	// 이미지 경로
 	private MultipartFile file;
+	private boolean del;
 	
 	public void setDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");

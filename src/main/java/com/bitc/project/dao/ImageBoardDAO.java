@@ -12,7 +12,7 @@ import com.bitc.project.vo.ImageBoardVO;
 
 public interface ImageBoardDAO {
 	
-	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL})")
+	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL},false)")
 	int createImageBoard(ImageBoardVO vo);
 	
 	@Update("UPDATE test_imageBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")
@@ -24,10 +24,10 @@ public interface ImageBoardDAO {
 	@Select("SELECT count(*) FROM test_imageBoard")
 	int totalCount();
 
-	@Select("SELECT * FROM test_imageBoard ORDER BY bno DESC limit #{startRow},#{perPageNum}")
+	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
 	
-	@Delete("DELETE FROM test_imageBoard WHERE bno = #{bno}")
+	@Update("Update test_imageBoard SET del=true WHERE bno = #{bno}")
 	int delete(int bno);
 	
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")

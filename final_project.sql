@@ -169,9 +169,11 @@ CREATE TABLE test_Comments (
     -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
 
+alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
+-- (0 : flase(안삭제), 1 : true(삭제))
+
 SELECT * FROM test_comments;
 
-<<<<<<< HEAD
 select * from test_imageBOard;
 
 
@@ -185,16 +187,3 @@ DROP TABLE ImageBoardComments;
 DROP TABLE Bought;
 DROP TABLE Achievements;
 DROP TABLE Message;
-
-
-
-
-
-
-
-
-
-
-=======
-INSERT INTO test_comments VALUES(0,10,'댓글테스트','테스트',now());
->>>>>>> branch 'master' of https://github.com/hyejeongspace/final_project.git
