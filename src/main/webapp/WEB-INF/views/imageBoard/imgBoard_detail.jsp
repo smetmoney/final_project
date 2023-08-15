@@ -111,6 +111,29 @@
 						</div>
 					</div>
 				</c:forEach>
+	   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
+					<tr>
+						<th colspan="5">
+							<c:if test="${pm.first}">
+								<a href="?page=1">[&laquo;]</a>
+							</c:if>
+							<c:if test="${pm.prev}">
+								<a href="?page=${pm.startPage-1}">[&lt;]</a>
+							</c:if>
+							<c:forEach var="i" 
+									   begin="${pm.startPage}" 
+									   end ="${pm.endPage}">
+								<a href="?page=${i}">[${i}]</a>
+							</c:forEach>
+							<c:if test="${pm.next}">
+								<a href="?page=${pm.endPage+1}">[&gt;]</a>
+							</c:if>
+							<c:if test="${pm.last}">
+								<a href="?page=${pm.maxPage}">[&raquo;]</a>
+							</c:if>
+						</th>
+					</tr>
+				</c:if>
 			</c:if>
     		<div id="commentWriteBox">
     			<ul>
@@ -156,15 +179,13 @@
 		let text = $("#modText"+cno).val();
 		$.ajax({
 			type : "PATCH",
-			url : "commentMod/"+cno,
-			headers : {
-				"Content-Type" : "application/json"
-			},
+			url : "commentMod",
 			data : JSON.stringify({
 				commentNO : cno,
 				commentContent : text
 			}),
 			dataType : "text",
+			contentType : "application/json",
 			success : function(data){
 				alert(data);
 				location.reload();
@@ -174,24 +195,26 @@
 	// 댓글 삭제
 	$(".commentDelete").on("click", function () {
 	    let cno = $(this).attr('data-cno');
+	    if(confirm("정말로 삭제?")){
 	        $.ajax({
 	            type: "DELETE",
-	            url: cno,
+	            url: "commentDel/"+cno,
 	            dataType: "text",
+	            contentType : "application/json",
 	            success: function (result) {
 	                alert(result);
 	                location.reload();
 	            }
 	        });
+	    }else{
+	    	return;	
 	    }
-	);
+    });
 	// 댓글 삽입 요청 처리
 	$("#commentWrite").click(function(){
 		let auth = $("#commenterID").val();
 		let text = $("#commentWriteArea").val();
 		let bno = $("#bno").val();
-					
-		console.log(auth,bno,text);
 		
 		if(text.trim() == ''){
 			alert('댓글 내용을 입력하세요!');

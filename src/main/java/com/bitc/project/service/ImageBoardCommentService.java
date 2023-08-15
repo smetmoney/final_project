@@ -2,11 +2,13 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import com.bitc.project.util.Criteria;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.ImageBoardCommentVO;
 
 public interface ImageBoardCommentService {
 	// 전체 댓글목록 가져오기
-	List<ImageBoardCommentVO> getCommentList(int bno);
+	List<ImageBoardCommentVO> getCommentList(Criteria cri,int bno);
 		
 	// 댓글 작성
 	String create(ImageBoardCommentVO vo);
@@ -16,4 +18,7 @@ public interface ImageBoardCommentService {
 	
 	// 댓글 삭제
 	String delete(int cno);
+	
+	// 댓글 페이징 정보 처리
+	PageMaker getPageMaker(Criteria cri, int bno)throws Exception;
 }
