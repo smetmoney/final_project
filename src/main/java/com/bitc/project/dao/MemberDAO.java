@@ -2,9 +2,9 @@ package com.bitc.project.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -12,32 +12,21 @@ import com.bitc.project.vo.MemberVO;
 
 @Mapper
 public interface MemberDAO {
-
-	@Insert("INSERT INTO member (id, nname, pass, email, name, stopu, birthdate,gender) VALUES (#{vo.id}, #{vo.nname}, #{vo.pass}, #{vo.email}, #{vo.name}, #{vo.stopu}, #{vo.birthdate}, #{vo.gender})")
-	int createMember(@Param("vo") MemberVO vo);
-
-	void updateMember(@Param("vo") MemberVO vo);
-
-	void deleteMember(@Param("id") String id);
-
-	@Select("SELECT * FROM MEMBER WHERE id = #{id}")
-	MemberVO getMemberById(@Param("id") String id);
-
-	List<MemberVO> selectAllMember();
-
+	
 	@Insert("INSERT INTO member (id, nname, pass, email, name, birthdate,gender) VALUES (#{ID}, #{NNAME}, #{PASS}, #{EAMIL}, #{NAME}, #{birthdate}, #{gender})")
 	void insertMember(MemberVO member);
-
+	
+	@Select("SELECT * FROM member WHERE id = #{id}")
 	MemberVO selectMemberById(String id);
+	
+	@Select("SELECT * FROM member")
+	List<MemberVO> selectAllMember();
 
-	List<MemberVO> selectAllMembers();
+	@Update("UPDATE member SET nname = #{nname}, pass = #{pass}, email = #{email}, name = #{name}, stopu = #{stopu} WHERE id = #{id}")
+	void updateMember(MemberVO member);
 
-	@Select("SELECT COUNT(*) FROM MEMBER")
-	int getTotalMemberCount();
+	@Delete("DELETE FROM member WHERE id = #{id}")
+	void deleteMember(String id);
 
-	@Select("SELECT * FROM MEMBER WHERE ID = #{id}")
-	MemberVO getMemberByIdWithBLOBs(@Param("id") String id);
 
-	@Update("UPDATE MEMBER SET nname = #{nname}, pass = #{pass}, email = #{email}, name = #{name}, stopu = #{stopu} WHERE id = #{id}")
-	int updateMemberWithBLOBs(@Param("member") MemberVO member);
 }
