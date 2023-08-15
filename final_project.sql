@@ -149,4 +149,19 @@ INSERT INTO test_imageBoard VALUES ('test title','test content','text auth',now(
 select * from test_imageBOard;
 
 
+-- 공지사항 테이블 생성
+CREATE TABLE noticeBoard (
+    bno INT AUTO_INCREMENT PRIMARY KEY,			-- 글 번호
+    title VARCHAR(255) NOT NULL,				-- 글 제목
+    content TEXT NOT NULL,						-- 글 내용
+    auth VARCHAR(255) NOT NULL,					-- 작성자
+    regdate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
+    vcnt INT DEFAULT 0,							-- 조회수
+    likeCnt INT DEFAULT 0,					-- 좋아요 수
+    fixedNotice BOOLEAN DEFAULT FALSE,
+   	FOREIGN KEY (auth) REFERENCES MEMBER(ID)
+--    INDEX(IDN)								-- ID값 불러오기
+);
 
+SELECT * FROM noticeBoard;
+drop table noticeBoard;

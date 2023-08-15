@@ -33,7 +33,6 @@ public class QnaController {
 	}
 	
 	
-	
 	@GetMapping("newQna")
 	public void newQna(Model model) throws Exception {	
 		// 추후 삭제 
@@ -48,11 +47,23 @@ public class QnaController {
 	
 	
 	@GetMapping("editQna")
-	public void editQna(@RequestParam("qnaId") int qnaId, Model model) throws Exception {
+	public void editQna(int qnaId, Model model) throws Exception {
 		QnaVO vo = qs.qnaLoad(qnaId);
 		model.addAttribute("QnaVO", vo);
-		String qc = vo.getQuestionContent();
-		System.out.println(qc);
+	}
+	
+	@PostMapping("editQna")
+	public String editQna(QnaVO vo, RedirectAttributes rttr) throws Exception{
+		String result = qs.editQna(vo);
+		rttr.addFlashAttribute("result",result);
+		return "redirect:/qna/qnaPage"; 
+	}
+	
+	@GetMapping("delete")
+	public String deleteQna(int qnaId,RedirectAttributes rttr) throws Exception{
+		String result = qs.remove(qnaId);
+		rttr.addFlashAttribute("result",result);
+		return "redirect:/qna/qnaPage"; 
 	}
 	
 	

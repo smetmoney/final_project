@@ -20,4 +20,12 @@ public interface QnaService {
 	 * 특정 질의응답 불러오기
 	 */
 	public QnaVO qnaLoad(int qnaId) throws Exception;
+	/**
+	 * 질의응답 수정하기
+	 */
+	public String editQna(QnaVO vo) throws Exception;
+	/**
+	 * 질의응답 삭제하기
+	 */
+	public String remove(int qnaId) throws Exception;
 }

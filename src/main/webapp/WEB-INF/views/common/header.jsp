@@ -34,7 +34,7 @@
               <a class="nav-link" href="chat/chat">채팅</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">메뉴2</a>
+              <a class="nav-link" href="notice/noticePage">공지사항</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="qna/qnaPage">QNA</a>
