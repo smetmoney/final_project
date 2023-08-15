@@ -1,7 +1,5 @@
 package com.bitc.project.vo;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -14,15 +12,7 @@ public class MemberVO {
 	private String email;	// 이메일
 	private String name;	// 이름
 	private boolean stopu;	// 정지 유저
-    private Date birthdate; // 생년월일
+    private String birthdate; // 생년월일
     private String gender;  // 성별
-	
-	public String getPass() {
-		return pass;
-	}
-
-	public String getStopu() {
-		return null;
-	}
 	
 }

@@ -28,5 +28,4 @@ public interface MemberDAO {
 	@Delete("DELETE FROM member WHERE id = #{id}")
 	void deleteMember(String id);
 
-
 }
