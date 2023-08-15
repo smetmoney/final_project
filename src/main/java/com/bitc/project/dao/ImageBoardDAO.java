@@ -33,3 +33,5 @@ public interface ImageBoardDAO {
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
 }
+
+
