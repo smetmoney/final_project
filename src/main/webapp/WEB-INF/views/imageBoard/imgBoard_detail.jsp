@@ -102,12 +102,12 @@
 						            내 용 : <input type="text" id="modText${comment.commentNO}" value="${comment.commentContent}">
 						        </li>
 							</ul>
-								<button class="modSubmit" data-cno='${comment.commentNO}'>
-									수정완료
-								</button>
-								<button class="modCancle" data-cno='${comment.commentNO}'>
-									취소
-								</button>
+							<button class="modSubmit" data-cno='${comment.commentNO}'>
+								수정완료
+							</button>
+							<button class="modCancle" data-cno='${comment.commentNO}'>
+								취소
+							</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -203,7 +203,7 @@
 	            contentType : "application/json",
 	            success: function (result) {
 	                alert(result);
-	                location.reload();
+	                location.href="?page=1";
 	            }
 	        });
 	    }else{
