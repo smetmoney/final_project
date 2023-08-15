@@ -13,7 +13,7 @@ import com.bitc.project.vo.MemberVO;
 @Mapper
 public interface MemberDAO {
 	
-	@Insert("INSERT INTO member (id, nname, pass, email, name, birthdate,gender) VALUES (#{ID}, #{NNAME}, #{PASS}, #{EAMIL}, #{NAME}, #{birthdate}, #{gender})")
+	@Insert("INSERT INTO member (id, nname, pass, email, name, birthdate,gender) VALUES (#{id}, #{nname}, #{pass}, #{email}, #{name}, #{birthdate}, #{gender})")
 	void insertMember(MemberVO member);
 	
 	@Select("SELECT * FROM member WHERE id = #{id}")

@@ -10,7 +10,10 @@ import com.bitc.project.util.Criteria;
 import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.FreeBoardVO;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class FreeBoardServiceImpl implements FreeBoardService {
 
     @Autowired
@@ -64,9 +67,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return (result != 0) ? "SUCCESS" : "FAILED";
 	}
     
-
-    @Override
-    public List<FreeBoardVO> listCriteria(Criteria cri) throws Exception {
-        return dao.listCriteria(cri);
-    }
+	@Override
+	public List<FreeBoardVO> freeBoardList(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
 }

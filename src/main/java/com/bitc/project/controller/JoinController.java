@@ -34,13 +34,10 @@ public class JoinController {
 	public String join(MemberVO member) {
 		
 		System.out.println(member);
-		if (member.getID() == null) {
-			throw new IllegalArgumentException("id must not be null");
-		}
 		
 		memberDAO.insertMember(member);  // 회원 정보 데이터베이스에 삽입
 		
-		return "redirect:login";		 // 로그인 페이지로 리다이렉트
+		return "redirect:home";		 // 로그인 페이지로 리다이렉트
 	}
 
 }

@@ -53,7 +53,7 @@ function joincheck() {
                     <strong>아이디</strong>
                     <div style="margin-top: 10px;">
                         <span class="box1">
-                            <input type="text" name="id" placeholder="아이디" class="int">
+                            <input type="text" name="id" placeholder="아이디" class="int" required>
                         </span>
                     </div>
                     <br><br>
