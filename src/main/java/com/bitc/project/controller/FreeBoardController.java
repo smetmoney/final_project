@@ -24,8 +24,10 @@ public class FreeBoardController {
 	private final FreeBoardService fs;
 	private final FreeBoardCommentSerivce fcs;
 	
+	/*
 	@GetMapping("freeBoard_list")
 	public void freeBoardList() {}
+	*/
 	
 	@GetMapping("freeBoard_list")
 	public void freeBoardList(Criteria cri, Model model) throws Exception {

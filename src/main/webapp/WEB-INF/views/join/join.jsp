@@ -2,19 +2,19 @@
 <jsp:include page="../common/header.jsp" />
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css"> --%>
 <link rel="stylesheet" href="../resources/css/join.css">
-
 <!-- 스크립트 추가해놨는데 일단 주석 처리함 -->
 
-<%--
 
 <script>
-
 function joincheck() {
 	var confirmPassword = document.forms["join_form"]["confirmPassword"].value;
     var agree = document.forms["join_form"]["agree"].value;
-    var birthYear = document.getElementById("brith_year").value;
-    var birthDay = document.getElementById("brith_day").value;
-
+    var birthYear = document.getElementById("year").value;
+    var birthDay = document.getElementById("day").value;
+    
+	var password = $("input[name='pass']").val();
+    var confirmPassword = $("input[name='confirmPassword']").val();
+    
     if (birthYear.length !== 4) {
         alert("년도는 4자리로 입력해주세요.");
         return false;
@@ -30,7 +30,7 @@ function joincheck() {
         return false;
     }
     
-    if (PASS !== confirmPassword) {
+    if (password !== confirmPassword) {
         alert("비밀번호가 일치하지 않습니다.");
         return false;
     }
@@ -40,11 +40,24 @@ function joincheck() {
         return false;
     }
 }
-
 </script>
-
- --%>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	window.onload = ()=>{
+		$("#submitBtn").on("click",function(){
+			let day = $("#day").val();
+			if(day.length == 1){
+				day = '0'+day;
+			}
+			let date = $("#year").val() + '-' + $("#month").val().replace('월','') + '-' + day;
+			console.log(date);
+			let mail = $("#mail1").val() + $("#mail2").val();
+			$('input[name="birthdate"]').val(date);
+			$('input[name="email"]').val(mail);
+			$('form').submit();
+		});
+	}
+</script>
     <!-- main -->
     <form id="join_form" method="post" action="join" onsubmit="return joincheck()">
         <div id="enter1">
@@ -80,18 +93,19 @@ function joincheck() {
                 </div>
                 <br><br>
                 <strong>이메일</strong>
+                <input type="hidden" name="email">
                 <div class="enter2">
                     <div class="mail">
                         <strong></strong>
                         <div class="mail1">
                             <span class="box3">
-                                <input type="text" placeholder="이메일" name="email" class="email">
+                                <input type="text" placeholder="이메일" class="email" id="mail1">
                             </span>
                         </div>
                         &nbsp;
                         <div class="mail2">
                             <span class="box3">
-                                <select name="email" class="email">
+                                <select class="email" id="mail2">
                                     <option>선택</option>
                                     <option>@naver.com</option>
                                     <option>@daum.net</option>
@@ -112,23 +126,24 @@ function joincheck() {
                     <br><br>
                     <strong>생년월일</strong>
                     <div id="birth">
+                    	<input type="hidden" name="birthdate">
                         <div id="birth_yy" style="padding-left: 0px;">
                             <span class="box4">
-                                <input type="text" placeholder="년(4자)" id="birthdate" class="int2">&nbsp;
+                                <input type="text" placeholder="년(4자)" id="year" class="int2">&nbsp;
                             </span>
                         </div>
                         <div id="birth_mm">
                             <span class="box4">
-                                <select name="year" placeholder="월" id="birthdate" class="int2">
-                                    <option>1월</option>
-                                    <option>2월</option>
-                                    <option>3월</option>
-                                    <option>4월</option>
-                                    <option>5월</option>
-                                    <option>6월</option>
-                                    <option>7월</option>
-                                    <option>8월</option>
-                                    <option>9월</option>
+                                <select name="year" placeholder="월" id="month" class="int2">
+                                    <option>01월</option>
+                                    <option>02월</option>
+                                    <option>03월</option>
+                                    <option>04월</option>
+                                    <option>05월</option>
+                                    <option>06월</option>
+                                    <option>07월</option>
+                                    <option>08월</option>
+                                    <option>09월</option>
                                     <option>10월</option>
                                     <option>11월</option>
                                     <option>12월</option>
@@ -138,7 +153,7 @@ function joincheck() {
                         </div>
                         <div id="birth_dd">
                             <span class="box4">
-                                <input type="text" placeholder="일" id="birthdate" class="int2">
+                                <input type="text" placeholder="일" id="day" class="int2">
                             </span>
                         </div>
                     </div>
@@ -159,13 +174,11 @@ function joincheck() {
                     <input type="radio" name="agree" value="Y">동의 &nbsp;
                     <input type="radio" name="agree" value="N">비동의
                     <br><br>
-                    <a href="home">
-                    	<div>
-                    		<div class="element">
-                                <input type="submit" name="submit" value="계정 생성">
-                            </div>
+                   	<div>
+                   		<div class="element">
+                            <button type="button" id="submitBtn">계정생성</button> 
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </form>
