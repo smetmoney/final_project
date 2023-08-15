@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberVO> findAllMembers() {
-        return memberDAO.selectAllMembers();
+        return memberDAO.selectAllMember();
     }
 
     @Override

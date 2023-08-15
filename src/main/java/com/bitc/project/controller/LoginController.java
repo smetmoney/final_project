@@ -44,7 +44,7 @@ public class LoginController {
         if (ID != null) {
         	
         	ID = request.getParameter("ID");
-            MemberVO member = memberDAO.getMemberById(ID);
+            MemberVO member = memberDAO.selectMemberById(ID);
 
             if (member != null && member.getPass().equals(pass)) {
                 // 로그인 성공
