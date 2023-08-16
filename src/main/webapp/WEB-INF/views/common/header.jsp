@@ -28,7 +28,7 @@
 	    }
 	}
     </script>
-<header>
+    
 	<div id="memberBox">
 		<c:choose>
 		    <c:when test="${loggedInUser != null}">
