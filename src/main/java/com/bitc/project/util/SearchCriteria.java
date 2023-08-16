@@ -14,7 +14,7 @@ public class SearchCriteria extends Criteria{
 	 */
 	private String searchValue;
 	
-	
+	 
 	public String getSearchType() {
 		return searchType;
 	}
