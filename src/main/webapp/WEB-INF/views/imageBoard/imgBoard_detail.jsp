@@ -54,7 +54,7 @@
 </style>
 	<div id="boardWrap">
 		<div id="contentWrap">
-			<a href="imgBoard_list">뒤로가기</a>
+			<a href="${path}/imageBoard/imgBoard_list">뒤로가기</a>
 		    <h1>제목 : ${vo.title}</h1>
 		    <p><span>작성자 : ${vo.auth}</span><span>작성일 : ${vo.date}</span></p>
 			<img src="${path}${vo.imageURL}"/>
