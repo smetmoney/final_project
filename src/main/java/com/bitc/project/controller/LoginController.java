@@ -50,9 +50,11 @@ public class LoginController {
                 
                 if (autoLogin != null && autoLogin.equals("on")) {
                     // 자동 로그인 체크박스를 체크했다면
+                	
                     Cookie cookie = new Cookie("autoLogin", ID);
                     cookie.setPath("/");
-                    cookie.setMaxAge(60 * 60 * 24); 			// 24시간 동안 자동 로그인
+                    cookie.setMaxAge(60 * 60 * 24); 				// 24시간 동안 자동 로그인
+                    // cookie.setMaxAge(Integer.MAX_VALUE); //     	 쿠키를 영구적으로 저장합니다.
                     response.addCookie(cookie);
                     
                     System.out.println(cookie);
@@ -78,7 +80,19 @@ public class LoginController {
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
-
+        
+        // 로그아웃 시 쿠키 삭제
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("autoLogin")) {
+                    cookie.setMaxAge(0); 
+                    response.addCookie(cookie);
+                    break;
+                }
+            }
+        }
+        
         return "redirect:/";
     }
 

@@ -2,16 +2,22 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.vo.MemberVO;
 
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     private final MemberDAO memberDAO;
 
-    public MemberServiceImpl(MemberDAO memberDAO) {
-        this.memberDAO = memberDAO;
-    }
+	/*
+	 * public MemberServiceImpl(MemberDAO memberDAO) { this.memberDAO = memberDAO; }
+	 */
 
     @Override
     public void registerNewMember(MemberVO membervo) {

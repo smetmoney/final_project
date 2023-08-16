@@ -12,9 +12,6 @@
     
     <section class="wrap">
 		<table class="info">
-		
-		<%-- <c:forEach items="${members}" var="member"> --%>
-		
 			<tr>
 				<td>회원번호</td>
 				<td>${member.idn}</td>
@@ -52,13 +49,11 @@
 			<tr>
 				<td colspan=2>
 					<c:url value="/index.jsp" var="index"/>
-					<input type="button" onclick="location.href='${modify}';" value="수정하기" /> | 
+					<input type="button" onclick="location.href='${pageContext.request.contextPath}/user/modify';" value="수정하기" /> |
 					<input type="button" onclick="withdraw('${member.id}');" value="회원탈퇴" />
 				</td>
 			</tr>
 		</table>
-		
-		<%-- </c:forEach> --%>
 		
 		<script>
 			function withdraw(id) {

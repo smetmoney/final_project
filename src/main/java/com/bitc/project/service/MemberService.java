@@ -27,8 +27,4 @@ public interface MemberService {
 		
 	}
 
-	static MemberVO findMember(String name) {
-		return null;
-	}
-
 }

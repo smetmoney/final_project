@@ -1,8 +1,5 @@
 package com.bitc.project.controller;
 
-import java.security.Principal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,26 +20,16 @@ public class UserController {
 	@Autowired
     private MemberDAO memberDAO;
 	
-	/*
-	 * @GetMapping("user") public void User() throws Exception {
-	 * 
-	 * }
-	 */
+    @Autowired
+    private MemberService memberService;
 	
-	@GetMapping("/info")
-	public String memberInfo(Model model, Principal principal) {
-	    MemberVO member = MemberService.findMember(principal.getName());
+	@GetMapping("/modify")
+	public String modify(Model model, String id) {
+	    MemberVO member = memberService.findMemberById(id);
 	    model.addAttribute("member", member);
-	    return "member/info";
+	    return "user/modify";
 	}
 
-	@PostMapping("/withdraw")
-	public String memberWithdraw(MemberVO member, RedirectAttributes redirectAttributes) {
-	    MemberService.withdraw(member);
-	    redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
-	    return "redirect:/";
-	}
-	
 	@RequestMapping(value = "user", method = RequestMethod.GET)
     public String list(Model model,String id) {
 		System.out.println(id);
@@ -50,5 +37,14 @@ public class UserController {
         model.addAttribute("member", member);
         return "user/user";
     }
+	
+	@PostMapping("/withdraw")
+	public String memberWithdraw(MemberVO member, RedirectAttributes redirectAttributes) {
+	    MemberService.withdraw(member);
+	    redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
+	    return "redirect:/";
+	}
+	
+	
 
 }
