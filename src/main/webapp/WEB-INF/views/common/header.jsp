@@ -11,10 +11,57 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <title>Text Game</title>
 <head>
+<script>
+	window.onload = ()=>{
+		// 쿠키를 가져오는 함수
+	    function getCookie(name) {
+	        const value = `; ${document.cookie}`;
+	        const parts = value.split(`; ${name}=`);
+	        if (parts.length === 2) return parts.pop().split(';').shift();
+	    }
+
+	    // 쿠키 값을 가져와서 출력하는 부분
+	    const savedAutoLoginValue = getCookie("autoLogin");
+	    console.log(savedAutoLoginValue);
+	    if (savedAutoLoginValue) {
+	        document.getElementById("savedAutoLoginValue").innerText = `Saved Auto Login: ${savedAutoLoginValue}`;
+	    }
+	}
+    </script>
 <header>
 	<div id="memberBox">
         <a id="loginLink" href="${path}/login/login">로그인</a>
         <a id="joinLink" href="${path}/join/join">회원가입</a>
+		<c:choose>
+		    <c:when test="${loggedInUser != null}">
+		        <h1>Hello, ${loggedInUser.nname}</h1>
+		        <c:choose>
+		            <c:when test="${loggedInUser.nname eq 'ADMIN'}">
+		                <a href="${pageContext.request.contextPath}/management/management">관리하기</a>
+		                <a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
+		            </c:when>
+		            <c:otherwise>
+		                <a href="${pageContext.request.contextPath}/user/user">내 정보</a>
+		                <a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
+		            </c:otherwise>
+		        </c:choose>
+		    </c:when>
+		    <c:otherwise>
+		        <a id="loginLink" href="${pageContext.request.contextPath}/login/login">로그인</a>
+		        <a id="joinLink" href="${pageContext.request.contextPath}/join/join">회원가입</a>
+		    </c:otherwise>
+		</c:choose>
+		
+		<div id="savedAutoLoginValue">
+		    <c:choose>
+		        <c:when test="${autoLoginCookie != null}">
+		            <p>Saved Auto Login: ${autoLoginCookie.value}</p>
+		        </c:when>
+		        <c:otherwise>
+		            <p>No Auto Login Cookie Found</p>
+		        </c:otherwise>
+		    </c:choose>
+		</div>
 	</div>
     <!-- logo image -->
     <div id="logoBox">

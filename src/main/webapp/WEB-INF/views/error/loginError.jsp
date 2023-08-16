@@ -6,13 +6,19 @@
 <meta charset="UTF-8">
 <title>loginError</title>
 </head>
+<script>
+    alert('${param.message}');
+    location.href = "${pageContext.request.contextPath}/login/login";
+</script>
 <body>
 
-	<h1>로그인 실패</h1>
+<h1>Login Error</h1>
 
-	<p>아이디 또는 비밀번호가 올바르지 않습니다.</p>
+<p>
+${message}
+</p>
 
-<p><a href="login.jsp">로그인 화면으로 돌아가기</a></p>
+<a href="login">Login</a>
 
 </body>
 <jsp:include page="../common/footer.jsp" />

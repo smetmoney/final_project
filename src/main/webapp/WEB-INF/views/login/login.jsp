@@ -22,8 +22,9 @@
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="login_btn">
+                <input type="checkbox" name="autoLogin" id="autoLogin">
+      			<label for="autoLogin">자동 로그인</label>
                 <button id="btn" type="submit">로그인</button>
-                
             </div>
         </form>
         <div class="caption">
