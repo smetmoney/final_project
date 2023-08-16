@@ -38,7 +38,7 @@
 			<tr>
 				<td>회원등록일</td>
 				<td>
-					<fmt:formatDate value="${member.birthdate}" pattern="yyyy-MM-dd"/>
+					${member.birthdate}
 				</td>
 			</tr>
 			<tr>
