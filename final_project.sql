@@ -207,3 +207,4 @@ DROP TABLE Bought;
 DROP TABLE Achievements;
 DROP TABLE Message;
 
+commit;
