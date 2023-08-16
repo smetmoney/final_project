@@ -13,6 +13,6 @@
         <label for="imageFile">이미지 첨부:</label>
         <input type="file" id="imageFile" name="file" accept="image/*" required><br>
         <input type="submit" value="작성">
-    </form>
+    </form> 
 </div>
 <jsp:include page="../common/footer.jsp" />

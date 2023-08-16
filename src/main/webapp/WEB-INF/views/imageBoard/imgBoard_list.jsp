@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- style 태그는 추후 통합 하겠읍니다. -->
+<!-- style 태그는 추후 통합 하겠읍니다. --> 
 <style>
      #imgBoardTitle{
          text-align: center;

@@ -5,7 +5,7 @@ public class SearchPageMaker extends PageMaker{
 	public SearchPageMaker() {
 		super(new SearchCriteria(),0);
 	}
-
+ 
 	/**
 	 * 검색 기능을 포함한 queryString을 완성해서 반환
 	 */

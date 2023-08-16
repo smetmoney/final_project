@@ -26,7 +26,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	private final String uploadDir;
 	private final ServletContext context;
 	private String realPath;
-	
+	 
 	@PostConstruct
 	public void initPath() {
 		realPath = context.getRealPath(File.separator+uploadDir);

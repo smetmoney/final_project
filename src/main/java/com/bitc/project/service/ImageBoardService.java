@@ -17,7 +17,7 @@ public interface ImageBoardService {
 	
 	// 검색결과 페이징 정보 처리
 	SearchPageMaker getSearchPM(SearchCriteria cri)throws Exception;
-	
+	 
 	// 검색 리스트
 	List<ImageBoardVO> searchList(SearchCriteria cri)throws Exception; 
 	

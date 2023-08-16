@@ -35,7 +35,7 @@ public class ImageBoardController {
 	private final ImageBoardService is;
 	private final ImageBoardCommentService ics;
 
-	// 검색기능 추가
+	// 검색기능 추가 
 	// 페이징 처리된 게시글 리스트 목록 가져오기
 	@GetMapping("imgBoard_list")
 	public void imgBoardList(SearchCriteria cri, Model model) throws Exception {

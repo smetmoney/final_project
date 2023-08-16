@@ -22,7 +22,7 @@ public interface ImageBoardDAO {
 	
 	@Select("SELECT * FROM test_imageBoard WHERE bno = #{bno}")
 	ImageBoardVO read(int bno);
-
+ 
 	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
 	int totalCount();
 
