@@ -56,12 +56,14 @@
 		<div id="contentWrap">
 			<a href="${path}/imageBoard/imgBoard_list">뒤로가기</a>
 		    <h1>제목 : ${vo.title}</h1>
-		    <p><span>작성자 : ${vo.auth}</span><span>작성일 : ${vo.date}</span></p>
+		    <p><span>작성자 : ${vo.auth}</span></p>
+		    <p><span>작성일 : ${vo.date}</span></p>
 			<img src="${path}${vo.imageURL}"/>
 		    <p>내용 : <br/>${vo.content}</p>
 		    <span>조회수 : ${vo.vcnt}</span>
 		    <span>좋아용 : ${vo.lcnt}</span>
 		</div>	
+		<c:if test="${vo.auth == loggedInUser.nname}">
 		<div id="modifyWrap">
 			<a id="modify_btn">
 				<button>수정</button>
@@ -73,7 +75,7 @@
 		<form id="modifyForm" action="modify" method="post">
 			<input type="hidden" name="bno" value="${vo.bno}">
 		</form>
-		
+		</c:if>
 	    <div id="commentWrap">
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
@@ -87,12 +89,15 @@
 						            내 용 : ${comment.commentContent}
 						        </li>
 							</ul>
+							
+							<c:if test="${comment.commenterID == loggedInUser.nname}">
 								<button class="commentModify" data-cno='${comment.commentNO}'>
 									수정
 								</button>
 								<button class="commentDelete" data-cno='${comment.commentNO}'>
 									삭제
 								</button>
+							</c:if>
 						</div>
 						<div id="hide${comment.commentNO}" style="display: none">
 							<ul>
@@ -135,20 +140,22 @@
 					</tr>
 				</c:if>
 			</c:if>
-    		<div id="commentWriteBox">
-    			<ul>
-    				<!-- 추후 로그인멤버로 수정 -->
-    				<li>${vo.auth}</li>
-    				<li>
-    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
-						<input type="hidden" id="commenterID" name="commenterID" value="${vo.auth}">
-						<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
-   					</li>
-    				<li>
-    					<button id="commentWrite">등록</button>
-    				</li>
-    			</ul>
-    		</div>
+			<c:if test="${!empty loggedInUser}">
+	    		<div id="commentWriteBox">
+	    			<ul>
+	    				<!-- 추후 로그인멤버로 수정 -->
+	    				<li>${loggedInUser.nname}</li>
+	    				<li>
+	    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
+							<input type="hidden" id="commenterID" name="commenterID" value="${loggedInUser.nname}">
+							<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
+	   					</li>
+	    				<li>
+	    					<button id="commentWrite">등록</button>
+	    				</li>
+	    			</ul>
+	    		</div>
+    		</c:if>
     	</div>
     </div>
 <jsp:include page="../common/footer.jsp" />

@@ -12,7 +12,7 @@ import com.bitc.project.vo.ImageBoardVO;
 
 public interface ImageBoardDAO {
 	
-	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL},false)")
+	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL},false,0)")
 	int createImageBoard(ImageBoardVO vo);
 	
 	@Update("UPDATE test_imageBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")
