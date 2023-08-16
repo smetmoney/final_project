@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/notice/*")
-public class NoticeController {
+@RequestMapping("/user")
+public class UserController {
 	
-	@GetMapping("noticeList")
+	@GetMapping("user")
 	public void qna() throws Exception {
 		
 	}
+
 }
