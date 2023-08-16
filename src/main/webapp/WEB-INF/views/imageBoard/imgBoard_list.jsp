@@ -37,6 +37,9 @@
      #createButton{
      	display:inline-block;	
      }
+     .imgBoardContent:hover{
+     	cursor: pointer;
+     }
 </style>
 <script>
 	window.onload = ()=>{
@@ -48,6 +51,15 @@
 			}else{
 				location.href = "imgBoard_form";
 			}
+		})
+		$("#searchBtn").on("click",function(){
+			let option = $('select').val();
+			let value = $('input[name="searchValue"]').val();
+			if(value.trim() == ''){
+				alert('검색어를 입력하세요!');
+				return;
+			}
+			$('form[name="search"]').submit();
 		})
 	}
     function triggerLinkClick(bno) {
@@ -93,27 +105,47 @@
 			    </c:forEach>
 			    <br/>
    	    		<c:if test="${!empty pm and pm.maxPage > 1}">
-					<tr>
-						<th colspan="5">
-							<c:if test="${pm.first}">
-								<a href="imgBoard_list?page=1">[&laquo;]</a>
-							</c:if>
-							<c:if test="${pm.prev}">
-								<a href="imgBoard_list?page=${pm.startPage-1}">[&lt;]</a>
-							</c:if>
-							<c:forEach var="i" 
-									   begin="${pm.startPage}" 
-									   end ="${pm.endPage}">
-								<a href="imgBoard_list?page=${i}">[${i}]</a>
-							</c:forEach>
-							<c:if test="${pm.next}">
-								<a href="imgBoard_list?page=${pm.endPage+1}">[&gt;]</a>
-							</c:if>
-							<c:if test="${pm.last}">
-								<a href="imgBoard_list?page=${pm.maxPage}">[&raquo;]</a>
-							</c:if>
-						</th>
-					</tr>
+   	    			<div>
+	   	    			<table>
+							<tr>
+								<th colspan="5">
+									<c:if test="${pm.first}">
+										<a href="imgBoard_list?page=1">[&laquo;]</a>
+									</c:if>
+									<c:if test="${pm.prev}">
+										<a href="imgBoard_list?page=${pm.startPage-1}">[&lt;]</a>
+									</c:if>
+									<c:forEach var="i" 
+											   begin="${pm.startPage}" 
+											   end ="${pm.endPage}">
+										<a href="imgBoard_list${pm.mkQueryStr(i)}">[${i}]</a>
+									</c:forEach>
+									<c:if test="${pm.next}">
+										<a href="imgBoard_list?page=${pm.endPage+1}">[&gt;]</a>
+									</c:if>
+									<c:if test="${pm.last}">
+										<a href="imgBoard_list?page=${pm.maxPage}">[&raquo;]</a>
+									</c:if>
+								</th>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<form action="imgBoard_list" method="POST" name="search">
+							<table>
+								<tr>
+									<td>
+										<select id="option" name="searchType">
+											<option>제목</option>
+											<option>내용</option>
+										</select>
+									</td>
+									<td><input type="text" name="searchValue"></td>
+									<td><button type="button" id="searchBtn" name="search">검색</button></td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</c:if>
 		    </c:when>
 		    <c:otherwise>

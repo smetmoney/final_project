@@ -3,8 +3,6 @@ package com.bitc.project.controller;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bitc.project.service.ImageBoardCommentService;
 import com.bitc.project.service.ImageBoardService;
 import com.bitc.project.util.Criteria;
-import com.bitc.project.util.PageMaker;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.vo.ImageBoardCommentVO;
 import com.bitc.project.vo.ImageBoardVO;
 
@@ -39,10 +37,19 @@ public class ImageBoardController {
 	
 	// 페이징 처리된 게시글 리스트 목록 가져오기
 	@GetMapping("imgBoard_list")
-	public void imgBoardList(Criteria cri, Model model) throws Exception {
+	public void imgBoardList(SearchCriteria cri, Model model) throws Exception {
 		cri.setPerPageNum(6);
 		model.addAttribute("imgBoardList",is.imageBoardList(cri));
 		model.addAttribute("pm",is.getPageMaker(cri));
+	}
+	
+	// 검색결과 리스트
+	@PostMapping("imgBoard_list")
+	public void SearchList(SearchCriteria cri, Model model) throws Exception{
+		cri.setPerPageNum(6);
+		List<ImageBoardVO> list = is.searchList(cri);
+		model.addAttribute("imgBoardList",list);
+		model.addAttribute("pm",is.getSearchPM(cri));
 	}
 
 	// 게시글 작성 페이지
@@ -77,7 +84,7 @@ public class ImageBoardController {
 	public String delete(int bno) throws Exception
 	{
 		is.delete(bno);
-		return "/imageBoard/imgBoard_list";
+		return "redirect:/imageBoard/imgBoard_list";
 	}
 	
 	// 게시글 상세보기 페이지 이동
