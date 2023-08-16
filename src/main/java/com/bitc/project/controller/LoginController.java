@@ -51,8 +51,11 @@ public class LoginController {
                 if (autoLogin != null && autoLogin.equals("on")) {
                     // 자동 로그인 체크박스를 체크했다면
                     Cookie cookie = new Cookie("autoLogin", ID);
+                    cookie.setPath("/");
                     cookie.setMaxAge(60 * 60 * 24); 			// 24시간 동안 자동 로그인
                     response.addCookie(cookie);
+                    
+                    System.out.println(cookie);
                 }
 
                 // 로그인 성공 시 이동할 페이지

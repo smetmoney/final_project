@@ -8,24 +8,25 @@ CREATE TABLE MEMBER (
     NAME VARCHAR(255),						-- 이름
     BIRTHDATE DATE,							-- 생년월일 추가
     GENDER VARCHAR(10),						-- 성별 추가
-    STOPU BOOLEAN DEFAULT FALSE				-- 정지 유저 구분
+    STOPU BOOLEAN DEFAULT FALSE,			-- 정지 유저 구분
+    POINT INT DEFAULT 0						-- 포인트(구매같은거 할때 쓰는)
 );
 
 -- 집에서 사용할 DB
 -- 관리자 계정 만듬
-INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER)
-VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN','1111-11-11','남성');
+INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
+VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN','1111-11-11','남성','9999');
 
 -- 첫번째 유저
-INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER)
-VALUES('USER1','NNAME1','12345','USER1@naver.com','NAME1','1995-07-14','남성');
+INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
+VALUES('USER1','NNAME1','12345','USER1@naver.com','NAME1','1995-07-14','남성', '1000');
 
 DROP TABLE MEMBER;
 
 DESC MEMBER;
 SELECT * FROM MEMBER;
 
--- 유저 정보 테이블
+-- 유저 정보 테이블 (2023,08,16 수정)
 CREATE TABLE USER (
     IDN INT AUTO_INCREMENT PRIMARY KEY,			-- 식별값
     POINT INT DEFAULT 0,						-- 포인트(구매같은거 할때 쓰는)
@@ -155,7 +156,9 @@ CREATE TABLE test_imageBoard (
     Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
     VCNT INT DEFAULT 0,							-- 조회수
     LCNT INT DEFAULT 0,							-- 좋아요 수
-    ImageURL VARCHAR(255)						-- 이미지 경로
+    ImageURL VARCHAR(255),						-- 이미지 경로
+    del boolean default false,
+    CommentCount INT DEFAULT 0
 );
 
 -- 이미지 게시판 댓글 테이블 
@@ -169,7 +172,25 @@ CREATE TABLE test_Comments (
     -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
 
+DELIMITER //
+CREATE TRIGGER update_comment_count
+AFTER INSERT ON test_Comments
+FOR EACH ROW
+BEGIN
+    UPDATE test_imageBoard
+    SET CommentCount = CommentCount + 1
+    WHERE BNO = NEW.ImageBoardBNO;
+END;
+//
+DELIMITER ;
+
+DROP TABLE test_comments;
+
+DROP TABLE test_imageBoard;
+
+ 
 alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
+alter table test_imageBoard add del boolean default 0;	-- 게시글 삭제 유무 추가
 -- (0 : flase(안삭제), 1 : true(삭제))
 
 SELECT * FROM test_comments;
@@ -207,3 +228,4 @@ DROP TABLE Bought;
 DROP TABLE Achievements;
 DROP TABLE Message;
 
+commit;
