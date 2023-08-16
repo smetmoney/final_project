@@ -18,6 +18,7 @@ public class MemberVO {
 	private boolean stopu;	// 정지 유저
     private String birthdate; // 생년월일
     private String gender;  // 성별
+    private int point;		// 포인트
     
 	
 }
