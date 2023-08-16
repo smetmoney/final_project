@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.bitc.project.util.Criteria;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.vo.ImageBoardVO;
 
 public interface ImageBoardDAO {
@@ -32,6 +33,9 @@ public interface ImageBoardDAO {
 	
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
+	
+	@Select("SELECT * FROM test_imageBoard WHERE title ORDER BY bno LIKE CONCAT('%','#{searchValue}','%')")
+	List<ImageBoardVO> searchList(SearchCriteria cri);
 }
 
 

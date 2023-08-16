@@ -12,6 +12,8 @@ import com.bitc.project.dao.ImageBoardDAO;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.FileUtils;
 import com.bitc.project.util.PageMaker;
+import com.bitc.project.util.SearchCriteria;
+import com.bitc.project.util.SearchPageMaker;
 import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
@@ -60,6 +62,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		return new PageMaker(cri,dao.totalCount());
 	}
 
+	
 	@Override
 	public int delete(int bno) throws Exception {
 		return dao.delete(bno);
@@ -74,6 +77,18 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		String imageURL = FileUtils.uploadFile(realPath, vo.getFile());
 		vo.setImageURL(uploadDir+imageURL);
 		return vo;
+	}
+
+	@Override
+	public SearchPageMaker getSearchPM(SearchCriteria cri) throws Exception {
+		SearchPageMaker spm = new SearchPageMaker();
+		spm.setCri(cri);
+		return spm;
+	}
+
+	@Override
+	public List<ImageBoardVO> searchList(SearchCriteria cri) throws Exception {
+		return dao.searchList(cri);
 	}
 
 }

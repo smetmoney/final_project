@@ -35,7 +35,7 @@
 				<td>회원등록일</td>
 				<td>
 					<fmt:formatDate value="${member.regdate}" 
-						pattern="yyyy-MM-dd hh:mm:ss"/>
+						pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 			</tr>
 			<tr>
