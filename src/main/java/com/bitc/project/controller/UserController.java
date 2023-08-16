@@ -23,10 +23,11 @@ public class UserController {
 	@Autowired
     private MemberDAO memberDAO;
 	
-	@GetMapping("user")
-	public void User() throws Exception {
-		
-	}
+	/*
+	 * @GetMapping("user") public void User() throws Exception {
+	 * 
+	 * }
+	 */
 	
 	@GetMapping("/info")
 	public String memberInfo(Model model, Principal principal) {
@@ -42,10 +43,11 @@ public class UserController {
 	    return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/user/user", method = RequestMethod.GET)
-    public String list(Model model) {
-        List<MemberVO> members = memberDAO.selectAllMember();
-        model.addAttribute("members", members);
+	@RequestMapping(value = "user", method = RequestMethod.GET)
+    public String list(Model model,String id) {
+		System.out.println(id);
+		MemberVO member = memberDAO.selectMemberById(id);
+        model.addAttribute("member", member);
         return "user/user";
     }
 

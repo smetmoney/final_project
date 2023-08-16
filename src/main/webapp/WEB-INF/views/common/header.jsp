@@ -41,7 +41,7 @@
 		                <a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
 		            </c:when>
 		            <c:otherwise>
-		                <a href="${pageContext.request.contextPath}/user/user">내 정보</a>
+		                <a href="${pageContext.request.contextPath}/user/user?id=${loggedInUser.id}">내 정보</a>
 		                <a href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
 		            </c:otherwise>
 		        </c:choose>
