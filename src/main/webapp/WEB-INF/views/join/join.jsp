@@ -63,7 +63,7 @@ function joincheck() {
 	}
 </script>
     <!-- main -->
-    <form id="join_form" method="post" action="join" onsubmit="return joincheck()">
+    <form id="join_form" method="post" action="join"> <!-- onsubmit="return joincheck() -->
         <div id="enter1">
             <div id="content">
                 <div class="enter2">

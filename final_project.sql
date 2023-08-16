@@ -172,7 +172,11 @@ CREATE TABLE test_Comments (
     -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
 
-DELIMITER //
+-- 트리거추가
+-- 댓글 달리면 해당 게시글 댓글 카운트 추가
+
+DELIMITER 
+//
 CREATE TRIGGER update_comment_count
 AFTER INSERT ON test_Comments
 FOR EACH ROW
@@ -180,6 +184,18 @@ BEGIN
     UPDATE test_imageBoard
     SET CommentCount = CommentCount + 1
     WHERE BNO = NEW.ImageBoardBNO;
+END;
+// 
+DELIMITER;
+
+-- 댓글 삭제되면 해당 게시글 댓글 카운트 감소
+DELIMITER //
+CREATE TRIGGER update_comment_count2
+AFTER DELETE ON test_Comments
+FOR EACH ROW BEGIN
+    UPDATE test_imageBoard
+    SET CommentCount = CommentCount - 1
+    WHERE BNO = OLD.ImageBoardBNO;
 END;
 //
 DELIMITER ;
@@ -197,7 +213,9 @@ SELECT * FROM test_comments;
 
 select * from test_imageBOard;
 
+show triggers;
 
+use final_project;
 
 -- 공지사항 테이블 생성
 CREATE TABLE noticeBoard (
