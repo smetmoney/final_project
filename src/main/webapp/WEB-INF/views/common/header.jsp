@@ -81,7 +81,7 @@
               <a class="nav-link" href="${path}/chat/chat">채팅</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="${path}/notice/noticePage">공지사항</a>
+              <a class="nav-link" href="${path}/notice/noticeList">공지사항</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="${path}/qna/qnaPage">QNA</a>

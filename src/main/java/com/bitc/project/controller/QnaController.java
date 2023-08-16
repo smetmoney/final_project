@@ -40,6 +40,7 @@ public class QnaController {
 	}
 	@PostMapping("newQna")
 	public String makeNewQna(QnaVO vo, RedirectAttributes rttr) throws Exception {
+		vo.setQuestionContent(vo.getQuestionContent().replace("\r\n", "<br/>"));
 		String result = qs.newQna(vo);
 		rttr.addFlashAttribute("result",result);
 		return "redirect:/qna/qnaPage"; 
@@ -49,11 +50,13 @@ public class QnaController {
 	@GetMapping("editQna")
 	public void editQna(int qnaId, Model model) throws Exception {
 		QnaVO vo = qs.qnaLoad(qnaId);
+		vo.setQuestionContent(vo.getQuestionContent().replace("<br/>", "\r\n"));
 		model.addAttribute("QnaVO", vo);
 	}
 	
 	@PostMapping("editQna")
 	public String editQna(QnaVO vo, RedirectAttributes rttr) throws Exception{
+		vo.setQuestionContent(vo.getQuestionContent().replace("\r\n", "<br/>"));
 		String result = qs.editQna(vo);
 		rttr.addFlashAttribute("result",result);
 		return "redirect:/qna/qnaPage"; 

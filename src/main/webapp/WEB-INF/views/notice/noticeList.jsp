@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <jsp:include page="../common/header.jsp" />
 <style>
-	.newQna{
+	.newNotice{
 		text-align: right;
   		padding-right:50px;
   		padding-top: 10px;
@@ -14,63 +14,72 @@
 		height: 50px;
 		background-color:blue;
 	}
-	.qnaList{
+	.noticeList{
 		padding-left:15%;
 		background-color:skyblue;	
 		padding-top:20px;
 	}
-	.qnaList table{width:75%;}
-	.qnaList table tr{
-		display:block;
+	.noticeList table{width:75%;}
+	.noticeList table tr{
 		border: 1px solid black;
 		padding :10px;
 	}
-	.qnaList table th{
-		width:100%;
-		display:inline-block;
-		font-size : 20px;
+	.noticeList table th{
+		font-size : 18px;
+		text-overflow: ellipsis;
+		overflow:hidden;
+		white-space:nowrap;
 	}
-	.qnaList table tr td{font-size:18px;}
-	.editQna form{
+	.noticeList table tr td{
+		font-size:16px;
+		text-overflow: ellipsis;
+		overflow:hidden;
+		white-space:nowrap;
+	}
+	.editNotice form{
 		display:inline-block;
 		width:20%;	
 	}
-	.editQna{display:inline-block;}
+	.editNotice{display:inline-block;}
 	
 </style>
 
 <div class="mainWrap">
-	<div class="qnaTitle">
-		<h1>자주 들어오는 질문</h1>
+	<div class="noticeTitle">
+		<h1>공지사항</h1>
+		
 	</div>
-	<div class="newQna">
+	<div class="newNotice">
 		<c:choose>
 			<c:when test="${userId eq 'admin'}">
-				<form action="newQna" method="Get" >
-					<input type="submit" value="새로운 QnA 작성하기">
+				<form action="newNotice" method="Get" >
+					<input type="submit" value="공지사항 작성하기">
 				</form>
 			</c:when>
 		</c:choose>
 	</div>
-	<div class="qnaList">
+	<div class="noticeList">
 		<c:choose>
 			<c:when test="${!empty noticeList}">
 				<table>
 					<colgroup>
-						<col style="width:70%"/>
-						<col style="width:10%"/>
-						<col style="width:20%"/>
+						<col style="width:55%"/>
+						<col style="width:15%"/>
+						<col style="width:15%"/>
+						<col style="width:15%"/>
 					</colgroup>
 			        <c:forEach items="${noticeList}" var="con">
 			        	<tr>
 			            	<th>제목</th>
 			            	<th>작성자</th>
 			            	<th>작성일</th>
+			            	<th>조회수</th>
 			        	</tr>
 			            <tr class="noticeContent">
 			                <td>${con.title}</td>
-			                <td>${con.title}</td>
-			                <td>${con.title}</td>
+			                <td>${con.auth}</td>
+			                <td>${con.regdate}</td>
+			                <td>${con.vcnt}</td>
 			            </tr>
 			        </c:forEach>
 			    </table>
@@ -93,7 +102,6 @@ if (resultMessage !== "") {
 </script>
 
 
-</script>
 
 
 <jsp:include page="../common/footer.jsp" />
