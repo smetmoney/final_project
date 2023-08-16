@@ -37,7 +37,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	}
 	
 	@Override
-	public List<ImageBoardVO> imageBoardList(Criteria cri) throws Exception {
+	public List<ImageBoardVO> imageBoardList(SearchCriteria cri) throws Exception {
 		return dao.imageBoardList(cri);
 	}
 
@@ -58,7 +58,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	}
 
 	@Override
-	public PageMaker getPageMaker(Criteria cri) throws Exception {
+	public PageMaker getPageMaker(SearchCriteria cri) throws Exception {
 		return new PageMaker(cri,dao.totalCount());
 	}
 
@@ -83,6 +83,11 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	public SearchPageMaker getSearchPM(SearchCriteria cri) throws Exception {
 		SearchPageMaker spm = new SearchPageMaker();
 		spm.setCri(cri);
+		if(cri.getSearchType() == null) {
+			spm.setTotalCount(dao.totalCount());
+		}else {
+			spm.setTotalCount(dao.searchCount(cri));
+		}
 		return spm;
 	}
 

@@ -34,15 +34,23 @@ public class ImageBoardController {
 
 	private final ImageBoardService is;
 	private final ImageBoardCommentService ics;
-	
+
+	// 검색기능 추가
 	// 페이징 처리된 게시글 리스트 목록 가져오기
 	@GetMapping("imgBoard_list")
 	public void imgBoardList(SearchCriteria cri, Model model) throws Exception {
 		cri.setPerPageNum(6);
-		model.addAttribute("imgBoardList",is.imageBoardList(cri));
-		model.addAttribute("pm",is.getPageMaker(cri));
+		List<ImageBoardVO> list = null;
+		if(cri.getSearchValue() == null) {
+			list = is.imageBoardList(cri);
+		}else {
+			list = is.searchList(cri);
+		}
+		model.addAttribute("imgBoardList",list);
+		model.addAttribute("pm",is.getSearchPM(cri));
 	}
 	
+	/*
 	// 검색결과 리스트
 	@PostMapping("imgBoard_list")
 	public void SearchList(SearchCriteria cri, Model model) throws Exception{
@@ -51,6 +59,7 @@ public class ImageBoardController {
 		model.addAttribute("imgBoardList",list);
 		model.addAttribute("pm",is.getSearchPM(cri));
 	}
+	*/
 
 	// 게시글 작성 페이지
 	@GetMapping("imgBoard_form")

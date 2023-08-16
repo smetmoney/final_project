@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,17 +26,21 @@ public interface ImageBoardDAO {
 	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
 	int totalCount();
 
+	@Select("SELECT count(*) FROM test_imageBoard WHERE #{searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false")
+	int searchCount(SearchCriteria cri);
+	
 	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
 	
-	@Update("Update test_imageBoard SET del=true WHERE bno = #{bno}")
+	@Update("Update test_imageBoard SET del = true WHERE bno = #{bno}")
 	int delete(int bno);
 	
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
 	
-	@Select("SELECT * FROM test_imageBoard WHERE title ORDER BY bno LIKE CONCAT('%','#{searchValue}','%')")
+	@Select("SELECT * FROM test_imageBoard WHERE #{searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> searchList(SearchCriteria cri);
+	
 }
 
 

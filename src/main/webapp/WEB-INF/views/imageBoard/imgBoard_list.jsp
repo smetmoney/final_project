@@ -59,8 +59,14 @@
 				alert('검색어를 입력하세요!');
 				return;
 			}
-			$('form[name="search"]').submit();
-		})
+			location.href = "imgBoard_list?searchValue="+value+"&searchType="+option;
+		});
+	    $("input[name='searchValue']").on('keydown', function(e) {
+	        if (e.keyCode === 13) {
+	            e.preventDefault(); 
+	            $("#searchBtn").click();
+	        }
+	    });
 	}
     function triggerLinkClick(bno) {
         var link = document.querySelector('#click'+bno);
@@ -131,20 +137,18 @@
 						</table>
 					</div>
 					<div>
-						<form action="imgBoard_list" method="POST" name="search">
-							<table>
-								<tr>
-									<td>
-										<select id="option" name="searchType">
-											<option>제목</option>
-											<option>내용</option>
-										</select>
-									</td>
-									<td><input type="text" name="searchValue"></td>
-									<td><button type="button" id="searchBtn" name="search">검색</button></td>
-								</tr>
-							</table>
-						</form>
+						<table>
+							<tr>
+								<td>
+									<select id="option" name="searchType">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select>
+								</td>
+								<td><input type="text" name="searchValue"></td>
+								<td><button type="button" id="searchBtn" name="search">검색</button></td>
+							</tr>
+						</table>
 					</div>
 				</c:if>
 		    </c:when>
