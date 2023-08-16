@@ -29,11 +29,16 @@ public interface NoticeDAO {
 	int deleteNotice(int bno);
 	// 조회수 증가하기
 	@Update("UPDATE noticeBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")
-	void updateVcnt(int bno);
+	int updateVcnt(int bno);
 	// 좋아요 증가하기
 	@Update("UPDATE noticeBoard SET likeCnt = likeCnt + 1 WHERE bno = #{bno}")
-	void updateLikeCnt(int bno);
+	int updateLikeCnt(int bno);
 	// 상단 고정 여부 수정하기 
 	@Update("UPDATE noticeBoard SET fixedNotice = #{fixedNotice} WHERE bno = #{bno}")
-	void updateFixedNotice(NoticeVO vo, int bno);
+	int updateFixedNotice(NoticeVO vo);
+	// 전체 게시글 수
+	@Select("SELECT count(*) FROM noticeBoard")
+	int totalCount();
+		
+	
 }

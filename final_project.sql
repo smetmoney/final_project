@@ -186,14 +186,15 @@ CREATE TABLE noticeBoard (
     auth VARCHAR(255) NOT NULL,					-- 작성자
     regdate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
     vcnt INT DEFAULT 0,							-- 조회수
-    likeCnt INT DEFAULT 0,					-- 좋아요 수
-    fixedNotice BOOLEAN DEFAULT FALSE,
+    likeCnt INT DEFAULT 0,						-- 좋아요 수
+    fixedNotice BOOLEAN DEFAULT FALSE,			-- 고정 공지
    	FOREIGN KEY (auth) REFERENCES MEMBER(ID)
 --    INDEX(IDN)								-- ID값 불러오기
 );
 
 SELECT * FROM noticeBoard;
 drop table noticeBoard;
+INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용3','ADMIN',false);
 
 -- 드랍전용 sql문
 DROP TABLE MEMBER;

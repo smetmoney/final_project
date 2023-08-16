@@ -9,23 +9,23 @@ public interface QnaService {
 	/**
 	 * 질의응답 불러오기
 	 */
-	public List<QnaVO> qnaList() throws Exception;
+	List<QnaVO> qnaList() throws Exception;
 	
 	/**
 	 * 질의응답 등록하기
 	 */
-	public String newQna(QnaVO vo) throws Exception;
+	String newQna(QnaVO vo) throws Exception;
 	
 	/**
 	 * 특정 질의응답 불러오기
 	 */
-	public QnaVO qnaLoad(int qnaId) throws Exception;
+	QnaVO qnaLoad(int qnaId) throws Exception;
 	/**
 	 * 질의응답 수정하기
 	 */
-	public String editQna(QnaVO vo) throws Exception;
+	String editQna(QnaVO vo) throws Exception;
 	/**
 	 * 질의응답 삭제하기
 	 */
-	public String remove(int qnaId) throws Exception;
+	String remove(int qnaId) throws Exception;
 }
