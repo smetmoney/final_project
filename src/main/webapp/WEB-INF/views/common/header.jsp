@@ -11,19 +11,22 @@
 <title>Text Game</title>
 <head>
 <script>
-    // 쿠키를 가져오는 함수
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
+	window.onload = ()=>{
+		// 쿠키를 가져오는 함수
+	    function getCookie(name) {
+	        const value = `; ${document.cookie}`;
+	        const parts = value.split(`; ${name}=`);
+	        if (parts.length === 2) return parts.pop().split(';').shift();
+	    }
 
-    // 쿠키 값을 가져와서 출력하는 부분
-    const savedAutoLoginValue = getCookie("autoLogin");
-    if (savedAutoLoginValue) {
-        document.getElementById("savedAutoLoginValue").innerText = `Saved Auto Login: ${savedAutoLoginValue}`;
-    }
-</script>
+	    // 쿠키 값을 가져와서 출력하는 부분
+	    const savedAutoLoginValue = getCookie("autoLogin");
+	    console.log(savedAutoLoginValue);
+	    if (savedAutoLoginValue) {
+	        document.getElementById("savedAutoLoginValue").innerText = `Saved Auto Login: ${savedAutoLoginValue}`;
+	    }
+	}
+    </script>
 <header>
 	<div id="memberBox">
 	
