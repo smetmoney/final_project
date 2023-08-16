@@ -30,8 +30,6 @@
     </script>
 <header>
 	<div id="memberBox">
-        <a id="loginLink" href="${path}/login/login">로그인</a>
-        <a id="joinLink" href="${path}/join/join">회원가입</a>
 		<c:choose>
 		    <c:when test="${loggedInUser != null}">
 		        <h1>Hello, ${loggedInUser.nname}</h1>

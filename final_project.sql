@@ -156,7 +156,9 @@ CREATE TABLE test_imageBoard (
     Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
     VCNT INT DEFAULT 0,							-- 조회수
     LCNT INT DEFAULT 0,							-- 좋아요 수
-    ImageURL VARCHAR(255)						-- 이미지 경로
+    ImageURL VARCHAR(255),						-- 이미지 경로
+    del boolean default false,
+    CommentCount INT DEFAULT 0
 );
 
 -- 이미지 게시판 댓글 테이블 
@@ -170,7 +172,25 @@ CREATE TABLE test_Comments (
     -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
 
+DELIMITER //
+CREATE TRIGGER update_comment_count
+AFTER INSERT ON test_Comments
+FOR EACH ROW
+BEGIN
+    UPDATE test_imageBoard
+    SET CommentCount = CommentCount + 1
+    WHERE BNO = NEW.ImageBoardBNO;
+END;
+//
+DELIMITER ;
+
+DROP TABLE test_comments;
+
+DROP TABLE test_imageBoard;
+
+ 
 alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
+alter table test_imageBoard add del boolean default 0;	-- 게시글 삭제 유무 추가
 -- (0 : flase(안삭제), 1 : true(삭제))
 
 SELECT * FROM test_comments;

@@ -6,7 +6,8 @@
         <label for="title">제목:</label>
         <input type="text" id="title" name="title" required><br>
 		<label for="auth">작성자:</label>
-        <input type="text" id="auth" name="auth" required><br>
+        <input type="text" value='${loggedInUser.nname}' disabled><br>
+        <input type="hidden" id="auth" name="auth" value='${loggedInUser.nname}'>
         <label for="content">내용:</label>
         <textarea id="content" name="content" required></textarea><br>
         <label for="imageFile">이미지 첨부:</label>
