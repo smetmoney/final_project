@@ -1,15 +1,22 @@
 package com.bitc.project.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.project.service.NoticeService;
 import com.bitc.project.util.Criteria;
+import com.bitc.project.vo.MemberVO;
 import com.bitc.project.vo.NoticeVO;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +34,8 @@ public class NoticeController {
 		List<NoticeVO> noticeList= ns.readNoticeList(cri);
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("pm",ns.getPageMaker(cri));
+		// 추후 삭제 
+		model.addAttribute("userId", "admin");
 	}
 	
 	@GetMapping("noticeDetail")
@@ -45,9 +54,23 @@ public class NoticeController {
 	 * "redirect:noticeDetail?bno="+bno; }
 	 */
 	@GetMapping("newNotice")
-	public void newNotice() {
-		
+	public void newNotice(MemberVO vo, Model model) {
+		// 추후 삭제
+		vo = new MemberVO();
+		vo.setId("ADMIN");
+		model.addAttribute("vo", vo);
 	}
+	
+	@PostMapping("newNotice")
+	public String newNoticePost(NoticeVO vo, RedirectAttributes rttr
+			//, String editor
+			) throws Exception {
+		//vo.setContent(editor);
+		String result = ns.newNotice(vo);
+		rttr.addFlashAttribute("result", result);
+		return "notice/noticeList";
+	}
+	
 	
 	@GetMapping("editNotice")
 	public void editNoitce() {
@@ -60,5 +83,7 @@ public class NoticeController {
 		rttr.addFlashAttribute("result",result);
 		return "redirect:/notice/noticeList";
 	}
+	
+
 	
 }
