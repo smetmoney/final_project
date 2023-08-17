@@ -204,6 +204,8 @@ DROP TABLE test_comments;
 
 DROP TABLE test_imageBoard;
 
+select * from member;
+
  
 alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
 alter table test_imageBoard add del boolean default 0;	-- 게시글 삭제 유무 추가

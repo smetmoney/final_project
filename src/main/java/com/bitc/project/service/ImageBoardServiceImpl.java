@@ -86,14 +86,23 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 		if(cri.getSearchType() == null) {
 			spm.setTotalCount(dao.totalCount());
 		}else {
-			spm.setTotalCount(dao.searchCount(cri));
+			if(cri.getSearchType().equals("title")) {
+				spm.setTotalCount(dao.searchTitleCount(cri));
+			}else {
+				spm.setTotalCount(dao.searchContentCount(cri));
+			}
 		}
 		return spm;
 	}
 
 	@Override
 	public List<ImageBoardVO> searchList(SearchCriteria cri) throws Exception {
-		return dao.searchList(cri);
+		List<ImageBoardVO> list = null;
+		if(cri.getSearchType().equals("title")) {
+			list = dao.searchTitleList(cri);
+		}else {
+			list = dao.searchContentList(cri);
+		}
+		return list;
 	}
-
 }
