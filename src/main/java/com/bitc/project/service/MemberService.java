@@ -2,12 +2,13 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import com.bitc.project.vo.LoginDTO;
 import com.bitc.project.vo.MemberVO;  
 
 public interface MemberService {
 	
 	// 가입
-    void registerNewMember(MemberVO membervo);  
+    MemberVO registerNewMember(MemberVO membervo) throws Exception;  
     
     // 찾기
     MemberVO findMemberById(String ID);
@@ -24,7 +25,11 @@ public interface MemberService {
     // 여기서 부터는 User
     
 	static void withdraw(MemberVO member) {
-		
 	}
+	
+	// 로그인 정보 찾기
+	MemberVO selectIdAndPass(MemberVO vo);
+
+	
 
 }

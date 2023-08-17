@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bitc.project.dao.MemberDAO;
+import com.bitc.project.vo.LoginDTO;
 import com.bitc.project.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,9 @@ public class MemberServiceImpl implements MemberService {
 	 */
 
     @Override
-    public void registerNewMember(MemberVO membervo) {
-        memberDAO.insertMember(membervo);
+    public MemberVO registerNewMember(MemberVO membervo) throws Exception {
+        memberDAO.insertMember(membervo); // 회원 등록
+        return membervo; 				  // 등록된 회원 정보 반환
     }
 
     @Override
@@ -43,4 +45,12 @@ public class MemberServiceImpl implements MemberService {
     public void deleteMember(String ID) {
         memberDAO.deleteMember(ID);
     }
+
+    @Override
+    public MemberVO selectIdAndPass(MemberVO vo) {
+        return memberDAO.selectIdAndPass(vo);
+    }
+
+
+
 }

@@ -33,7 +33,7 @@ public class MySessionEventListener implements HttpSessionListener, HttpSessionA
 		Enumeration<Object> enumeration = sessionRepository.elements();
 		while(enumeration.hasMoreElements()) {
 			HttpSession session = (HttpSession) enumeration.nextElement();
-			MemberVO member = (MemberVO)session.getAttribute("userInfo");
+			MemberVO member = (MemberVO)session.getAttribute("loggedInUser");
 			// 사용자 정보가 session에 존재하고
 			// 새로 로그인 할려는 uid랑 일치하는 사용자 일때
 			if(member != null && member.getId().equals(id)) {

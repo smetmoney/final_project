@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.data.repository.query.Param;
 
 import com.bitc.project.vo.MemberVO;
 
@@ -15,9 +16,10 @@ public interface MemberDAO {
 	
 	/**
 	 * 회원가입
+	 * @return 
 	 * */
 	@Insert("INSERT INTO member (id, nname, pass, email, name, birthdate,gender) VALUES (#{id}, #{nname}, #{pass}, #{email}, #{name}, #{birthdate}, #{gender})")
-	void insertMember(MemberVO member);
+	void insertMember(MemberVO member) throws Exception;
 	
 	/**
 	 * 아이디 검색
@@ -42,5 +44,15 @@ public interface MemberDAO {
 	 * */
 	@Delete("DELETE FROM member WHERE id = #{id}")
 	void deleteMember(String id);
+	
+	/**
+	 * 아이디 비밀번호 검색
+	 * @return MemberVO
+	 */
+	
+	@Select("SELECT * FROM member WHERE id = #{id} AND pass = #{pass}")
+	MemberVO selectIdAndPass(MemberVO vo);
+
+	 
 	
 }

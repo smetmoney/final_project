@@ -5,8 +5,6 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	MemberVO loggedInUser;
-	
 	private int idn;		// 식별값
 	private String id;		// 로그인용 아이디
 	
@@ -19,6 +17,8 @@ public class MemberVO {
     private String birthdate; // 생년월일
     private String gender;  // 성별
     private int point;		// 포인트
+    
+    private boolean autoLogin;
     
 	
 }

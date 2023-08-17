@@ -24,8 +24,8 @@ if (message != null) {
         <h1>환영합니다</h1>
         <form action="login" method="post">
             <div class="int-area">
-                <input type="text" name="ID" id="ID" autocomplete="off" required>
-                <label for="ID">ID</label>
+                <input type="text" name="id" id="id" autocomplete="off" required>
+                <label for="id">ID</label>
             </div>
             <div class="int-area">
                 <input type="password" name="pass" id="pass" autocomplete="off" required>
