@@ -16,15 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.util.HtmlUtils;
 
 import com.bitc.project.vo.ChatVO;
-
 import lombok.extern.log4j.Log4j;
-
 
 @Controller
 @RequestMapping("/chat")
-@Log4j
 public class ChatController {
 
 	@GetMapping("/chat")
@@ -78,5 +76,11 @@ public class ChatController {
 		return payload;
 	}
 	*/
-	
+	/*
+	@MessageMapping("/chat")
+	@SendTo("/topic/chat2")
+	public String chat(ChatVO vo) {
+		return "Hello"+HtmlUtils.htmlEscape(vo.getChat());
+	}
+  */
 }
