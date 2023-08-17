@@ -167,8 +167,11 @@
 	})
 	// 게시글 삭제 (게시글작성자 == 로그인멤버)
 	$("#delete_btn").on("click",function(e){
-		$("#modifyForm").attr("action","delete");
-		$("#modifyForm").submit();
+		if(confirm('정말로 삭제?')){
+			$("#modifyForm").attr("action","delete");
+			$("#modifyForm").submit();
+			alert('게시글 삭제완료!');
+		}
 	})
 	// 댓글 수정(진행중)
 	$(".commentModify").on("click",function(){
