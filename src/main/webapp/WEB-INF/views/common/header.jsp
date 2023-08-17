@@ -28,7 +28,6 @@
 	    }
 	}
     </script>
-    
 	<div id="memberBox">
 		<c:choose>
 		    <c:when test="${loggedInUser != null}">

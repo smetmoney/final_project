@@ -5,16 +5,22 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- style 태그는 추후 통합 하겠읍니다. --> 
 <style>
-     #imgBoardTitle{
-         text-align: center;
+ 	 #imgBoardTitle{
+        text-align: left;
+        padding: 30px;
+     }
+     #imgBoardWrap{
+     	width:90%;
+     	margin: 0 auto;
+	    display: grid;
+	    grid-template-columns: repeat(3, 1fr);
+	    gap: 20px;
      }
      .imgBoardContent{
-         width: 400px;
-         height: 400px;
-         display: inline-block;
-         border: black solid 1px;
-         margin:20px;
+		border: 1px black solid;
+		height: 350px;
      }
+	/*     
      .contentList{
          list-style-type: none;
          margin: 0;
@@ -39,7 +45,8 @@
      }
      .imgBoardContent:hover{
      	cursor: pointer;
-     }
+     } */
+     
 </style>
 <script>
 	window.onload = ()=>{
@@ -77,21 +84,16 @@
 </script>
 <div class="mainWrap">
     <div id="imgBoardTitle">
-        <h1>이미지 게시판</h1>
-    </div>
-    <div>
-	   	<input type="button" value="글작성하기" name="writeBtn"/>
+        <h1>갤러리</h1>
+        <hr/>
     </div>
     <div id="imgBoardWrap">
 	    <c:choose>
 		    <c:when test="${!empty imgBoardList}">
 		    	<c:forEach items="${imgBoardList}" var="img">
 				    <div class="imgBoardContent"  onclick="triggerLinkClick(${img.bno})">
+						<img src="${pageContext.request.contextPath}${img.imageURL}">
 				        <ul class="contentList">
-				            <li id="thumbnailImg" class="imgBoard">
-					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${img.imageURL}')">
-					            </div>
-				            </li>
 				            <li class="imageBoard">
 				            	<a href="read/${img.bno}" id="click${img.bno}">제목 : ${img.title}
 					            	<c:if test="${img.commentCount > 0}">
@@ -111,7 +113,13 @@
 				    </div>
 			    </c:forEach>
 			    <br/>
-   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
+		    </c:when>
+		    <c:otherwise>
+		    	<h2>게시글이 존재하지 않습니다.</h2>
+		    </c:otherwise>
+	    </c:choose>
+   	</div>
+   	<c:if test="${!empty pm and pm.maxPage > 1}">
    	    			<div>
 	   	    			<table>
 							<tr>
@@ -138,25 +146,22 @@
 						</table>
 					</div>
 				</c:if>
-					<div>
-						<table>
-							<tr>
-								<td>
-									<select id="option" name="searchType">
-										<option value="title">제목</option>
-										<option value="content">내용</option>
-									</select>
-								</td>
-								<td><input type="text" name="searchValue"></td>
-								<td><button type="button" id="searchBtn" name="search">검색</button></td>
-							</tr>
-						</table>
-					</div>
-		    </c:when>
-		    <c:otherwise>
-		    	<h2>게시글이 존재하지 않습니다.</h2>
-		    </c:otherwise>
-	    </c:choose>
-   	</div>
+	<div>
+		<table>
+			<tr>
+				<td>
+					<select id="option" name="searchType">
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+					</select>
+				</td>
+				<td><input type="text" name="searchValue"></td>
+				<td><button type="button" id="searchBtn" name="search">검색</button></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+	   	<input type="button" value="글작성하기" name="writeBtn"/>
+    </div>
 </div>
 <jsp:include page="../common/footer.jsp" />
