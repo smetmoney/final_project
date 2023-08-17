@@ -13,7 +13,7 @@
 		display: inline-block;
 		border: 1px black solid;
 		padding: 10px;
-		text-align: left;
+		text-align: left; 
 		width: 60%;
 	}
 	#contentWrap a{

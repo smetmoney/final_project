@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../common/header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- style 태그는 추후 통합 하겠읍니다. -->
+<!-- style 태그는 추후 통합 하겠읍니다. --> 
 <style>
      #imgBoardTitle{
          text-align: center;
@@ -37,6 +37,9 @@
      #createButton{
      	display:inline-block;	
      }
+     .imgBoardContent:hover{
+     	cursor: pointer;
+     }
 </style>
 <script>
 	window.onload = ()=>{
@@ -49,6 +52,21 @@
 				location.href = "imgBoard_form";
 			}
 		})
+		$("#searchBtn").on("click",function(){
+			let option = $('select').val();
+			let value = $('input[name="searchValue"]').val();
+			if(value.trim() == ''){
+				alert('검색어를 입력하세요!');
+				return;
+			}
+			location.href = "imgBoard_list?searchValue="+value+"&searchType="+option;
+		});
+	    $("input[name='searchValue']").on('keydown', function(e) {
+	        if (e.keyCode === 13) {
+	            e.preventDefault(); 
+	            $("#searchBtn").click();
+	        }
+	    });
 	}
     function triggerLinkClick(bno) {
         var link = document.querySelector('#click'+bno);
@@ -93,28 +111,46 @@
 			    </c:forEach>
 			    <br/>
    	    		<c:if test="${!empty pm and pm.maxPage > 1}">
-					<tr>
-						<th colspan="5">
-							<c:if test="${pm.first}">
-								<a href="imgBoard_list?page=1">[&laquo;]</a>
-							</c:if>
-							<c:if test="${pm.prev}">
-								<a href="imgBoard_list?page=${pm.startPage-1}">[&lt;]</a>
-							</c:if>
-							<c:forEach var="i" 
-									   begin="${pm.startPage}" 
-									   end ="${pm.endPage}">
-								<a href="imgBoard_list?page=${i}">[${i}]</a>
-							</c:forEach>
-							<c:if test="${pm.next}">
-								<a href="imgBoard_list?page=${pm.endPage+1}">[&gt;]</a>
-							</c:if>
-							<c:if test="${pm.last}">
-								<a href="imgBoard_list?page=${pm.maxPage}">[&raquo;]</a>
-							</c:if>
-						</th>
-					</tr>
+   	    			<div>
+	   	    			<table>
+							<tr>
+								<th colspan="5">
+									<c:if test="${pm.first}">
+										<a href="imgBoard_list?page=1">[&laquo;]</a>
+									</c:if>
+									<c:if test="${pm.prev}">
+										<a href="imgBoard_list?page=${pm.startPage-1}">[&lt;]</a>
+									</c:if>
+									<c:forEach var="i" 
+											   begin="${pm.startPage}" 
+											   end ="${pm.endPage}">
+										<a href="imgBoard_list${pm.mkQueryStr(i)}">[${i}]</a>
+									</c:forEach>
+									<c:if test="${pm.next}">
+										<a href="imgBoard_list?page=${pm.endPage+1}">[&gt;]</a>
+									</c:if>
+									<c:if test="${pm.last}">
+										<a href="imgBoard_list?page=${pm.maxPage}">[&raquo;]</a>
+									</c:if>
+								</th>
+							</tr>
+						</table>
+					</div>
 				</c:if>
+					<div>
+						<table>
+							<tr>
+								<td>
+									<select id="option" name="searchType">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select>
+								</td>
+								<td><input type="text" name="searchValue"></td>
+								<td><button type="button" id="searchBtn" name="search">검색</button></td>
+							</tr>
+						</table>
+					</div>
 		    </c:when>
 		    <c:otherwise>
 		    	<h2>게시글이 존재하지 않습니다.</h2>

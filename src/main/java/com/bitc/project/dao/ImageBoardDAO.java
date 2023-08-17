@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.bitc.project.util.Criteria;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.vo.ImageBoardVO;
 
 public interface ImageBoardDAO {
@@ -20,18 +22,30 @@ public interface ImageBoardDAO {
 	
 	@Select("SELECT * FROM test_imageBoard WHERE bno = #{bno}")
 	ImageBoardVO read(int bno);
-
+ 
 	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
 	int totalCount();
 
+	@Select("SELECT count(*) FROM test_imageBoard WHERE title LIKE CONCAT('%',#{searchValue},'%') AND del = false")
+	int searchTitleCount(SearchCriteria cri);
+	
+	@Select("SELECT count(*) FROM test_imageBoard WHERE content LIKE CONCAT('%',#{searchValue},'%') AND del = false")
+	int searchContentCount(SearchCriteria cri);
+	
 	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
 	
-	@Update("Update test_imageBoard SET del=true WHERE bno = #{bno}")
+	@Update("Update test_imageBoard SET del = true WHERE bno = #{bno}")
 	int delete(int bno);
 	
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
+	
+	@Select("SELECT * FROM test_imageBoard WHERE title LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
+	List<ImageBoardVO> searchTitleList(SearchCriteria cri);
+	
+	@Select("SELECT * FROM test_imageBoard WHERE content LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
+	List<ImageBoardVO> searchContentList(SearchCriteria cri);
 }
 
 
