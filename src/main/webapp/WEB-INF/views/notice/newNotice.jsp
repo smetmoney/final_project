@@ -18,7 +18,7 @@
         <label for="title">제  목 :</label>
         <input type="text" id="title" name="title"" required><br>
 		<label for="auth">작성자:</label>
-        <input type="text" id="auth" name="auth" value="${vo.id}" required><br>
+        <input type="text" id="auth" name="auth" value="${vo.id}" required readonly><br>
         <label for=fixedNotice>공지 상단 고정 :</label>
         <label for="fixedNoticeT"> [ 고정 ]  </label>
         <input type="radio" name="fixedNotice" id ="fixedNoticeT" value="true"/>
@@ -30,7 +30,7 @@
         <!-- <input type="submit" value="작성"> -->
     </form>
 </div> 
-<!-- <script>
+<script>
 	let editor;
 	
     ClassicEditor
@@ -63,6 +63,6 @@
     }
    
 
-</script> -->
+</script>
 
 <jsp:include page="../common/footer.jsp" />
