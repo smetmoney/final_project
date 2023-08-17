@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:include page="../common/header.jsp" />
+<div class="mainWrap">
+    <h1>글 수정</h1>
+    <form action="editNotice" method="post" >
+    	<input type="hidden" id="title" name="bno" value="${vo.bno}" required><br>
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" value="${vo.title}" required><br>
+		<label for="auth">작성자:</label>
+        <input type="text" id="auth" name="auth" value="${vo.auth}" required disabled><br>
+        <label for="content">내용:</label>
+        <textarea id="content" name="content" required>${vo.content}</textarea><br>
+        <input type="submit" value="작성">
+    </form>
+</div> 
+<jsp:include page="../common/footer.jsp" />
