@@ -14,8 +14,8 @@ import java.util.List;
 @Log4j2
 public class ChattingHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> list = new ArrayList<>();
-
+    private List<WebSocketSession> list = new ArrayList<>();
+    // https://dev-gorany.tistory.com/3
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();

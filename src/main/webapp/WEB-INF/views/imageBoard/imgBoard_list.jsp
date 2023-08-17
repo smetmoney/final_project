@@ -97,6 +97,7 @@
 					            	<c:if test="${img.commentCount > 0}">
 					            		<span>[${img.commentCount}]</span>
 					            	</c:if>
+					            	<span>작성자 : ${img.auth} </span>
 				            	</a> 
 				            </li>
 				            <li class="imgBoard">
