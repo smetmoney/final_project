@@ -38,7 +38,7 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var sock = new SockJS('chat');
+var sock = new SockJS('http://localhost:7777/project/chat');
 var client = Stomp.over(sock);
  sock.onmessage = onMessage();
 sock.onclose = onClose();

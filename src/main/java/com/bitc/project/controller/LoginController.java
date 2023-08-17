@@ -14,65 +14,72 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitc.project.dao.MemberDAO;
+import com.bitc.project.service.MemberService;
 import com.bitc.project.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("login")
 @RequiredArgsConstructor
 public class LoginController {
 	
-	@GetMapping("login") 
-	public void join() {}
-	
     @Autowired
     private MemberDAO memberDAO;
+    
+    private final MemberService ms;
+    
+    @GetMapping("login") 
+	public void join() {}
 
     @PostMapping("login")
     public String loginProcess(HttpServletRequest request,
-    						   HttpServletResponse response,
-                               @RequestParam String ID, 
+                               HttpServletResponse response,
+                               @RequestParam String ID,
                                @RequestParam String pass,
-                               @RequestParam(required = false) String autoLogin
-                               ) {
-        
+                               @RequestParam(required = false) String autoLogin) {
+
         if (ID != null) {
-        	
-        	ID = request.getParameter("ID");
+
+            ID = request.getParameter("ID");
             MemberVO member = memberDAO.selectMemberById(ID);
 
-            if (member != null && member.getPass().equals(pass)) {
-                // 로그인 성공
-            	
-                HttpSession session = request.getSession();
-                session.setAttribute("loggedInUser", member); // 세션에 사용자 정보 저장
-                
-                if (autoLogin != null && autoLogin.equals("on")) {
-                    // 자동 로그인 체크박스를 체크했다면
-                	
-                    Cookie cookie = new Cookie("autoLogin", ID);
-                    cookie.setPath("/");
-                    cookie.setMaxAge(60 * 60 * 24); 				// 24시간 동안 자동 로그인
-                    // cookie.setMaxAge(Integer.MAX_VALUE); //     	 쿠키를 영구적으로 저장합니다.
-                    response.addCookie(cookie);
-                    
-                    System.out.println(cookie);
-                }
+            if (member != null) { 	// 회원이 존재하는 경우
+                if (member.getPass().equals(pass)) {
+                    // 로그인 성공
 
-                // 로그인 성공 시 이동할 페이지
-                return "redirect:/";
+                    HttpSession session = request.getSession();
+                    session.setAttribute("loggedInUser", member); // 세션에 사용자 정보 저장
+
+                    if (autoLogin != null && autoLogin.equals("on")) {
+                        // 자동 로그인 체크박스를 체크했다면
+
+                        Cookie cookie = new Cookie("autoLogin", ID);
+                        cookie.setPath("/");
+                        cookie.setMaxAge(60 * 60 * 24); // 24시간 동안 자동 로그인
+                        response.addCookie(cookie);
+
+                        System.out.println(cookie);
+                    }
+
+                    // 로그인 성공 시 이동할 페이지
+                    return "redirect:/";
+                    
+                } else {
+                    // 비밀번호가 일치하지 않는 경우
+                    String message = "비밀번호가 올바르지 않습니다.";
+                    request.setAttribute("message", message);
+                    return "redirect:/";
+                }
                 
             } else {
-            	
-                // 로그인 실패
-            	
-                String message = "아이디 또는 비밀번호가 올바르지 않습니다.";
+                // 회원이 없는 경우
+                String message = "존재하지 않는 회원입니다.";
                 request.setAttribute("message", message);
-                return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
+                return "redirect:/";
             }
         }
-        return null;
+        return "redirect:/";
     }
     
     // 로그아웃
@@ -95,6 +102,6 @@ public class LoginController {
         
         return "redirect:/";
     }
-
+    
 
 }

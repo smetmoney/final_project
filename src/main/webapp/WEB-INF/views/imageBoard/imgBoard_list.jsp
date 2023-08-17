@@ -97,6 +97,7 @@
 					            	<c:if test="${img.commentCount > 0}">
 					            		<span>[${img.commentCount}]</span>
 					            	</c:if>
+					            	<span>작성자 : ${img.auth} </span>
 				            	</a> 
 				            </li>
 				            <li class="imgBoard">
@@ -136,6 +137,7 @@
 							</tr>
 						</table>
 					</div>
+				</c:if>
 					<div>
 						<table>
 							<tr>
@@ -150,7 +152,6 @@
 							</tr>
 						</table>
 					</div>
-				</c:if>
 		    </c:when>
 		    <c:otherwise>
 		    	<h2>게시글이 존재하지 않습니다.</h2>

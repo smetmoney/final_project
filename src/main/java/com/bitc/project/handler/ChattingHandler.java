@@ -11,8 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ChattingHandler extends TextWebSocketHandler {
 
-    private final Set<WebSocketSession> sessions = ConcurrentHashMap.newKeySet();
 
+    private List<WebSocketSession> list = new ArrayList<>();
+    // https://dev-gorany.tistory.com/3
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
