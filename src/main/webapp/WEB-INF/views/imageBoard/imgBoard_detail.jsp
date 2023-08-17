@@ -3,6 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../common/header.jsp" />
+<!-- http://sample.paged.kr/purewhite/bbs/board.php?bo_table=gallery_box&wr_id=9 -->
 <style>
 	#boardWrap{
 		text-align: center;
