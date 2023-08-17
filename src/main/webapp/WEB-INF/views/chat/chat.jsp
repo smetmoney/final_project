@@ -38,12 +38,11 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var sock = new SockJS('http://localhost:7777/project/chat');
+var sock = new SockJS('http://localhost:8080/project/chat');
 var client = Stomp.over(sock);
- sock.onmessage = onMessage();
+sock.onmessage = onMessage();
 sock.onclose = onClose();
 sock.onopen = onOpen();
-
 
 function sendMessage() {
 	sock.send($("#msg").val());

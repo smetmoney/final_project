@@ -1,5 +1,17 @@
 package com.bitc.project.controller;
 
+import java.util.Map;
+
+import org.apache.logging.log4j.message.Message;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,12 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bitc.project.vo.ChatVO;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 
@@ -27,15 +33,13 @@ public class ChatController {
 		ChatVO vo = new ChatVO(1, "admin" ,"admin");
 		//CustomUser user = (CustomUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		 
-
 		log.info("==================================");
-		
 		log.info("@ChatController, GET Chat / Username : " + vo.getNname());
-		 
+		
 		model.addAttribute("userid", vo.getId());
 		model.addAttribute("username", vo.getNname());		
 	}
-	/*
+	
 	@MessageMapping("chat")
 	public String handle(Message message, MessageHeaders messageHeaders, 
 		MessageHeaderAccessor messageHeaderAccessor, SimpMessageHeaderAccessor simpMessageHeaderAccessor, 
@@ -72,5 +76,5 @@ public class ChatController {
 
 		return payload;
 	}
-	*/
+	
 }

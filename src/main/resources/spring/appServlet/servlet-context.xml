@@ -40,7 +40,7 @@
 		<beans:constructor-arg value="/resources/imgBank"/>
 	</beans:bean>
 
-	<websocket:handlers> <!-- allowed-origins="*" -->
+	<websocket:handlers> <!--  allowed-origins="*" -->
 		<websocket:mapping handler="chattingHandler" path="chat"/>
 		<websocket:sockjs websocket-enabled="true"/>
 	</websocket:handlers>
