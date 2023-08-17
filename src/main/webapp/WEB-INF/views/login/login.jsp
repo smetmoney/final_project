@@ -5,6 +5,16 @@
 		display: inline-block;
 	}
 </style>
+
+<%
+String message = (String) request.getAttribute("message");
+if (message != null) {
+  out.println("<script>");
+  out.println("alert('" + message + "');");
+  out.println("</script>");
+}
+%>
+
   <section id="side_logo">
     
   </section>
