@@ -40,6 +40,7 @@ public class ChatController {
 		model.addAttribute("username", vo.getNname());		
 	}
 	
+	/*
 	@MessageMapping("chat")
 	public String handle(Message message, MessageHeaders messageHeaders, 
 		MessageHeaderAccessor messageHeaderAccessor, SimpMessageHeaderAccessor simpMessageHeaderAccessor, 
@@ -76,5 +77,6 @@ public class ChatController {
 
 		return payload;
 	}
+	*/
 	
 }
