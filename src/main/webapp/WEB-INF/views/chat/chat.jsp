@@ -38,12 +38,15 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var sock = new SockJS('http://localhost:7777/project/chat');
-var client = Stomp.over(sock);
- sock.onmessage = onMessage();
-sock.onclose = onClose();
-sock.onopen = onOpen();
+var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// 접속할주소 설정
+var serverAddress = isLocal ? 'http://localhost:7777/project/chat' : 'http://211.203.67.217:7777/project/chat';
+var sock = new SockJS(serverAddress);
 
+var client = Stomp.over(sock);
+sock.onmessage = onMessage;
+sock.onclose = onClose;
+sock.onopen = onOpen;
 
 function sendMessage() {
 	sock.send($("#msg").val());
@@ -64,8 +67,8 @@ function onMessage(msg) {
 	var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
 	console.log("cur_session : " + cur_session);
 	
-	sessionId = arr[0];
-	message = arr[1];
+	sessionId = arr[1];
+	message = arr[0];
 	
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if(sessionId == cur_session){
