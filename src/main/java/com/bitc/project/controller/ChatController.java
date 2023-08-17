@@ -29,7 +29,7 @@ public class ChatController {
 
 	@GetMapping("/chat")
 	public void chat(Model model) {
-		
+		 
 		ChatVO vo = new ChatVO(1, "admin" ,"admin");
 		//CustomUser user = (CustomUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		 
