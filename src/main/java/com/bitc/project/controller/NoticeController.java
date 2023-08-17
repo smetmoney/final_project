@@ -68,14 +68,24 @@ public class NoticeController {
 		//vo.setContent(editor);
 		String result = ns.newNotice(vo);
 		rttr.addFlashAttribute("result", result);
-		return "notice/noticeList";
+		return "redirect:noticeList";
 	}
 	
 	
 	@GetMapping("editNotice")
-	public void editNoitce() {
+	public void editNoitce(int bno, Model model) throws Exception {
+		NoticeVO vo = ns.readNotice(bno);
+		model.addAttribute("vo", vo);
 		
 	}
+	
+	@PostMapping("editNotice")
+	public String editNoticePost(NoticeVO vo, RedirectAttributes rttr) throws Exception {
+		String result = ns.editNotice(vo);
+		rttr.addFlashAttribute("result", result);
+		return "redirect:noticeList";
+	}
+	
 	
 	@GetMapping("deleteNotice")
 	public String deleteNotice(int bno, RedirectAttributes rttr) throws Exception{

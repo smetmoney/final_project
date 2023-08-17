@@ -35,7 +35,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public String editNotice(NoticeVO vo) throws Exception {
-		return dao.newNotice(vo) == 1 ? "공지사항 수정 성공" : "공지사항 수정 실패";
+		return dao.updateNotice(vo) == 1 ? "공지사항 수정 성공" : "공지사항 수정 실패";
 	}
 
 	@Override

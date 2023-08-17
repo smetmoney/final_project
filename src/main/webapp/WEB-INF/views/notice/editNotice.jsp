@@ -1,16 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../common/header.jsp" />
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+<style>
+.ck.ck-toolbar__items{
+	margin-left:20vw;
+}
+.ck.ck-content{
+	width:60%;
+	min-height:500px;
+	margin-left:20vw;
+}
+</style>
+
 <div class="mainWrap">
     <h1>글 수정</h1>
-    <form action="editNotice" method="post" >
+    <form action="editNotice" method="post" onsubmit="uploadData()">
     	<input type="hidden" id="title" name="bno" value="${vo.bno}" required><br>
         <label for="title">제목:</label>
         <input type="text" id="title" name="title" value="${vo.title}" required><br>
 		<label for="auth">작성자:</label>
-        <input type="text" id="auth" name="auth" value="${vo.auth}" required disabled><br>
+        <input type="text" id="auth" name="auth" value="${vo.auth}" required readonly><br>
+        <label for=fixedNotice>공지 상단 고정 :</label>
+        <label for="fixedNoticeT"> [ 고정 ]  </label>
+        <input type="radio" name="fixedNotice" id ="fixedNoticeT" value="true" ${vo.fixedNotice eq true ? 'checked="checked"' : ''}/>
+        <label for="fixedNoticeF"> [ 미고정 ]  </label>
+        <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" ${vo.fixedNotice eq false ? 'checked="checked"' : ''}/><br> 
         <label for="content">내용:</label>
-        <textarea id="content" name="content" required>${vo.content}</textarea><br>
+        <textarea id="content" name="content">${vo.content}</textarea><br>
         <input type="submit" value="작성">
     </form>
 </div> 
+<script>
+	let editor;
+	
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .then( newEditor => {
+        editor = newEditor;
+    } )
+	.then( editor => {
+		window.editor = editor;
+	} )
+    .catch( error => {
+           console.error( error );
+    } );
+    
+    function uploadData() {
+    
+    	const editorData = editor.getData();
+    	console.log(typeof(editorData));
+    	
+    	var xhr = new XMLHttpRequest();
+    	
+    	xhr.onreadystatechange = function() {
+    		if(xhr.readyState==4&&xhr.status==200) {
+    			
+    		}
+    	}
+    	xhr.open("post", "{path}/notice/editNotice", true);
+    	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+    	xhr.send("editorData="+editorData);
+    }
+   
+
+</script>
+
 <jsp:include page="../common/footer.jsp" />
