@@ -25,7 +25,7 @@
         <label for="fixedNoticeF"> [ 미고정 ]  </label>
         <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" checked="checked"/><br> 
         <label for="content">내용:</label>
-        <textarea id="content" name="content" required></textarea><br>
+        <textarea id="content" name="content"></textarea><br>
         <button type="submit">작성 완료</button>
         <!-- <input type="submit" value="작성"> -->
     </form>
