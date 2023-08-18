@@ -42,8 +42,8 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 	}
 
 	@Override
-	public int createImageBoard(ImageBoardVO vo) throws Exception {
-		return dao.createImageBoard(saveFile(vo));
+	public String createImageBoard(ImageBoardVO vo) throws Exception {
+		return dao.createImageBoard(saveFile(vo)) > 0 ? "게시글 등록 완료!" : "게시글 등록 실패..";
 	}
 
 	@Override
