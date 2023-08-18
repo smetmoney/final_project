@@ -31,18 +31,20 @@ public class LoginController {
     }
     
     @PostMapping("login") 
-    public ModelAndView login(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception{ 
+    public ModelAndView login(LoginDTO dto, HttpSession session, HttpServletResponse response) throws Exception{ 
         ModelAndView mav = new ModelAndView(); 
-        MemberVO loggedInMember = ms.selectIdAndPass(vo); 	// 로그인 처리 및 사용자 정보 반환
+        MemberVO loggedInMember = ms.selectIdAndPass(dto); 	// 로그인 처리 및 사용자 정보 반환
         if (loggedInMember != null) {
         	session.setAttribute("userInfo", loggedInMember); // 세션에 사용자 정보 저장
-            mav.addObject("userInfo", loggedInMember); 	 	 // 사용자 정보를 ModelAndView에 추가
             mav.setViewName("redirect:/");
-        } else {
+        } 
+        /*
+        else {
             // 로그인 실패 처리
             mav.addObject("message", "로그인 실패");
             mav.setViewName("/login/login");
         }
+        */
         
         return mav; 
     }

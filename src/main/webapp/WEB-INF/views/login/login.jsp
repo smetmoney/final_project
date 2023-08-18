@@ -22,7 +22,7 @@ if (message != null) {
     <section class="login-form">
       <br><br><br>
         <h1>환영합니다</h1>
-        <form action="login" method="post">
+        <form action="login" id="login" method="post">
             <div class="int-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
                 <label for="id">ID</label>

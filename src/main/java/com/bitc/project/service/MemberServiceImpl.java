@@ -47,9 +47,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberVO selectIdAndPass(MemberVO vo) {
-        return memberDAO.selectIdAndPass(vo);
+    public MemberVO selectIdAndPass(LoginDTO dto) {
+        return memberDAO.selectIdAndPass(dto);
     }
+
+	@Override
+	public MemberVO login(LoginDTO dto) throws Exception {
+		return memberDAO.login(dto);
+	}
 
 
 

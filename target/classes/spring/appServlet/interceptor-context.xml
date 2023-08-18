@@ -14,14 +14,12 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/join/join"/>
-			<beans:bean class="com.bitc.project.interceptor.SignUpInterceptor"/>
+			<beans:bean class="com.bitc.project.interceptor.JoinInterceptor"/>
 		</interceptor>
-	</interceptors>
-	
-		<interceptors>
+		
 		<interceptor>
 			<mapping path="/login/login"/>
-			<beans:bean class="com.bitc.project.interceptor.SignInInterceptor"/>
+			<beans:bean class="com.bitc.project.interceptor.LoginInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
@@ -29,6 +27,6 @@
 			<exclude-mapping path="/login/logOut"/>
 			<beans:ref bean="cookieIn"/>
 		</interceptor>
-		
 	</interceptors>
+	
 </beans:beans>

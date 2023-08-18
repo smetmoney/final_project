@@ -3,7 +3,7 @@ package com.bitc.project.service;
 import java.util.List;
 
 import com.bitc.project.vo.LoginDTO;
-import com.bitc.project.vo.MemberVO;  
+import com.bitc.project.vo.MemberVO;
 
 public interface MemberService {
 	
@@ -28,8 +28,9 @@ public interface MemberService {
 	}
 	
 	// 로그인 정보 찾기
-	MemberVO selectIdAndPass(MemberVO vo);
+	MemberVO selectIdAndPass(LoginDTO dto);
 
-	
+	// LoginDTO 로그인처리 
+	MemberVO login(LoginDTO dto) throws Exception;
 
 }

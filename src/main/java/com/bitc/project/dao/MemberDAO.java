@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.data.repository.query.Param;
 
+import com.bitc.project.vo.LoginDTO;
 import com.bitc.project.vo.MemberVO;
 
 @Mapper
@@ -51,8 +51,13 @@ public interface MemberDAO {
 	 */
 	
 	@Select("SELECT * FROM member WHERE id = #{id} AND pass = #{pass}")
-	MemberVO selectIdAndPass(MemberVO vo);
+	MemberVO selectIdAndPass(LoginDTO dto);
 
-	 
+	 /**
+	  * LoginDTO 로그인 요청 처리
+	  * */
+	@Select("SELECT * FROM member WHERE id = #{id} AND pw = #{pw}")
+	MemberVO login(LoginDTO dto) throws Exception;
+	
 	
 }
