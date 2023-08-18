@@ -38,9 +38,9 @@ $("#button-send").on("click", function(e) {
 	$('#msg').val('')
 });
 
-var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 // 접속할주소 설정
-var serverAddress = isLocal ? 'http://localhost:7777/project/chat' : 'http://211.203.67.217:7777/project/chat';
+var serverAddress = '/project/chat';
 var sock = new SockJS(serverAddress);
 
 var client = Stomp.over(sock);
