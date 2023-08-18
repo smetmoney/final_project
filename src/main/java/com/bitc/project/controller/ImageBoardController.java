@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.project.service.ImageBoardCommentService;
 import com.bitc.project.service.ImageBoardService;
@@ -67,17 +69,15 @@ public class ImageBoardController {
 	
 	// 게시글 작성 처리
 	@PostMapping("create")
-	public String create(ImageBoardVO vo) throws Exception {
-		is.createImageBoard(vo);
-		return "redirect:imgBoard_list";
+	public String create(ImageBoardVO vo,RedirectAttributes rttr) throws Exception {
+		rttr.addFlashAttribute("msg",is.createImageBoard(vo));
+		return "redirect:/imageBoard/imgBoard_list";
 	}
 	
 	// 게시글 상세보기
-	@GetMapping("read/{bno}")
-	public String read(@PathVariable int bno,Criteria cri,Model model) throws Exception 
+	@GetMapping("read")
+	public String read(int bno,Criteria cri,Model model) throws Exception 
 	{
-		// 조회수 증가
-		is.updateCnt(bno);
 		cri.setPerPageNum(10);
 		model.addAttribute("pm",ics.getPageMaker(cri, bno));
 		model.addAttribute("comments",ics.getCommentList(cri,bno));
@@ -89,7 +89,7 @@ public class ImageBoardController {
 	// (댓글 DB가 게시글 DB를 참조하고 있어서 물리적 삭제 x)
 	// 0 : false(안삭제)
 	// 1 : true(삭제)
-	@PostMapping("read/delete")
+	@PostMapping("delete")
 	public String delete(int bno) throws Exception
 	{
 		is.delete(bno);
@@ -98,17 +98,22 @@ public class ImageBoardController {
 	
 	// 게시글 상세보기 페이지 이동
 	@GetMapping("imgBoard_detail")
-	public void imgBoard_detail() {}
+	public String imgBoard_detail(int bno, RedirectAttributes rttr) throws Exception {
+		// 조회수 증가
+		is.updateCnt(bno);
+		rttr.addAttribute("bno",bno);
+		return "redirect:/imageBoard/read";
+	}
 	
 	// 게시글 수정 페이지 이동(해당 게시글 정보 vo객체로 전달)
-	@PostMapping("read/modify")
+	@PostMapping("modify")
 	public String modify(int bno,Model model) throws Exception {
 		model.addAttribute("vo",is.read(bno));
 		return "/imageBoard/imgBoard_modify";
 	}
 	
 	// 게시글 수정 요청
-	@PostMapping("read/modify_submit")
+	@PostMapping("modify_submit")
 	public String update(ImageBoardVO vo) throws Exception{
 		is.update(vo);
 		return "redirect:"+vo.getBno();
@@ -119,7 +124,7 @@ public class ImageBoardController {
 	 *  ics가 처리해줌 
 	 */
 	// 댓글작성 요청 처리 
-	@PostMapping("read/commentWrite")
+	@PostMapping("commentWrite")
 	public ResponseEntity<String> commentWrite(ImageBoardCommentVO vo) {
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -135,14 +140,14 @@ public class ImageBoardController {
 	}
 	
 	// 댓글 삭제 요청 처리
-	@DeleteMapping(value="read/commentDel/{cno}", produces="application/json; charset=utf8")
+	@DeleteMapping(value="commentDel/{cno}", produces="application/json; charset=utf8")
 	@ResponseBody
 	public String commentDelete(@PathVariable(name="cno") int cno) throws Exception{
 		return ics.delete(cno);
 	}
 	
 	// 댓글 수정 요청 처리
-	@PatchMapping(value = "read/commentMod" , produces="application/json; charset=utf8")
+	@PatchMapping(value = "commentMod" , produces="application/json; charset=utf8")
 	@ResponseBody
 	public String commentModify(@RequestBody ImageBoardCommentVO vo) throws Exception{
 		return ics.modify(vo);

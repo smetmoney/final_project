@@ -22,7 +22,7 @@ public interface ImageBoardService {
 	List<ImageBoardVO> searchList(SearchCriteria cri)throws Exception; 
 	
 	// 게시글 작성
-	int createImageBoard(ImageBoardVO vo) throws Exception;
+	String createImageBoard(ImageBoardVO vo) throws Exception;
 	
 	// 조회수 증가
 	void updateCnt(int bno)  throws Exception;

@@ -64,7 +64,7 @@
 		    <span>조회수 : ${vo.vcnt}</span>
 		    <span>좋아용 : ${vo.lcnt}</span>
 		</div>	
-		<c:if test="${vo.auth == loggedInUser.nname}">
+		<c:if test="${vo.auth == userInfo.nname}">
 		<div id="modifyWrap">
 			<a id="modify_btn">
 				<button>수정</button>
@@ -91,7 +91,7 @@
 						        </li>
 							</ul>
 							
-							<c:if test="${comment.commenterID == loggedInUser.nname}">
+							<c:if test="${comment.commenterID == userInfo.nname}">
 								<button class="commentModify" data-cno='${comment.commentNO}'>
 									수정
 								</button>
@@ -141,14 +141,14 @@
 					</tr>
 				</c:if>
 			</c:if>
-			<c:if test="${!empty loggedInUser}">
+			<c:if test="${!empty userInfo}">
 	    		<div id="commentWriteBox">
 	    			<ul>
 	    				<!-- 추후 로그인멤버로 수정 -->
 	    				<li>${loggedInUser.nname}</li>
 	    				<li>
 	    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
-							<input type="hidden" id="commenterID" name="commenterID" value="${loggedInUser.nname}">
+							<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
 							<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
 	   					</li>
 	    				<li>
@@ -214,7 +214,7 @@
 	            contentType : "application/json",
 	            success: function (result) {
 	                alert(result);
-	                location.href="?page=1";
+	                location.reload();
 	            }
 	        });
 	    }else{
