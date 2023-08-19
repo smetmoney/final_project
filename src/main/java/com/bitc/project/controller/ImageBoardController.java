@@ -51,17 +51,6 @@ public class ImageBoardController {
 		model.addAttribute("imgBoardList",list);
 		model.addAttribute("pm",is.getSearchPM(cri));
 	}
-	
-	/*
-	// 검색결과 리스트
-	@PostMapping("imgBoard_list")
-	public void SearchList(SearchCriteria cri, Model model) throws Exception{
-		cri.setPerPageNum(6);
-		List<ImageBoardVO> list = is.searchList(cri);
-		model.addAttribute("imgBoardList",list);
-		model.addAttribute("pm",is.getSearchPM(cri));
-	}
-	*/
 
 	// 게시글 작성 페이지
 	@GetMapping("imgBoard_form")
@@ -71,7 +60,7 @@ public class ImageBoardController {
 	@PostMapping("create")
 	public String create(ImageBoardVO vo,RedirectAttributes rttr) throws Exception {
 		rttr.addFlashAttribute("msg",is.createImageBoard(vo));
-		return "redirect:/imageBoard/imgBoard_list";
+		return "redirect:imgBoard_list";
 	}
 	
 	// 게시글 상세보기
@@ -93,7 +82,7 @@ public class ImageBoardController {
 	public String delete(int bno) throws Exception
 	{
 		is.delete(bno);
-		return "redirect:/imageBoard/imgBoard_list";
+		return "redirect:imgBoard_list";
 	}
 	
 	// 게시글 상세보기 페이지 이동
@@ -102,7 +91,7 @@ public class ImageBoardController {
 		// 조회수 증가
 		is.updateCnt(bno);
 		rttr.addAttribute("bno",bno);
-		return "redirect:/imageBoard/read";
+		return "redirect:read";
 	}
 	
 	// 게시글 수정 페이지 이동(해당 게시글 정보 vo객체로 전달)
@@ -114,9 +103,10 @@ public class ImageBoardController {
 	
 	// 게시글 수정 요청
 	@PostMapping("modify_submit")
-	public String update(ImageBoardVO vo) throws Exception{
+	public String update(ImageBoardVO vo, RedirectAttributes rttr) throws Exception{
 		is.update(vo);
-		return "redirect:"+vo.getBno();
+		rttr.addAttribute("bno","bno");
+		return "redirect:read";
 	}
 	
 	/**
