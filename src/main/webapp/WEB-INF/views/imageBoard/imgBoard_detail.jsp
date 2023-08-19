@@ -5,52 +5,108 @@
 <jsp:include page="../common/header.jsp" />
 <!-- http://sample.paged.kr/purewhite/bbs/board.php?bo_table=gallery_box&wr_id=9 -->
 <style>
-	#boardWrap{
-		text-align: center;
-		background: white;
-		padding: 10px;
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #boardWrap {
+        margin: 0px auto;
+        text-align: center;
+        background: #f9f9f9;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    #modifyWrap {
+    	display: inline;
+    	margin: 0;
+    }
+
+	button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: none;
+        background: #3498db;
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
 	}
-	#contentWrap{
-		display: inline-block;
-		border: 1px black solid;
-		padding: 10px;
-		text-align: left; 
-		width: 60%;
+	
+	button:hover {
+	    background-color: #2980b9;
 	}
-	#contentWrap a{
-		float: right;
+	
+    #contentWrap {
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: left;
+    }
+    #contentWrap a {
+        float: right;
+        color: #3498db;
+        text-decoration: none;
+    }
+    #contentWrap a:hover{
+    	color: #3498db94;
+    }
+    #commentWrap {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: left;
+    }
+    .commentBox {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+        background: #f9f9f9;
+    }
+    .commentBox ul {
+        list-style: none;
+        padding: 0;
+    }
+    .commentBox li {
+        margin-bottom: 5px;
+    }
+    #commentWriteBox {
+	    background-color: #f2f2f2;
+	    padding: 10px;
+	    border-radius: 5px;
 	}
-	#commentWrap{
-		width: 60%;
-		border: 1px black solid;
-		display: inline-block;
-		padding: 10px;
-		text-align: left;
+
+	#commentWriteBox ul {
+	    list-style: none;
+	    padding: 0;
+	    margin: 0;
 	}
-	#commentWriteBox{
-		border: 1px black solid;
-		border-radius: 5px;
-		height: 100px;
-		padding:5px;
+	
+	#commentWriteBox ul li {
+	    margin-bottom: 10px;
 	}
-	#commentWriteBox #commentWriteArea{
-		border: none;
-		width:100%;
-		height: 30px;
+	
+	#commentWriteArea {
+	    width: 100%;
+	    padding: 10px;
+	    border: 1px solid #ccc;
+	    border-radius: 5px;
+	    font-size: 14px;
 	}
-	.commentBox{
-		padding: 10px;
-		margin-bottom: 10px;
-		border: 1px black solid;
+	
+	#commentWrite {
+	    background-color: #3498db;
+	    color: white;
+	    border: none;
+	    padding: 10px 15px;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    font-size: 14px;
+	    transition: background-color 0.3s;
 	}
-	#modifyWrap{
-		margin: 10px 0;
-		text-align: right;
-		width: 60%;
-		display: inline-block;
-	} 
-	.hide2{
-		display: none;
+	
+	#commentWrite:hover {
+	    background-color: #2980b9;
 	}
 </style>
 	<div id="boardWrap">
@@ -61,22 +117,22 @@
 		    <p><span>작성일 : ${vo.date}</span></p>
 			<img src="${path}${vo.imageURL}"/>
 		    <p>내용 : <br/>${vo.content}</p>
-		    <span>조회수 : ${vo.vcnt}</span>
-		    <span>좋아용 : ${vo.lcnt}</span>
+		    <div id="viewAndMod">
+		    	<div id="viewWrap">
+				    <span>조회수 : ${vo.vcnt}</span>
+				    <span>좋아용 : ${vo.lcnt}</span>
+			    </div>
+	   		    <c:if test="${vo.auth == userInfo.nname}">
+				<div id="modifyWrap">
+					<button id="modify_btn">수정</button>
+					<button id="delete_btn">삭제</button>
+				</div>
+				<form id="modifyForm" action="modify" method="post">
+					<input type="hidden" name="bno" value="${vo.bno}">
+				</form>
+				</c:if>
+			</div>
 		</div>	
-		<c:if test="${vo.auth == userInfo.nname}">
-		<div id="modifyWrap">
-			<a id="modify_btn">
-				<button>수정</button>
-			</a>
-			<a id="delete_btn">
-				<button>삭제</button>
-			</a>
-		</div>	
-		<form id="modifyForm" action="modify" method="post">
-			<input type="hidden" name="bno" value="${vo.bno}">
-		</form>
-		</c:if>
 	    <div id="commentWrap">
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
@@ -90,7 +146,6 @@
 						            내 용 : ${comment.commentContent}
 						        </li>
 							</ul>
-							
 							<c:if test="${comment.commenterID == userInfo.nname}">
 								<button class="commentModify" data-cno='${comment.commentNO}'>
 									수정
@@ -144,8 +199,7 @@
 			<c:if test="${!empty userInfo}">
 	    		<div id="commentWriteBox">
 	    			<ul>
-	    				<!-- 추후 로그인멤버로 수정 -->
-	    				<li>${loggedInUser.nname}</li>
+	    				<li>${userInfo.nname}</li>
 	    				<li>
 	    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
 							<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
