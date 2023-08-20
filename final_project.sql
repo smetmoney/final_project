@@ -133,18 +133,33 @@ CREATE TABLE Achievements (
 
 DROP TABLE Achievements;
 
--- 쪽지 테이블 생성
-CREATE TABLE Message (
-    MessageID INT AUTO_INCREMENT PRIMARY KEY,		-- 메세지 식별값
-    SenderID VARCHAR(255), 							-- 보낸 사람의 ID
-    ReceiverID VARCHAR(255),						-- 받는 사람의 ID
-    MessageContent TEXT, 							-- 쪽지 내용
-    SendDate DATETIME DEFAULT CURRENT_TIMESTAMP, 	-- 보낸 시간
-    FOREIGN KEY (SenderID) REFERENCES MEMBER(ID),	-- 보낸 사람 ID 값 불러오기
-    FOREIGN KEY (ReceiverID) REFERENCES MEMBER(ID)	-- 받는 사람 ID 값 불러오기
+-- MEMBER 테이블의 NNAME 컬럼에 인덱스 추가
+ALTER TABLE MEMBER ADD INDEX idx_nname (NNAME);
+
+-- 쪽지 테이블
+
+CREATE TABLE NOTE (
+  NNO INT AUTO_INCREMENT PRIMARY KEY,									-- 쪽지 번호
+  FROM_ID VARCHAR(255) NOT NULL,										-- 보낸사람
+  TO_ID VARCHAR(255) NOT NULL,											-- 받은사람
+  TITLE VARCHAR(255) NOT NULL,											-- 제목
+  CONTENT TEXT NOT NULL,												-- 쪽지내용
+  CREATED_AT DATETIME NOT NULL,											-- 보낸 시간
+  READ_AT DATETIME NULL,												-- 읽은 시간
+  CONSTRAINT fk_from_id FOREIGN KEY (from_id) REFERENCES MEMBER (id),
+  CONSTRAINT fk_to_id FOREIGN KEY (to_id) REFERENCES MEMBER (id)
 );
 
-DROP TABLE Message;
+-- 쪽지 넣기
+INSERT INTO NOTE (FROM_ID, TO_ID, TITLE ,CONTENT, CREATED_AT)
+VALUES ('USER1', 'USER2', 'test','test', NOW());
+
+INSERT INTO NOTE (FROM_ID, TO_ID, TITLE ,CONTENT, CREATED_AT)
+VALUES ('USER2', 'USER1', 'test','test', NOW());
+
+SELECT * FROM note;
+
+DROP TABLE note;
 
 
 -- 민준 테스트용
@@ -237,6 +252,29 @@ SELECT * FROM noticeBoard;
 drop table noticeBoard;
 INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용3','ADMIN',false);
 
+
+-- 자유게시판 테이블 임시용
+CREATE TABLE free_board(
+	bno INT PRIMARY KEY auto_increment,		-- 게시글 번호
+	title VARCHAR(200) NOT NULL,			-- 제목	
+	content TEXT NOT NULL,					-- 내용
+	writer VARCHAR(50) NOT NULL,			-- 작성자 이름
+	origin INT NULL DEFAULT 0,				-- 원본글 그룹 번호
+	depth INT NULL DEFAULT 0,				-- view 깊이 번호
+	seq INT NULL DEFAULT 0,					-- 답변글 정렬 순서
+	regdate TIMESTAMP NULL DEFAULT NOW(),	-- 게시글 등록 시간
+	updatedate TIMESTAMP NULL DEFAULT now(), -- 게시글 수정 시간
+	viewcnt INT NULL DEFAULT 0,				-- 조회 수
+	showboard VARCHAR(10) NULL DEFAULT 'y', -- 게시글 삭제요청 여부
+	idn INT NOT NULL,						-- 게시글 작성자 회원번호
+	CONSTRAINT fk_idn
+	FOREIGN KEY(IDN) REFERENCES MEMBER(IDN)
+);
+
+SELECT * FROM free_board;
+
+commit;
+
 -- 드랍전용 sql문
 DROP TABLE MEMBER;
 DROP TABLE USER;
@@ -246,6 +284,6 @@ DROP TABLE FreeBoardComments;
 DROP TABLE ImageBoardComments;
 DROP TABLE Bought;
 DROP TABLE Achievements;
-DROP TABLE Message;
+DROP TABLE note;
 
 commit;

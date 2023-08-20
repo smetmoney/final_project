@@ -15,14 +15,20 @@
 	<div id="memberBox">
 	<c:choose>
 	    <c:when test="${not empty sessionScope.userInfo}">
-	       <h1>Hello, ${userInfo.nname}</h1>
+	       <h1>안녕하세요, ${userInfo.nname} 님</h1>
 	       <c:choose>
 	            <c:when test="${userInfo.nname eq 'ADMIN'}">
-	                <a href="<c:url value='/management/management'/>">관리하기</a>
+	                <a href="<c:url value='/management/management'/>">관리하기 | </a>
+	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
+	                				onclick="window.open(this.href, 'popupWindow',
+	                				'width=800,height=600'); return false;">메세지 | </a>
 	                <a href="<c:url value='/login/logout'/>">로그아웃</a>
 	            </c:when>
 	            <c:otherwise>
-	                <a href="<c:url value='/user/user?id=${userInfo.id}'/>">내 정보</a>
+	                <a href="<c:url value='/user/user?id=${userInfo.id}'/>">내 정보 | </a>
+	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
+	                				onclick="window.open(this.href, 'popupWindow',
+	                				'width=800,height=600'); return false;">메세지 | </a>
 	                <a href="<c:url value='/login/logout'/>">로그아웃</a>
 	            </c:otherwise>
 	         </c:choose>

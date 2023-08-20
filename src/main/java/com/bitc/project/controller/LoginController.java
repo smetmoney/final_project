@@ -38,13 +38,13 @@ public class LoginController {
         	session.setAttribute("userInfo", loggedInMember); // 세션에 사용자 정보 저장
             mav.setViewName("redirect:/");
         } 
-        /*
+        
         else {
             // 로그인 실패 처리
             mav.addObject("message", "로그인 실패");
             mav.setViewName("/login/login");
         }
-        */
+        
         
         return mav; 
     }

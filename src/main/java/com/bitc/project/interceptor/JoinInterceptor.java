@@ -34,12 +34,25 @@ public class JoinInterceptor implements HandlerInterceptor{
 		
 		String message = "";
 		
+		System.out.println("upw : " + upw);
+		System.out.println("repw : " + repw);
+		
+		/*
 		if(!upw.equals(repw)) {
 			message = "비밀번호가 일치하지 않습니다.";
 			request.setAttribute("message", message);
 			rd.forward(request, response);
 			return false;
 		}
+		*/
+		
+		if (upw == null || repw == null || !upw.equals(repw)) {
+		    message = "비밀번호가 일치하지 않습니다.";
+		    request.setAttribute("message", message);
+		    rd.forward(request, response);
+		    return false;
+		}
+
 		
 		// 중복 아이디 체크
 		String id = request.getParameter("id");

@@ -43,12 +43,15 @@ public class LoginInterceptor implements HandlerInterceptor{
 				cookie.setMaxAge(60 * 60 * 24 * 15);
 				response.addCookie(cookie);
 			}
-		}else {
+		}
+		/*
+		else {
 			// 로그인 실패
 			String message = "로그인 실패";
 			modelAndView.addObject("message",message);
 			modelAndView.setViewName("/login/login");
 		}
+		*/
 		
 		}
 	}
