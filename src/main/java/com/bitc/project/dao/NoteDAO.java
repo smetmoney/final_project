@@ -37,7 +37,7 @@ public interface NoteDAO {
 
     @Update("DELETE FROM note WHERE nno = #{nno}")
     int delete(int nno);
-
+    
 	int totalCount();
 
 	int searchTitleCount(SearchCriteria cri);

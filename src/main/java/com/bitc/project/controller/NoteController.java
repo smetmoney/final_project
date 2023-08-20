@@ -41,7 +41,7 @@ public class NoteController {
     public String noteDetail(int noteId, Model model) throws Exception {
         NoteVO note = ns.read(noteId);
         model.addAttribute("note", note);
-        return "note/note-detail";
+        return "note/notedetail";
     }
 
 	

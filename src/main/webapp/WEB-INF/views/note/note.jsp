@@ -3,6 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../common/note_header.jsp" />
+<
+<style>
+    .note {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .note h2 {
+        margin: 0;
+    }
+</style>
 
 <div class="mainWrap">
 	
@@ -11,7 +24,8 @@
     <div class="noteList">
         <c:forEach items="${notes}" var="note">
             <div class="note">
-                <a href="note-detail.jsp?noteId=${note.id}">
+            	 <p>${note.nno}</p>
+                <a href="notedetail.jsp?noteId=${note.nno}">
                     <h2>${note.title}</h2>
                     <p>${note.content}</p>
                 </a>
@@ -19,9 +33,10 @@
         </c:forEach>
     </div>
     
-    <a href="notewrite.jsp">
+    <a href="noteWrite.jsp">
     	<button>작성하기</button>
     </a>
-    
 </div>
+</body>
+
 <jsp:include page="../common/footer.jsp" />

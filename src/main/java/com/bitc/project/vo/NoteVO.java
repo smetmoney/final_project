@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class NoteVO {
 	
-	private int id;
-    private int fromId;
-    private int toId;
+	private int nno;
+    private String fromId;
+    private String toId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime readAt;
