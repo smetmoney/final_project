@@ -45,7 +45,7 @@
     <!-- logo image -->
     <div id="logoBox">
 		<a>
-		    <img src="${path}/resources/images/headerIMG/poe_logo6.png" id="logo_image">
+		    <img src="${path}/resources/images/headerIMG/logo2.png" id="logo_image">
 		</a>
 	</div>
 

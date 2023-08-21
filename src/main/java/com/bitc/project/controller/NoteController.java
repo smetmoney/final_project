@@ -27,9 +27,9 @@ public class NoteController {
         return "note/note";
     }
 	
-	@GetMapping("noteWrite")
+	@GetMapping("notewrite")
     public String createNoteForm() {
-        return "note/notewrite";
+        return "note/noteWrite";
     }
 
     @PostMapping("noteWrite")

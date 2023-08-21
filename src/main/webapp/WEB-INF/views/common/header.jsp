@@ -43,7 +43,7 @@
     <!-- logo image -->
     <div id="logoBox">
 		<a href="${path}/">
-		    <img src="${path}/resources/images/headerIMG/poe_logo6.png" id="logo_image">
+		    <img src="${path}/resources/images/headerIMG/logo2.png" id="logo_image">
 		</a>
 	</div>
     <!-- 네비게이션 바 -->

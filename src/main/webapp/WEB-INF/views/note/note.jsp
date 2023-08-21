@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../common/note_header.jsp" />
-<
+
 <style>
     .note {
         border: 1px solid #ccc;
@@ -17,25 +17,38 @@
     }
 </style>
 
+
 <div class="mainWrap">
 	
     <h1>쪽지함</h1>
-    
-    <div class="noteList">
-        <c:forEach items="${notes}" var="note">
+	<c:forEach items="${notes}" var="note">
+    <c:choose>
+        <c:when test="${note.fromId eq id}">
             <div class="note">
-            	 <p>${note.nno}</p>
-                <a href="notedetail.jsp?noteId=${note.nno}">
+                <p>${note.nno}</p>
+                <input type="checkbox" name="noteIds" value="${note.nno}" />
+                <a href="notedetail?noteId=${note.nno}&fromId=${note.fromId}">
                     <h2>${note.title}</h2>
                     <p>${note.content}</p>
                 </a>
             </div>
-        </c:forEach>
-    </div>
+        </c:when>
+      	  <c:otherwise>
+            <!-- 해당 조건에 맞지 않으면 건너뜁니다. -->
+            <h2>hi</h2>
+       	 </c:otherwise>
+    	</c:choose>
+	</c:forEach>
     
-    <a href="noteWrite.jsp">
+    <a href="noteWrite?fromId=${id}">
     	<button>작성하기</button>
     </a>
+    
+    <form action="${pageContext.request.contextPath}/note/deleteNotes" method="post">
+    <button type="submit">선택한 쪽지 삭제</button>
+	</form>
+    
+    
 </div>
 </body>
 
