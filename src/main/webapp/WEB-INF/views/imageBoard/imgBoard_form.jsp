@@ -15,22 +15,24 @@
     margin: 0 auto;
     padding: 20px;
     background-color: #f2f2f2;
-    border-radius: 5px; 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 24px;
     margin-bottom: 20px;
 }
 
-form {
-    display: grid;
-    gap: 10px;
+li{
+	margin:10px;
 }
 
-label {
-    font-weight: bold;
+.ck-editor__editable_inline{
+	height: 500px;
+}
+
+form{
+	width: 65%;
+	margin: 0 auto;
 }
 
 input[type="text"],
@@ -60,27 +62,39 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #2980b9;
 }
+
+#btn{
+	text-align: right;
+}
 </style>
 <div id="mainWrap">
-    <h1>글 작성</h1>
+    <h1>게시글작성</h1>
     <hr/>
     <form action="create" method="post" enctype="multipart/form-data">
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" required><br>
-		<label for="auth">작성자:</label>
-        <input type="text" value='${userInfo.nname}' disabled><br>
-        <input type="hidden" id="auth" name="auth" value='${userInfo.nname}'>
-        <label for="content">내용:</label>
-        <textarea id="editor" name="content"></textarea><br>
-        <label for="imageFile">이미지 첨부:</label>
-        <input type="file" id="imageFile" name="file" accept="image/*" required><br>
-        <input type="submit" value="작성">
+    	<ul>
+	        <li>
+	        	제목:<input type="text" id="title" name="title" required>
+        	</li>
+			<li>
+				작성자:<input type="text" value='${userInfo.nname}' disabled>
+				<input type="hidden" id="auth" name="auth" value='${userInfo.nname}'>
+			</li>
+	        <li id="content">
+	        	내용:<textarea id="editor" name="content"></textarea>
+        	</li>
+        	<li>
+        		이미지 첨부:<input type="file" id="imageFile" name="file" accept="image/*" required>
+        	</li>
+        	<li id="btn">
+	        	<input type="submit" value="작성">
+	        </li>
+        </ul>
     </form>   
 </div>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
   ClassicEditor
-    .create( document.querySelector( '#editor' ) )
+    .create(document.querySelector('#editor'))
     .catch( error => {
       console.error( error );
     } );
