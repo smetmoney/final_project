@@ -54,7 +54,8 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 
 	@Override
 	public ImageBoardVO read(int bno) throws Exception {
-		return dao.read(bno);
+		ImageBoardVO vo = dao.read(bno);
+		return vo;
 	}
 
 	@Override

@@ -93,21 +93,6 @@
 	    border-radius: 5px;
 	    font-size: 14px;
 	}
-	
-	#commentWrite {
-	    background-color: #3498db;
-	    color: white;
-	    border: none;
-	    padding: 10px 15px;
-	    border-radius: 5px;
-	    cursor: pointer;
-	    font-size: 14px;
-	    transition: background-color 0.3s;
-	}
-	
-	#commentWrite:hover {
-	    background-color: #2980b9;
-	}
 </style>
 	<div id="boardWrap">
 		<div id="contentWrap">
@@ -116,7 +101,7 @@
 		    <p><span>작성자 : ${vo.auth}</span></p>
 		    <p><span>작성일 : ${vo.date}</span></p>
 			<img src="${path}${vo.imageURL}"/>
-		    <p>내용 : <br/>${vo.content}</p>
+		    <p>${vo.content}</p>
 		    <div id="viewAndMod">
 		    	<div id="viewWrap">
 				    <span>조회수 : ${vo.vcnt}</span>
@@ -176,21 +161,21 @@
 					<tr>
 						<th colspan="5">
 							<c:if test="${pm.first}">
-								<a href="?page=1">[&laquo;]</a>
+								<a href="?bno=${vo.bno}&page=1">[&laquo;]</a>
 							</c:if>
 							<c:if test="${pm.prev}">
-								<a href="?page=${pm.startPage-1}">[&lt;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.startPage-1}">[&lt;]</a>
 							</c:if>
 							<c:forEach var="i" 
 									   begin="${pm.startPage}" 
 									   end ="${pm.endPage}">
-								<a href="?page=${i}">[${i}]</a>
+								<a href="?bno=${vo.bno}&page=${i}">[${i}]</a>
 							</c:forEach>
 							<c:if test="${pm.next}">
-								<a href="?page=${pm.endPage+1}">[&gt;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.endPage+1}">[&gt;]</a>
 							</c:if>
 							<c:if test="${pm.last}">
-								<a href="?page=${pm.maxPage}">[&raquo;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.maxPage}">[&raquo;]</a>
 							</c:if>
 						</th>
 					</tr>

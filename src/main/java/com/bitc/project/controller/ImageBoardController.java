@@ -105,7 +105,9 @@ public class ImageBoardController {
 	@PostMapping("modify_submit")
 	public String update(ImageBoardVO vo, RedirectAttributes rttr) throws Exception{
 		is.update(vo);
-		rttr.addAttribute("bno","bno");
+		System.out.println(vo);
+		rttr.addFlashAttribute("vo",is.read(vo.getBno()));
+		rttr.addAttribute("bno",vo.getBno());
 		return "redirect:read";
 	}
 	
