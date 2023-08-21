@@ -12,6 +12,8 @@ CREATE TABLE MEMBER (
     POINT INT DEFAULT 0						-- 포인트(구매같은거 할때 쓰는)
 );
 
+show tables;
+
 -- 집에서 사용할 DB
 -- 관리자 계정 만듬
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
