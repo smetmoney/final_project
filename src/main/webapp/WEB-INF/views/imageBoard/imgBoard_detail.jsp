@@ -197,9 +197,15 @@
 	    		</div>
     		</c:if>
     	</div>
+    	<div>
+    		<ul id="test"></ul>
+    	</div>
     </div>
 <jsp:include page="../common/footer.jsp" />
 <script>
+	
+	var bno = ${vo.bno};
+
 	// 게시글 수정 (게시글작성자 == 로그인멤버)
 	$("#modify_btn").on("click",function(e){
 		$("#modifyForm").attr("action","modify");
@@ -238,7 +244,7 @@
 			contentType : "application/json",
 			success : function(data){
 				alert(data);
-				location.reload();
+				getComments();
 			}
 		});
 	});
@@ -253,7 +259,7 @@
 	            contentType : "application/json",
 	            success: function (result) {
 	                alert(result);
-	                location.reload();
+	                getComments();
 	            }
 	        });
 	    }else{
@@ -281,7 +287,7 @@
 			dataType : "text",
 			success : function(result){
 				alert(result);
-				location.reload();
+				getComments();
 			}
 		}); 
 	});
@@ -291,5 +297,33 @@
             e.preventDefault(); 
             $("#commentWrite").click();
         }
+    });
+    
+ 	// AJAX로 댓글 목록 가져오기
+    function getComments() {
+        $.getJSON('getComments?bno='+bno,function(data){
+        	if(data.length === 0){
+        		$('#test').html('<h1>등록된 댓글이 없습니다.</h1>');
+        	}else{
+        		let str = "";
+        		$(data).each(function(){
+        			let id = this.commenterID;
+        			let date = this.commentDate;
+        			let content = this.commentContent;
+        			let num = this.commentNO;
+        			
+        			str += "<li>작성자 : "+id+"<li>";
+        			str += "<li>작성일 : "+date+"</li>";
+        			str += "<li id="+content+num+">";
+        			str += "내 용 : "+content+"</li>"
+        		})
+  				$(".commentBox").append(str);
+        	}
+        })
+    }
+
+    // 페이지 로드 시 댓글 목록을 가져옴
+    $(document).ready(function() {
+        getComments();
     });
 </script>
