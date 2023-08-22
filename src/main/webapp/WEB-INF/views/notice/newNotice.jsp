@@ -30,10 +30,9 @@
 		list-style:none;
 	}
 	
-	/* .tox.tox-tinymce{
-		display:inline-block;
-	} */
-	
+	.tox.tox-tinymce{
+		margin:0 auto;
+	}
 </style>
 <div class="mainWrap">
     <h1>새 공지사항 작성하기</h1>
@@ -41,7 +40,7 @@
         <label for="title">제  목 :</label>
         <input type="text" id="title" name="title"" required><br>
 		<label for="auth">작성자:</label>
-        <input type="text" id="auth" name="auth" value="${vo.id}" required readonly><br>
+        <input type="text" id="auth" name="auth" value="${userInfo.id}" required readonly><br>
         <label for=fixedNotice>공지 상단 고정 :</label>
         <label for="fixedNoticeT"> [ 고정 ]  </label>
         <input type="radio" name="fixedNotice" id ="fixedNoticeT" value="true"/>

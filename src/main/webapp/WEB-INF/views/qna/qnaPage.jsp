@@ -43,7 +43,7 @@
 	</div>
 	<div class="newQna">
 		<c:choose>
-			<c:when test="${userId eq 'admin'}">
+			<c:when test="${userInfo.id eq 'ADMIN'}">
 				<form action="newQna" method="Get" >
 					<input type="submit" value="새로운 QnA 작성하기">
 				</form>
@@ -59,7 +59,7 @@
 			            	<th>
 			            	<div class="editQna">
 								<c:choose>
-									<c:when test="${userId eq 'admin'}">
+									<c:when test="${userInfo.id eq 'ADMIN'}">
 										<form action="editQna" method="GET" >
 										 	<input type="hidden" name="qnaId" value="${con.qnaId}">
 											<input type="submit" value="QnA 수정">

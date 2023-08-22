@@ -26,8 +26,8 @@ public interface NoticeService {
 	void updateVcnt(int bno)  throws Exception;
 	// 좋아요 증가하기
 	String upadateLcnt(int bno) throws Exception;
-	// 상단 고정 여부 수정하기 
-	String fixedNotice(NoticeVO vo, int bno) throws Exception;
 	// 페이징 정보 처리
 	PageMaker getPageMaker(Criteria cri)throws Exception;
+	// 고정 공지 리스트 가져오기
+	List<NoticeVO> fixedNoticeList()throws Exception;
 }

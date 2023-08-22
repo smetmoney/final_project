@@ -7,43 +7,38 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <jsp:include page="../common/header.jsp" />
 <style>
+	h1{padding-top : 25px;}
 	.newNotice{
 		text-align: right;
-  		padding-right:50px;
+  		padding-right:15%;
   		padding-top: 10px;
   		width :100%;
 		height: 50px;
-		background-color:blue;
 	}
-	.noticeList{
-		padding-left:15%;
-		background-color:skyblue;	
-		padding-top:20px;
-	}
-	.noticeList table{width:75%;border-spacing:10px}
+	.noticeList table{width:75%; margin:20px auto;}
+	.noticeList *{padding: 8px 5px;}
 	.noticeList table tr{
 		border-top: 1px solid black;
 		border-bottom: 1px solid black;
-		padding :10px;
 	}
 	.noticeList table th{
 		margin-right:7px;
 		font-size : 18px;
-		/* text-overflow: ellipsis;
-		overflow:hidden;
-		white-space:nowrap; */
+		background-color : rgb(97, 76, 76);;
+		color: white;
+		border-bottom: 3px solid black;
 	}
 	.noticeList table tr td{
 		font-size:16px;
-		/* text-overflow: ellipsis;
-		overflow:hidden;
-		white-space:nowrap; */
 	}
 	.editNotice form{
 		display:inline-block;
 		width:20%;	
 	}
 	.editNotice{display:inline-block;}
+	.fixedContent{
+		background-color: rgba(173, 173, 173, 0.76);
+	}
 	
 </style>
 
@@ -54,7 +49,7 @@
 	</div>
 	<div class="newNotice">
 		<c:choose>
-			<c:when test="${userId eq 'admin'}">
+			<c:when test="${userInfo.id eq 'ADMIN'}">
 				<form action="newNotice" method="Get" >
 					<input type="submit" value="공지사항 작성하기">
 				</form>
@@ -74,14 +69,42 @@
 			        	<tr>
 			            	<th>제목</th>
 			            	<th>작성자</th>
-			            	<th>작성일</th>
+			            	<th>최종수정일</th>
 			            	<th>조회수</th>
 			        	</tr>
+			        <!-- 고정 공지 출력 for문 -->
+			        <c:forEach items="${fixedNoticeList}" var="con">
+			            <tr class="fixedContent">
+			                <td><a href="noticeDetail?bno=${con.bno}">[ 고정 ] ${con.title}</a></td>
+			                <td>
+								<c:choose>
+									<c:when test="${con.auth eq 'ADMIN'}">
+										관리자
+									</c:when>
+									<c:otherwise>
+										${con.auth}
+									</c:otherwise>
+								</c:choose>
+							</td>
+			                <td><fmt:formatDate value="${con.updatedate}" type="date" dateStyle="short"/></td>
+			                <td>${con.vcnt}</td>
+			            </tr>
+			        </c:forEach>
+			        <!-- 공지 전체 출력 for문 -->
 			        <c:forEach items="${noticeList}" var="con">
 			            <tr class="noticeContent">
 			                <td><a href="noticeDetail?bno=${con.bno}">${con.title}</a></td>
-			                <td>${con.auth}</td>
-			                <td><fmt:formatDate value="${con.regdate}" type="date" dateStyle="short"/></td>
+			                <td>
+			               		 <c:choose>
+									<c:when test="${con.auth eq 'ADMIN'}">
+										관리자
+									</c:when>
+									<c:otherwise>
+										${con.auth}
+									</c:otherwise>
+								</c:choose>
+			                </td>
+			                <td><fmt:formatDate value="${con.updatedate}" type="date" dateStyle="short"/></td>
 			                <td>${con.vcnt}</td>
 			            </tr>
 			        </c:forEach>

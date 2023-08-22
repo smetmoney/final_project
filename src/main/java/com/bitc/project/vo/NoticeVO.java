@@ -12,7 +12,7 @@ public class NoticeVO {
 	private String title;
 	private String content;
 	private String auth;
-	private Date regdate;
+	private Date updatedate;
 	private int vcnt;
 	private int likeCount;
 	private boolean fixedNotice;

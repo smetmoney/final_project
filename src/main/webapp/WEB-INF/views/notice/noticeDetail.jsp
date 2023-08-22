@@ -7,7 +7,7 @@
 <style>
 	.newNotice{
 		text-align: right;
-  		padding-right:50px;
+  		padding-right:15%;
   		padding-top: 10px;
   		width :100%;
 		height: 50px;
@@ -24,6 +24,10 @@
 	.mainWrap{
 		text-align:center;
 	}
+	img{
+		max-width:100%;
+		height: auto;
+	}
 </style>
 
 <div class="mainWrap">
@@ -33,7 +37,7 @@
 	</div>
 	<div class="newNotice">
 		<c:choose>
-			<c:when test="${userId eq 'admin'}">
+			<c:when test="${userInfo.id eq 'ADMIN'}">
 				<form action="newNotice" method="Get" >
 					<input type="submit" value="공지사항 작성하기">
 				</form>
@@ -43,13 +47,22 @@
 	<div class="noticeDetail">
 		<a href="${path}/project/notice/noticeList">[목록으로]</a>
 		    <h6>제목 : ${vo.title}</h6>
-		    <p><span>작성자 : ${vo.auth}</span></p>
-		    <p><span>작성일 : <fmt:formatDate value="${vo.regdate}" type="date" dateStyle="full"/></span></p>
+		    <p><span>작성자 : 
+			    <c:choose>
+					<c:when test="${vo.auth eq 'ADMIN'}">
+						관리자
+					</c:when>
+					<c:otherwise>
+						${vo.auth}
+					</c:otherwise>
+				</c:choose>
+		    </span></p>
+		    <p><span>최종수정일 : <fmt:formatDate value="${vo.updatedate}" type="date" dateStyle="full"/></span></p>
 		    <p>내용 : <br/>${vo.content}</p>
 		    <span>조회수 : ${vo.vcnt}</span>
 		   <%--  <span><a href="${path}/project/notice/likeCount?bno=${vo.bno}">[ 좋아요 ]</a>${vo.likeCnt}</span> --%>
 		    <c:choose>
-			<c:when test="${userId eq 'admin'}">
+			<c:when test="${userInfo.id eq 'ADMIN'}">
 				<form action="editNotice" method="Get" >
 					<input type="hidden" name="bno" value="${vo.bno}"/> 
 					<input type="submit" value="[공지사항 편집하기]">

@@ -52,15 +52,15 @@ public class NoticeServiceImpl implements NoticeService {
 	public String upadateLcnt(int bno) throws Exception {
 		return dao.updateLikeCnt(bno) ==1 ? "좋아요를 눌렀습니다. " : "좋아요 누르기 실패" ;
 	}
-
-	@Override
-	public String fixedNotice(NoticeVO vo, int bno) throws Exception {
-		return dao.updateFixedNotice(vo) == 1? "공지사항 고정 여부 수정 완료":"공지사항 고정 여부 수정 실패" ;
-	}
 	
 	@Override
 	public PageMaker getPageMaker(Criteria cri) throws Exception {
 		return new PageMaker(cri,dao.totalCount());
+	}
+
+	@Override
+	public List<NoticeVO> fixedNoticeList() throws Exception {
+		return dao.fixedNoticeList();
 	}
 
 }
