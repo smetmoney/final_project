@@ -15,12 +15,12 @@ import com.bitc.project.vo.FreeBoardVO;
 @Mapper
 public interface FreeBoardDAO {
 
-	@Insert("INSERT INTO FreeBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL})")
-    int createFreeBoard(@Param("board") FreeBoardVO board);
-
+	@Insert("INSERT INTO FreeBoard VALUES(0,#{title},#{content},#{auth},now(),0,0)")
+    int createFreeBoard(FreeBoardVO board);
+	/*
 	@Update("UPDATE FreeBoard SET cnt = vnt + 1 WHERE bno = #{bno}")
     void update(@Param("board") FreeBoardVO board);
-	
+	*/
 	@Delete("DELETE FROM FreeBoard WHERE bno = #{bno}")
     void delete(int bno);
 
@@ -31,12 +31,13 @@ public interface FreeBoardDAO {
     List<FreeBoardVO> listAll(); 
 
     @Select("SELECT * FROM FreeBoard ORDER BY bno DESC limit #{startRow},#{perPageNum}")
-    List<FreeBoardVO> listCriteria(@Param("cri") Criteria cri);
+    List<FreeBoardVO> listCriteria(Criteria cri);
 
     @Select("SELECT count(*) FROM FreeBoard")
     int totalCount();
 
     // 이건 같은거 같은데 쌤거 보고 해서 그런가 더있네 - 2
+    @Update("UPDATE freeBoard SET vnt = vnt + 1 WHERE bno = #{bno}")
     void updateCnt(int bno);
 	
 }

@@ -16,7 +16,7 @@ public class FreeBoardVO {
 	
 	private String content;		// 글내용
 	
-	private String Auth;		// 작성자
+	private String auth;		// 작성자
 	
 	private String date;		// 작성일
 	
@@ -24,9 +24,11 @@ public class FreeBoardVO {
 	
 	private int lcnt;			// 좋아요수
 	
+	/*
 	private String freeBoardURL;	// 이미지 경로
 	
 	private MultipartFile file;
+	*/
 	
 	public void setDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");

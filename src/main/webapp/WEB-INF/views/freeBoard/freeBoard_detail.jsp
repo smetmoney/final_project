@@ -5,8 +5,9 @@
     <title>자유게시판 - 글 상세보기</title>
 </head>
 <body>
-    <h1>${post.title}</h1>
-    <p>${post.content}</p>
-    <img src="/uploads/${post.imageUrl}" alt="이미지">
+    <h1>제목 : ${post.title}</h1>
+    <h4>작성자 : ${post.auth}</h4>
+    <p>내용 : ${post.content}</p>
+    <%-- <img src="/uploads/${post.imageUrl}" alt="이미지"> --%>
 </body>
 </html>
