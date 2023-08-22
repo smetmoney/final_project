@@ -147,9 +147,4 @@ public class ImageBoardController {
 		return ics.modify(vo);
 	}
 	
-	@GetMapping("getComments")
-	@ResponseBody
-	public List<ImageBoardCommentVO> list(@RequestParam int bno) throws Exception{
-		return ics.getCommentList(new Criteria(), bno);
-	}
 }

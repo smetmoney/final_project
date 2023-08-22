@@ -49,17 +49,36 @@
 		    	<table border="1">
 		    		<tr>
 		    			<th>제목</th>
+		    			<th>작성자</th>
 		    			<th>작성일</th>
 		    			<th>조회수</th>
 		    			<th>좋아여</th>
 		    		</tr>
 		    	<c:forEach items="${freeBoardList}" var="freeBoard">
-		    		<tr>
-		    			<td><a href="freeBoard_detail?bno=${freeBoard.bno}">제목 : ${freeBoard.title}</a></td>
-		    			<td>${freeBoard.date}</td>
-		    			<td>${freeBoard.vcnt}</td>
-		    			<td>${freeBoard.lcnt}</td>
-		    		</tr>
+		    		<c:choose>
+		    			<c:when test="${freeBoard.del}">
+		    				<tr>
+		    					<td colspan="5">삭제된 게시글 입니다.<td>
+		    				<tr/>
+		    			</c:when>
+		    			<c:otherwise>
+				    		<tr>
+				    			<td>
+				    				<a href="freeBoard_detail?bno=${freeBoard.bno}">
+				    					제목 : ${freeBoard.title}
+				    					<c:if test="${freeBoard.commentCount > 0}">
+				    						[${freeBoard.commentCount}]
+				    					</c:if>
+				    				</a>
+				    			</td>
+								<td>${freeBoard.auth}</td>
+				    			<td>${freeBoard.date}</td>
+				    			<td>${freeBoard.vcnt}</td>
+				    			<td>${freeBoard.lcnt}</td>
+				    		</tr>
+		    			</c:otherwise>
+		    		</c:choose>
+
 		            <%-- <li id="thumbnailImg" class="freeBoard">
 			            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${free.imageURL}')">
 			            </div>

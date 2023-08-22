@@ -23,10 +23,12 @@ import lombok.RequiredArgsConstructor;
 public class FreeBoardServiceImpl implements FreeBoardService {
 
     private final FreeBoardDAO dao;
+    /*
 	private final String uploadDir;
 	private final ServletContext context;
 	private String realPath;
-
+     */
+    
 	/*
 	@PostConstruct
 	public void initPath() {
@@ -49,7 +51,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
     
 	@Override
 	public String remove(int bno) throws Exception {
-		return /*dao.delete(bno) == 1 ?*/ "SUCCESS" /*: "FAILED"*/;
+		return dao.remove(bno) == 1 ? "게시글 삭제 완료" : "게시글 삭제 실패?";
 	}
 
     @Override
@@ -67,11 +69,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
     @Override
     public FreeBoardVO read(int bno) throws Exception {
         return dao.read(bno);
-    }
-
-    @Override
-    public List<FreeBoardVO> listAll() throws Exception {
-        return dao.listAll();
     }
 
 	/*

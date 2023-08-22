@@ -24,7 +24,7 @@ public interface FreeBoardService {
     FreeBoardVO read(int bno) throws Exception;
     
     // 게시글 목록
-    List<FreeBoardVO> listAll() throws Exception;
+    // List<FreeBoardVO> listAll() throws Exception;
     
     // 게시글 수정
     String modify(FreeBoardVO board) throws Exception;
