@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -69,6 +70,7 @@ public class ImageBoardController {
 	{
 		cri.setPerPageNum(10);
 		model.addAttribute("pm",ics.getPageMaker(cri, bno));
+		// 댓글 리스트
 		model.addAttribute("comments",ics.getCommentList(cri,bno));
 		model.addAttribute("vo",is.read(bno));
 		return "/imageBoard/imgBoard_detail";
@@ -143,5 +145,11 @@ public class ImageBoardController {
 	@ResponseBody
 	public String commentModify(@RequestBody ImageBoardCommentVO vo) throws Exception{
 		return ics.modify(vo);
+	}
+	
+	@GetMapping("getComments")
+	@ResponseBody
+	public List<ImageBoardCommentVO> list(@RequestParam int bno) throws Exception{
+		return ics.getCommentList(new Criteria(), bno);
 	}
 }

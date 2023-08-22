@@ -66,6 +66,22 @@ var resultMessage = "${result}"; // 서버에서 전달된 메시지
 if (resultMessage !== "") {
     alert(resultMessage); // 메시지 팝업 표시
 }
+function adjustMainWrapSize() {
+    // .noticeDetail 요소 가져오기
+    var noticeDetail = document.querySelector('.noticeDetail');
+    
+    // .mainWrap 요소 가져오기
+    var mainWrap = document.querySelector('.mainWrap');
+    
+    // .noticeDetail의 높이 가져오기
+    var noticeDetailHeight = noticeDetail.offsetHeight;
+    
+    // .mainWrap의 높이 설정
+    mainWrap.style.height = (noticeDetailHeight + 150) + 'px';
+}
+
+// 함수 호출
+adjustMainWrapSize();
 
 </script>
 
