@@ -5,6 +5,8 @@ package com.bitc.project.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -19,6 +21,7 @@ public class ChattingHandler extends TextWebSocketHandler {
   
     private List<WebSocketSession> list = new ArrayList<>();
     // https://dev-gorany.tistory.com/3
+    // https://innu3368.tistory.com/214
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
@@ -40,6 +43,10 @@ public class ChattingHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         list.add(session);
         // sessions.add(session);
+        String user = (String) session.getAttributes().get("userInfo");
+        for(WebSocketSession sess: list) {
+            sess.sendMessage(new TextMessage(user+":님이 접속하였습니다!"));
+        }
         log.info(session + " 클라이언트 접속");
     }
 
