@@ -86,7 +86,7 @@
 	    margin-bottom: 10px;
 	}
 	
-	#commentWriteArea {
+	input {
 	    width: 100%;
 	    padding: 10px;
 	    border: 1px solid #ccc;
@@ -121,7 +121,7 @@
 	    <div id="commentWrap">
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
-				<c:forEach var="comment" items="${comments}">
+ 				<c:forEach var="comment" items="${comments}">
 					<div class="commentBox">
 						<div id="show${comment.commentNO}">
 							<ul>
@@ -203,8 +203,6 @@
     </div>
 <jsp:include page="../common/footer.jsp" />
 <script>
-	
-	var bno = ${vo.bno};
 
 	// 게시글 수정 (게시글작성자 == 로그인멤버)
 	$("#modify_btn").on("click",function(e){
@@ -221,6 +219,7 @@
 	})
 	// 댓글 수정(진행중)
 	$(".commentModify").on("click",function(){
+		console.log("클릭!1");
 		let cno = $(this).data('cno');
 		$(this).parent("div").hide();
 		$("#hide"+cno).show();
@@ -244,7 +243,7 @@
 			contentType : "application/json",
 			success : function(data){
 				alert(data);
-				getComments();
+				location.reload();
 			}
 		});
 	});
@@ -259,7 +258,7 @@
 	            contentType : "application/json",
 	            success: function (result) {
 	                alert(result);
-	                getComments();
+	                location.reload();
 	            }
 	        });
 	    }else{
@@ -287,7 +286,7 @@
 			dataType : "text",
 			success : function(result){
 				alert(result);
-				getComments();
+				location.reload();
 			}
 		}); 
 	});
@@ -299,31 +298,4 @@
         }
     });
     
- 	// AJAX로 댓글 목록 가져오기
-    function getComments() {
-        $.getJSON('getComments?bno='+bno,function(data){
-        	if(data.length === 0){
-        		$('#test').html('<h1>등록된 댓글이 없습니다.</h1>');
-        	}else{
-        		let str = "";
-        		$(data).each(function(){
-        			let id = this.commenterID;
-        			let date = this.commentDate;
-        			let content = this.commentContent;
-        			let num = this.commentNO;
-        			
-        			str += "<li>작성자 : "+id+"<li>";
-        			str += "<li>작성일 : "+date+"</li>";
-        			str += "<li id="+content+num+">";
-        			str += "내 용 : "+content+"</li>"
-        		})
-  				$(".commentBox").append(str);
-        	}
-        })
-    }
-
-    // 페이지 로드 시 댓글 목록을 가져옴
-    $(document).ready(function() {
-        getComments();
-    });
 </script>

@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <style>
 	body {
-		background-image: url("./resources/back.png");
+		background-image: url("${path}/resources/back.png");
 	}
 </style>
 <title>Text Game</title>
