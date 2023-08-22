@@ -2,6 +2,8 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import com.bitc.project.util.Criteria;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.FreeBoardCommentVO;
 
 public interface FreeBoardCommentSerivce {
@@ -17,5 +19,7 @@ public interface FreeBoardCommentSerivce {
 	
 	// 댓글 삭제
 	String delete(int cno);
+
+	PageMaker getPageMaker(Criteria cri, int bno) throws Exception;
 
 }

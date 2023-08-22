@@ -22,7 +22,7 @@ public class ImageBoardVO {
 	private int commentCount;
 	
 	public void setDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm");
 		this.date = sdf.format(date);
 	}
 	

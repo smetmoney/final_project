@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class FreeBoardCommentVO {
 	
-	private int commentNO;
+	private int commentID;
 	private int freeBoardBNO;
 	private String commentContent;
 	private String commenterID;

@@ -12,19 +12,21 @@ import com.bitc.project.vo.FreeBoardCommentVO;
 public interface FreeBoardCommentDAO {
 
 	// 전체 댓글목록 가져오기
-	@Select("SELECT * FROM test_Comments WHERE FreeBoardbno = #{freeBoardBNO}")
+	@Select("SELECT * FROM freeBoardComments WHERE FreeBoardbno = #{freeBoardBNO}")
 	List<FreeBoardCommentVO> getCommentList(int bno);
 		
 	// 댓글 작성
-	@Insert("INSERT INTO test_Comments VALUES(0,#{freeBoardBNO},#{commentContent},#{commenterID},now())")
+	@Insert("INSERT INTO freeBoardComments VALUES(0,#{freeBoardBNO},#{commentContent},#{commenterID},now())")
 	int create(FreeBoardCommentVO vo);
 
 	// 댓글 수정
-	@Update("UPDATE Comments SET commentContent = #{commentContent} WHERE commentNO = #{commentNO}")
+	@Update("UPDATE freeBoardComments SET commentContent = #{commentContent} WHERE commentID = #{commentID}")
 	int modify(FreeBoardCommentVO vo);
 	
 	// 댓글 삭제
-	@Delete("DELETE FROM Comments WHERE commentNO = #{cno}")
+	@Delete("DELETE FROM freeBoardComments WHERE commentID = #{cno}")
 	int delete(int cno);
 	
+	@Select("SELECT count(*) FROM freeBoardComments WHERE imageBoardBNO = #{bno}")
+	int totalCount(int bno);
 }

@@ -2,7 +2,7 @@
 CREATE TABLE MEMBER (
     IDN INT AUTO_INCREMENT PRIMARY KEY, 	-- 식별값
     ID VARCHAR(255) NOT NULL UNIQUE, 		-- 로그인용 ID
-    NNAME VARCHAR(255) NOT NULL,			-- 닉네임	
+    NNAME VARCHAR(255) NOT NULL UNIQUE,			-- 닉네임	
     PASS VARCHAR(255) NOT NULL,				-- 비밀번호
     EMAIL VARCHAR(255) NOT NULL,			-- 이메일
     NAME VARCHAR(255),						-- 이름
@@ -11,11 +11,15 @@ CREATE TABLE MEMBER (
     STOPU BOOLEAN DEFAULT FALSE,			-- 정지 유저 구분
     POINT INT DEFAULT 0						-- 포인트(구매같은거 할때 쓰는)
 );
+-- 닉네임 unique로 변경
+-- 회원가입시 중복 확인 처리 필요 (id,nname)
+
+drop table member;
 
 -- 집에서 사용할 DB
 -- 관리자 계정 만듬
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
-VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN','1111-11-11','남성','9999');
+VALUES('admin','admin','admin','EMAIL@EMAIL','admin','1111-11-11','남성','9999');
 
 -- 첫번째 유저
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
@@ -49,12 +53,43 @@ CREATE TABLE FreeBoard (
     Content TEXT,								-- 글 내용
     Auth VARCHAR(255),							-- 작성자
     Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
-    VNT INT DEFAULT 0,							-- 조회수
-    LIKE_COUNT INT DEFAULT 0,					-- 좋아요 수
-   	CONSTRAINT fk_idn FOREIGN KEY (Auth) 
-    REFERENCES MEMBER(ID)
+    VCNT INT DEFAULT 0,							-- 조회수
+    LCNT INT DEFAULT 0,							-- 좋아요 수
+    del boolean default false,					-- 게시글 삭제 여부
+    CommentCount INT DEFAULT 0,					-- 댓글 갯수
+   	CONSTRAINT fk_nname FOREIGN KEY (Auth) 
+    REFERENCES MEMBER(nname)
 --    INDEX(IDN)								-- ID값 불러오기
 );
+-- 외래키 member id -> nname 변경
+
+-- 트리거추가
+-- 댓글 달리면 해당 게시글 댓글 카운트 추가
+delimiter |
+CREATE TRIGGER update_comment_count3
+AFTER INSERT ON freeboardComments
+FOR EACH ROW
+BEGIN
+    UPDATE freeboard
+    SET CommentCount = CommentCount + 1
+    WHERE BNO = NEW.freeboardBNO;
+END;
+| 
+delimiter ;
+
+-- 댓글 삭제되면 해당 게시글 댓글 카운트 감소
+DELIMITER //
+CREATE TRIGGER update_comment_count4
+AFTER DELETE ON freeboardComments
+FOR EACH ROW BEGIN
+    UPDATE freeBoard
+    SET CommentCount = CommentCount - 1
+    WHERE BNO = OLD.freeBoardBNO;
+END;
+//
+DELIMITER ;
+
+
 
 SELECT * FROM FreeBoard;
 
@@ -73,7 +108,7 @@ CREATE TABLE ImageBoard (
     LIKE_COUNT INT DEFAULT 0,					-- 좋아요 수
     ImageURL VARCHAR(255),						-- 들어가는 img url
     ThumbnailURL VARCHAR(255),	 				-- 보여주는 thumbnail url
-    FOREIGN KEY (Auth) REFERENCES MEMBER(ID)	-- ID값 불러오기
+    FOREIGN KEY (Auth) REFERENCES MEMBER(nname)	-- ID값 불러오기
 );
 
 DROP TABLE ImageBoard;
@@ -86,8 +121,9 @@ CREATE TABLE FreeBoardComments (
     CommenterID VARCHAR(255),								-- 자유게시판 댓글 작성자
     CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,			-- 댓글 작성시간
     FOREIGN KEY (FreeBoardBNO) REFERENCES FreeBoard(BNO),	-- 외부 게시판 값 불러오기
-    FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
+    FOREIGN KEY (CommenterID) REFERENCES MEMBER(nname)			-- 외부 ID 값 불러오기
 );
+-- 외래키 member id -> nname 변경
 
 DROP TABLE FreeBoardComments;
 
@@ -101,6 +137,7 @@ CREATE TABLE ImageBoardComments (
     FOREIGN KEY (ImageBoardBNO) REFERENCES ImageBoard(BNO),	-- 외부 게시판 값 불러오기
     FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
 );
+
 DROP TABLE ImageBoardComments;
 
 -- 구매내역 테이블
@@ -147,7 +184,7 @@ CREATE TABLE NOTE (
   FROM_ID VARCHAR(255) NOT NULL,										-- 보낸사람
   TO_ID VARCHAR(255) NOT NULL,											-- 받은사람
   TITLE VARCHAR(255) NOT NULL,											-- 제목
-  CONTENT TEXT NOT NULL,											-- 쪽지내용
+  CONTENT TEXT NOT NULL											-- 쪽지내용
 );
 
 -- 쪽지 넣기
@@ -189,7 +226,6 @@ CREATE TABLE test_Comments (
 
 -- 트리거추가
 -- 댓글 달리면 해당 게시글 댓글 카운트 추가
-
 DELIMITER 
 //
 CREATE TRIGGER update_comment_count

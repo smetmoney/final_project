@@ -24,6 +24,9 @@ public class FreeBoardVO {
 	
 	private int lcnt;			// 좋아요수
 	
+	private boolean del;		// 삭제여부
+	
+	private int commentCount;	// 댓글갯수
 	/*
 	private String freeBoardURL;	// 이미지 경로
 	
@@ -31,7 +34,7 @@ public class FreeBoardVO {
 	*/
 	
 	public void setDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm");
 		this.date = sdf.format(date);
 	}
 	

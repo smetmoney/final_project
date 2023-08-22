@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bitc.project.dao.FreeBoardCommentDAO;
+import com.bitc.project.util.Criteria;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.FreeBoardCommentVO;
 
 import lombok.RequiredArgsConstructor;
@@ -32,7 +34,12 @@ public class FreeBoardCommentServiceImpl implements FreeBoardCommentSerivce {
 
 	@Override
 	public String delete(int cno) {
-		return dao.delete(cno) > 0 ? "success" : "fail";
+		return dao.delete(cno) > 0 ? "댓글 삭제 완료" : "댓글 삭제 실패";
+	}
+	
+	@Override
+	public PageMaker getPageMaker(Criteria cri,int bno) throws Exception {
+		return new PageMaker(cri,dao.totalCount(bno));
 	}
 	
 }
