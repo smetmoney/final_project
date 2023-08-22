@@ -21,9 +21,13 @@ VALUES('ADMIN','ADMIN','ADMIN','EMAIL@EMAIL','ADMIN','1111-11-11','남성','9999
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
 VALUES('USER1','NNAME1','12345','USER1@naver.com','NAME1','1995-07-14','남성', '1000');
 
+INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
+VALUES('USER2','NNAME2','12345','USER2@naver.com','NAME2','1111-11-11','남성', '1000');
+
 DROP TABLE MEMBER;
 
 DESC MEMBER;
+
 SELECT * FROM MEMBER;
 
 -- 유저 정보 테이블 (2023,08,16 수정)
@@ -133,18 +137,29 @@ CREATE TABLE Achievements (
 
 DROP TABLE Achievements;
 
--- 쪽지 테이블 생성
-CREATE TABLE Message (
-    MessageID INT AUTO_INCREMENT PRIMARY KEY,		-- 메세지 식별값
-    SenderID VARCHAR(255), 							-- 보낸 사람의 ID
-    ReceiverID VARCHAR(255),						-- 받는 사람의 ID
-    MessageContent TEXT, 							-- 쪽지 내용
-    SendDate DATETIME DEFAULT CURRENT_TIMESTAMP, 	-- 보낸 시간
-    FOREIGN KEY (SenderID) REFERENCES MEMBER(ID),	-- 보낸 사람 ID 값 불러오기
-    FOREIGN KEY (ReceiverID) REFERENCES MEMBER(ID)	-- 받는 사람 ID 값 불러오기
+-- MEMBER 테이블의 NNAME 컬럼에 인덱스 추가
+ALTER TABLE MEMBER ADD INDEX idx_nname (NNAME);
+
+-- 쪽지 테이블
+
+CREATE TABLE NOTE (
+  NNO INT AUTO_INCREMENT PRIMARY KEY,									-- 쪽지 번호
+  FROM_ID VARCHAR(255) NOT NULL,										-- 보낸사람
+  TO_ID VARCHAR(255) NOT NULL,											-- 받은사람
+  TITLE VARCHAR(255) NOT NULL,											-- 제목
+  CONTENT TEXT NOT NULL,											-- 쪽지내용
 );
 
-DROP TABLE Message;
+-- 쪽지 넣기
+INSERT INTO NOTE (FROM_ID, TO_ID, TITLE ,CONTENT)
+VALUES ('USER1', 'USER2', 'test','test');
+
+INSERT INTO NOTE (FROM_ID, TO_ID, TITLE ,CONTENT)
+VALUES ('USER2', 'USER1', 'test','test');
+
+SELECT * FROM note;
+
+DROP TABLE note;
 
 
 -- 민준 테스트용

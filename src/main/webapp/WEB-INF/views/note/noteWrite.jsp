@@ -9,10 +9,14 @@
     <h1>쪽지 보내기</h1>
     
     <form action="${pageContext.request.contextPath}/note/noteWrite" method="post">
-        <input type="hidden" name="fromId" value="${sessionScope.userInfo.id}" />
-        <input type="text" name="toId" placeholder="받는 사람" />
-        <input type="text" name="title" placeholder="제목" />
-        <input type="text" name="content" placeholder="내용" />
+        <label for="fromId">보내는 회원</label>
+        <input type="text" id="fromId" name="fromId" value="${sessionScope.userInfo.id}" readonly /> <br/>
+        <label for="toId">받는 사람</label>
+        <input type="text" name="toId" placeholder="받는 사람" /> <br/>
+        <label for="title">제목</label>
+        <input type="text" name="title" placeholder="제목" /> <br/>
+        <label for="content">내용</label>
+      	<textarea id="content" name="content" placeholder="내용"></textarea> <br/>
         <input type="submit" value="보내기" />
     </form>
     
