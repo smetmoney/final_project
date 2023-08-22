@@ -27,7 +27,7 @@
             <div class="note">
                 <p>${note.nno}</p>
                 <input type="checkbox" name="noteIds" value="${note.nno}" />
-                <a href="notedetail?noteId=${note.nno}&fromId=${note.fromId}">
+                <a href="noteDetail?nno=${note.nno}">
                     <h2>${note.title}</h2>
                     <p>${note.content}</p>
                 </a>
@@ -40,7 +40,7 @@
     	</c:choose>
 	</c:forEach>
     
-    <a href="noteWrite?fromId=${id}">
+    <a href="<c:url value='/note/notewrite?id=${userInfo.id}'/>">
     	<button>작성하기</button>
     </a>
     
