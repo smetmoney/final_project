@@ -28,39 +28,44 @@
      #createButton{
      	display:inline-block;	
      }
+     
+     table{
+    	border-collapse: separate; 
+    	margin: 0 auto;
+     }
 </style>
 <div class="mainWrap">
     <div id="freeBoardTitle">
         <h1>자유 게시판</h1>
     </div>
     <div>
-    	<a href="freeBoard_form" id="createButton">
+    	<a href="create" id="createButton">
 			<input type="button" value="글작성하기"/>
 	   	</a>
     </div>
     <div id="freeBoardWrap">
 	    <c:choose>
 		    <c:when test="${!empty freeBoardList}">
-		    	<c:forEach items="${freeBoardList}" var="img">
-				    <div class="freeBoardContent">
-				        <ul class="contentList">
-				            <li id="thumbnailImg" class="freeBoard">
-					            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${free.imageURL}')">
-					            </div>
-				            </li>
-				            <li class="freeBoard">
-				            	<a href="read?bno=${freeBoard.bno}">제목 : ${freeBoard.title}</a>
-				            </li>
-				            <li class="freeBoard">
-				            	<span>작성일 : ${freeBoard.date} </span>
-			            	</li>
-			            	<li class="freeBoard">
-					           	<span>조회수 : ${freeBoard.vnt} </span>
-				            	<span>좋아요 : ${freeBoard.lnt}</span>
-			            	</li>
-				        </ul>
-				    </div>
+		    	<table border="1">
+		    		<tr>
+		    			<th>제목</th>
+		    			<th>작성일</th>
+		    			<th>조회수</th>
+		    			<th>좋아여</th>
+		    		</tr>
+		    	<c:forEach items="${freeBoardList}" var="freeBoard">
+		    		<tr>
+		    			<td><a href="freeBoard_detail?bno=${freeBoard.bno}">제목 : ${freeBoard.title}</a></td>
+		    			<td>${freeBoard.date}</td>
+		    			<td>${freeBoard.vcnt}</td>
+		    			<td>${freeBoard.lcnt}</td>
+		    		</tr>
+		            <%-- <li id="thumbnailImg" class="freeBoard">
+			            <div id="imgBox" style="background-image: url('${pageContext.request.contextPath}${free.imageURL}')">
+			            </div>
+		            </li> --%>
 			    </c:forEach>
+			    </table>
 			    <br/>
    	    		<c:if test="${!empty pm and pm.maxPage > 1}">
 					<tr>

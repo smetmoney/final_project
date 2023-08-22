@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.project.service.FreeBoardCommentSerivce;
 import com.bitc.project.service.FreeBoardService;
@@ -24,11 +25,6 @@ public class FreeBoardController {
 	private final FreeBoardService fs;
 	private final FreeBoardCommentSerivce fcs;
 	
-	/*
-	@GetMapping("freeBoard_list")
-	public void freeBoardList() {}
-	*/
-	
 	@GetMapping("freeBoard_list")
 	public void freeBoardList(Criteria cri, Model model) throws Exception {
 		cri.setPerPageNum(10);
@@ -36,6 +32,11 @@ public class FreeBoardController {
 		model.addAttribute("freeBoardList",list);
 		PageMaker pm = fs.getPageMaker(cri);
 		model.addAttribute("pm",pm);
+	}
+	
+	@GetMapping("create")
+	public String create() throws Exception {
+		return "/freeBoard/freeBoard_form";
 	}
 	
 	@PostMapping("create")
@@ -47,11 +48,19 @@ public class FreeBoardController {
 	@GetMapping("read")
 	public String read(int bno,Model model) throws Exception 
 	{
-		fs.updateCnt(bno);
 		FreeBoardVO vo = fs.read(bno);
-		model.addAttribute("comments",fcs.getCommentList(bno));
-		model.addAttribute("vo",vo);
+		// model.addAttribute("comments",fcs.getCommentList(bno));
+		model.addAttribute("post",vo);
 		return "/freeBoard/freeBoard_detail";
+	}
+	
+	// 게시글 상세보기 페이지 이동
+	@GetMapping("freeBoard_detail")
+	public String imgBoard_detail(int bno, RedirectAttributes rttr) throws Exception {
+		// 조회수 증가
+		fs.updateCnt(bno);
+		rttr.addAttribute("bno",bno);
+		return "redirect:read";
 	}
 	
 }

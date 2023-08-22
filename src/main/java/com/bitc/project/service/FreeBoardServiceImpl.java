@@ -1,14 +1,20 @@
 package com.bitc.project.service;
 
+import java.io.File;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitc.project.dao.FreeBoardDAO;
 import com.bitc.project.util.Criteria;
+import com.bitc.project.util.FileUtils;
 import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.FreeBoardVO;
+import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,9 +22,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FreeBoardServiceImpl implements FreeBoardService {
 
-    @Autowired
-    private FreeBoardDAO dao;
+    private final FreeBoardDAO dao;
+	private final String uploadDir;
+	private final ServletContext context;
+	private String realPath;
 
+	/*
+	@PostConstruct
+	public void initPath() {
+		realPath = context.getRealPath(File.separator+uploadDir);
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+	}*/
+	
     @Override
     public void updateCnt(int bno) throws Exception {
         dao.updateCnt(bno);
@@ -71,4 +89,10 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public List<FreeBoardVO> freeBoardList(Criteria cri) throws Exception {
 		return dao.listCriteria(cri);
 	}
+	
+//	public FreeBoardVO saveFile(FreeBoardVO vo) throws Exception {
+//		String imageURL = FileUtils.uploadFile(realPath, vo.getFile());
+//		vo.setFreeBoardURL(uploadDir+imageURL);
+//		return vo;
+//	}
 }
