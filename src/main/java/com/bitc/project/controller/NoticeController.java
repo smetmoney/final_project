@@ -32,10 +32,10 @@ public class NoticeController {
 	public void noticeList(Model model, Criteria cri) throws Exception {
 		cri.setPerPageNum(10);
 		List<NoticeVO> noticeList= ns.readNoticeList(cri);
+		List<NoticeVO> fixedNoticeList = ns.fixedNoticeList(); 
 		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("fixedNoticeList", fixedNoticeList);
 		model.addAttribute("pm",ns.getPageMaker(cri));
-		// 추후 삭제 
-		model.addAttribute("userId", "admin");
 	}
 	
 	@GetMapping("noticeDetail")
@@ -43,8 +43,6 @@ public class NoticeController {
 		ns.updateVcnt(bno);
 		NoticeVO vo = ns.readNotice(bno);
 		model.addAttribute("vo", vo);
-		// 추후 삭제 
-		model.addAttribute("userId", "admin");
 	}
 	/*
 	 * @GetMapping("likeCount") public String likeCount (Model model, int bno,
@@ -54,11 +52,7 @@ public class NoticeController {
 	 * "redirect:noticeDetail?bno="+bno; }
 	 */
 	@GetMapping("newNotice")
-	public void newNotice(MemberVO vo, Model model) {
-		// 추후 삭제
-		vo = new MemberVO();
-		vo.setId("ADMIN");
-		model.addAttribute("vo", vo);
+	public void newNotice() {
 	}
 	
 	@PostMapping("newNotice")
@@ -76,7 +70,6 @@ public class NoticeController {
 	public void editNoitce(int bno, Model model) throws Exception {
 		NoticeVO vo = ns.readNotice(bno);
 		model.addAttribute("vo", vo);
-		
 	}
 	
 	@PostMapping("editNotice")

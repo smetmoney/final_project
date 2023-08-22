@@ -26,8 +26,6 @@ public class QnaController {
 	
 	@GetMapping("qnaPage")
 	public void qna(Model model) throws Exception {
-		// 추후 삭제
-		model.addAttribute("userId", "admin");
 		List<QnaVO> qnaList= qs.qnaList();
 		model.addAttribute("qnaList", qnaList);
 	}
@@ -35,8 +33,6 @@ public class QnaController {
 	
 	@GetMapping("newQna")
 	public void newQna(Model model) throws Exception {	
-		// 추후 삭제 
-		model.addAttribute("userId", "admin");
 	}
 	@PostMapping("newQna")
 	public String makeNewQna(QnaVO vo, RedirectAttributes rttr) throws Exception {

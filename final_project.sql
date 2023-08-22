@@ -225,7 +225,7 @@ CREATE TABLE noticeBoard (
     title VARCHAR(255) NOT NULL,				-- 글 제목
     content MEDIUMTEXT NOT NULL,				-- 글 내용
     auth VARCHAR(255) NOT NULL,					-- 작성자
-    regdate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
+    updatedate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 최종 수정 시간
     vcnt INT DEFAULT 0,							-- 조회수
     likeCnt INT DEFAULT 0,						-- 좋아요 수
     fixedNotice BOOLEAN DEFAULT FALSE,			-- 고정 공지

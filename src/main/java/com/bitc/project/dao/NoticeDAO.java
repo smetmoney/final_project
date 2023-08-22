@@ -22,7 +22,7 @@ public interface NoticeDAO {
 	@Insert("INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES(#{title},#{content},#{auth},#{fixedNotice})")
 	int newNotice(NoticeVO vo);
 	// 게시글 수정하기
-	@Update("UPDATE noticeBoard SET title=#{title}, content=#{content}, fixedNotice=#{fixedNotice} WHERE bno=#{bno}")
+	@Update("UPDATE noticeBoard SET title=#{title}, content=#{content}, fixedNotice=#{fixedNotice}, updatedate=now() WHERE bno=#{bno}")
 	int updateNotice(NoticeVO vo);
 	// 게시글 삭제하기
 	@Delete("DELETE FROM noticeBoard WHERE bno=#{bno}")
@@ -33,12 +33,12 @@ public interface NoticeDAO {
 	// 좋아요 증가하기
 	@Update("UPDATE noticeBoard SET likeCnt = likeCnt + 1 WHERE bno = #{bno}")
 	int updateLikeCnt(int bno);
-	// 상단 고정 여부 수정하기 
-	@Update("UPDATE noticeBoard SET fixedNotice = #{fixedNotice} WHERE bno = #{bno}")
-	int updateFixedNotice(NoticeVO vo);
 	// 전체 게시글 수
 	@Select("SELECT count(*) FROM noticeBoard")
 	int totalCount();
+	// 고정한 공지사항만 들고오기
+	@Select("SELECT * FROM noticeBoard WHERE fixedNotice=true ORDER BY updatedate DESC Limit 0, 5")
+	List<NoticeVO> fixedNoticeList();
 		
 	
 }
