@@ -70,7 +70,7 @@ input[type="submit"]:hover {
 <div id="mainWrap">
     <h1>게시글 수정</h1>
     <hr/>
-    <form action="modify_submit" method="post" enctype="multipart/form-data">
+    <form action="modify_submit" method="post"> <!-- enctype="multipart/form-data" -->
     	<input type="hidden" name="bno" value="${post.bno}"/>
     	<ul>
 	        <li>
