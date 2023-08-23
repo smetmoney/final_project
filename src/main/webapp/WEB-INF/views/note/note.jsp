@@ -21,32 +21,58 @@
 <div class="mainWrap">
 	
     <h1>쪽지함</h1>
-	<c:forEach items="${notes}" var="note">
-    <c:choose>
-        <c:when test="${note.fromId eq id}">
-            <div class="note">
-                <p>${note.nno}</p>
-                <input type="checkbox" name="noteIds" value="${note.nno}" />
-                <a href="noteDetail?nno=${note.nno}">
-                    <h2>${note.title}</h2>
-                    <p>${note.content}</p>
-                </a>
-            </div>
-        </c:when>
-      	  <c:otherwise>
-            <!-- 해당 조건에 맞지 않으면 건너뜁니다. -->
-            <h2>hi</h2>
-       	 </c:otherwise>
-    	</c:choose>
-	</c:forEach>
-    
-    <a href="<c:url value='/note/notewrite?id=${userInfo.id}'/>">
+	
+	   <form action="${pageContext.request.contextPath}/note/delete" method="post">
+	    <c:forEach items="${notes}" var="note">
+	        <c:choose>
+	            <c:when test="${note.to_Id eq sessionScope.userInfo.id}">
+	                <div class="note">
+	                    <p>${note.nno}</p>
+	                    <input type="checkbox" name="nno" value="${note.nno}" />
+	                    <a href="noteDetail?nno=${note.nno}">
+	                        <h2>${note.title}</h2>
+	                        <p>${note.content}</p>
+	                    </a>
+	                </div>
+	            </c:when>
+	        </c:choose>
+	    </c:forEach>
+	    
+	     <c:if test="${!empty pm and pm.maxPage > 1}">
+        <div class="pagination">
+            <table>
+                <tr>
+                    <th colspan="3">
+                        <c:if test="${pm.first}">
+                            <a href="note?page=1">&lt;처음</a>
+                        </c:if>
+                        <c:if test="${pm.prev}">
+                            <a href="note?page=${pm.startPage-1}&id=${userInfo.id}">&lt;이전</a>
+                        </c:if>
+                        <c:forEach var="i" begin="${pm.startPage}" end ="${pm.endPage}">
+                            <a href="note${pm.mkQueryStr(i)}&id=${userInfo.id}">${i}</a>
+                        </c:forEach>
+                        <c:if test="${pm.next}">
+                            <a href="note?page=${pm.endPage+1}&id=${userInfo.id}">다음&gt;</a>
+                        </c:if>
+                        <c:if test="${pm.last}">
+                            <a href="note?page=${pm.maxPage}&id=${userInfo.id}">마지막&gt;</a>
+                        </c:if>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <hr/>
+    </c:if>
+  
+	    
+	    <a href="<c:url value='/note/notewWite?id=${userInfo.id}'/>">
     	<button>작성하기</button>
-    </a>
-    
-    <form action="${pageContext.request.contextPath}/note/deleteNotes" method="post">
-    <button type="submit">선택한 쪽지 삭제</button>
+   		</a>
+	    
+   		<button type="submit">쪽지 삭제</button>
 	</form>
+
     
     
 </div>

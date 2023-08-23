@@ -23,17 +23,6 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<NoteVO> noteVOList(SearchCriteria cri) throws Exception {
-        return nd.noteVOList(cri);
-    }
-
-    @Override
-    public PageMaker getPageMaker(SearchCriteria cri) throws Exception {
-        int totalCount = nd.totalCount(cri);
-        return new PageMaker(cri, totalCount);
-    }
-
-    @Override
     @Transactional
     public void createNote(NoteVO vo) throws Exception {
     	nd.createNote(vo);
@@ -50,8 +39,14 @@ public class NoteServiceImpl implements NoteService {
     }
 
 	@Override
-	public List<NoteVO> noteVOList(Criteria cri) throws Exception {
-		return nd.noteVOList(null);
+	public List<NoteVO> noteVOList(Criteria cri,String id) throws Exception {
+		return nd.noteVOList(cri,id);
 	}
+
+	@Override
+    public PageMaker getPageMaker(Criteria cri,String to_Id) throws Exception {
+		return new PageMaker(cri,nd.totalCount(to_Id));
+    }
+
 
 }

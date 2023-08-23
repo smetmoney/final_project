@@ -2,6 +2,9 @@ package com.bitc.project.controller;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitc.project.service.NoteService;
 import com.bitc.project.util.Criteria;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.NoteVO;
 
 @Controller
@@ -23,10 +27,13 @@ public class NoteController {
 	private NoteService ns;
 
 	@GetMapping("note")
-    public String note(Model model, Criteria cri) throws Exception {
-        List<NoteVO> notes = ns.noteVOList(cri);
+    public void note(Model model, Criteria cri,HttpServletRequest request) throws Exception {
+		String id = request.getParameter("id");
+		cri.setPerPageNum(5);
+        List<NoteVO> notes = ns.noteVOList(cri,id);
         model.addAttribute("notes", notes);
-        return "note/note";
+        PageMaker pm = ns.getPageMaker(cri,id);
+        model.addAttribute("pm",pm);
     }
 	
 	@GetMapping("noteWrite")
@@ -54,6 +61,24 @@ public class NoteController {
         model.addAttribute("note", note);
         return "note/noteDetail";
     }
+    
+    @GetMapping("noteReply")
+    public String noteReply() throws Exception {
+    	
+    	
+		return null;
+    	
+    }
+    
+    @PostMapping("delete")
+    public String delete(int[] nno) throws Exception {
+    	for(int i = 0; i < nno.length; i++) {
+    		ns.delete(nno[i]);
+    	}
+    	
+    	return "redirect:/note/note";
+    	
+    }
+  }
 
 	
-}

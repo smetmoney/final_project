@@ -184,7 +184,9 @@ CREATE TABLE NOTE (
   FROM_ID VARCHAR(255) NOT NULL,										-- 보낸사람
   TO_ID VARCHAR(255) NOT NULL,											-- 받은사람
   TITLE VARCHAR(255) NOT NULL,											-- 제목
-  CONTENT TEXT NOT NULL											-- 쪽지내용
+  CONTENT TEXT NOT NULL,												-- 쪽지내용
+  FOREIGN KEY (FROM_ID) REFERENCES MEMBER(ID),
+  FOREIGN KEY (TO_ID) REFERENCES MEMBER(ID)
 );
 
 -- 쪽지 넣기

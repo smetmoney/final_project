@@ -10,9 +10,9 @@
     
     <form action="${pageContext.request.contextPath}/note/noteWrite" method="post">
         <label for="fromId">보내는 회원</label>
-        <input type="text" id="from_Id" name="from_Id" value="${sessionScope.userInfo.id}" readonly /> <br/>
+        <input type="text" id="from_Id" name="from_Id" value="${sessionScope.userInfo.nname}" readonly /> <br/>
         <label for="toId">받는 사람</label>
-        <input type="text" name="to_Id" placeholder="받는 사람" /> <br/>
+        <input type="text" name="to_Id" name="to_Id" value="${note.to_Id}" readonly/> <br/>
         <label for="title">제목</label>
         <input type="text" name="title" placeholder="제목" /> <br/>
         <label for="content">내용</label>
