@@ -26,7 +26,7 @@
 	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
 	                				onclick="window.open(this.href, 'popupWindow',
 	                				'width=800,height=600'); return false;">메세지 |</a>
-              	     <a href="<c:url value='/note/notewrite?id=${userInfo.id}'/>"
+              	     <a href="<c:url value='/note/noteWrite?id=${userInfo.id}'/>"
 	                				onclick="window.open(this.href, 'popupWindow',
 	                				'width=800,height=600'); return false;">작성하기 </a>
 	            </c:when>
@@ -34,16 +34,12 @@
 	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
 	                				onclick="window.open(this.href, 'popupWindow',
 	                				'width=800,height=600'); return false;">메세지 |</a>
-             		<a href="<c:url value='/note/notewrite?id=${userInfo.id}'/>"
+             		<a href="<c:url value='/note/noteWrite?id=${userInfo.id}'/>"
 	                				onclick="window.open(this.href, 'popupWindow',
 	                				'width=800,height=600'); return false;">작성하기 </a>
 	            </c:otherwise>
 	         </c:choose>
 	    </c:when>
-	    <c:otherwise>
-	        <a id="loginLink" href="<c:url value='/login/login'/>">로그인</a>
-	        <a id="joinLink" href="<c:url value='/join/join'/>">회원가입</a>
-	    </c:otherwise>
 	 </c:choose>
 	</div>
 	
