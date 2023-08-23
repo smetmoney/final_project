@@ -86,6 +86,14 @@ public class FreeBoardController {
 		return "redirect:freeBoard_list";
 	}
 	
+	// 게시글 수정 페이지 이동
+	@PostMapping("modify")
+	public String modify(int bno,Model model) throws Exception
+	{
+		model.addAttribute("post",fs.read(bno));
+		return "/freeBoard/freeBoard_modify";
+	}
+	
 	/**
 	 *  댓글요청 처리 (ajax) 
 	 *  ics가 처리해줌 
