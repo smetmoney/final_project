@@ -60,6 +60,42 @@ function joincheck() {
 			$('input[name="email"]').val(mail);
 			$('form').submit();
 		});
+		
+	   	$("#nname").on('keydown', function(e) {
+	        if (e.keyCode === 13) { // 13 == enter
+	            e.preventDefault(); 
+	            $("#check").click();
+	        }
+	    });
+	   	
+		$("#check").on("click",function(){
+			let nname = $("#nname").val();
+			let check = $("#checkNick");
+			
+			if(nname.trim() === ''){
+				check.text('사용하실 닉네임을 입력해 주세요');
+				check.css('color','red');
+				return;
+			}
+ 			$.ajax({
+				type : "POST",
+				url : "checkNickName",
+				data : {"nname" : nname},
+				dataType : "text",
+				success : function(data){
+					if(data === "OK"){
+						check.text('사용가능한 닉네임 입니다.');
+						check.css('color','blue');
+					}else{
+						check.text('이미 사용중인 닉네임 입니다.');
+						check.css('color','red');	
+					}
+				},
+				error : function(){
+					alert('잘못된 요청입니다!');
+				}
+			})
+		});
 	}
 </script>
     <!-- main -->
@@ -74,11 +110,13 @@ function joincheck() {
                         </span>
                     </div>
                     <br><br>
-                    <strong>닉네임</strong>
-                    <div style="margin-top: 10px;">
+                    <strong>닉네임</strong> 
+                    <div style="margin-top: 10px; text-align:right">
                         <span class="box1">
-                            <input type="text" name="nname" placeholder="아이디" class="int">
+                            <input type="text" name="nname" id="nname" placeholder="닉네임" class="int">
                         </span>
+                        <span id='checkNick'></span>
+                        <input type="button" value="중복확인" id='check'/>
                     </div>
                     <br><br>
                     <strong>비밀번호</strong>

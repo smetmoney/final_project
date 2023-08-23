@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -58,6 +59,9 @@ public interface MemberDAO {
 	  * */
 	@Select("SELECT * FROM member WHERE id = #{id} AND pw = #{pw}")
 	MemberVO login(LoginDTO dto) throws Exception;
+
+	@Select("SELECT nname FROM member WHERE nname = #{nname}")
+	String checkNick(@Param("nname")String nname);
 	
 	
 }

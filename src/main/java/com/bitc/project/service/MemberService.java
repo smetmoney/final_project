@@ -33,4 +33,6 @@ public interface MemberService {
 	// LoginDTO 로그인처리 
 	MemberVO login(LoginDTO dto) throws Exception;
 
+	String checkNick(String nname);
+
 }
