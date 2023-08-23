@@ -1,5 +1,5 @@
 
-const apiKey = "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";
+const apiKey = " ";
 const ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
 function generateText(prompt, temperature, maxTokens) {
