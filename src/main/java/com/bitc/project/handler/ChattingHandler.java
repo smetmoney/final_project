@@ -43,10 +43,10 @@ public class ChattingHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         list.add(session);
         // sessions.add(session);
-        String user = (String) session.getAttributes().get("userInfo");
-        for(WebSocketSession sess: list) {
-            sess.sendMessage(new TextMessage(user+":님이 접속하였습니다!"));
-        }
+        //String user = (String) session.getAttributes().get("user");
+        //for(WebSocketSession sess: list) {
+        //    sess.sendMessage(new TextMessage(user+":님이 접속하였습니다!"));
+        //}
         log.info(session + " 클라이언트 접속");
     }
 

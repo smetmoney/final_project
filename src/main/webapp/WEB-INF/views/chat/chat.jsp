@@ -32,6 +32,7 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 <script type="text/javascript">
+/* @@님이 접속하셨습니다 메세지  */
 
 //전송 버튼 누르는 이벤트
 $("#button-send").on("click", function(e) {
@@ -112,6 +113,9 @@ function onOpen(evt) {
 	console.log(user);
 	var str = user + "님이 입장하셨습니다.";
 	$("#msgArea").append(str);
+	$("#msg").val("님이 입장 하셨습니다.");
+	sendMessage();
+	$("#msg").val("");
 }
 
 </script>

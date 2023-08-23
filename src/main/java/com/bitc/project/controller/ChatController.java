@@ -2,6 +2,8 @@ package com.bitc.project.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.message.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -16,9 +18,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.util.HtmlUtils;
 
 import com.bitc.project.vo.ChatVO;
+import com.bitc.project.vo.MemberVO;
+
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -27,17 +32,23 @@ import lombok.extern.log4j.Log4j;
 public class ChatController {
 
 	@GetMapping("/chat")
-	public void chat(Model model) {
+	public void chat(Model model, HttpSession session) {
 		 
-		ChatVO vo = new ChatVO(1, "admin" ,"admin");
-		//CustomUser user = (CustomUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		 
+		MemberVO vo = (MemberVO)session.getAttribute("userInfo");
+		String userNname = vo.getNname();
 		log.info("==================================");
-		log.info("@ChatController, GET Chat / Username : " + vo.getNname());
-		
-		model.addAttribute("userid", vo.getId());
-		model.addAttribute("username", vo.getNname());		
+		log.info("@ChatController, GET Chat / Username : " + userNname);
 	}
+
+	
+	
+		// 주석 꺼냄
+		/* ChatVO vo = new ChatVO(1, "admin" ,"admin"); */
+		//CustomUser user = (CustomUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		/*
+		 * model.addAttribute("userid", vo.getId()); model.addAttribute("username",
+		 * vo.getNname());
+		 */
 	
 	/*
 	@MessageMapping("chat")
