@@ -56,6 +56,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.login(dto);
 	}
 
+	@Override
+	public String checkNick(String nname) {
+		return memberDAO.checkNick(nname) == null ? "OK" : "X";
+	}
+
 
 
 }

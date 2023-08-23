@@ -62,7 +62,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="${path}/chat/chat">채팅</a>
+              <a class="nav-link" href="${path}/chat/chatRoom">채팅</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="${path}/notice/noticeList">공지사항</a>

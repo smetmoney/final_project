@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
 <body>
 <div class="container">
 	<div class="col-6">
-		<label><b>채팅방</b></label>
+		<label><b>${roomNum}번 채팅방</b></label>
 	</div>
 	<div>
 		<div id="msgArea" class="col">
@@ -59,16 +59,19 @@ if(id == ''){
 	location.href='/project/login/login';
 }
 
+var room = '${roomNum}';
+
 var serverAddress = '/project/chat';
 var sock = new SockJS(serverAddress);
 
-var client = Stomp.over(sock);
+/* var client = Stomp.over(sock); */
+
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 sock.onopen = onOpen;
 
 function sendMessage() {
-	sock.send(id+":"+$("#msg").val());
+	sock.send("ROOM"+room+":"+id+":"+$("#msg").val());
 }
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
@@ -114,8 +117,8 @@ function onOpen(evt) {
 	var str = user + "님이 입장하셨습니다.";
 	$("#msgArea").append(str);
 	$("#msg").val("님이 입장 하셨습니다.");
-	sendMessage();
 	$("#msg").val("");
+	sock.send('ENTER:ROOM'+room+":"+id);
 }
 
 </script>
