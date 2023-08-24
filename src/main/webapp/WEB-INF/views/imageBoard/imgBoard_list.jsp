@@ -88,7 +88,6 @@ freeboard_list.jsp
 	
 	.title {
 	    font-size: 30px;
-	    font-weight: bold;
 	    text-align: left;
 	    color: white;
 	}
@@ -118,8 +117,8 @@ freeboard_list.jsp
         margin: 0 2px;
         border: 1px solid #ccc;
         text-decoration: none;
-        color: #333;
         border-radius: 3px;
+        color: #007bff;
     }
 
     .pagination a:hover {
@@ -274,7 +273,7 @@ freeboard_list.jsp
                 <tr>
                     <th colspan="3">
                         <c:if test="${pm.first}">
-                            <a href="imgBoard_list?page=1">&lt;처음</a>
+                            <a href="imgBoard_list?page=1">&laquo;</a>
                         </c:if>
                         <c:if test="${pm.prev}">
                             <a href="imgBoard_list?page=${pm.startPage-1}">&lt;이전</a>
@@ -286,7 +285,7 @@ freeboard_list.jsp
                             <a href="imgBoard_list?page=${pm.endPage+1}">다음&gt;</a>
                         </c:if>
                         <c:if test="${pm.last}">
-                            <a href="imgBoard_list?page=${pm.maxPage}">마지막&gt;</a>
+                            <a href="imgBoard_list?page=${pm.maxPage}">&raquo;</a>
                         </c:if>
                     </th>
                 </tr>

@@ -25,12 +25,9 @@ public interface ImageBoardDAO {
  
 	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
 	int totalCount();
-
-	@Select("SELECT count(*) FROM test_imageBoard WHERE title LIKE CONCAT('%',#{searchValue},'%') AND del = false")
-	int searchTitleCount(SearchCriteria cri);
 	
-	@Select("SELECT count(*) FROM test_imageBoard WHERE content LIKE CONCAT('%',#{searchValue},'%') AND del = false")
-	int searchContentCount(SearchCriteria cri);
+	@Select("SELECT count(*) FROM test_imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false")
+	int searchCount(SearchCriteria cri);
 	
 	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
@@ -41,11 +38,8 @@ public interface ImageBoardDAO {
 	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
 	
-	@Select("SELECT * FROM test_imageBoard WHERE title LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
-	List<ImageBoardVO> searchTitleList(SearchCriteria cri);
-	
-	@Select("SELECT * FROM test_imageBoard WHERE content LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
-	List<ImageBoardVO> searchContentList(SearchCriteria cri);
+	@Select("SELECT * FROM test_imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
+	List<ImageBoardVO> searchList(SearchCriteria cri);
 }
 
 
