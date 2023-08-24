@@ -22,5 +22,7 @@ public interface NoteService {
 	
 	// PM > pagemaker
     PageMaker getPageMaker(Criteria cri,String to_Id) throws Exception;
+    
+    void replyNote(NoteVO vo) throws Exception;
 
 }

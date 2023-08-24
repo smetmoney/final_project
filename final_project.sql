@@ -294,7 +294,7 @@ INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용
 -- 드랍전용 sql문
 DROP TABLE MEMBER;
 DROP TABLE USER;
-DROP TABLE FreeBoard;
+DROP TABLE Free_Board;
 DROP TABLE ImageBoard;
 DROP TABLE FreeBoardComments;
 DROP TABLE ImageBoardComments;

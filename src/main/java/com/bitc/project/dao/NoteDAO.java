@@ -26,6 +26,11 @@ public interface NoteDAO {
 
     @Select("SELECT count(*) FROM note WHERE to_id = #{id}")
 	int totalCount(String id);
+    
+    @Insert("INSERT INTO note (from_id, to_id, content, title) VALUES (#{from_Id}, #{to_Id}, #{content}, #{title})")
+    void replyNote(NoteVO noteVO);
+    
+    
 
 	
 }

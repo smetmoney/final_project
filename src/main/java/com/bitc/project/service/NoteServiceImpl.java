@@ -48,5 +48,10 @@ public class NoteServiceImpl implements NoteService {
 		return new PageMaker(cri,nd.totalCount(to_Id));
     }
 
+	@Override
+	public void replyNote(NoteVO vo) throws Exception {
+		nd.replyNote(vo);
+	}
+
 
 }

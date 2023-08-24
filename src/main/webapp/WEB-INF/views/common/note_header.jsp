@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <style>
 	body {
-		background-image: url("../resources/back.png");
+		background-image: url("${path}/resources/back.png");
 	}
 </style>
 <title>note header</title>
@@ -46,7 +46,7 @@
     <!-- logo image -->
     <div id="logoBox">
 		<a>
-		    <img src="${path}/resources/images/headerIMG/logo2.png" id="logo_image">
+		    <img src="${path}/resources/images/headerIMG/logo_black.png" id="logo_image">
 		</a>
 	</div>
 
