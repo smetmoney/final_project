@@ -4,8 +4,8 @@
 <script>
 	let check = '${userInfo.nname}' == '';
 	if(check){
-		alert('잘못된 접근입니다.');
-		location.href = "/project";
+		alert('로그인 후 이용해주세요!.');
+		location.href = "/project/login/login";
 	}
 </script>
 <style>

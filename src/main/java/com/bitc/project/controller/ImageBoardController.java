@@ -25,6 +25,7 @@ import com.bitc.project.service.ImageBoardCommentService;
 import com.bitc.project.service.ImageBoardService;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.SearchCriteria;
+import com.bitc.project.util.SearchPageMaker;
 import com.bitc.project.vo.ImageBoardCommentVO;
 import com.bitc.project.vo.ImageBoardVO;
 
@@ -42,12 +43,22 @@ public class ImageBoardController {
 	// 페이징 처리된 게시글 리스트 목록 가져오기
 	@GetMapping("imgBoard_list")
 	public void imgBoardList(SearchCriteria cri, Model model) throws Exception {
+		
 		cri.setPerPageNum(6);
+		
 		List<ImageBoardVO> list = null;
+		
+		String searchType = cri.getSearchType();
+		
 		if(cri.getSearchValue() == null) {
 			list = is.imageBoardList(cri);
 		}else {
-			list = is.searchList(cri);
+			if(searchType.equals("title") || searchType.equals("content")) {
+				list = is.searchList(cri);
+			}else {
+				model.addAttribute("msg","잘못된 접근 방식입니다.");
+				return;
+			}
 		}
 		model.addAttribute("imgBoardList",list);
 		model.addAttribute("pm",is.getSearchPM(cri));
