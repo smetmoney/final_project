@@ -5,6 +5,16 @@
   padding: 0;
 }
 
+/* 전체화면에 백그라운드 잡음 */
+html {
+	background-image: url(../images/test/back.png);
+}
+
+/* form-logo */
+.form_logo{
+	margin : 55px;
+}
+
 body {
   font-family: 'Noto Sans KR', sans-serif;
   display: flex;
@@ -15,18 +25,20 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 6%;
-  margin-left: 35%;
+  margin-left: 12%;
   padding-right: 50px;
-  background-image: url(../images/test/back.png);
 }
 
 #logo {width:100px; position: absolute;
 margin-left:40px;
 }
+
+/* 임시로 사이드 로고이미지 원래 사이즈는 width:400px height:650px */
+
 #side_logo{ border:solid 2px black;
   display:block;
-width:400px; height: 460px;
-background-image: url(./imamges/back.jpg);
+width:488px; height: 650px;
+background-image: url(../images/loginIMG/side_logo.jpg);
 background-size: cover;}
 
 .login-form h1 {
@@ -96,18 +108,19 @@ background-size: cover;}
 
 .login_btn {
   margin-top: 30px;
+  text-align: center;
 }
 
 .login_btn button {
   width: 80%;
   height: 50px;
-  margin-left: 15%;
   color: #fff;
   background-color: #000000;
   border: none;
   border-radius: 20px;
   font-size: 20px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .caption {

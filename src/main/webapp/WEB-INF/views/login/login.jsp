@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <link rel="stylesheet" href="../resources/css/login.css">
-<style>
-	body{
-		display: inline-block;
-	}
-</style>
-
 <%
 String message = (String) request.getAttribute("message");
 if (message != null) {
@@ -14,14 +8,13 @@ if (message != null) {
   out.println("</script>");
 }
 %>
-
   <section id="side_logo">
     
   </section>
   
     <section class="login-form">
       <br><br><br>
-        <h1>환영합니다</h1>
+        <img alt="form_logo" src="../resources/images/headerIMG/logo_black.png" class="form_logo">
         <form action="login" id="login" method="post">
             <div class="int-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
