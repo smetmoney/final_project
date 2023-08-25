@@ -280,13 +280,26 @@ CREATE TABLE noticeBoard (
     auth VARCHAR(255) NOT NULL,					-- 작성자
     updatedate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 최종 수정 시간
     vcnt INT DEFAULT 0,							-- 조회수
-    likeCnt INT DEFAULT 0,						-- 좋아요 수
     fixedNotice BOOLEAN DEFAULT FALSE,			-- 고정 공지
    	FOREIGN KEY (auth) REFERENCES MEMBER(ID)
 --    INDEX(IDN)								-- ID값 불러오기
 );
+    --likeCnt INT DEFAULT 0,						-- 좋아요 수
+CREATE TABLE IF NOT EXISTS notice_comment(
+	cno INT PRIMARY KEY AUTO_INCREMENT,		-- 댓글 번호
+	bno INT NOT NULL,					 	-- 댓글 작성 게시글 번호	
+	commentText TEXT NOT NULL,				-- 댓글 내용
+	commentAuth VARCHAR(50) NOT NULL,		-- 작성자
+	regdate TIMESTAMP NOT NULL DEFAULT now(),	-- 작성시간
+	updatedate TIMESTAMP NOT NULL DEFAULT now(),	-- 수정시간
+	CONSTRAINT fk_nb_bno FOREIGN KEY(bno) 
+	REFERENCES noticeBoard(bno) ON DELETE CASCADE,
+	INDEX(bno)
+);
 
-desc noticeBoard;
+
+DESC noticeBoard;
+DESC notice_comment;
 SELECT * FROM noticeBoard;
 drop table noticeBoard;
 INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용3','ADMIN',false);

@@ -4,6 +4,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
 <style>
+	h1{padding-top:25px}
+	form{
+		width : 75%;
+		text-align:left;
+		margin: 0 auto;
+	}
+	input[type="text"],
+	textarea{
+	    width: 100%;
+	    padding: 10px;
+	    border: 1px solid #ccc;
+	    border-radius: 5px;
+	}
+	textarea{height:45%;}
+	label{
+		margin: 17px 0 7px 0;
+	}
+	
 </style>
 
 <div class="mainWrap">
@@ -17,7 +35,7 @@
 	        <input type="text" id="title" name="questionTitle" value="${QnaVO.questionTitle}" required><br>
 	        <label for="content">내용:</label>
 	        <textarea id="content" name="questionContent" required>${QnaVO.questionContent}</textarea><br>
-	        <input type="submit" id="addBtn" value="등록">
+	        <input type="submit" id="addBtn" value="등록하기">
 	        <a href="delete?qnaId=${QnaVO.qnaId}">삭제하기</a>
 		</form>
 		

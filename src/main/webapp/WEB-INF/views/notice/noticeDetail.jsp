@@ -7,13 +7,13 @@
 <style>
 	.newNotice{
 		text-align: right;
-  		padding-right:15%;
+  		padding-right:10%;
   		padding-top: 10px;
   		width :100%;
 		height: 50px;
-		background-color:blue;
 	}
 	.noticeDetail{
+		margin-top:20px;
 		border: 1px solid black;
 		width:80%;
 		padding:20px;
@@ -24,9 +24,26 @@
 	.mainWrap{
 		text-align:center;
 	}
+	
+	/* 이미지 최대 크기 제한 */
 	img{
 		max-width:100%;
 		height: auto;
+	}
+	
+	/* 버튼 */
+	.newBtn{
+		margin-top: 10px;
+		padding: 10px 10px;
+        border: none;
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+	}
+	
+	.newBtn:hover {
+	    background-color: #868e96;
 	}
 </style>
 
@@ -37,9 +54,9 @@
 	</div>
 	<div class="newNotice">
 		<c:choose>
-			<c:when test="${userInfo.id eq 'ADMIN'}">
+			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="newNotice" method="Get" >
-					<input type="submit" value="공지사항 작성하기">
+					<input type="submit" value="공지사항 작성하기" class="newBtn">
 				</form>
 			</c:when>
 		</c:choose>
@@ -49,7 +66,7 @@
 		    <h6>제목 : ${vo.title}</h6>
 		    <p><span>작성자 : 
 			    <c:choose>
-					<c:when test="${vo.auth eq 'ADMIN'}">
+					<c:when test="${vo.auth eq 'admin'}">
 						관리자
 					</c:when>
 					<c:otherwise>
@@ -62,7 +79,7 @@
 		    <span>조회수 : ${vo.vcnt}</span>
 		   <%--  <span><a href="${path}/project/notice/likeCount?bno=${vo.bno}">[ 좋아요 ]</a>${vo.likeCnt}</span> --%>
 		    <c:choose>
-			<c:when test="${userInfo.id eq 'ADMIN'}">
+			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="editNotice" method="Get" >
 					<input type="hidden" name="bno" value="${vo.bno}"/> 
 					<input type="submit" value="[공지사항 편집하기]">
