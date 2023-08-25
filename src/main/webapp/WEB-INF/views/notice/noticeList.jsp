@@ -3,17 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <jsp:include page="../common/header.jsp" />
 <style>
 	h1{padding-top : 25px;}
 	.newNotice{
 		text-align: right;
-  		padding-right:15%;
+  		padding-right:12.5%;
   		padding-top: 10px;
   		width :100%;
 		height: 50px;
+		display:block;
 	}
 	.noticeList table{width:75%; margin:20px auto;}
 	.noticeList *{padding: 8px 5px;}
@@ -40,6 +39,21 @@
 		background-color: rgba(173, 173, 173, 0.76);
 	}
 	
+	/* 버튼 */
+	.newBtn{
+		margin-top: 10px;
+		padding: 10px 10px;
+        border: none;
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+	}
+	
+	.newBtn:hover {
+	    background-color: #868e96;
+	}
+	
 </style>
 
 <div class="mainWrap">
@@ -49,9 +63,9 @@
 	</div>
 	<div class="newNotice">
 		<c:choose>
-			<c:when test="${userInfo.id eq 'ADMIN'}">
+			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="newNotice" method="Get" >
-					<input type="submit" value="공지사항 작성하기">
+					<input type="submit" value="공지사항 작성하기" class="newBtn">
 				</form>
 			</c:when>
 		</c:choose>
@@ -78,7 +92,7 @@
 			                <td><a href="noticeDetail?bno=${con.bno}">[ 고정 ] ${con.title}</a></td>
 			                <td>
 								<c:choose>
-									<c:when test="${con.auth eq 'ADMIN'}">
+									<c:when test="${con.auth eq 'admin'}">
 										관리자
 									</c:when>
 									<c:otherwise>
@@ -96,7 +110,7 @@
 			                <td><a href="noticeDetail?bno=${con.bno}">${con.title}</a></td>
 			                <td>
 			               		 <c:choose>
-									<c:when test="${con.auth eq 'ADMIN'}">
+									<c:when test="${con.auth eq 'admin'}">
 										관리자
 									</c:when>
 									<c:otherwise>
