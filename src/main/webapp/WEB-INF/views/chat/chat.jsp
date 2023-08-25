@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- SockJS -->
+<jsp:include page="../common/header.jsp" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-</head>
-<body>
 <div class="container">
 	<div class="col-6">
 		<label><b>${roomNum}번 채팅방</b></label>
@@ -32,7 +26,6 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 <script type="text/javascript">
-/* @@님이 접속하셨습니다 메세지  */
 
 //전송 버튼 누르는 이벤트
 $("#button-send").on("click", function(e) {
@@ -122,6 +115,4 @@ function onOpen(evt) {
 }
 
 </script>
-</body>
-
-</html>
+<jsp:include page="../common/footer.jsp" />
