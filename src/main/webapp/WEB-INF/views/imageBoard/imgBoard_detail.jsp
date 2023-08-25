@@ -3,97 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../common/header.jsp" />
-<!-- http://sample.paged.kr/purewhite/bbs/board.php?bo_table=gallery_box&wr_id=9 -->
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    #boardWrap {
-        margin: 0px auto;
-        text-align: center;
-        background: #f9f9f9;
-        padding: 20px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    #modifyWrap {
-    	display: inline;
-    	margin: 0;
-    }
-
-	button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        border: none;
-        background: #3498db;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-	}
-	
-	button:hover {
-	    background-color: #2980b9;
-	}
-	
-    #contentWrap {
-        border: 1px solid #ddd;
-        padding: 20px;
-        text-align: left;
-    }
-    #contentWrap a {
-        float: right;
-        color: #3498db;
-        text-decoration: none;
-    }
-    #contentWrap a:hover{
-    	color: #3498db94;
-    }
-    #commentWrap {
-        margin-top: 20px;
-        border: 1px solid #ddd;
-        padding: 20px;
-        text-align: left;
-    }
-    .commentBox {
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 5px;
-        background: #f9f9f9;
-    }
-    .commentBox ul {
-        list-style: none;
-        padding: 0;
-    }
-    .commentBox li {
-        margin-bottom: 5px;
-    }
-    #commentWriteBox {
-	    background-color: #f2f2f2;
-	    padding: 10px;
-	    border-radius: 5px;
-	}
-
-	#commentWriteBox ul {
-	    list-style: none;
-	    padding: 0;
-	    margin: 0;
-	}
-	
-	#commentWriteBox ul li {
-	    margin-bottom: 10px;
-	}
-	
-	input {
-	    width: 100%;
-	    padding: 10px;
-	    border: 1px solid #ccc;
-	    border-radius: 5px;
-	    font-size: 14px;
-	}
-</style>
+<link rel="stylesheet" href="../resources/css/board.css">
 	<div id="boardWrap">
 		<div id="contentWrap">
 			<a href="${path}/imageBoard/imgBoard_list">뒤로가기</a>
@@ -118,6 +28,21 @@
 				</c:if>
 			</div>
 		</div>	
+		<c:if test="${!empty userInfo}">
+    		<div id="commentWriteBox">
+    			<ul>
+    				<li>${userInfo.nname}</li>
+    				<li>
+    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
+						<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
+						<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
+   					</li>
+    				<li>
+    					<button id="commentWrite">등록</button>
+    				</li>
+    			</ul>
+    		</div>
+   		</c:if>
 	    <div id="commentWrap">
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
@@ -158,44 +83,31 @@
 					</div>
 				</c:forEach>
 	   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
+	   	    		<div class="pagination">
 					<tr>
 						<th colspan="5">
 							<c:if test="${pm.first}">
-								<a href="?bno=${vo.bno}&page=1">[&laquo;]</a>
+								<a href="?bno=${vo.bno}&page=1">&laquo;</a>
 							</c:if>
 							<c:if test="${pm.prev}">
-								<a href="?bno=${vo.bno}&page=${pm.startPage-1}">[&lt;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.startPage-1}">&lt;</a>
 							</c:if>
 							<c:forEach var="i" 
 									   begin="${pm.startPage}" 
 									   end ="${pm.endPage}">
-								<a href="?bno=${vo.bno}&page=${i}">[${i}]</a>
+								<a href="?bno=${vo.bno}&page=${i}">${i}</a>
 							</c:forEach>
 							<c:if test="${pm.next}">
-								<a href="?bno=${vo.bno}&page=${pm.endPage+1}">[&gt;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.endPage+1}">&gt;</a>
 							</c:if>
 							<c:if test="${pm.last}">
-								<a href="?bno=${vo.bno}&page=${pm.maxPage}">[&raquo;]</a>
+								<a href="?bno=${vo.bno}&page=${pm.maxPage}">&raquo;</a>
 							</c:if>
 						</th>
 					</tr>
-				</c:if>
+				</div>
 			</c:if>
-			<c:if test="${!empty userInfo}">
-	    		<div id="commentWriteBox">
-	    			<ul>
-	    				<li>${userInfo.nname}</li>
-	    				<li>
-	    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
-							<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
-							<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
-	   					</li>
-	    				<li>
-	    					<button id="commentWrite">등록</button>
-	    				</li>
-	    			</ul>
-	    		</div>
-    		</c:if>
+			</c:if>
     	</div>
     	<div>
     		<ul id="test"></ul>
@@ -297,5 +209,4 @@
             $("#commentWrite").click();
         }
     });
-    
 </script>

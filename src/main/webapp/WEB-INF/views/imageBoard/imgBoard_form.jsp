@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../common/header.jsp" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>\
-<!-- 할일... 이미지 업로드 방식 수정 -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="../resources/css/board.css">
 <script>
 	let check = '${userInfo.nname}' == '';
 	if(check){
@@ -9,89 +9,12 @@
 		location.href = "/project";
 	}
 </script>
-<style>
-	.fileDrop{
-		width:100%;
-		height:150px;
-		border:1px solid gray;
-		background-color:lightgray;
-		margin:auto;
-	}
-	
-	.uploadList{
-		width:100%;
-	}
-	
-	.uploadList li{
-		float:left;
-		padding:20px;
-		list-style:none;
-	}
-	
-</style>
-<style>
-#mainWrap {
-    width:100%;
-    height:1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-li{
-	margin:10px;
-}
-
-.ck-editor__editable_inline{
-	height: 500px;
-}
-
-form{
-	width: 65%;
-	margin: 0 auto;
-}
-
-input[type="text"],
-textarea,
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input[type="file"] {
-    padding: 5px;
-}
-
-input[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-
-input[type="submit"]:hover {
-    background-color: #2980b9;
-}
-
-#btn{
-	text-align: right;
-}
-</style>
 <div id="mainWrap">
-    <h1>게시글작성</h1>
-    <hr/>
-    <form action="create" method="post" enctype="multipart/form-data">
+	<div id="titleBox">
+    	<h1>게시글작성</h1>
+		<hr/>
+	</div>
+    <form id="createForm" action="create" method="post" enctype="multipart/form-data">
     	<ul>
 	        <li>
 	        	제목:<input type="text" id="title" name="title" required>
