@@ -15,8 +15,9 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 6%;
-  margin-left: 12%;
+  margin-left: 35%;
   padding-right: 50px;
+  background-image: url(../images/test/back.png);
 }
 
 #logo {width:100px; position: absolute;
@@ -24,8 +25,8 @@ margin-left:40px;
 }
 #side_logo{ border:solid 2px black;
   display:block;
-width:400px; height: 500px;
-background-image: url(./img/side_logo.jpg);
+width:400px; height: 460px;
+background-image: url(./imamges/back.jpg);
 background-size: cover;}
 
 .login-form h1 {

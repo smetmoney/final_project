@@ -29,7 +29,7 @@
 	    <label for="fromId">보내는 회원</label>
 	    <input type="text" id="from_Id" name="from_Id" value="${sessionScope.userInfo.nname}" readonly /> <br/>
 	    <label for="toId">받는 사람</label>
-	    <input type="text" name="to_Id" name="to_Id" value="${note.from_Id}" readonly/> <br/>
+	    <input type="text" name="to_Id" name="to_Id" value="${note.from_Id}" /> <br/>
 	    <label for="title">제목</label>
 	    <input type="text" name="title" placeholder="제목" /> <br/>
 	    <label for="content">내용</label>

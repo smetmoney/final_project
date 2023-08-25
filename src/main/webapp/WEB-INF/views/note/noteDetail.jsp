@@ -7,6 +7,8 @@
 <h1>쪽지 상세 보기</h1>
 
 <div class="noteDetail">
+
+	<form action="noteDetail">
     <h2>${note.title}</h2> <br/>
     
     <p>보낸 사람: ${note.from_Id}</p> <br/>
@@ -14,10 +16,11 @@
     <p>${note.content}</p> <br/>
     
     <p>받은 사람: ${note.to_Id}</p>
+    </form>
 </div>
 
 
-<a href="note" class="button">메세지함으로 돌아가기</a> <br/>
+<a href="<c:url value='/note/note?id=${userInfo.id}'/>">메세지함으로 돌아가기</a> <br/>
 <a href="<c:url value='/note/noteReply?id=${userInfo.id}'/>">답장하기</a>
 
 
