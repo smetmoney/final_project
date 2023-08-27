@@ -35,7 +35,7 @@ public interface ImageBoardDAO {
 	@Update("Update test_imageBoard SET del = true WHERE bno = #{bno}")
 	int delete(int bno);
 	
-	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content}, imageURL = #{imageURL} WHERE bno = #{bno}")
+	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
 	
 	@Select("SELECT * FROM test_imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")

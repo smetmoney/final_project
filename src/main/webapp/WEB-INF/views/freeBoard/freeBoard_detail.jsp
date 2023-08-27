@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../common/header.jsp" />
 <link rel="stylesheet" href="../resources/css/board.css">
+<script>
+	let msg = '${msg}';
+	if(msg !== ''){
+		alert(msg);
+	}
+</script>
 	<div id="boardWrap">
 		<div id="contentWrap">
 			<a href="${path}/freeBoard/freeBoard_list">뒤로가기</a>
 		    <h1>제목 : ${post.title}</h1>
 		    <p><span>작성자 : ${post.auth}</span></p>
-		    <p><span>작성일 : ${post.date}</span></p>
+		    <p><span>작성일 : <fmt:formatDate value="${post.date}" pattern="yyyy-MM-dd HH:mm" /></span></p>
 		    <p>${post.content}</p>
 		    <div id="viewAndMod">
 		    	<div id="viewWrap">
 				    <span>조회수 : ${post.vcnt}</span>
-				    <span>좋아용 : ${post.lcnt}</span>
 			    </div>
 	   		    <c:if test="${post.auth == userInfo.nname}">
 				<div id="modifyWrap">
@@ -50,7 +56,7 @@
 						<div id="show${comment.commentID}">
 							<ul>
 								<li>작성자 : ${comment.commenterID}</li>
-								<li>작성일 : ${comment.commentDate}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
 						        <li id="commentContent${comment.commentID}">
 						            내 용 : ${comment.commentContent}
 						        </li>
@@ -67,7 +73,7 @@
 						<div id="hide${comment.commentID}" style="display: none">
 							<ul>
 								<li>작성자 : ${comment.commenterID}</li>
-								<li>작성일 : ${comment.commentDate}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
 						        <li>
 						            내 용 : <input type="text" id="modText${comment.commentID}" value="${comment.commentContent}">
 						        </li>
@@ -82,31 +88,33 @@
 					</div>
 				</c:forEach>
 	   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
-					<tr>
-						<th colspan="5">
-							<c:if test="${pm.first}">
-								<a href="?bno=${post.bno}&page=1">[&laquo;]</a>
-							</c:if>
-							<c:if test="${pm.prev}">
-								<a href="?bno=${post.bno}&page=${pm.startPage-1}">[&lt;]</a>
-							</c:if>
-							<c:forEach var="i" 
-									   begin="${pm.startPage}" 
-									   end ="${pm.endPage}">
-								<a href="?bno=${post.bno}&page=${i}">[${i}]</a>
-							</c:forEach>
-							<c:if test="${pm.next}">
-								<a href="?bno=${post.bno}&page=${pm.endPage+1}">[&gt;]</a>
-							</c:if>
-							<c:if test="${pm.last}">
-								<a href="?bno=${post.bno}&page=${pm.maxPage}">[&raquo;]</a>
-							</c:if>
-						</th>
-					</tr>
+		   	    		<div class="pagination">
+							<tr>
+								<th colspan="5">
+									<c:if test="${pm.first}">
+										<a href="?bno=${post.bno}&page=1">&laquo;</a>
+									</c:if>
+									<c:if test="${pm.prev}">
+										<a href="?bno=${post.bno}&page=${pm.startPage-1}">&lt;이전</a>
+									</c:if>
+									<c:forEach var="i" 
+											   begin="${pm.startPage}" 
+											   end ="${pm.endPage}">
+										<a href="?bno=${post.bno}&page=${i}">${i}</a>
+									</c:forEach>
+									<c:if test="${pm.next}">
+										<a href="?bno=${post.bno}&page=${pm.endPage+1}">다음&gt;</a>
+									</c:if>
+									<c:if test="${pm.last}">
+										<a href="?bno=${post.bno}&page=${pm.maxPage}">&raquo;</a>
+									</c:if>
+								</th>
+							</tr>
+						</div>
+					</c:if>
 				</c:if>
-			</c:if>
+    		</div>
     	</div>
-    </div>
 <jsp:include page="../common/footer.jsp" />
 <script>
 
@@ -120,7 +128,6 @@
 		if(confirm('정말로 삭제?')){
 			$("#modifyForm").attr("action","remove");
 			$("#modifyForm").submit();
-			alert('게시글 삭제완료!');
 		}
 	})
 	// 댓글 수정(진행중)
@@ -176,7 +183,6 @@
 		let auth = $("#commenterID").val();
 		let text = $("#commentWriteArea").val();
 		let bno = $("#bno").val();
-		console.log("작성 클릭!");	
 		
 		if(text.trim() == ''){
 			alert('댓글 내용을 입력하세요!');

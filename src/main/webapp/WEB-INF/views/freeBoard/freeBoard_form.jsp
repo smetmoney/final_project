@@ -40,6 +40,7 @@ let edit_toolbar = "blocks fontfamily fontsize | link image forecolor backcolor"
 tinymce.init({
 	language : "ko_KR",
 	selector: '#editor',
+	height: 600,
 	menubar : false,
 	plugins: plugins,
 	  toolbar: edit_toolbar,

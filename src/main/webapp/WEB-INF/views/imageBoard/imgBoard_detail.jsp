@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../common/header.jsp" />
@@ -9,22 +10,20 @@
 			<a href="${path}/imageBoard/imgBoard_list">뒤로가기</a>
 		    <h1>제목 : ${vo.title}</h1>
 		    <p><span>작성자 : ${vo.auth}</span></p>
-		    <p><span>작성일 : ${vo.date}</span></p>
-			<img src="${path}${vo.imageURL}"/>
+		    <p><span>작성일 : <fmt:formatDate value="${vo.date}" pattern="yyyy-MM-dd HH:mm" /></span></p>
 		    <p>${vo.content}</p>
 		    <div id="viewAndMod">
 		    	<div id="viewWrap">
 				    <span>조회수 : ${vo.vcnt}</span>
-				    <span>좋아용 : ${vo.lcnt}</span>
 			    </div>
 	   		    <c:if test="${vo.auth == userInfo.nname}">
-				<div id="modifyWrap">
-					<button id="modify_btn">수정</button>
-					<button id="delete_btn">삭제</button>
-				</div>
-				<form id="modifyForm" action="modify" method="post">
-					<input type="hidden" name="bno" value="${vo.bno}">
-				</form>
+					<div id="modifyWrap">
+						<button id="modify_btn">수정</button>
+						<button id="delete_btn">삭제</button>
+					</div>
+					<form id="modifyForm" action="modify" method="post">
+						<input type="hidden" name="bno" value="${vo.bno}">
+					</form>
 				</c:if>
 			</div>
 		</div>	
@@ -51,7 +50,7 @@
 						<div id="show${comment.commentNO}">
 							<ul>
 								<li>작성자 : ${comment.commenterID}</li>
-								<li>작성일 : ${comment.commentDate}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
 						        <li id="commentContent${comment.commentNO}">
 						            내 용 : ${comment.commentContent}
 						        </li>
@@ -68,7 +67,7 @@
 						<div id="hide${comment.commentNO}" style="display: none">
 							<ul>
 								<li>작성자 : ${comment.commenterID}</li>
-								<li>작성일 : ${comment.commentDate}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
 						        <li>
 						            내 용 : <input type="text" id="modText${comment.commentNO}" value="${comment.commentContent}">
 						        </li>

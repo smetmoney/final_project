@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.PageMaker;
+import com.bitc.project.util.SearchCriteria;
+import com.bitc.project.util.SearchPageMaker;
 import com.bitc.project.vo.FreeBoardVO;
 
 public interface FreeBoardService {
@@ -15,7 +17,7 @@ public interface FreeBoardService {
     String remove(int bno) throws Exception;
     
     // PM > pagemaker
-    PageMaker getPageMaker(Criteria cri) throws Exception;
+    PageMaker getPageMaker(SearchCriteria cri) throws Exception;
     
     // 게시글 작성
     String regist(FreeBoardVO board) throws Exception;
@@ -30,6 +32,10 @@ public interface FreeBoardService {
     String modify(FreeBoardVO board) throws Exception;
     
     // 페이징 처리된 게시글
-    List<FreeBoardVO> freeBoardList(Criteria cri) throws Exception;
+    List<FreeBoardVO> freeBoardList(SearchCriteria cri) throws Exception;
+
+	List<FreeBoardVO> searchList(SearchCriteria cri);
+
+	SearchPageMaker getSearchPM(SearchCriteria cri);
 }
 

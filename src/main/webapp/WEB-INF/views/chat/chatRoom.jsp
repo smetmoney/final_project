@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../common/header.jsp" />
-	${chatRoom}
+	<div class="mainWrap">
+    <div id="titleBox">
+        <h1>채팅</h1>
+        <hr/>
+    </div>
 	<div id="chatList">
 		<c:if test="${!empty chatRoom}">
 			<c:forEach items="${chatRoom}" var="room">
@@ -12,6 +16,7 @@
 			</c:forEach>
 		</c:if>
 		<input type="button" value="방만들기" onclick='create()'>
+	</div>
 	</div>
 <script>
 	function create(){

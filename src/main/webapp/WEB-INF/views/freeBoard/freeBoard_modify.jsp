@@ -14,7 +14,7 @@
     	<h1>게시글 수정</h1>
     	<hr/>
    	</div>
-    <form id="createForm" action="modify_submit" method="post"> <!-- enctype="multipart/form-data" -->
+    <form id="createForm" action="modify_submit" method="post">
     	<input type="hidden" name="bno" value="${post.bno}"/>
     	<ul>
 	        <li>
@@ -27,9 +27,6 @@
 	        <li id="content">
 	        	내용:<textarea id="editor" name="content">${post.content}</textarea>
         	</li>
-<!--         	<li>
-        		이미지 첨부:<input type="file" id="imageFile" name="file" accept="image/*" required>
-        	</li> -->
         	<li id="btn">
 	        	<input type="submit" value="작성">
 	        </li>
@@ -46,6 +43,7 @@ tinymce.init({
 	selector: '#editor',
 	menubar : false,
 	plugins: plugins,
+	height: 600,
 	  toolbar: edit_toolbar,
 	  image_title: true,
 	  automatic_uploads: true,

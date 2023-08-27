@@ -29,7 +29,14 @@
  	return { fileName : fileName, imgSrc : imgSrc, getLink : getLink};
  }
  
- 
+function getThumbnailInfo(fullName){
+ 	if(checkImageType(fullName)){
+ 		imgSrc = contextPath+"/thumbnailFile?fileName="+fullName;
+ 		getLink = imgSrc;
+	}
+ 	fileName = fullName.substr(fullName.lastIndexOf("_")+1);
+ 	return { fileName : fileName, imgSrc : imgSrc, getLink : getLink};
+}
  
  
  

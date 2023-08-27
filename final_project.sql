@@ -62,6 +62,8 @@ CREATE TABLE FreeBoard (
 --    INDEX(IDN)								-- ID값 불러오기
 );
 -- 외래키 member id -> nname 변경
+ALTER TABLE freeboard MODIFY content LONGTEXT;
+
 
 -- 트리거추가
 -- 댓글 달리면 해당 게시글 댓글 카운트 추가
@@ -214,6 +216,7 @@ CREATE TABLE test_imageBoard (
     del boolean default false,
     CommentCount INT DEFAULT 0
 );
+ALTER TABLE test_imageBoard MODIFY content LONGTEXT;
 
 -- 이미지 게시판 댓글 테이블 
 CREATE TABLE test_Comments (
@@ -284,7 +287,7 @@ CREATE TABLE noticeBoard (
    	FOREIGN KEY (auth) REFERENCES MEMBER(ID)
 --    INDEX(IDN)								-- ID값 불러오기
 );
-    --likeCnt INT DEFAULT 0,						-- 좋아요 수
+    -- likeCnt INT DEFAULT 0,						-- 좋아요 수
 CREATE TABLE IF NOT EXISTS notice_comment(
 	cno INT PRIMARY KEY AUTO_INCREMENT,		-- 댓글 번호
 	bno INT NOT NULL,					 	-- 댓글 작성 게시글 번호	

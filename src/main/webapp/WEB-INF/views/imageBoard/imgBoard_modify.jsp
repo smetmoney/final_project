@@ -27,9 +27,6 @@
 	        <li id="content">
 	        	내용:<textarea id="editor" name="content">${vo.content}</textarea>
         	</li>
-        	<li>
-        		이미지 첨부:<input type="file" id="imageFile" name="file" accept="image/*" required>
-        	</li>
         	<li id="btn">
 	        	<input type="submit" value="작성">
 	        </li>
