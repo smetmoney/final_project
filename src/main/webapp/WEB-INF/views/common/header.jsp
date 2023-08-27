@@ -30,7 +30,7 @@
 	    <c:when test="${not empty sessionScope.userInfo}">
 	       <h1>안녕하세요, ${userInfo.nname} 님</h1>
 	       <c:choose>
-	            <c:when test="${userInfo.nname eq 'ADMIN'}">
+	            <c:when test="${userInfo.nname eq 'admin'}">
 	                <a href="<c:url value='/management/management'/>">관리하기 | </a>
 	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
 	                				onclick="window.open(this.href, 'popupWindow',

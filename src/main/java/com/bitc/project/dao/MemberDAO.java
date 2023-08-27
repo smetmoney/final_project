@@ -9,8 +9,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.bitc.project.util.Criteria;
 import com.bitc.project.vo.LoginDTO;
 import com.bitc.project.vo.MemberVO;
+import com.bitc.project.vo.NoteVO;
 
 @Mapper
 public interface MemberDAO {
@@ -63,5 +65,14 @@ public interface MemberDAO {
 	@Select("SELECT nname FROM member WHERE nname = #{nname}")
 	String checkNick(@Param("nname")String nname);
 	
+	
+	/*
+	 * @Select("SELECT count(*) FROM member WHERE id = #{id}") int
+	 * totalCount(List<MemberVO> members);
+	 * 
+	 * @Select("SELECT * FROM member WHERE id = #{id} limit #{cri.startRow},#{cri.perPageNum}"
+	 * ) List<MemberVO> memberVOList(@Param("cri")Criteria cri,@Param("id") String
+	 * id);
+	 */
 	
 }

@@ -39,7 +39,7 @@ public class JoinController {
 	
 	@PostMapping("checkNickName")
 	@ResponseBody
-	public String checkNickName(@RequestParam String nname) {
+	public String checkNickName(@RequestParam String nname) throws Exception {
 		return ms.checkNick(nname);
 	}
 }

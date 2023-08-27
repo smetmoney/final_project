@@ -2,6 +2,8 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import com.bitc.project.util.Criteria;
+import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.LoginDTO;
 import com.bitc.project.vo.MemberVO;
 
@@ -33,6 +35,11 @@ public interface MemberService {
 	// LoginDTO 로그인처리 
 	MemberVO login(LoginDTO dto) throws Exception;
 
-	String checkNick(String nname);
+	String checkNick(String nname) throws Exception;
+
+	/*
+	 * PageMaker getPageMaker(Criteria cri, List<MemberVO> members) throws
+	 * Exception;
+	 */
 
 }

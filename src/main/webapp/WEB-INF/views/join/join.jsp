@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../common/header.jsp" />
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css"> --%>
 
 <link rel="stylesheet" href="../resources/css/join.css">
 <!-- 스크립트 추가해놨는데 일단 주석 처리함 -->

@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../common/header.jsp" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="../resources/css/modify.css">
 
 <div class="mainWrap">
 	
@@ -53,7 +55,6 @@
 				<td colspan=2>
 					<c:url value="/index.jsp" var="index"/>
 					<input type="button" onclick="location.href='${pageContext.request.contextPath}/';" value="수정완료" /> |
-					<input type="button" onclick="withdraw('${member.id}');" value="회원탈퇴" />
 				</td>
 			</tr>
 		</table>
@@ -68,7 +69,7 @@
 				}
 		
 				if (confirm('정말로 탈퇴 하시겠습니까?')) {
-					location.href = '<c:url value="/member/withdraw.jsp"/>?id='+ id;
+					// location.href = '<c:url value="/member/withdraw.jsp"/>?id='+ id;
 				}
 			}
 		</script>
