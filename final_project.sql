@@ -20,6 +20,7 @@ drop table member;
 -- 관리자 계정 만듬
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
 VALUES('admin','admin','admin','EMAIL@EMAIL','admin','1111-11-11','남성','9999');
+UPDATE MEMBER set id='admin' where id='admin';
 
 -- 첫번째 유저
 INSERT INTO MEMBER(ID,NNAME,PASS,EMAIL,NAME,BIRTHDATE, GENDER, POINT)
@@ -232,7 +233,7 @@ CREATE TABLE noticeBoard (
     updatedate DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 최종 수정 시간
     vcnt INT DEFAULT 0,							-- 조회수
     fixedNotice BOOLEAN DEFAULT FALSE,			-- 고정 공지
-   	FOREIGN KEY (auth) REFERENCES MEMBER(ID)
+   	FOREIGN KEY (auth) REFERENCES MEMBER(nname)
 --    INDEX(IDN)								-- ID값 불러오기
 );
     -- likeCnt INT DEFAULT 0,						-- 좋아요 수
@@ -253,6 +254,7 @@ DESC noticeBoard;
 DESC notice_comment;
 SELECT * FROM noticeBoard;
 drop table noticeBoard;
+drop table notice_comment;
 INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용3','ADMIN',false);
 
 -- 드랍전용 sql문

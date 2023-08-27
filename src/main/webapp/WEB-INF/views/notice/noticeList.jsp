@@ -4,57 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
-<style>
-	h1{padding-top : 25px;}
-	.newNotice{
-		text-align: right;
-  		padding-right:12.5%;
-  		padding-top: 10px;
-  		width :100%;
-		height: 50px;
-		display:block;
-	}
-	.noticeList table{width:75%; margin:20px auto;}
-	.noticeList *{padding: 8px 5px;}
-	.noticeList table tr{
-		border-top: 1px solid black;
-		border-bottom: 1px solid black;
-	}
-	.noticeList table th{
-		margin-right:7px;
-		font-size : 18px;
-		background-color : rgb(97, 76, 76);;
-		color: white;
-		border-bottom: 3px solid black;
-	}
-	.noticeList table tr td{
-		font-size:16px;
-	}
-	.editNotice form{
-		display:inline-block;
-		width:20%;	
-	}
-	.editNotice{display:inline-block;}
-	.fixedContent{
-		background-color: rgba(173, 173, 173, 0.76);
-	}
-	
-	/* 버튼 */
-	.newBtn{
-		margin-top: 10px;
-		padding: 10px 10px;
-        border: none;
-        background: #495057;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-	}
-	
-	.newBtn:hover {
-	    background-color: #868e96;
-	}
-	
-</style>
+<link rel="stylesheet" href="../resources/css/notice.css">
 
 <div class="mainWrap">
 	<div class="noticeTitle">
@@ -89,7 +39,7 @@
 			        <!-- 고정 공지 출력 for문 -->
 			        <c:forEach items="${fixedNoticeList}" var="con">
 			            <tr class="fixedContent">
-			                <td><a href="noticeDetail?bno=${con.bno}">[ 고정 ] ${con.title}</a></td>
+			                <td><a href="noticeDetail?bno=${con.bno}" class="noticeHyper">[ 고정 ] ${con.title}</a></td>
 			                <td>
 								<c:choose>
 									<c:when test="${con.auth eq 'admin'}">
@@ -107,7 +57,7 @@
 			        <!-- 공지 전체 출력 for문 -->
 			        <c:forEach items="${noticeList}" var="con">
 			            <tr class="noticeContent">
-			                <td><a href="noticeDetail?bno=${con.bno}">${con.title}</a></td>
+			                <td><a href="noticeDetail?bno=${con.bno}" class="noticeHyper">${con.title}</a></td>
 			                <td>
 			               		 <c:choose>
 									<c:when test="${con.auth eq 'admin'}">
