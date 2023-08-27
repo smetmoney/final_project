@@ -43,7 +43,7 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 
 	@Override
 	public String createImageBoard(ImageBoardVO vo) throws Exception {
-		return dao.createImageBoard(saveFile(vo)) > 0 ? "게시글 등록 완료!" : "게시글 등록 실패..";
+		return dao.createImageBoard(vo) > 0 ? "게시글 등록 완료!" : "게시글 등록 실패..";
 	}
 
 	@Override
@@ -71,11 +71,11 @@ public class ImageBoardServiceImpl implements ImageBoardService {
 
 	@Override
 	public int update(ImageBoardVO vo) throws Exception {
-		return dao.update(saveFile(vo));
+		return dao.update(vo);
 	}
 	
 	public ImageBoardVO saveFile(ImageBoardVO vo) throws Exception {
-		String imageURL = FileUtils.uploadFile(realPath, vo.getFile());
+		String imageURL = FileUtils.thumbnailFile(realPath, vo.getFile());
 		vo.setImageURL(uploadDir+imageURL);
 		return vo;
 	}

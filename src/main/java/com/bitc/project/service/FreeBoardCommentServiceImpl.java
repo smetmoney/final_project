@@ -18,8 +18,8 @@ public class FreeBoardCommentServiceImpl implements FreeBoardCommentSerivce {
 	private final FreeBoardCommentDAO dao;
 	
 	@Override
-	public List<FreeBoardCommentVO> getCommentList(int bno) {
-		return dao.getCommentList(bno);
+	public List<FreeBoardCommentVO> getCommentList(Criteria cri,int bno) {
+		return dao.getCommentList(cri,bno);
 	}
 
 	@Override

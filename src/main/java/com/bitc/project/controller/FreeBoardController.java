@@ -23,8 +23,10 @@ import com.bitc.project.service.FreeBoardCommentSerivce;
 import com.bitc.project.service.FreeBoardService;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.PageMaker;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.vo.FreeBoardCommentVO;
 import com.bitc.project.vo.FreeBoardVO;
+import com.bitc.project.vo.ImageBoardVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,12 +40,22 @@ public class FreeBoardController {
 	
 	// 게시글 목록 페이지 이동
 	@GetMapping("freeBoard_list")
-	public void freeBoardList(Criteria cri, Model model) throws Exception {
+	public String imgBoardList(SearchCriteria cri, Model model) throws Exception {
 		cri.setPerPageNum(10);
-		List<FreeBoardVO> list = fs.freeBoardList(cri);
+		List<FreeBoardVO> list = null;
+		String searchType = cri.getSearchType();
+		if(cri.getSearchValue() == null) {
+			list = fs.freeBoardList(cri);
+		}else {
+			if(searchType.equals("title") || searchType.equals("content") || searchType.equals("auth")) {
+				list = fs.searchList(cri);
+			}else {
+				return "redirect:/freeBoard/freeBoard_list";
+			}
+		}
 		model.addAttribute("freeBoardList",list);
-		PageMaker pm = fs.getPageMaker(cri);
-		model.addAttribute("pm",pm);
+		model.addAttribute("pm",fs.getSearchPM(cri));
+		return "/freeBoard/freeBoard_list";
 	}
 	
 	// 게시글 작성 페이지 이동
@@ -70,19 +82,21 @@ public class FreeBoardController {
 	
 	// 게시글 상세보기 페이지 이동
 	@GetMapping("read")
-	public String read(int bno,Model model) throws Exception 
+	public String read(int bno,Model model,Criteria cri) throws Exception 
 	{
+		cri.setPerPageNum(10);
+		model.addAttribute("pm",fcs.getPageMaker(cri, bno));
 		FreeBoardVO vo = fs.read(bno);
-		model.addAttribute("comments",fcs.getCommentList(bno));
+		model.addAttribute("comments",fcs.getCommentList(cri,bno));
 		model.addAttribute("post",vo);
 		return "/freeBoard/freeBoard_detail";
 	}
 
 	// 게시글 삭제 요청
 	@PostMapping("remove")
-	public String delete(int bno) throws Exception
+	public String delete(int bno, RedirectAttributes rttr) throws Exception
 	{
-		fs.remove(bno);
+		rttr.addFlashAttribute("msg",fs.remove(bno));
 		return "redirect:freeBoard_list";
 	}
 	
@@ -92,6 +106,15 @@ public class FreeBoardController {
 	{
 		model.addAttribute("post",fs.read(bno));
 		return "/freeBoard/freeBoard_modify";
+	}
+	
+	// 게시글 수정 요청
+	@PostMapping("modify_submit")
+	public String update(FreeBoardVO vo, RedirectAttributes rttr) throws Exception{
+		rttr.addFlashAttribute("vo",fs.read(vo.getBno()));
+		rttr.addFlashAttribute("msg",fs.modify(vo));
+		rttr.addAttribute("bno",vo.getBno());
+		return "redirect:read";
 	}
 	
 	/**

@@ -1,10 +1,15 @@
-<!-- freeboard_list.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../common/header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../resources/css/board.css">
+<script>
+	let msg = '${msg}';
+	if(msg !== ''){
+		alert(msg);
+	}
+</script>
 <div class="mainWrap">
     <div id="titleBox">
         <h1>자유게시판</h1>
@@ -22,29 +27,20 @@
 		    			<th>조회수</th>
 		    		</tr>
 		    	<c:forEach items="${freeBoardList}" var="freeBoard">
-		    		<c:choose>
-		    			<c:when test="${freeBoard.del}">
-		    				<tr>
-		    					<td colspan="5">삭제된 게시글 입니다.</td>
-		    				</tr>
-		    			</c:when>
-		    			<c:otherwise>
-				    		<tr>
-				    			<td>${freeBoard.bno}</td>
-				    			<td class="boardTitle">
-				    				<a href="freeBoard_detail?bno=${freeBoard.bno}">
-				    					${freeBoard.title}
-				    					<c:if test="${freeBoard.commentCount > 0}">
-				    						[${freeBoard.commentCount}]
-				    					</c:if>
-				    				</a>
-				    			</td>
-								<td>${freeBoard.auth}</td>
-				    			<td class="date">${freeBoard.date}</td>
-				    			<td>${freeBoard.vcnt}</td>
-				    		</tr>
-		    			</c:otherwise>
-		    		</c:choose>
+		    		<tr>
+		    			<td>${freeBoard.bno}</td>
+		    			<td class="boardTitle">
+		    				<a href="freeBoard_detail?bno=${freeBoard.bno}">
+		    					${freeBoard.title}
+		    					<c:if test="${freeBoard.commentCount > 0}">
+		    						[${freeBoard.commentCount}]
+		    					</c:if>
+		    				</a>
+		    			</td>
+						<td>${freeBoard.auth}</td>
+		    			<td class="date"><fmt:formatDate value="${freeBoard.date}" pattern="yyyy-MM-dd" /></td>
+		    			<td>${freeBoard.vcnt}</td>
+		    		</tr>
 			    </c:forEach>
 			    </table>
 			    <br/>
@@ -90,6 +86,7 @@
 	                    <select id="option" name="searchType">
 	                        <option value="title">제목</option>
 	                        <option value="content">내용</option>
+	                        <option value="auth">작성자</option>
 	                    </select>
 	                    <input type="text" name="searchValue" id='searchValue'><button type="button" id="searchBtn" name="search">검색</button>
 	                </td>
@@ -120,7 +117,7 @@
 				alert('검색어를 입력하세요!');
 				return;
 			}
-			location.href = "imgBoard_list?searchValue="+value+"&searchType="+option;
+			location.href = "freeBoard_list?searchValue="+value+"&searchType="+option;
 		});
 		
 	    $("input[name='searchValue']").on('keydown', function(e) {

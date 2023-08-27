@@ -42,26 +42,23 @@ public class ImageBoardController {
 	// 검색기능 추가 
 	// 페이징 처리된 게시글 리스트 목록 가져오기
 	@GetMapping("imgBoard_list")
-	public void imgBoardList(SearchCriteria cri, Model model) throws Exception {
+	public String imgBoardList(SearchCriteria cri, Model model) throws Exception {
 		
 		cri.setPerPageNum(6);
-		
 		List<ImageBoardVO> list = null;
-		
 		String searchType = cri.getSearchType();
-		
 		if(cri.getSearchValue() == null) {
 			list = is.imageBoardList(cri);
 		}else {
-			if(searchType.equals("title") || searchType.equals("content")) {
+			if(searchType.equals("title") || searchType.equals("content") || searchType.equals("auth")) {
 				list = is.searchList(cri);
 			}else {
-				model.addAttribute("msg","잘못된 접근 방식입니다.");
-				return;
+				return "redirect:/imageBoard/imgBoard_list";
 			}
 		}
 		model.addAttribute("imgBoardList",list);
 		model.addAttribute("pm",is.getSearchPM(cri));
+		return "/imageBoard/imgBoard_list";
 	}
 
 	// 게시글 작성 페이지
@@ -118,7 +115,6 @@ public class ImageBoardController {
 	@PostMapping("modify_submit")
 	public String update(ImageBoardVO vo, RedirectAttributes rttr) throws Exception{
 		is.update(vo);
-		System.out.println(vo);
 		rttr.addFlashAttribute("vo",is.read(vo.getBno()));
 		rttr.addAttribute("bno",vo.getBno());
 		return "redirect:read";

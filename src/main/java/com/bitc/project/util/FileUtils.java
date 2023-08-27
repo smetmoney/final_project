@@ -58,6 +58,36 @@ public class FileUtils {
 		}
 		return uploadFileName;
 	}
+	
+	public static String thumbnailFile(String realPath,MultipartFile file) throws Exception{
+		String uploadFileName = "";
+		
+		UUID uid = UUID.randomUUID();
+		String originalName = file.getOriginalFilename();
+		String savedName = uid.toString().replace("-", "");
+		
+		savedName += "_"+(originalName.replace("_", " "));
+		// URL encoding으로 변환된 파일 이름일 경우 공백을 + 로 치환하여 전달되기 때문에
+		// + 기호를 공백으로 치환
+		savedName = savedName.replace("+", " ");
+		String datePath = calcPath(realPath);
+		
+		File f = new File(realPath+datePath,savedName);
+		file.transferTo(f);
+		// 업로드 된 파일의 확장자
+		// xxxxxxxxx.(jpg)
+		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
+		if(MediaUtils.getMediaType(formatName) != null) {
+			// 이미지 파일 - Thumbnail 이미지 경로 반환
+			uploadFileName = makeThumbnail(realPath,datePath,savedName,formatName);
+			f.delete();
+		}else {
+			// 일반 파일
+			uploadFileName = makePathName(datePath, savedName);
+		}
+		return uploadFileName;
+	}
+	
 
 	private static String makeThumbnail(
 		String realPath, String datePath, String savedName, String ext) throws IOException {
