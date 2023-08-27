@@ -3,87 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
-<style>
-	/* 구역 정리  */
-	.title{padding-top : 25px;}
-	.newQna{
-		text-align: right;
-  		padding-right:20%;
-  		padding-top: 10px;
-  		width :100%;
-		height: 50px;
-	}
-	/* 리스트 정리 */
-	.qnaList{
-		padding-left:20%;
-		padding-top:20px;
-	}
-	.qnaList table{width:75%;}
-	.qnaList table tr{
-		display:block;
-		border: 1px solid black; 
-		padding :10px;
-	}
-	.qnaList table th{
-		width:100%;
-		display:inline-block;
-		font-size : 20px;
-		margin:4px 0;
-	}
-	.qnaList table tr td{font-size:18px;}
-	.editQna form{
-		display:inline-block;
-		width:20%;	
-	}
-	.editQna{display:inline-block;}
-	.blank_tr{padding:3px !important; border: none !important;}
-	
-	/* 리스트 색상 */
-	.qnaTitle{
-		background-color: #ced4da;
-		/* color: #fff; */
-		border-radius:10px 10px 0 0;
-	}
-	.qnaContent{border-top:none !important;}
-	
-	
-	/* 버튼 */
-	.newBtn{
-		margin-top: 10px;
-		padding: 10px 10px;
-        border: none;
-        background: #495057;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-	}
-	
-	.newBtn:hover {
-	    background-color: #868e96;
-	}
-	
-	.editBtn{
-		padding: 5px 10px;
-        border: none;
-        background: #fff;
-        color: #868296;
-        border-radius: 3px;
-        cursor: pointer;
-	}
-	
-	.editBtn:hover {
-	    background-color: #dee2e6;
-	}
-	
-	
-	
-</style>
-
+<link rel="stylesheet" href="../resources/css/qna.css">
 <div class="mainWrap">
 	<div class="title">
 		<h1>자주 들어오는 질문</h1>
 	</div>
-	<div class="newQna">
+	<div class="newQnaBtn">
 		<c:choose>
 			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="newQna" method="Get" >
@@ -92,6 +17,7 @@
 			</c:when>
 		</c:choose>
 	</div>
+	<hr/>
 	<div class="qnaList">
 		<c:choose>
 			<c:when test="${!empty qnaList}">

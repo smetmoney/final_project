@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../resources/css/notice.css">
 <div class="mainWrap">
     <h1>새 공지사항 작성하기</h1>
+    <hr/>
     <form action="newNotice" method="post" class="editform">
         <label for="title">제 &nbsp; 목 </label>
         <input type="text" id="title" name="title" required><br>

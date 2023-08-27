@@ -20,7 +20,7 @@
  		getLink = contextPath+"/displayFile?fileName="+fullName.replace("s_","");
  	}else{
  		// 일반 파일
- 		imgSrc = contextPath+"/resources/img/file.png";
+ 		imgSrc = contextPath+"/resources/images/img/file.png";
  		getLink = contextPath+"/displayFile?fileName="+fullName;
  	}
  	

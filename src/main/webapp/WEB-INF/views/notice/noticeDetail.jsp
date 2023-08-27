@@ -2,12 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
 <link rel="stylesheet" href="../resources/css/notice.css">
 <style>
-	.newNotice{
-  		padding-right:10%;
+	*{
+		margin:0;
+		padding:0;
 	}
 	/* 이미지 최대 크기 제한 */
 	img{
@@ -30,25 +32,34 @@
 			</c:when>
 		</c:choose>
 	</div>
+	<hr/>
 	<div class="noticeDetail">
 		<div class="backBtnDiv">
 			<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
 		</div>
-		    <h6>제목 : ${vo.title}</h6>
-		    <p><span>작성자 : 
+		    <span class="nameSpace">제목</span> <span class="space">&nbsp;&nbsp;&nbsp;${vo.title}</span>
+		    <span class="nameSpace">작성자</span>
 			    <c:choose>
 					<c:when test="${vo.auth eq 'admin'}">
-						관리자
+						<span class="space">&nbsp;&nbsp;&nbsp;관리자</span>
 					</c:when>
 					<c:otherwise>
-						${vo.auth}
+						<span class="space">&nbsp;&nbsp;&nbsp;${vo.auth}</span>
 					</c:otherwise>
 				</c:choose>
-		    </span></p>
-		    <p><span>최종수정일 : <fmt:formatDate value="${vo.updatedate}" type="date" dateStyle="full"/></span></p>
-		    <p>내용 : <br/>${vo.content}</p>
-		    <span>조회수 : ${vo.vcnt}</span>
+		    <span class="nameSpace">최종수정일</span><span class="space">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${vo.updatedate}" type="both" dateStyle="full"/></span>
+		    <!-- <span class="nameSpace">내용</span> -->  <br/>${vo.content}
+		    
+		  
+
+		    
+		    <div class="countDiv">
+			    <span class="nameSpace">조회수</span><br/><div class="viewDiv"><b>${vo.vcnt}</b></div>
+		    </div>
 		   <%--  <span><a href="${path}/project/notice/likeCount?bno=${vo.bno}">[ 좋아요 ]</a>${vo.likeCnt}</span> --%>
+			<div class="backBtnDiv">
+				<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
+			</div>
 		    <c:choose>
 			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="editNotice" method="Get" >
