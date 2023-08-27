@@ -2,28 +2,33 @@
 pageEncoding="UTF-8"%>
 <jsp:include page="../common/header.jsp" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<div class="container">
-	<div class="col-6">
-		<label><b>${roomNum}번 채팅방</b></label>
-	</div>
+<link rel="stylesheet" href="../resources/css/chat.css">
+<div class="mainWrap">
+<div id="titleBox">
+	<h1>${roomNum}번 채팅방</h1>
+	<hr/>
+</div>
+<div class="container chat-container">
 	<div>
-		<div id="msgArea" class="col">
-		
-		</div>
-		<div class="col-6">
+        <div id="msgArea" class="col chat-message-area">
+
+        </div>
+        <hr/>
+		<div class="col-12 input-col">
 		<div class="input-group mb-3">
 			<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+				<button class="btn btn-primary" type="button" id="button-send">전송</button>
 			</div>
 		</div>
 		</div>
 	</div>
 	<div class="col-6">
 	</div>
+</div>
 </div>
 <script type="text/javascript">
 
@@ -77,25 +82,33 @@ function onMessage(msg) {
 	
 	var cur_session = id; //현재 세션에 로그인 한 사람
 
-	sessionId = arr[0];
-	message = arr[1];
+	if(arr.length == 1){
+		sessionId = "MASTER";
+		message = arr[0];
+	}else{
+		sessionId = arr[0];
+		message = arr[1];			
+	}
 	
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-	if(sessionId == cur_session){
-		var str = "<div class='col-6' style='text-align : right;'>";
-		str += "<div class='alert alert-secondary'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
-		$("#msgArea").append(str);
-	}
-	else{
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-warning'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
-		$("#msgArea").append(str);
-	}
+    if (sessionId == cur_session) {
+        var str = "<div class='col-12' style='text-align : right;'>";
+        str += "<div class='alert alert-secondary message-bubble'>"; // 여기에 'message-bubble' 클래스 추가
+        str += "<b>" + '나' + " : " + message + "</b>";
+        str += "</div></div>";
+        $("#msgArea").append(str);
+    } else {
+        var str = "<div class='col-12'>";
+        str += "<div class='alert alert-warning message-bubble' style='text-align : left;'>"; // 여기에 'message-bubble' 클래스 추가
+        str += "<b>" + sessionId + " : " + message + "</b>";
+        str += "</div></div>";
+        $("#msgArea").append(str);
+    }
 	
+    var msgArea = document.getElementById("msgArea");
+    msgArea.scrollTop = msgArea.scrollHeight;
+    
+    
 }
 //채팅창에서 나갔을 때
 function onClose(evt) {
@@ -108,11 +121,9 @@ function onOpen(evt) {
 	var user = id;
 	console.log(user);
 	var str = user + "님이 입장하셨습니다.";
-	$("#msgArea").append(str);
 	$("#msg").val("님이 입장 하셨습니다.");
 	$("#msg").val("");
 	sock.send('ENTER:ROOM'+room+":"+id);
 }
-
 </script>
 <jsp:include page="../common/footer.jsp" />

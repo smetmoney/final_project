@@ -14,31 +14,31 @@ import com.bitc.project.vo.ImageBoardVO;
 
 public interface ImageBoardDAO {
 	
-	@Insert("INSERT INTO test_imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL},false,0)")
+	@Insert("INSERT INTO imageBoard VALUES(0,#{title},#{content},#{auth},now(),0,0,#{imageURL},false,0)")
 	int createImageBoard(ImageBoardVO vo);
 	
-	@Update("UPDATE test_imageBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")
+	@Update("UPDATE imageBoard SET vcnt = vcnt + 1 WHERE bno = #{bno}")
 	void updateCnt(int bno);
 	
-	@Select("SELECT * FROM test_imageBoard WHERE bno = #{bno}")
+	@Select("SELECT * FROM imageBoard WHERE bno = #{bno}")
 	ImageBoardVO read(int bno);
  
-	@Select("SELECT count(*) FROM test_imageBoard WHERE del = false")
+	@Select("SELECT count(*) FROM imageBoard WHERE del = false")
 	int totalCount();
 	
-	@Select("SELECT count(*) FROM test_imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false")
+	@Select("SELECT count(*) FROM imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false")
 	int searchCount(SearchCriteria cri);
 	
-	@Select("SELECT * FROM test_imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
+	@Select("SELECT * FROM imageBoard WHERE del = false ORDER BY bno DESC limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> imageBoardList(Criteria cri);
 	
-	@Update("Update test_imageBoard SET del = true WHERE bno = #{bno}")
+	@Update("Update imageBoard SET del = true WHERE bno = #{bno}")
 	int delete(int bno);
 	
-	@Update("UPDATE test_imageBoard SET title = #{title}, content = #{content} WHERE bno = #{bno}")
+	@Update("UPDATE imageBoard SET title = #{title}, content = #{content} WHERE bno = #{bno}")
 	int update(ImageBoardVO vo);
 	
-	@Select("SELECT * FROM test_imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
+	@Select("SELECT * FROM imageBoard WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%') AND del = false ORDER BY bno limit #{startRow},#{perPageNum}")
 	List<ImageBoardVO> searchList(SearchCriteria cri);
 }
 
