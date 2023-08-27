@@ -70,6 +70,87 @@
 			</c:when>
 		</c:choose>
 	</div>
+	<c:if test="${!empty userInfo}">
+    		<div id="commentWriteBox">
+    			<ul>
+    				<li>${userInfo.nname}</li>
+    				<li>
+    					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
+						<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
+						<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
+   					</li>
+    				<li>
+    					<button id="commentWrite">등록</button>
+    				</li>
+    			</ul>
+    		</div>
+   		</c:if>
+	<div id="commentWrap">
+	    	<h4>댓글 목록 : </h4>
+			<c:if test="${!empty comments}">
+ 				<c:forEach var="comment" items="${comments}">
+					<div class="commentBox">
+						<div id="show${comment.commentNO}">
+							<ul>
+								<li>작성자 : ${comment.commenterID}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
+						        <li id="commentContent${comment.commentNO}">
+						            내 용 : ${comment.commentContent}
+						        </li>
+							</ul>
+							<c:if test="${comment.commenterID == userInfo.nname}">
+								<button class="commentModify" data-cno='${comment.commentNO}'>
+									수정
+								</button>
+								<button class="commentDelete" data-cno='${comment.commentNO}'>
+									삭제
+								</button>
+							</c:if>
+						</div>
+						<div id="hide${comment.commentNO}" style="display: none">
+							<ul>
+								<li>작성자 : ${comment.commenterID}</li>
+								<li>작성일 : <fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm" /></li>
+						        <li>
+						            내 용 : <input type="text" id="modText${comment.commentNO}" value="${comment.commentContent}">
+						        </li>
+							</ul>
+							<button class="modSubmit" data-cno='${comment.commentNO}'>
+								수정완료
+							</button>
+							<button class="modCancle" data-cno='${comment.commentNO}'>
+								취소
+							</button>
+						</div>
+					</div>
+				</c:forEach>
+	   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
+	   	    		<div class="pagination">
+					<tr>
+						<th colspan="5">
+							<c:if test="${pm.first}">
+								<a href="?bno=${vo.bno}&page=1">&laquo;</a>
+							</c:if>
+							<c:if test="${pm.prev}">
+								<a href="?bno=${vo.bno}&page=${pm.startPage-1}">&lt;</a>
+							</c:if>
+							<c:forEach var="i" 
+									   begin="${pm.startPage}" 
+									   end ="${pm.endPage}">
+								<a href="?bno=${vo.bno}&page=${i}">${i}</a>
+							</c:forEach>
+							<c:if test="${pm.next}">
+								<a href="?bno=${vo.bno}&page=${pm.endPage+1}">&gt;</a>
+							</c:if>
+							<c:if test="${pm.last}">
+								<a href="?bno=${vo.bno}&page=${pm.maxPage}">&raquo;</a>
+							</c:if>
+						</th>
+					</tr>
+				</div>
+			</c:if>
+			</c:if>
+    	</div>
 </div>
 
 <script>
@@ -81,15 +162,18 @@ if (resultMessage !== "") {
 function adjustMainWrapSize() {
     // .noticeDetail 요소 가져오기
     var noticeDetail = document.querySelector('.noticeDetail');
-    
     // .mainWrap 요소 가져오기
     var mainWrap = document.querySelector('.mainWrap');
-    
+	// .commentWrap 요소 가져오기 
+    var commentWrap = document.querySelector('.commentWrap');
+	
     // .noticeDetail의 높이 가져오기
     var noticeDetailHeight = noticeDetail.offsetHeight;
+    // .commentWrap의 높이 가져오기
+    var commentWrapHeight = commentWrap.offsetHeight;
     
     // .mainWrap의 높이 설정
-    mainWrap.style.height = (noticeDetailHeight + 400) + 'px';
+    mainWrap.style.height = (noticeDetailHeight + commentWrap + 400) + 'px';
 }
 
 // 함수 호출
