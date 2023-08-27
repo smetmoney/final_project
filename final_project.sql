@@ -91,29 +91,9 @@ END;
 //
 DELIMITER ;
 
-
-
 SELECT * FROM FreeBoard;
 
 DROP TABLE FreeBoard;
-
-SHOW INDEXES FROM MEMBER;
-
--- 이미지 게시판 테이블 생성
-CREATE TABLE ImageBoard (
-    BNO INT AUTO_INCREMENT PRIMARY KEY,			-- 글 번호
-    Title VARCHAR(255) NOT NULL,				-- 글 제목
-    Content TEXT,								-- 글 내용
-    Auth VARCHAR(255),							-- 작성자
-    Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
-    VNT INT DEFAULT 0,							-- 조회수
-    LIKE_COUNT INT DEFAULT 0,					-- 좋아요 수
-    ImageURL VARCHAR(255),						-- 들어가는 img url
-    ThumbnailURL VARCHAR(255),	 				-- 보여주는 thumbnail url
-    FOREIGN KEY (Auth) REFERENCES MEMBER(nname)	-- ID값 불러오기
-);
-
-DROP TABLE ImageBoard;
 
 -- 자유게시판 댓글 테이블
 CREATE TABLE FreeBoardComments (
@@ -128,19 +108,6 @@ CREATE TABLE FreeBoardComments (
 -- 외래키 member id -> nname 변경
 
 DROP TABLE FreeBoardComments;
-
--- 이미지 게시판 댓글 테이블 
-CREATE TABLE ImageBoardComments (
-    CommentID INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
-    ImageBoardBNO INT,										-- 이미지게시판 댓글 번호
-    CommentContent TEXT,									-- 이미지게시판 댓글 내용
-    CommenterID VARCHAR(255),								-- 이미지게시판 댓글 작성자
-    CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,			-- 댓글 작성시간
-    FOREIGN KEY (ImageBoardBNO) REFERENCES ImageBoard(BNO),	-- 외부 게시판 값 불러오기
-    FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
-);
-
-DROP TABLE ImageBoardComments;
 
 -- 구매내역 테이블
 CREATE TABLE Bought (
@@ -202,12 +169,13 @@ SELECT * FROM note;
 
 DROP TABLE note;
 
-
--- 민준 테스트용
-CREATE TABLE test_imageBoard (
+-- 08/27 11:00 이미지 게시판 테이블 변경
+-- 기존 test_comments / test_imageBoard 날리고 이걸로 새로 만들어 쓰세요
+-- 만들고 밑에 트리거도 추가 해주세요
+CREATE TABLE imageBoard (
 	BNO INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,				-- 글 제목
-    CONTENT TEXT,								-- 글 내용
+    CONTENT LONGTEXT,								-- 글 내용
     Auth VARCHAR(255),							-- 작성자
     Date DATETIME DEFAULT CURRENT_TIMESTAMP,	-- 작성 시간
     VCNT INT DEFAULT 0,							-- 조회수
@@ -216,28 +184,25 @@ CREATE TABLE test_imageBoard (
     del boolean default false,
     CommentCount INT DEFAULT 0
 );
-ALTER TABLE test_imageBoard MODIFY content LONGTEXT;
 
 -- 이미지 게시판 댓글 테이블 
-CREATE TABLE test_Comments (
+CREATE TABLE imageBoardComments (
     CommentNO INT AUTO_INCREMENT PRIMARY KEY,				-- 댓글 번호 저장
     ImageBoardBNO INT,										-- 이미지게시판 댓글 번호
     CommentContent TEXT,									-- 이미지게시판 댓글 내용
     CommenterID VARCHAR(255),								-- 이미지게시판 댓글 작성자
     CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,			-- 댓글 작성시간
-    FOREIGN KEY (ImageBoardBNO) REFERENCES test_imageBoard(BNO)	-- 외부 게시판 값 불러오기
-    -- FOREIGN KEY (CommenterID) REFERENCES MEMBER(ID)			-- 외부 ID 값 불러오기
+    FOREIGN KEY (ImageBoardBNO) REFERENCES imageBoard(BNO)	-- 외부 게시판 값 불러오기
 );
 
 -- 트리거추가
 -- 댓글 달리면 해당 게시글 댓글 카운트 추가
-DELIMITER 
-//
+DELIMITER //
 CREATE TRIGGER update_comment_count
-AFTER INSERT ON test_Comments
+AFTER INSERT ON imageBoardComments
 FOR EACH ROW
 BEGIN
-    UPDATE test_imageBoard
+    UPDATE imageBoard
     SET CommentCount = CommentCount + 1
     WHERE BNO = NEW.ImageBoardBNO;
 END;
@@ -247,33 +212,16 @@ DELIMITER;
 -- 댓글 삭제되면 해당 게시글 댓글 카운트 감소
 DELIMITER //
 CREATE TRIGGER update_comment_count2
-AFTER DELETE ON test_Comments
+AFTER DELETE ON imageBoardComments
 FOR EACH ROW BEGIN
-    UPDATE test_imageBoard
+    UPDATE imageBoard
     SET CommentCount = CommentCount - 1
     WHERE BNO = OLD.ImageBoardBNO;
 END;
 //
 DELIMITER ;
 
-DROP TABLE test_comments;
-
-DROP TABLE test_imageBoard;
-
 select * from member;
-
- 
-alter table test_imageBoard add del boolean default false;	-- 게시글 삭제 유무 추가
-alter table test_imageBoard add del boolean default 0;	-- 게시글 삭제 유무 추가
--- (0 : flase(안삭제), 1 : true(삭제))
-
-SELECT * FROM test_comments;
-
-select * from test_imageBOard;
-
-show triggers;
-
-use final_project;
 
 -- 공지사항 테이블 생성
 CREATE TABLE noticeBoard (

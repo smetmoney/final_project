@@ -13,21 +13,21 @@ import com.bitc.project.vo.ImageBoardCommentVO;
 
 public interface ImageBoardCommentDAO {
 	// 댓글목록 가져오기
-	@Select("SELECT * FROM test_Comments WHERE imageBoardBNO = #{bno} ORDER BY commentNO ASC limit #{cri.startRow},#{cri.perPageNum}")
+	@Select("SELECT * FROM imageBoardComments WHERE imageBoardBNO = #{bno} ORDER BY commentNO ASC limit #{cri.startRow},#{cri.perPageNum}")
 	List<ImageBoardCommentVO> getCommentList(@Param("cri")Criteria cri,@Param("bno")int bno);
 		
 	// 댓글 작성
-	@Insert("INSERT INTO test_Comments VALUES(0,#{imageBoardBNO},#{commentContent},#{commenterID},now())")
+	@Insert("INSERT INTO imageBoardComments VALUES(0,#{imageBoardBNO},#{commentContent},#{commenterID},now())")
 	int create(ImageBoardCommentVO vo);
 
 	// 댓글 수정
-	@Update("UPDATE test_Comments SET commentContent = #{commentContent} WHERE commentNO = #{commentNO}")
+	@Update("UPDATE imageBoardComments SET commentContent = #{commentContent} WHERE commentNO = #{commentNO}")
 	int modify(ImageBoardCommentVO vo);
 	
 	// 댓글 삭제
-	@Delete("DELETE FROM test_Comments WHERE commentNO = #{cno}")
+	@Delete("DELETE FROM imageBoardComments WHERE commentNO = #{cno}")
 	int delete(int cno);
 	
-	@Select("SELECT count(*) FROM test_Comments WHERE imageBoardBNO = #{bno}")
+	@Select("SELECT count(*) FROM imageBoardComments WHERE imageBoardBNO = #{bno}")
 	int totalCount(int bno);
 }

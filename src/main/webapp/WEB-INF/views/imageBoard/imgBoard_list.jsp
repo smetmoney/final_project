@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="../common/header.jsp" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../resources/css/board.css">
 <script>
 	window.onload = ()=>{
@@ -17,6 +18,7 @@
 				return;
 			}else{
 				location.href = "imgBoard_form";
+				console.log("???");
 			}
 		})
 		$("#searchBtn").on("click",function(){
