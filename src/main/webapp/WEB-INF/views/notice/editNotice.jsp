@@ -2,44 +2,23 @@
 <jsp:include page="../common/header.jsp" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" href="../resources/css/notice.css">
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<style>
-	.tox.tox-tinymce{
-		margin:0 auto;
-	}
-	.fileDrop{
-		width:100%;
-		height:150px;
-		border:1px solid gray;
-		background-color:lightgray;
-		margin:auto;
-	}
-	
-	.uploadList{
-		width:100%;
-	}
-	
-	.uploadList li{
-		float:left;
-		padding:20px;
-		list-style:none;
-	}
-</style>
 <div class="mainWrap">
     <h1>글 수정</h1>
-    <form action="editNotice" method="post" d="modifyForm">
+    <form action="editNotice" method="post" class="editform">
    		<%-- <input type="hidden" name="uno" value="${userInfo.uno}"/> --%>
     	<input type="hidden" id="title" name="bno" value="${vo.bno}" required><br>
-        <label for="title">제목:</label>
+        <label for="title">제 &nbsp; 목</label>
         <input type="text" id="title" name="title" value="${vo.title}" required><br>
-		<label for="auth">작성자:</label>
+		<label for="auth">작성자</label>
         <input type="text" id="auth" name="auth" value="${vo.auth}" required readonly><br>
-        <label for=fixedNotice>공지 상단 고정 :</label>
-        <label for="fixedNoticeT"> [ 고정 ]  </label>
-        <input type="radio" name="fixedNotice" id ="fixedNoticeT" value="true" ${vo.fixedNotice eq true ? 'checked="checked"' : ''}/>
-        <label for="fixedNoticeF"> [ 미고정 ]  </label>
-        <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" ${vo.fixedNotice eq false ? 'checked="checked"' : ''}/><br> 
-        <label for="content">내용:</label>
+        <label for=fixedNotice>공지 상단 고정</label><br> 
+        <input type="radio" name="fixedNotice" id ="fixedNoticeT" value="true" ${vo.fixedNotice eq true ? 'checked="checked"' : ''}/> &nbsp;
+        <label for="fixedNoticeT" class="fixBtn"> 고정  </label> &nbsp;
+        <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" ${vo.fixedNotice eq false ? 'checked="checked"' : ''}/> &nbsp;
+        <label for="fixedNoticeF" class="fixBtn"> 미고정  </label><br> 
+        <!-- <label for="content">내용:</label> -->
         <textarea id="content" name="content">${vo.content}</textarea><br>
         <input type="submit" value="작성" id="saveBtn">
 		<div>

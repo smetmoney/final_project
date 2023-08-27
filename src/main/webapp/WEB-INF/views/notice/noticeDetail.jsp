@@ -4,46 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
+<link rel="stylesheet" href="../resources/css/notice.css">
 <style>
 	.newNotice{
-		text-align: right;
   		padding-right:10%;
-  		padding-top: 10px;
-  		width :100%;
-		height: 50px;
 	}
-	.noticeDetail{
-		margin-top:20px;
-		border: 1px solid black;
-		width:80%;
-		padding:20px;
-		padding-left:35px;
-		text-align:left;
-		display:inline-block;
-	}
-	.mainWrap{
-		text-align:center;
-	}
-	
 	/* 이미지 최대 크기 제한 */
 	img{
 		max-width:100%;
 		height: auto;
-	}
-	
-	/* 버튼 */
-	.newBtn{
-		margin-top: 10px;
-		padding: 10px 10px;
-        border: none;
-        background: #495057;
-        color: #fff;
-        border-radius: 3px;
-        cursor: pointer;
-	}
-	
-	.newBtn:hover {
-	    background-color: #868e96;
 	}
 </style>
 
@@ -62,7 +31,9 @@
 		</c:choose>
 	</div>
 	<div class="noticeDetail">
-		<a href="${path}/project/notice/noticeList">[목록으로]</a>
+		<div class="backBtnDiv">
+			<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
+		</div>
 		    <h6>제목 : ${vo.title}</h6>
 		    <p><span>작성자 : 
 			    <c:choose>
@@ -82,8 +53,8 @@
 			<c:when test="${userInfo.id eq 'admin'}">
 				<form action="editNotice" method="Get" >
 					<input type="hidden" name="bno" value="${vo.bno}"/> 
-					<input type="submit" value="[공지사항 편집하기]">
-					<a href="deleteNotice?bno=${vo.bno}">[게시물 삭제하기]</a>
+					<input type="submit" value="편집하기" id="editBtn">
+					<a href="deleteNotice?bno=${vo.bno}" id="delBtn">삭제하기</a>
 				</form>
 			</c:when>
 		</c:choose>
@@ -107,7 +78,7 @@ function adjustMainWrapSize() {
     var noticeDetailHeight = noticeDetail.offsetHeight;
     
     // .mainWrap의 높이 설정
-    mainWrap.style.height = (noticeDetailHeight + 150) + 'px';
+    mainWrap.style.height = (noticeDetailHeight + 400) + 'px';
 }
 
 // 함수 호출

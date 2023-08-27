@@ -7,6 +7,7 @@
 	h1{padding-top:25px}
 	form{
 		width : 75%;
+		max-width : 800px;
 		text-align:left;
 		margin: 0 auto;
 	}
@@ -21,7 +22,21 @@
 	label{
 		margin: 17px 0 7px 0;
 	}
-	
+	#editBtn, #delBtn{
+		margin-top: 10px;
+		padding: 10px 10px;
+        border: none;
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        cursor: pointer;
+        display:inline-block;
+	}
+	#delBtn{background-color:#868e96; }
+	#delBtn:hover{background-color:adb5bd;} 
+	#editBtn:hover{
+	    background-color: #868e96;
+	}
 </style>
 
 <div class="mainWrap">
@@ -35,8 +50,8 @@
 	        <input type="text" id="title" name="questionTitle" value="${QnaVO.questionTitle}" required><br>
 	        <label for="content">내용:</label>
 	        <textarea id="content" name="questionContent" required>${QnaVO.questionContent}</textarea><br>
-	        <input type="submit" id="addBtn" value="등록하기">
-	        <a href="delete?qnaId=${QnaVO.qnaId}">삭제하기</a>
+	        <input type="submit" id="editBtn" value="등록하기">
+	        <a href="delete?qnaId=${QnaVO.qnaId}", id="delBtn">삭제하기</a>
 		</form>
 		
 	</div>
