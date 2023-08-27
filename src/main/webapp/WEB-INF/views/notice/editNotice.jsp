@@ -6,6 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <div class="mainWrap">
     <h1>글 수정</h1>
+    <hr/>
     <form action="editNotice" method="post" class="editform">
    		<%-- <input type="hidden" name="uno" value="${userInfo.uno}"/> --%>
     	<input type="hidden" id="title" name="bno" value="${vo.bno}" required><br>
@@ -20,7 +21,7 @@
         <label for="fixedNoticeF" class="fixBtn"> 미고정  </label><br> 
         <!-- <label for="content">내용:</label> -->
         <textarea id="content" name="content">${vo.content}</textarea><br>
-        <input type="submit" value="작성" id="saveBtn">
+        <input type="submit" value="작성" id="addBtn">
 		<div>
 			<label>FILE DROP HERE</label>
 			<div class="fileDrop">

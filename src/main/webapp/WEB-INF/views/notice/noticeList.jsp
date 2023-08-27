@@ -20,6 +20,7 @@
 			</c:when>
 		</c:choose>
 	</div>
+	<hr/>
 	<div class="noticeList">
 		<c:choose>
 			<c:when test="${!empty noticeList}">
