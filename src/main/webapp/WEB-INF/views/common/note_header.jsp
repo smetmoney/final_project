@@ -12,6 +12,7 @@
 <style>
 	body {
 		background-image: url("${path}/resources/back.png");
+		background-size: cover;
 	}
 </style>
 <title>note header</title>

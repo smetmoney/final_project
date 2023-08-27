@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../common/note_header.jsp" />
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="../resources/css/note.css">
 <style>
     .note {
         border: 1px solid #ccc;
@@ -17,8 +18,7 @@
     }
 </style>
 
-
-<div class="mainWrap">
+<div class="noteList">
 	
     <h1>쪽지함</h1>
 	
@@ -64,18 +64,11 @@
         </div>
         <hr/>
     </c:if>
-  
 	    
-	    <a href="<c:url value='/note/notewWite?id=${userInfo.id}'/>">
-    	<button>작성하기</button>
-   		</a>
-	    
-   		<button type="submit">쪽지 삭제</button>
+   		<button type="submit">선택한 쪽지 삭제</button>
 	</form>
 
     
     
 </div>
-</body>
-
 <jsp:include page="../common/footer.jsp" />
