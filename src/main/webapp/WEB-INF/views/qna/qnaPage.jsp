@@ -25,7 +25,7 @@
 			        <c:forEach items="${qnaList}" var="con">
 			        	<tr class="qnaTitle">
 			            	<th>
-			            	<div class="editQna">
+			            	<div class="editQnaBtn">
 								<c:choose>
 									<c:when test="${userInfo.id eq 'admin'}">
 										<form action="editQna" method="GET" >

@@ -86,7 +86,7 @@
     		</div>
    		</c:if>
 	    <div id="commentWrap">
-	    	<h4>댓글 목록 : </h4>
+	    	<h4>댓글 목록</h4>
 			<c:if test="${!empty comments}">
  				<c:forEach var="comment" items="${comments}">
 					<div class="commentBox">
@@ -163,12 +163,12 @@ function adjustMainWrapSize() {
     // 요소 가져오기
     var noticeDetail = document.querySelector('.noticeDetail');
     var mainWrap = document.querySelector('.mainWrap');
-    var commentWrap = document.querySelector('.commentWrap');
+    var commentWrap = document.querySelector('#commentWrap');
     // 높이 가져오기
     var noticeDetailHeight = noticeDetail.offsetHeight;
     var commentWrapHeight = commentWrap.offsetHeight;
     // .mainWrap의 높이 설정
-    mainWrap.style.height = (noticeDetailHeight + commentWrap + 400) + 'px';
+    mainWrap.style.height = (noticeDetailHeight + commentWrapHeight + 600) + 'px';
 }
 
 // 함수 호출

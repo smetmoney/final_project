@@ -46,8 +46,11 @@ public class NoticeController {
 	}
 	
 	@GetMapping("noticeDetail")
-	public void noticeDetail(Model model, int bno)throws Exception{
+	public void noticeDetail(Model model, int bno, Criteria cri)throws Exception{
+		model.addAttribute("pm",ncs.getPageMaker(cri, bno));
 		ns.updateVcnt(bno);
+		// 댓글 리스트
+		model.addAttribute("comments",ncs.getCommentList(cri,bno));
 		NoticeVO vo = ns.readNotice(bno);
 		model.addAttribute("vo", vo);
 	}

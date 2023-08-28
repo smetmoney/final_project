@@ -226,7 +226,7 @@ DELIMITER ;
 select * from member;
 
 -- 공지사항 테이블 생성
-CREATE TABLE noticeBoard (
+CREATE TABLE IF NOT EXISTS noticeBoard (
     bno INT AUTO_INCREMENT PRIMARY KEY,			-- 글 번호
     title VARCHAR(255) NOT NULL,				-- 글 제목
     content MEDIUMTEXT NOT NULL,				-- 글 내용
@@ -246,11 +246,13 @@ CREATE TABLE IF NOT EXISTS notice_comment (
     CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,    -- 댓글 작성시간
     FOREIGN KEY (NoticeBNO) REFERENCES noticeBoard(bno)
         ON DELETE CASCADE,
-    CONSTRAINT fk_nc_nb_bno FOREIGN KEY (NoticeBNO)    -- 외부 게시판 값 불러오기
-        REFERENCES noticeBoard(bno),
+    FOREIGN KEY (CommenterID) REFERENCES MEMBER(nname),
     INDEX (NoticeBNO)
 );
-
+--    CONSTRAINT fk_nc_nb_bno FOREIGN KEY (NoticeBNO)    -- 외부 게시판 값 불러오기
+--        REFERENCES noticeBoard(bno),
+INSERT INTO noticeBoard(title,content,auth) 
+SELECT title,content,auth FROM noticeBoard;
 
 
 DESC noticeBoard;
@@ -259,7 +261,8 @@ SELECT * FROM noticeBoard;
 SELECT * FROM notice_comment;
 drop table noticeBoard;
 drop table notice_comment;
-INSERT INTO noticeBoard (title,content,auth,fixedNotice)VALUES('제목3','내용3','ADMIN',false);
+--INSERT INTO notice_comment (NoticeBNO,CommentContent,CommenterID) VALUES('1','댓글','admin');
+
 
 -- 드랍전용 sql문
 DROP TABLE MEMBER;
