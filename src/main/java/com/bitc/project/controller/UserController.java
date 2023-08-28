@@ -18,22 +18,28 @@ import com.bitc.project.vo.MemberVO;
 public class UserController {
 	
 	@Autowired
-    private MemberDAO memberDAO;
+    private MemberDAO md;
 	
     @Autowired
-    private MemberService memberService;
+    private MemberService ms;
 	
-	@GetMapping("/modify")
-	public String modify(Model model, String id) {
-	    MemberVO member = memberService.findMemberById(id);
+    @GetMapping("/modify")
+    public String modify(Model model, String id) {
+	    MemberVO member = ms.findMemberById(id);
 	    model.addAttribute("member", member);
 	    return "user/modify";
-	}
+    	}
+    
+    @PostMapping("/modify")
+    public String modify(Model model, String id, MemberVO member) {
+    	    ms.updateMember(member);
+    	    return "redirect:/user/user";
+    	}
 
 	@RequestMapping(value = "user", method = RequestMethod.GET)
     public String list(Model model,String id) {
 		System.out.println(id);
-		MemberVO member = memberDAO.selectMemberById(id);
+		MemberVO member = md.selectMemberById(id);
         model.addAttribute("member", member);
         return "user/user";
     }

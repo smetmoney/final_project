@@ -13,11 +13,20 @@
     <h1>수정 페이지</h1>
     
     <section class="wrap">
-		<table class="info">
+			<form action="/user/modify" method="post">
+				<input type="hidden" name="id" value="${member.id}">
+				<input type="text" name="name" value="${member.name}">
+				<input type="text" name="nname" value="${member.nname}">
+				<input type="email" name="email" value="${member.email}">
+				<input type="password" name="pass">
+				<input type="submit" value="수정하기">
+		</form>
+		
 		
 		<%-- <c:forEach items="${members}" var="member"> --%>
 		
-			<tr>
+<%-- 		<table class="info">
+				<tr>
 				<td>회원번호</td>
 				<td>${member.idn}</td>
 			</tr>
@@ -57,22 +66,10 @@
 					<input type="button" onclick="location.href='${pageContext.request.contextPath}/';" value="수정완료" /> |
 				</td>
 			</tr>
-		</table>
+		</table> --%>
 		
 		<%-- </c:forEach> --%>
 		
-		<script>
-			function withdraw(id) {
-				if (id == 'ADMIN') {
-					alert('관리자 계정은 삭제할 수 없습니다.');
-					return;
-				}
-		
-				if (confirm('정말로 탈퇴 하시겠습니까?')) {
-					// location.href = '<c:url value="/member/withdraw.jsp"/>?id='+ id;
-				}
-			}
-		</script>
 		</section>
 </div>
 <jsp:include page="../common/footer.jsp" />
