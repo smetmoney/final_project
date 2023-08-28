@@ -1,7 +1,8 @@
 package com.bitc.project.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,34 +20,26 @@ public class ChatController {
     @Autowired
     private ChattingHandler chattingHandler;
 	
-	private final List<Integer> chatRoom = new ArrayList<>();
-	private int i = 1;
-	
 	@GetMapping("/chat")
-	public void chat(Model model, int roomNum) {
-		model.addAttribute("roomNum",roomNum);
-	}
+	public void chat(Model model) {}
 
 	// 방생성
 	@GetMapping("create")
-	public String create(RedirectAttributes rttr) {
-		chatRoom.add(i);
-		rttr.addAttribute("roomNum",i);
-		rttr.addFlashAttribute("roomNum",i);
-		i++;
+	public String create(RedirectAttributes rttr,HttpSession session) {
+		Map<String, Object> chatRoom =  chattingHandler.creatRoom();
+		rttr.addFlashAttribute("chatRoom",chatRoom);
+		rttr.addFlashAttribute("roomNum",chatRoom.get("roomNum"));
 		return "redirect:/chat/chat";
 	}
 	
 	// 방 리스트
 	@GetMapping("chatRoom")
 	public void chatRoomList(Model model) {
-		model.addAttribute("chatRoom",chatRoom);
-		model.addAttribute("list",chattingHandler.getRoom());
+		model.addAttribute("chatRoom",chattingHandler.getRoomList());
 	}
 	
 	@GetMapping("joinChat")
 	public String join(int roomNum,RedirectAttributes rttr) {
-		rttr.addAttribute("roomNum",roomNum);
 		rttr.addFlashAttribute("roomNum",roomNum);
 		return "redirect:/chat/chat";
 	}

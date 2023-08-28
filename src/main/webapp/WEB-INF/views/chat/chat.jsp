@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../common/header.jsp" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -7,28 +8,34 @@ pageEncoding="UTF-8"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link rel="stylesheet" href="../resources/css/chat.css">
 <div class="mainWrap">
-<div id="titleBox">
-	<h1>${roomNum}번 채팅방</h1>
-	<hr/>
-</div>
-<div class="container chat-container">
-	<div>
-        <div id="msgArea" class="col chat-message-area">
-
-        </div>
-        <hr/>
-		<div class="col-12 input-col">
-		<div class="input-group mb-3">
-			<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-			<div class="input-group-append">
-				<button class="btn btn-primary" type="button" id="button-send">전송</button>
+	<div id="titleBox">
+		<h1>${roomNum}번 채팅방</h1>
+		<hr/>
+	</div>
+	<div class="container chat-container">
+		<div>
+	        <div id="msgArea" class="col chat-message-area">
+	
+	        </div>
+	        <hr/>
+			<div class="col-12 input-col">
+			<div class="input-group mb-3">
+				<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+				<div class="input-group-append">
+					<button class="btn btn-primary" type="button" id="button-send">전송</button>
+				</div>
+			</div>
 			</div>
 		</div>
+		<div class="col-6">
 		</div>
 	</div>
-	<div class="col-6">
+	<div id="userList">
+		<h4>참여자 목록:</h4>
+		<ul>
+			
+		</ul>
 	</div>
-</div>
 </div>
 <script type="text/javascript">
 
@@ -59,6 +66,7 @@ if(id == ''){
 
 var room = '${roomNum}';
 
+
 var serverAddress = '/project/chat';
 var sock = new SockJS(serverAddress);
 
@@ -69,7 +77,7 @@ sock.onclose = onClose;
 sock.onopen = onOpen;
 
 function sendMessage() {
-	sock.send("ROOM"+room+":"+id+":"+$("#msg").val());
+	sock.send(room+":"+id+":"+$("#msg").val());
 }
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
@@ -88,6 +96,12 @@ function onMessage(msg) {
 	}else{
 		sessionId = arr[0];
 		message = arr[1];			
+	}
+	
+	if(arr[0] === "USERS"){
+		updateUserList(arr[1]);
+		console.log('바로 이곳!!');
+		return;
 	}
 	
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
@@ -112,19 +126,33 @@ function onMessage(msg) {
 }
 //채팅창에서 나갔을 때
 function onClose(evt) {
-	/* var user = id;
+	var user = id;
 	var str = user + " 님이 퇴장하셨습니다.";
-	$("#msgArea").append(str); */
-	sock.send('EXIT:ROOM'+room+":"+id);
+	$("#msgArea").append(str);
 }
 //채팅창에 들어왔을 때
 function onOpen(evt) {
-	var user = id;
-	console.log(user);
-	var str = user + "님이 입장하셨습니다.";
-	$("#msg").val("님이 입장 하셨습니다.");
-	$("#msg").val("");
-	sock.send('ENTER:ROOM'+room+":"+id);
+	if(room==''){
+		alert('비정상적인 접근입니다.');
+		location.href = "chatRoom";
+	}
+	sock.send('ENTER:'+room+':'+id);
+	getUsers();
+}
+
+//GET_USERS 요청에 대한 처리
+function getUsers() {
+    sock.send('GET_USERS:' + room);
+}
+
+// 유저 리스트 업데이트 처리 함수
+function updateUserList(userListStr) {
+    var userList = userListStr.split(",");
+    $("#userList ul").empty(); // 기존 리스트 지우기
+
+    userList.forEach(function (user) {
+        $("#userList ul").append("<li>" + user + "</li>");
+    });
 }
 </script>
 <jsp:include page="../common/footer.jsp" />
