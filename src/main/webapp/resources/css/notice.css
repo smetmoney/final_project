@@ -4,7 +4,7 @@
 .mainWrap{
 	height:1400px;
 	text-align:left;
-	background-color: #f2f2f2;
+	background-color: #f9f9f9;
 }
 /* 높이, 너비  */
 .mainWrap h1{
@@ -25,6 +25,10 @@ hr{
 	text-align:left;
 	margin: 0 auto;
 	max-width : 600px;
+}
+.attachmentImg{
+	max-height:100px;
+	width:auto;	
 }
 input[type="text"],
 textarea{
@@ -132,6 +136,21 @@ label{
 .backBtn{
 	color:#3498db;
 }
+
+#commentWrite {
+       margin-top: 10px;
+       padding: 5px 10px;
+       border: none;
+       background: #3498db;
+       color: #fff;
+       border-radius: 3px;
+       cursor: pointer;
+}
+
+#commentWrite:hover {
+    background-color: #2980b9;
+}
+
 
 [type="radio"], span {
   vertical-align: middle;
@@ -244,3 +263,69 @@ label{
 .countDiv{
 	text-align:center;
 }
+
+/* 댓 글 */
+.commentCount {
+    font-size: 20px;
+}
+#commentWrap {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: left;
+   
+}
+.commentBox {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+.commentBox ul {
+    list-style: none;
+    padding: 0;
+}
+.commentBox li {
+    margin-bottom: 5px;
+}
+#commentWriteBox {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 50%;
+    text-align: left;
+    margin-left:12.5%;
+}
+
+#commentWriteBox ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#commentWriteBox ul li {
+    margin-bottom: 10px;
+}
+
+#commentWrap .pagination{
+	justify-content: flex-start;
+}
+
+#commentWriteBox input {
+	width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.commentBox input{
+	width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;	
+}
+

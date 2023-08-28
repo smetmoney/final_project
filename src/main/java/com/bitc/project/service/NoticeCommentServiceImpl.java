@@ -20,45 +20,29 @@ public class NoticeCommentServiceImpl implements NoticeCommentService{
 	private final NoticeCommentDAO dao;
 
 	@Override
-	public List<NoticeCommentVO> commentList(int bno) throws Exception {
-		return dao.commentList(bno);
-	}
-
-	private String getResult(int result) {
-		return result == 1 ? "SUCCESS" : "FAILED";
-	}
-	
-	@Override
-	public String addComment(NoticeCommentVO vo) throws Exception {
-		int result = dao.insert(vo);
-		return getResult(result);
+	public List<NoticeCommentVO> getCommentList(Criteria cri,int bno) {
+		return dao.getCommentList(cri,bno);
 	}
 
 	@Override
-	public String updateComment(NoticeCommentVO vo) throws Exception {
-		return getResult(dao.update(vo));
+	public String create(NoticeCommentVO vo) {
+		return dao.create(vo) > 0 ? "댓글 등록 완료" : "댓글 등록 실패";
 	}
 
 	@Override
-	public String deleteComment(int cno) throws Exception {
-		return getResult(dao.delete(cno));
+	public String modify(NoticeCommentVO vo) {
+		return dao.modify(vo) > 0 ? "댓글 수정 완료" : "댓글 수정 실패";
 	}
 
 	@Override
-	public List<NoticeCommentVO> commentListPage(int bno, Criteria cri) throws Exception {
-		return dao.listPage(bno, cri);
+	public String delete(int cno) {
+		return dao.delete(cno) > 0 ? "댓글 삭제 완료" : "댓글 삭제 실패";
 	}
 
 	@Override
-	public PageMaker getPageMaker(int bno, Criteria cri) throws Exception {
-		int totalCount = dao.totalCount(bno);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setDisplayPageNum(5);
-		pageMaker.setTotalCount(totalCount);
-		return pageMaker;
+	public PageMaker getPageMaker(Criteria cri,int bno) throws Exception {
+		return new PageMaker(cri,dao.totalCount(bno));
 	}
-
 }
 
 

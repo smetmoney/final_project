@@ -190,7 +190,7 @@
   					console.log(fileInfo);
   					// upload 된 파일 게시글 작성 페이지에 출력
   					let html = "<li>";
-  					html += "<img src='"+fileInfo.imgSrc+"' alert='attachment'/>";
+  					html += "<img class='attachmentImg' src='"+fileInfo.imgSrc+"' alert='attachment'/>";
   					html += "<div>";
   					html += "<a href='"+fileInfo.getLink+"' target='_blank'>";
   					html += fileInfo.fileName
