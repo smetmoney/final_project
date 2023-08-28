@@ -4,7 +4,7 @@
 	text-align:left;
 	background-color: #f2f2f2;
 }
-h1{
+.mainWrap h1{
 	padding-top:125px;
 	margin-left:12.5%;
 }
@@ -44,7 +44,7 @@ hr{
 		width:75%;
 		margin:0 auto;	
 	}
-	/* .editQna{display:inline-block;} */
+	.editQnaBtn{display:inline-block;} 
 	.blank_tr{padding:3px !important; border: none !important;}
 	
 	/* 리스트 색상 */
