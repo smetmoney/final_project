@@ -26,6 +26,10 @@ hr{
 	margin: 0 auto;
 	max-width : 600px;
 }
+.attachmentImg{
+	max-height:100px;
+	width:auto;	
+}
 input[type="text"],
 textarea{
     width: 100%;

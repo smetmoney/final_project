@@ -47,7 +47,7 @@
 						<span class="space">&nbsp;&nbsp;&nbsp;${vo.auth}</span>
 					</c:otherwise>
 				</c:choose>
-		    <span class="nameSpace">최종수정일</span><span class="space">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${vo.updatedate}" type="both" dateStyle="full"/></span>
+		    <span class="nameSpace">최종수정일</span> <span class="space">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${vo.updatedate}" type="both" dateStyle="full"/></span>
 		    <!-- <span class="nameSpace">내용</span> -->  <br/>${vo.content}
 		    
 		  
@@ -77,7 +77,7 @@
     				<li>
     					<input id="commentWriteArea" type="text" name="commentContent" placeholder="댓글을 남겨보세요">
 						<input type="hidden" id="commenterID" name="commenterID" value="${userInfo.nname}">
-						<input type="hidden" id="bno" name="imageBoardBNO" value="${vo.bno}">
+						<input type="hidden" id="bno" name="noticeBNO" value="${vo.bno}">
    					</li>
     				<li>
     					<button id="commentWrite">등록</button>
@@ -85,7 +85,7 @@
     			</ul>
     		</div>
    		</c:if>
-	<div id="commentWrap">
+	    <div id="commentWrap">
 	    	<h4>댓글 목록 : </h4>
 			<c:if test="${!empty comments}">
  				<c:forEach var="comment" items="${comments}">
@@ -160,18 +160,13 @@ if (resultMessage !== "") {
     alert(resultMessage); // 메시지 팝업 표시
 }
 function adjustMainWrapSize() {
-    // .noticeDetail 요소 가져오기
+    // 요소 가져오기
     var noticeDetail = document.querySelector('.noticeDetail');
-    // .mainWrap 요소 가져오기
     var mainWrap = document.querySelector('.mainWrap');
-	// .commentWrap 요소 가져오기 
     var commentWrap = document.querySelector('.commentWrap');
-	
-    // .noticeDetail의 높이 가져오기
+    // 높이 가져오기
     var noticeDetailHeight = noticeDetail.offsetHeight;
-    // .commentWrap의 높이 가져오기
     var commentWrapHeight = commentWrap.offsetHeight;
-    
     // .mainWrap의 높이 설정
     mainWrap.style.height = (noticeDetailHeight + commentWrap + 400) + 'px';
 }
@@ -179,6 +174,102 @@ function adjustMainWrapSize() {
 // 함수 호출
 adjustMainWrapSize();
 
+</script>
+<script>
+
+	// 게시글 수정 (게시글작성자 == 로그인멤버)
+	$("#modify_btn").on("click",function(e){
+		$("#modifyForm").attr("action","modify");
+		$("#modifyForm").submit();
+	})
+	// 게시글 삭제 (게시글작성자 == 로그인멤버)
+	$("#delete_btn").on("click",function(e){
+		if(confirm('정말로 삭제?')){
+			$("#modifyForm").attr("action","delete");
+			$("#modifyForm").submit();
+			alert('게시글 삭제완료!');
+		}
+	})
+	// 댓글 수정(진행중)
+	$(".commentModify").on("click",function(){
+		console.log("클릭!1");
+		let cno = $(this).data('cno');
+		$(this).parent("div").hide();
+		$("#hide"+cno).show();
+	})
+	$(".modCancle").on("click",function(){
+		let cno = $(this).data('cno');
+		$(this).parent("div").hide();
+		$("#show"+cno).show();
+	})
+	$(".modSubmit").on("click",function(){
+		let cno = $(this).data('cno');
+		let text = $("#modText"+cno).val();
+		$.ajax({
+			type : "PATCH",
+			url : "commentMod",
+			data : JSON.stringify({
+				commentNO : cno,
+				commentContent : text
+			}),
+			dataType : "text",
+			contentType : "application/json",
+			success : function(data){
+				alert(data);
+				location.reload();
+			}
+		});
+	});
+	// 댓글 삭제
+	$(".commentDelete").on("click", function () {
+	    let cno = $(this).attr('data-cno');
+	    if(confirm("정말로 삭제?")){
+	        $.ajax({
+	            type: "DELETE",
+	            url: "commentDel/"+cno,
+	            dataType: "text",
+	            contentType : "application/json",
+	            success: function (result) {
+	                alert(result);
+	                location.reload();
+	            }
+	        });
+	    }else{
+	    	return;	
+	    }
+    });
+	// 댓글 삽입 요청 처리
+	$("#commentWrite").click(function(){
+		let auth = $("#commenterID").val();
+		let text = $("#commentWriteArea").val();
+		let bno = $("#bno").val();
+		
+		if(text.trim() == ''){
+			alert('댓글 내용을 입력하세요!');
+			return;
+		}
+ 		$.ajax({
+			type : "POST",
+			url : "commentWrite",
+			data : {
+				noticeBNO : bno,
+				commentContent : text,
+				commenterID : auth
+			},
+			dataType : "text",
+			success : function(result){
+				alert(result);
+				location.reload();
+			}
+		}); 
+	});
+	
+    $("#commentWriteArea").on('keydown', function(e) {
+        if (e.keyCode === 13) { // 13 == enter
+            e.preventDefault(); 
+            $("#commentWrite").click();
+        }
+    });
 </script>
 
 
