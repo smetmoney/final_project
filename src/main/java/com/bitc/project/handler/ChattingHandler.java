@@ -13,6 +13,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 
 @Component
@@ -25,16 +26,21 @@ public class ChattingHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         
     	String payload = message.getPayload();
-        String[] code = payload.split(":");
+        String[] code = payload.split(":");  
         
-        if (code[0].equals("ENTER")) {
+        if(code[0].equals("ENTER")) {
             String roomCode = code[1];
+            String userId = code[2];
+            
+            session.getAttributes().put("userId",userId);
+            
             room.putIfAbsent(roomCode, new ArrayList<>());
             List<WebSocketSession> roomSessions = room.get(roomCode);
             roomSessions.add(session);
+            
             for (WebSocketSession user : roomSessions) {
             	if(user.isOpen()) {
-            		user.sendMessage(new TextMessage(code[2]+"님이 접속하였습니다!"));
+            		user.sendMessage(new TextMessage(userId+"님이 접속하였습니다!"));
             	}
             }
         }else {
@@ -46,7 +52,8 @@ public class ChattingHandler extends TextWebSocketHandler {
             }
         }
     }
-    @Override
+
+	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         list.add(session);
     }
@@ -54,5 +61,24 @@ public class ChattingHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	list.remove(session);
+    	List<WebSocketSession> list = null;
+    	String userId = (String) session.getAttributes().get("userId");
+        for (List<WebSocketSession> roomSessions : room.values()) {
+            if(roomSessions.contains(session)) {
+            	roomSessions.remove(session);
+            	list = roomSessions;
+            	break;
+            }
+        }
+        for(WebSocketSession s : list) {
+        	s.sendMessage(new TextMessage(userId+"님이 탈주하였습니다!"));
+        }
     }
+    
+    public Map<String, List<WebSocketSession>> getRoom() {
+		return room;
+	}
+	public void setRoom(Map<String, List<WebSocketSession>> room) {
+		this.room = room;
+	}
 }

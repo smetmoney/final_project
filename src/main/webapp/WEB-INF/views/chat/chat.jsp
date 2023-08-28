@@ -112,9 +112,10 @@ function onMessage(msg) {
 }
 //채팅창에서 나갔을 때
 function onClose(evt) {
-	var user = id;
+	/* var user = id;
 	var str = user + " 님이 퇴장하셨습니다.";
-	$("#msgArea").append(str);
+	$("#msgArea").append(str); */
+	sock.send('EXIT:ROOM'+room+":"+id);
 }
 //채팅창에 들어왔을 때
 function onOpen(evt) {
