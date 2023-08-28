@@ -17,6 +17,7 @@
                         <a href="joinChat?roomNum=${room}">
                             ${room}번방
                         </a>
+                        <h4>${list.room.size}</h4>
                     </div>
                 </c:forEach>
                 </div>
