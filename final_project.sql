@@ -11,6 +11,7 @@ CREATE TABLE MEMBER (
     STOPU BOOLEAN DEFAULT FALSE,			-- 정지 유저 구분
     POINT INT DEFAULT 0						-- 포인트(구매같은거 할때 쓰는)
 );
+ALTER TABLE member ADD withdraw BOOLEAN DEFAULT FALSE;
 -- 닉네임 unique로 변경
 -- 회원가입시 중복 확인 처리 필요 (id,nname)
 

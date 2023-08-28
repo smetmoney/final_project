@@ -43,15 +43,14 @@ public class MemberServiceImpl implements MemberService {
         memberDAO.updateMember(membervo);
     }
 
-    @Override
-    public void deleteMember(String ID) {
-    	
-    	if (ID == "ADMIN" && ID == "admin") {
-            throw new RuntimeException("관리자 계정은 삭제할 수 없습니다.");
-        }
-    	
-        memberDAO.deleteMember(ID);
-    }
+	/*
+	 * @Override public void deleteMember(String ID) {
+	 * 
+	 * if (ID == "ADMIN" && ID == "admin") { throw new
+	 * RuntimeException("관리자 계정은 삭제할 수 없습니다."); }
+	 * 
+	 * memberDAO.deleteMember(ID); }
+	 */
 
     @Override
     public MemberVO selectIdAndPass(LoginDTO dto) {
@@ -66,6 +65,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String checkNick(String nname) {
 		return memberDAO.checkNick(nname) == null ? "OK" : "X";
+	}
+
+	@Override
+	public void withdraw(MemberVO member) {
+		memberDAO.withdraw(member);
 	}
 
 	/*

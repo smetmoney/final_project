@@ -36,11 +36,11 @@ public class ManagementController {
         return "management/management";
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @GetMapping("detail")
     public String detail(Model model, String id) {
         MemberVO member = ms.findMemberById(id);
         model.addAttribute("member", member);
-        return "detail";
+        return "management/detail";
     }
     
     
