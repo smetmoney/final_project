@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resources/game/css/start.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Insert title here</title>
+<title>GAME</title>
 <script  src="${path}/resources/game/js/start.js"></script>
 <script src="${path}/resources/game/js/scene.js"></script>
 <script src="${path}/resources/game/js/find.js"></script>
@@ -45,7 +45,10 @@
 	<!-- 서브게임을 나타내는 박스 -->
 	<div id="subGameBox">
 	</div>
+	<jsp:include page="common/end.jsp" />	
 </body>
 <script src="${path}/resources/game/js/game.js"></script>
 <script src="${path}/resources/game/js/nickcheck.js"></script>
+<script src="${path}/resources/game/js/collision.js"></script>
+<script src="${path}/resources/game/js/runWigoAndEmily.js"></script>
 </html>
