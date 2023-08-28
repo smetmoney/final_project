@@ -44,9 +44,9 @@ public class UserController {
         return "user/user";
     }
 	
-	@PostMapping("/withdraw")
+	@GetMapping("/withdraw")
 	public String memberWithdraw(MemberVO member, RedirectAttributes redirectAttributes) {
-	    MemberService.withdraw(member);
+	    ms.withdraw(member);
 	    redirectAttributes.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
 	    return "redirect:/";
 	}

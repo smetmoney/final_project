@@ -17,6 +17,8 @@ public class MemberVO {
     private String birthdate; // 생년월일
     private String gender;  // 성별
     private int point;		// 포인트
+    private boolean withdraw;
+    
     
     private boolean autoLogin;
     

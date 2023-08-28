@@ -22,12 +22,9 @@ public interface MemberService {
     void updateMember(MemberVO membervo);
     
     // 정보 삭제
-    void deleteMember(String ID);
+    void withdraw(MemberVO member);
 
     // 여기서 부터는 User
-    
-	static void withdraw(MemberVO member) {
-	}
 	
 	// 로그인 정보 찾기
 	MemberVO selectIdAndPass(LoginDTO dto);

@@ -18,9 +18,10 @@
                 <th>이름</th>
                 <th>닉네임</th>
                 <th>성별</th>
-                <th>회원등록일</th>
+                <th>생년월일</th>
                 <th>이메일</th>
                 <th>포인트</th>
+                <th>ㅗㅗ</th>
             </tr>
         </thead>
         <tbody>
@@ -35,10 +36,9 @@
                     <td>${member.email}</td>
                     <td>${member.point}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/management/detail.jsp?id=${member.id}">상세보기 | </a>
-                        <a href="${pageContext.request.contextPath}/management/modify.jsp?id=${member.id}">수정 | </a>
-                        <a href="delete.jsp?id=${member.id}">탈퇴</a>
-                    </td>
+                        <a href="detail?id=${member.id}">상세보기 | </a>
+                        <a href="modify?id=${member.id}">수정 | </a>
+                        <a href="delete?id=${member.id}">탈퇴</a>
                 </tr>
             </c:forEach>
         </tbody>

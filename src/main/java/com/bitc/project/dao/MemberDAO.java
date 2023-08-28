@@ -45,8 +45,8 @@ public interface MemberDAO {
 	/**
 	 * 정보 삭제
 	 * */
-	@Delete("DELETE FROM member WHERE id = #{id}")
-	void deleteMember(String id);
+	@Update("UPDATE member SET withdraw = true WHERE id = #{id}")
+	void withdraw(MemberVO vo);
 	
 	/**
 	 * 아이디 비밀번호 검색
