@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.service.MemberService;
 import com.bitc.project.util.Criteria;
-import com.bitc.project.util.PageMaker;
 import com.bitc.project.vo.MemberVO;
 
 @Controller
@@ -41,6 +41,19 @@ public class ManagementController {
         MemberVO member = ms.findMemberById(id);
         model.addAttribute("member", member);
         return "detail";
+    }
+    
+    @GetMapping("/modify")
+    public String modify(Model model, String id) {
+    	MemberVO vo = ms.findMemberById(id);
+    	model.addAttribute("member", vo);
+    	return "management/modify";
+    }
+    
+    @PostMapping("/modify")
+    public String modify(Model model, String id, MemberVO vo) {
+    	ms.updateMember(vo);
+    	return "redirect:/management/management";
     }
     
     

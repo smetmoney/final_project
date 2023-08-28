@@ -2,9 +2,9 @@ package com.bitc.project.controller;
 
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.service.NoteService;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.util.PageMaker;
+import com.bitc.project.vo.MemberVO;
 import com.bitc.project.vo.NoteVO;
 
 @Controller
@@ -25,7 +27,10 @@ public class NoteController {
 	
 	@Autowired
 	private NoteService ns;
-
+	
+	@Autowired
+	private MemberDAO md;
+	
 	@GetMapping("note")
     public void note(Model model, Criteria cri,HttpServletRequest request) throws Exception {
 		String id = request.getParameter("id");
@@ -46,13 +51,26 @@ public class NoteController {
     		NoteVO vo,
     		RedirectAttributes rttr
     		) throws Exception{
+    	
+    	boolean userCheck = us(vo.getTo_Id());
+    	
+    	if (!userCheck) {
+            rttr.addFlashAttribute("errorMessage", "존재하지 않는 회원에게는 쪽지를 보낼 수 없습니다.");
+            return "redirect:/note/noteWrite";
+        }
+    	
        ns.createNote(vo);
        rttr.addAttribute("message","쪽지를 보냈습니다");
         
-        return "redirect:/note/note";
+  	 return "redirect:/note/note";
     }
-    
-    @GetMapping("noteDetail")
+
+	private boolean us(String to_Id) {
+		MemberVO vo = md.selectMemberById(to_Id);
+		return vo != null;
+	}
+
+	@GetMapping("noteDetail")
     public String noteDetail(
     		@RequestParam("nno")
     		int nno, Model model
@@ -63,11 +81,16 @@ public class NoteController {
     }
     
     @GetMapping("noteReply")
-    public String noteReply() throws Exception {
+    public String noteReply(Model model,@RequestParam("from") String from) throws Exception {
     	
+    	NoteVO noteVo = new NoteVO();
+    	noteVo.setTo_Id("주는사람");
+    	noteVo.setFrom_Id(from);
     	
-		return null;
-    	
+    	model.addAttribute("noteVO", noteVo);
+    	model.addAttribute("to_Id", noteVo.getTo_Id());
+    	model.addAttribute("from_Id", noteVo.getFrom_Id());
+		return "note/noteReply";
     }
     
     @PostMapping("delete")
@@ -76,7 +99,7 @@ public class NoteController {
     		ns.delete(nno[i]);
     	}
     	
-    	return "redirect:/note/note";
+    	 return "redirect:/note/note";
     	
     }
   }

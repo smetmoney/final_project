@@ -25,14 +25,14 @@ public class UserController {
 	
     @GetMapping("/modify")
     public String modify(Model model, String id) {
-	    MemberVO member = ms.findMemberById(id);
-	    model.addAttribute("member", member);
+	    MemberVO vo = ms.findMemberById(id);
+	    model.addAttribute("member", vo);
 	    return "user/modify";
     	}
     
     @PostMapping("/modify")
-    public String modify(Model model, String id, MemberVO member) {
-    	    ms.updateMember(member);
+    public String modify(Model model, String id, MemberVO vo) {
+    	    ms.updateMember(vo);
     	    return "redirect:/user/user";
     	}
 
