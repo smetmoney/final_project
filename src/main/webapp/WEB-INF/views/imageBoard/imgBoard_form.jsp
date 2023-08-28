@@ -9,9 +9,6 @@
 		location.href = "/project";
 	}
 </script>
-<style>
-
-</style>
 <div id="mainWrap">
 	<div id="titleBox">
     	<h1>게시글작성</h1>

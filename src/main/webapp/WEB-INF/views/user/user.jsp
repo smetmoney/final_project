@@ -7,9 +7,7 @@
 <jsp:include page="../common/header.jsp" />
 
 <div class="mainWrap">
-	
     <h1>내정보 페이지</h1>
-    
     <section class="wrap">
 		<table class="info">
 			<tr>
