@@ -3,7 +3,46 @@ body {
     font-size: 16px;
     background-color: #f7f7f7;
 }
+/* ================================= */
+.mainWrap{
+	padding: 50px;	
+}
 
+#titleBox{
+	text-align: left;
+	margin: 0 auto;
+}
+
+.memberInfo:hover{
+	cursor: pointer;
+	color: #3366cc;
+	font-weight: bolder;
+	font-size: 15px;
+}
+
+#userInfo{
+	width: 30%;
+	margin: 0 auto;
+}
+
+input[type='button']{
+    padding: 5px 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+input[type='button']:hover {
+    background-color: #0056b3;
+}
+
+.th{
+	width: 20%;	
+}
+/* ================================ */
 h1 {
     font-size: 24px;
     font-weight: bold;
@@ -24,7 +63,7 @@ section.wrap {
 table {
     border-collapse: collapse;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 table tr:nth-child(even) {

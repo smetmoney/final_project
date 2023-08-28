@@ -43,6 +43,7 @@ public class ManagementController {
         return "management/detail";
     }
     
+    
     @GetMapping("/modify")
     public String modify(Model model, String id) {
     	MemberVO vo = ms.findMemberById(id);
@@ -51,11 +52,10 @@ public class ManagementController {
     }
     
     @PostMapping("/modify")
-    public String modify(Model model, String id, MemberVO vo) {
+    public String modify(Model model, MemberVO vo) {
+    	System.out.println("여기 왔수꽝?");
     	ms.updateMember(vo);
     	return "redirect:/management/management";
     }
-    
-    
 	
 }
