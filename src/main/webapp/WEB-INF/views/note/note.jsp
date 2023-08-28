@@ -27,7 +27,7 @@
 	        <c:choose>
 	            <c:when test="${note.to_Id eq sessionScope.userInfo.id}">
 	                <div class="note">
-	                    <p>${note.nno}</p>
+	                    <%-- <p>${note.nno}</p> --%>
 	                    <input type="checkbox" name="nno" value="${note.nno}" />
 	                    <a href="noteDetail?nno=${note.nno}">
 	                        <h2>${note.title}</h2>

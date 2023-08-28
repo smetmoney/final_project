@@ -40,7 +40,9 @@ public class ManagementController {
     public String detail(Model model, String id) {
         MemberVO member = ms.findMemberById(id);
         model.addAttribute("member", member);
-        return "management/detail";
+        return "detail";
     }
+    
+    
 	
 }
