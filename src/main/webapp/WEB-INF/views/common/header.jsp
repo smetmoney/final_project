@@ -28,6 +28,7 @@
 	<div id="memberBox">
 	<c:choose>
 	    <c:when test="${not empty sessionScope.userInfo}">
+		<jsp:include page="./chatBot.jsp" />
 	       <h1>안녕하세요, ${userInfo.nname} 님</h1>
 	       <c:choose>
 	            <c:when test="${userInfo.nname eq 'admin'}">
