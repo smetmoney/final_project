@@ -38,8 +38,7 @@
                     <td>
                         <a href="detail?id=${member.id}">상세보기 | </a>
                         <a href="modify?id=${member.id}">수정 | </a>
-                        <a href="delete?id=${member.id}">삭제</a>
-                    </td>
+                        <a href="delete?id=${member.id}">탈퇴</a>
                 </tr>
             </c:forEach>
         </tbody>
