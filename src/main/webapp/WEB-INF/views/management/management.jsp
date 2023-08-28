@@ -35,9 +35,9 @@
                     <td>${member.email}</td>
                     <td>${member.point}</td>
                     <td>
-                        <a href="detail.jsp?id=${member.id}">상세보기 | </a>
-                        <a href="modify.jsp?id=${member.id}">수정 | </a>
-                        <a href="delete.jsp?id=${member.id}">삭제</a>
+                        <a href="${pageContext.request.contextPath}/management/detail.jsp?id=${member.id}">상세보기 | </a>
+                        <a href="${pageContext.request.contextPath}/management/modify.jsp?id=${member.id}">수정 | </a>
+                        <a href="delete.jsp?id=${member.id}">탈퇴</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -84,6 +84,7 @@ footer {
 .noteList h1 {
     font-size: 24px;
     margin: 20px 0;
+    color : white;
 }
 
 .note {
@@ -113,54 +114,58 @@ footer {
 
 /* Style for checkboxes */
 
-/* .note input[type="checkbox"] {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    opacity: 0;
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
-    z-index: 1;
+.checks.etrans input[type="checkbox"] + label {
+  padding-left: 30px;
+}
+.checks.etrans input[type="checkbox"] + label:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 0;
+  opacity: .6;
+  box-shadow: none;
+  border-color: #6cc0e5;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
 }
 
-.note input[type="checkbox"] + label {
-    position: absolute;
-    top: 15px;
-    left: 35px;
-    display: inline-block;
-    padding-left: 25px;
-    margin: 0;
-    line-height: 18px;
-    cursor: pointer;
-    font-size: 14px;
+.checks.etrans input[type="checkbox"]:checked + label:before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity:1; 
+  background: transparent;
+  border-color:transparent #6cc0e5 #6cc0e5 transparent;
+  border-top-color:transparent;
+  border-left-color:transparent;
+  -ms-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+  transform:rotate(45deg);
 }
 
-.note input[type="checkbox"] + label::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    transition: all 0.2s ease;
+.no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before {
+  /*content:"\2713";*/
+  content: "\2714";
+  top: 0;
+  left: 0;
+  width: 21px;
+  line-height: 21px;
+  color: #6cc0e5;
+  text-align: center;
+  border: 1px solid #6cc0e5;
 }
-
-.note input[type="checkbox"]:checked + label::before {
-    background-color: #007bff;
-    border-color: #007bff;
-} */
 
 /* Hover effect */
 
-/* .note:hover {
+.note:hover {
     background-color: #f0f0f0;
     transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgb(0, 0, 0);
 }
- */
+
 
 
 /* 상세보기 페이지 */
@@ -191,6 +196,7 @@ footer {
 #modifyWarp {
 	display: inline-flex; !important
 	margin: 0;
+	margin-bottom: 25px;
 }
 
 button {
@@ -208,6 +214,9 @@ button:hover {
     background-color: #2980b9;
 }
 
+button a{
+	color: white;
+}
 .main{
 	border: 1px solid #ddd;
     padding: 25px;
@@ -290,3 +299,7 @@ label{
 #editor{
 	margin-top: 15px;
 }
+
+
+/* 링크 버튼 */
+

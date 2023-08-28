@@ -12,7 +12,6 @@
 
 <div class="noteDetail">
 
-	<form action="noteDetail">
     <h2>제목 : ${note.title}</h2> <br/>
     
     <div class="fromId">
@@ -26,12 +25,11 @@
     <div class="toId">
     <p>받은 사람: ${note.to_Id}</p>
     </div>
-    </form>
 </div>
 
 <div id="modifyWarp">
-<button><a href="<c:url value='/note/note?id=${userInfo.id}'/>">메세지함으로 돌아가기</a></button> <br/>
-<button><a href="<c:url value='/note/noteReply?id=${userInfo.id}'/>">답장하기</a></button>
+<button class="link-button"><a href="<c:url value='/note/note?id=${userInfo.id}'/>">메세지함으로 돌아가기</a></button> <br/>
+<button><a href="<c:url value='/note/noteReply?id=${userInfo.id}&from=${note.from_Id}'/>">답장하기</a></button>
 </div>
 
 </div>

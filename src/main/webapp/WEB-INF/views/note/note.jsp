@@ -26,9 +26,11 @@
 	    <c:forEach items="${notes}" var="note">
 	        <c:choose>
 	            <c:when test="${note.to_Id eq sessionScope.userInfo.id}">
-	                <div class="note">
+	                <div class="note checks etrans">
 	                    <%-- <p>${note.nno}</p> --%>
-	                    <input type="checkbox" name="nno" value="${note.nno}" />
+	                    <input type="checkbox" name="nno" value="${note.nno}"  /> 
+	                    <!--  id="ex_chk3" --> 
+	                    <label>체크박스</label> 
 	                    <a href="noteDetail?nno=${note.nno}">
 	                        <h2>${note.title}</h2>
 	                        <p>${note.content}</p>
