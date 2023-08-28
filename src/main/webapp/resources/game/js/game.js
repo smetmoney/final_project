@@ -251,7 +251,7 @@ function createAction(sceneObject) {
 };
 
 function playSound(sound) {
-	const link = '/resources/sound/' + sound + '.mp3';
+	const link = '../resources/sound/' + sound + '.mp3';
 	const audio = new Audio(link);
 	audio.play();
 }
