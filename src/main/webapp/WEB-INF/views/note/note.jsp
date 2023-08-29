@@ -23,6 +23,7 @@
     <h1>쪽지함</h1>
 	
 	   <form action="${pageContext.request.contextPath}/note/delete" method="post">
+	   <input type="hidden" name="from_Id" value="${userInfo.id}">
 	    <c:forEach items="${notes}" var="note">
 	        <c:choose>
 	            <c:when test="${note.to_Id eq sessionScope.userInfo.id}">
