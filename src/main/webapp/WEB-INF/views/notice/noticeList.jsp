@@ -75,35 +75,54 @@
 			        </c:forEach>
 			    </table>
 			    <br/>
-   	    		<c:if test="${!empty pm and pm.maxPage > 1}">
-					<tr>
-						<th colspan="5">
-							<c:if test="${pm.first}">
-								<a href="noticeList?page=1">[&laquo;]</a>
-							</c:if>
-							<c:if test="${pm.prev}">
-								<a href="noticeList?page=${pm.startPage-1}">[&lt;]</a>
-							</c:if>
-							<c:forEach var="i" 
-									   begin="${pm.startPage}" 
-									   end ="${pm.endPage}">
-								<a href="noticeList?page=${i}">[${i}]</a>
-							</c:forEach>
-							<c:if test="${pm.next}">
-								<a href="noticeList?page=${pm.endPage+1}">[&gt;]</a>
-							</c:if>
-							<c:if test="${pm.last}">
-								<a href="noticeList?page=${pm.maxPage}">[&raquo;]</a>
-							</c:if>
-						</th>
-					</tr>
-				</c:if>
+   	    		 <c:if test="${!empty pm and pm.maxPage > 1}">
+			        <div class="pagination">
+			               
+			               <tr>
+			                   <th colspan="3">
+			                       <c:if test="${pm.first}">
+			                           <a href="noticeList?page=1">&laquo;</a>
+			                       </c:if>
+			                       <c:if test="${pm.prev}">
+			                           <a href="noticeList?page=${pm.startPage-1}">&lt;이전</a>
+			                       </c:if>
+			                       <c:forEach var="i" begin="${pm.startPage}" end ="${pm.endPage}">
+			                           <a href="noticeList${pm.mkQueryStr(i)}">${i}</a>
+			                       </c:forEach>
+			                       <c:if test="${pm.next}">
+			                           <a href="noticeList?page=${pm.endPage+1}">다음&gt;</a>
+			                       </c:if>
+			                       <c:if test="${pm.last}">
+			                           <a href="noticeList?page=${pm.maxPage}">&raquo;</a>
+			                       </c:if>
+			                   </th>
+			               </tr>
+			        </div>
+		   		 </c:if>
 			</c:when>
 			<c:otherwise>
-				<h3>공지사항을 준비 중입니다 ...</h3>
+				<h3>공지가 작성되지 않았습니다.</h3>
 			</c:otherwise>
 		</c:choose>
-	
+	<hr/>  
+	<div id="content_bot"> 
+	    <div class="searchBar">
+	        <table>
+	            <tr>
+	                <td>
+	                    <select id="option" name="searchType">
+	                        <option value="all">전체</option>
+	                        <option value="title">제목</option>
+	                        <option value="content">내용</option>
+	                    </select>
+	                    <input type="text" name="searchValue" id='searchValue'>
+	                    <button type="button" id="searchBtn" name="search">검색</button>
+	                    <button type="button" id="searchCancleBtn" name="searchCancle">검색 취소</button>
+	                </td>
+	            </tr>
+	        </table>
+	    </div>
+    </div>
 		
 	</div>
 </div>
@@ -114,7 +133,21 @@ var resultMessage = "${result}"; // 서버에서 전달된 메시지
 if (resultMessage !== "") {
     alert(resultMessage); // 메시지 팝업 표시
 }
+$("#searchBtn").on("click",function(){
+	let option = $('select').val();
+	let value = $('#searchValue').val();
+	location.href = "noticeList?searchValue="+value+"&searchType="+option;
+});
+$("#searchCancleBtn").on("click",function(){
+	location.href = "noticeList";
+});
 
+$("input[name='searchValue']").on('keydown', function(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault(); 
+        $("#searchBtn").click();
+    }
+});
 </script>
 
 

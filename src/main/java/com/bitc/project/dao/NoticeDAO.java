@@ -5,8 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
+import com.bitc.project.provider.BoardQueryProvider;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.util.Criteria;
 import com.bitc.project.vo.NoticeVO;
 
@@ -39,6 +42,15 @@ public interface NoticeDAO {
 	// 고정한 공지사항만 들고오기
 	@Select("SELECT * FROM noticeBoard WHERE fixedNotice=true ORDER BY updatedate DESC Limit 0, 5")
 	List<NoticeVO> fixedNoticeList();
+	
+	// 검색 기능이 추가된 게시글 목록
+	@SelectProvider(type=BoardQueryProvider.class, method="searchSelectSql")
+	List<NoticeVO> searchList(SearchCriteria cri) throws Exception;
+	//Search 된 결과의 게시물이 몇개인지 검색
+	@SelectProvider(type=BoardQueryProvider.class, method="searchSelectCount")
+	int searchListCount(SearchCriteria cri) throws Exception;
+	
+	
 		
 	
 }
