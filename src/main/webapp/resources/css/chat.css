@@ -9,8 +9,33 @@
     .mainWrap {
         text-align: center;
         padding: 20px 5%;
+        position: relative;
     }
-    
+    #userList {
+	    width: 250px;
+	    padding: 10px;
+	    border: 1px solid #ccc;
+	    border-radius: 5px;
+	    margin-top: 20px;
+	    position: absolute;
+	    top: 85px;
+	    text-align: left;
+	}
+	
+	#userList h4 {
+	    margin-bottom: 10px;
+	}
+	
+	#userList ul {
+	    list-style: none;
+	    padding: 0;
+	    text-align: left;
+	}
+	
+	#userList li {
+	    margin-bottom: 5px;
+	}
+	    
     #titleBox {
         margin-bottom: 20px;
         text-align: left;
