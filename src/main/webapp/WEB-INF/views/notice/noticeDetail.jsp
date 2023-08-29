@@ -36,7 +36,7 @@
 	<hr/>
 	<div class="noticeDetail">
 		<div class="backBtnDiv">
-			<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
+			<a href="${path}/notice/noticeList" class="backBtn">[목록으로]</a>
 		</div>
 		    <span class="nameSpace">제목</span> <span class="space">&nbsp;&nbsp;&nbsp;${vo.title}</span>
 		    <span class="nameSpace">작성자</span>
@@ -91,7 +91,7 @@
 	</div>
 	<div class="separate"> </div>
 			<div class="backBtnDiv">
-				<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
+				<a href="${path}/notice/noticeList" class="backBtn">[목록으로]</a>
 			</div>
 		    <c:choose>
 			<c:when test="${userInfo.id eq 'admin'}">

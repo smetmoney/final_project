@@ -18,7 +18,7 @@
 <!--         <label for="content">내 &nbsp; 용</label><br> -->
         <textarea id="content" name="content" ></textarea><br>
         <!-- <button type="submit" id="addBtn">작성 완료</button> -->
-        <input type="button" value="작성 완료" id="addBtn"> -->
+        <input type="button" value="작성 완료" id="addBtn">
 		<div>
 			<label>FILE DROP HERE</label>
 			<div class="fileDrop">
