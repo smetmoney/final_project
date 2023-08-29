@@ -99,7 +99,7 @@ public class NoteController {
     		ns.delete(nno[i]);
     	}
     	
-    	 return "redirect:/note/note";
+    	 return "note/note";
     	
     }
   }

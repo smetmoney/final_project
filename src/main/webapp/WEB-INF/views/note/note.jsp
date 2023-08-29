@@ -30,7 +30,7 @@
 	                    <%-- <p>${note.nno}</p> --%>
 	                    <input type="checkbox" name="nno" value="${note.nno}" id="check${note.nno}"  /> 
 	                    <!--  id="ex_chk3" --> 
-	                    <label for="check${note.nno}">체크박스</label> 
+	                    <label for="check${note.nno}">선택</label> 
 	                    <a href="noteDetail?nno=${note.nno}">
 	                        <h2>${note.title}</h2>
 	                        <p>${note.content}</p>
@@ -46,7 +46,7 @@
                 <tr>
                     <th colspan="3">
                         <c:if test="${pm.first}">
-                            <a href="note?page=1">&lt;처음</a>
+                            <a href="note?page=1&id=${userInfo.id}">&lt;처음</a>
                         </c:if>
                         <c:if test="${pm.prev}">
                             <a href="note?page=${pm.startPage-1}&id=${userInfo.id}">&lt;이전</a>

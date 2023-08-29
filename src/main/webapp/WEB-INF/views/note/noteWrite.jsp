@@ -35,7 +35,7 @@ let edit_toolbar = "blocks fontfamily fontsize"
 tinymce.init({
 	language : "ko_KR",
 	selector: '#editor',
-	height: 600,
+	height: 500,
 	toolbar: edit_toolbar,
 	menubar :false,
 	  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
