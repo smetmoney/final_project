@@ -19,6 +19,7 @@ public class MemberVO {
     private int point;		// 포인트
     
     private boolean autoLogin;
+
     
 	
 }
