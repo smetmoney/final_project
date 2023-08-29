@@ -14,7 +14,7 @@
     }
 
     .note h2 {
-        margin: 0;
+        margin: 5px;
     }
 </style>
 
@@ -32,8 +32,7 @@
 	                    <!--  id="ex_chk3" --> 
 	                    <label for="check${note.nno}">선택</label> 
 	                    <a href="noteDetail?nno=${note.nno}">
-	                        <h2>${note.title}</h2>
-	                        <p>${note.content}</p>
+	                        <h2>제목 : ${note.title}</h2>
 	                    </a>
 	                </div>
 	            </c:when>

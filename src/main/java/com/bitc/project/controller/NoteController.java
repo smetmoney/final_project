@@ -1,6 +1,7 @@
 package com.bitc.project.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,7 +61,7 @@ public class NoteController {
         }
     	
        ns.createNote(vo);
-       rttr.addAttribute("message","쪽지를 보냈습니다");
+       rttr.addAttribute("id", vo.getFrom_Id());
         
   	 return "redirect:/note/note";
     }
@@ -94,12 +95,14 @@ public class NoteController {
     }
     
     @PostMapping("delete")
-    public String delete(int[] nno) throws Exception {
+    public String delete(int[] nno,RedirectAttributes rttr, NoteVO vo) throws Exception {
     	for(int i = 0; i < nno.length; i++) {
     		ns.delete(nno[i]);
     	}
     	
-    	 return "note/note";
+    	rttr.addAttribute("id", vo.getFrom_Id());
+    	System.out.println(vo.getFrom_Id());
+    	return "note/note";
     	
     }
   }
