@@ -251,6 +251,13 @@ CREATE TABLE IF NOT EXISTS notice_comment (
 );
 --    CONSTRAINT fk_nc_nb_bno FOREIGN KEY (NoticeBNO)    -- 외부 게시판 값 불러오기
 --        REFERENCES noticeBoard(bno),
+-- 공지사항 첨부파일 
+CREATE TABLE noticeAttach(
+	fullName VARCHAR(300) NOT NULL,
+	bno INT NOT NULL,
+	regdate TIMESTAMP NULL DEFAULT NOW(),
+	FOREIGN KEY(bno) REFERENCES noticeBoard(bno) ON DELETE CASCADE
+);
 INSERT INTO noticeBoard(title,content,auth) 
 SELECT title,content,auth FROM noticeBoard;
 
@@ -259,8 +266,10 @@ DESC noticeBoard;
 DESC notice_comment;
 SELECT * FROM noticeBoard;
 SELECT * FROM notice_comment;
+SELECT * FROM noticeAttach;
 drop table noticeBoard;
 drop table notice_comment;
+drop table noticeAttach;
 --INSERT INTO notice_comment (NoticeBNO,CommentContent,CommenterID) VALUES('1','댓글','admin');
 
 

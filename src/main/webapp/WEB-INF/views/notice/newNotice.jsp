@@ -5,7 +5,7 @@
 <div class="mainWrap">
     <h1>새 공지사항 작성하기</h1>
     <hr/>
-    <form action="newNotice" method="post" class="editform">
+    <form action="newNotice" method="post" id="newform">
         <label for="title">제 &nbsp; 목 </label>
         <input type="text" id="title" name="title" required><br>
 		<label for="auth">작성자</label>
@@ -17,8 +17,8 @@
         <label for="fixedNoticeF" class="fixBtn"> 미고정  </label><br> 
 <!--         <label for="content">내 &nbsp; 용</label><br> -->
         <textarea id="content" name="content" ></textarea><br>
-        <button type="submit" id="addBtn">작성 완료</button>
-        <!-- <input type="submit" value="작성"> -->
+        <!-- <button type="submit" id="addBtn">작성 완료</button> -->
+        <input type="button" value="작성 완료" id="addBtn"> -->
 		<div>
 			<label>FILE DROP HERE</label>
 			<div class="fileDrop">
@@ -93,7 +93,7 @@
   </script>
   <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
   <script>
-  	$("#saveBtn").click(function(){
+  	$("#addBtn").click(function(){
   		/*
   		let content = tinymce.activeEditor.getContent();
   		console.log(content);
@@ -106,8 +106,8 @@
   			str += "<input type='hidden' name='files' value='"+$(this).attr("href")+"'/>";
   		});
   		
-  		$("#registerForm").append(str);
-  		$("#registerForm").submit();
+  		$("#newform").append(str);
+  		$("#newform").submit();
   	});
   	
   	// file drop 파일 첨부

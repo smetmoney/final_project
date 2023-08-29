@@ -2,7 +2,7 @@
 
 /* 페이지 높이 */
 .mainWrap{
-	height:1400px;
+	height:1500px;
 	text-align:left;
 	background-color: #f9f9f9;
 }
@@ -20,7 +20,7 @@ hr{
 	margin-top:10px;
 }
 
-.editform{
+#editform, #newform{
 	width : 75%;
 	text-align:left;
 	margin: 0 auto;
@@ -40,6 +40,12 @@ textarea{
 textarea{height:45%;}
 label{
 	margin: 17px 0 7px 0;
+}
+
+.separate{
+	width:100%;
+	height:1px;
+	display:inline-block;
 }
 .backBtnDiv{
 /* 	text-align:right; */
@@ -203,14 +209,53 @@ button:hover {
 }
 .editNotice{display:inline-block;}
 .fixedContent{
-	background-color: #868e96;
+	background-color: #ced4da;
 }
 .noticeHyper{
 	display:inline-block;
 	width:100%;	
 	padding: 3px;
 }
+/*  검색 css */
+/* #content_bot{
+	width: 90%;
+	margin: 0 auto;
+} */
+.searchBar{
+	display: flex;
+	justify-content: space-between;
+}
 
+.searchBar table {
+    max-width: 90%;
+}
+
+#option {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#searchValue {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width:55%;
+    margin-right:5px;
+}
+
+#searchBtn, #searchCancleBtn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#searchBtn:hover, #searchCancleBtn:hover {
+    background-color: #0056b3;
+}
 
 /* 공지 상세 화면 */
 .noticeDetail{
@@ -330,5 +375,30 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;	
+}
+
+/* 페이지네이션 */
+
+.pagination {
+	justify-content: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    border-radius: 3px;
+    color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
 }
 

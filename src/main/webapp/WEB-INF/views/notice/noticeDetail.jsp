@@ -57,15 +57,48 @@
 			    <span class="nameSpace">조회수</span><br/><div class="viewDiv"><b>${vo.vcnt}</b></div>
 		    </div>
 		   <%--  <span><a href="${path}/project/notice/likeCount?bno=${vo.bno}">[ 좋아요 ]</a>${vo.likeCnt}</span> --%>
+		   <div>
+		<!-- 첨부파일 목록 추가 -->
+		<ul class="uploadList">
+			<c:if test="${!empty vo.files}">
+				<c:forEach var="file" items="${vo.files}">
+					<li data-src='${file}'>
+						<c:choose>
+							<c:when test="${fn:contains(file,'s_')}">
+								<!-- 이미지 파일 -->
+								<img class="attachmentImg" src='${path}/displayFile?fileName=${file}'/>
+								<div>
+									<a href='${path}/displayFile?fileName=${fn:replace(file,"s_","")}' target='blank'>
+										${fn:substringAfter(fn:replace(file,"s_",""),'_')}
+									</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<!-- 일반 파일 -->
+								<img class="attachmentImg" src='${path}/resources/img/file.png'/>
+								<div>
+									<a href='${path}/displayFile?fileName=${file}'>
+										${fn:substringAfter(file,'_')}
+									</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+			</c:if>
+		</ul>	
+	</div>
+	<div class="separate"> </div>
 			<div class="backBtnDiv">
 				<a href="${path}/project/notice/noticeList" class="backBtn">[목록으로]</a>
 			</div>
 		    <c:choose>
 			<c:when test="${userInfo.id eq 'admin'}">
-				<form action="editNotice" method="Get" >
+				<form action="editNotice" method="Get"  id="editNoticeform">
 					<input type="hidden" name="bno" value="${vo.bno}"/> 
 					<input type="submit" value="편집하기" id="editBtn">
-					<a href="deleteNotice?bno=${vo.bno}" id="delBtn">삭제하기</a>
+					<input type="button" value="삭제하기" id="delBtn">
+					
 				</form>
 			</c:when>
 		</c:choose>
@@ -183,11 +216,10 @@ adjustMainWrapSize();
 		$("#modifyForm").submit();
 	})
 	// 게시글 삭제 (게시글작성자 == 로그인멤버)
-	$("#delete_btn").on("click",function(e){
-		if(confirm('정말로 삭제?')){
-			$("#modifyForm").attr("action","delete");
-			$("#modifyForm").submit();
-			alert('게시글 삭제완료!');
+	$("#delBtn").on("click",function(e){
+		if(confirm('정말로 삭제하시겠습니까?')){
+			$("#editNoticeform").attr("action","deleteNotice");
+			$("#editNoticeform").submit();
 		}
 	})
 	// 댓글 수정(진행중)

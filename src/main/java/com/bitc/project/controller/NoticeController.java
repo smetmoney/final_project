@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bitc.project.dao.AttachmentDAO;
 import com.bitc.project.service.NoticeCommentService;
+import com.bitc.project.vo.ImageBoardVO;
 import com.bitc.project.vo.NoticeCommentVO;
 import com.bitc.project.service.NoticeService;
 import com.bitc.project.util.Criteria;
+import com.bitc.project.util.SearchCriteria;
 import com.bitc.project.vo.NoticeVO;
 
 import lombok.RequiredArgsConstructor;
@@ -36,23 +40,36 @@ public class NoticeController {
 	private final NoticeCommentService ncs;
 	
 	@GetMapping("noticeList")
-	public void noticeList(Model model, Criteria cri) throws Exception {
+	public void noticeList(Model model, SearchCriteria cri) throws Exception {
 		cri.setPerPageNum(10);
-		List<NoticeVO> noticeList= ns.readNoticeList(cri);
+		List<NoticeVO> list = null;
+		if(cri.getSearchValue() !=null) {
+			list = ns.searchList(cri);	
+		}else {
+			list = ns.readNoticeList(cri);
+		}
 		List<NoticeVO> fixedNoticeList = ns.fixedNoticeList(); 
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("noticeList", list);
 		model.addAttribute("fixedNoticeList", fixedNoticeList);
 		model.addAttribute("pm",ns.getPageMaker(cri));
+		
 	}
 	
 	@GetMapping("noticeDetail")
-	public void noticeDetail(Model model, int bno, Criteria cri)throws Exception{
-		model.addAttribute("pm",ncs.getPageMaker(cri, bno));
+	public String noticeDetail(int bno, RedirectAttributes rttr)throws Exception{
 		ns.updateVcnt(bno);
+		rttr.addAttribute("bno",bno);
+		return "redirect:detail";
+	}
+	
+	@GetMapping("detail")
+	public String detail(Model model, int bno, Criteria cri)throws Exception{
+		model.addAttribute("pm",ncs.getPageMaker(cri, bno));
 		// 댓글 리스트
 		model.addAttribute("comments",ncs.getCommentList(cri,bno));
 		NoticeVO vo = ns.readNotice(bno);
 		model.addAttribute("vo", vo);
+		return "/notice/noticeDetail";
 	}
 	/*
 	 * @GetMapping("likeCount") public String likeCount (Model model, int bno,
