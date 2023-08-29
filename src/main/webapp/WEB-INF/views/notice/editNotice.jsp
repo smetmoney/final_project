@@ -45,7 +45,7 @@
 									</c:when>
 									<c:otherwise>
 										<!-- 일반 파일 -->
-										<img class="attachmentImg" src='${path}/resources/img/file.png'/>
+										<img class="attachmentImg" src='${path}/resources/images/img/file.png'/>
 										<div>
 											<a href='${path}/displayFile?fileName=${file}'>
 												${fn:substringAfter(file,'_')}

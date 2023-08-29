@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="../common/header.jsp" />
 <link rel="stylesheet" href="../resources/css/notice.css">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <style>
 	*{
 		margin:0;
@@ -75,7 +76,7 @@
 							</c:when>
 							<c:otherwise>
 								<!-- 일반 파일 -->
-								<img class="attachmentImg" src='${path}/resources/img/file.png'/>
+								<img class="attachmentImg" src='${path}/resources/images/img/file.png'/>
 								<div>
 									<a href='${path}/displayFile?fileName=${file}'>
 										${fn:substringAfter(file,'_')}
@@ -209,12 +210,6 @@ adjustMainWrapSize();
 
 </script>
 <script>
-
-	// 게시글 수정 (게시글작성자 == 로그인멤버)
-	$("#modify_btn").on("click",function(e){
-		$("#modifyForm").attr("action","modify");
-		$("#modifyForm").submit();
-	})
 	// 게시글 삭제 (게시글작성자 == 로그인멤버)
 	$("#delBtn").on("click",function(e){
 		if(confirm('정말로 삭제하시겠습니까?')){
