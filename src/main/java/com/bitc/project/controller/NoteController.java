@@ -95,13 +95,14 @@ public class NoteController {
     }
     
     @PostMapping("delete")
-    public String delete(int[] nno,RedirectAttributes rttr, MemberVO vo) throws Exception {
+    public String delete(int[] nno,RedirectAttributes rttr, NoteVO vo) throws Exception {
     	for(int i = 0; i < nno.length; i++) {
     		ns.delete(nno[i]);
     	}
     	
-    	rttr.addAttribute("id", vo.getId());
-    	return "/note/note";
+    	rttr.addAttribute("id", vo.getFrom_Id());
+    	System.out.println(vo.getFrom_Id());
+    	return "note/note";
     	
     }
   }
