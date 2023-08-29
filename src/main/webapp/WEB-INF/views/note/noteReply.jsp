@@ -10,7 +10,7 @@
     <div id="createForm">
         <h1>답장하기</h1>
         <form action="${pageContext.request.contextPath}/note/noteWrite" method="post">
-            <input type="hidden" id="from_Id" name="from_Id" class="height" value="${sessionScope.userInfo.id}" />
+            <input type="hidden" id="from_Id" class="height" value="${sessionScope.userInfo.id}" />
 
             <label for="fromId">보내는 회원</label>
             <input type="text" id="from_Id" name="from_Id" class="height" value="${sessionScope.userInfo.id}" readonly /> <br/>
@@ -39,7 +39,7 @@ let edit_toolbar = "blocks fontfamily fontsize"
 tinymce.init({
 	language : "ko_KR",
 	selector: '#editor',
-	height: 600,
+	height: 500,
 	toolbar: edit_toolbar,
 	menubar :false,
 	  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
