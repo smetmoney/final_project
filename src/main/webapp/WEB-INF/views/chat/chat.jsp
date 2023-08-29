@@ -31,7 +31,8 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 	<div id="userList">
-		<h4>참여자 목록:</h4>
+		<h4>참가자 목록</h4>
+		<hr/>
 		<ul>
 			
 		</ul>

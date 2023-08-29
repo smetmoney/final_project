@@ -39,8 +39,7 @@
 				<tr>
 					<td>닉네임</td>
 					<td>
-						<%-- <input type="text" name="nname" value ="${member.nname}" required /> --%>
-						${member.nname};
+						<input type="text" name="nname" value ="${member.nname}" required />
 					</td>
 				</tr>
 				<tr>

@@ -8,7 +8,8 @@
 	<div id="boardWrap">
 		<div id="contentWrap">
 			<a href="${path}/imageBoard/imgBoard_list">뒤로가기</a>
-		    <h1>제목 : ${vo.title}</h1>
+		    <h1>${vo.title}</h1>
+		    <hr/>
 		    <p><span>작성자 : ${vo.auth}</span></p>
 		    <p><span>작성일 : <fmt:formatDate value="${vo.date}" pattern="yyyy-MM-dd HH:mm" /></span></p>
 		    <p>${vo.content}</p>

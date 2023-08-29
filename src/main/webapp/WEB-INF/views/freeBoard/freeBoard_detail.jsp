@@ -14,7 +14,8 @@
 	<div id="boardWrap">
 		<div id="contentWrap">
 			<a href="${path}/freeBoard/freeBoard_list">뒤로가기</a>
-		    <h1>제목 : ${post.title}</h1>
+		    <h1>${post.title}</h1>
+		    <hr/>
 		    <p><span>작성자 : ${post.auth}</span></p>
 		    <p><span>작성일 : <fmt:formatDate value="${post.date}" pattern="yyyy-MM-dd HH:mm" /></span></p>
 		    <p>${post.content}</p>

@@ -69,9 +69,9 @@
                                     </div>
                                 </div>
                                 <div class="boardInfo">
-                                    <span class="info">작성일 : <fmt:formatDate value="${img.date}" pattern="yyyy-MM-dd HH:mm" /></span>
+                                    <span class="info"><img src="../resources/images/boardImg/board-time.png"> : <fmt:formatDate value="${img.date}" pattern="yyyy-MM-dd HH:mm" /></span>
                                     <br/>
-                                    <span class="info">조회수 : ${img.vcnt}</span>
+                                    <span class="info"><img src="../resources/images/boardImg/board-eye.png"> : ${img.vcnt}</span>
                                 </div>
                             </div>
                         </div>

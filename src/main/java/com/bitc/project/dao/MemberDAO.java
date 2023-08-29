@@ -39,7 +39,7 @@ public interface MemberDAO {
 	/**
 	 * 정보 업데이트
 	 * */
-	@Update("UPDATE member SET name = #{name}, email = #{email}, gender=#{gender} WHERE id = #{id}")
+	@Update("UPDATE member SET nname = #{nname}, name = #{name}, email = #{email}, gender=#{gender} WHERE id = #{id}")
 	void updateMember(MemberVO member);
 
 	/**
