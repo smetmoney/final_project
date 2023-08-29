@@ -263,6 +263,24 @@ drop table noticeBoard;
 drop table notice_comment;
 --INSERT INTO notice_comment (NoticeBNO,CommentContent,CommenterID) VALUES('1','댓글','admin');
 
+-- 권한 table
+CREATE TABLE member_auth(
+	u_id VARCHAR(50) NOT NULL,
+    u_auth VARCHAR(50) NOT NULL,
+    constraint fk_member_auth FOREIGN KEY(u_id) 
+    REFERENCES MEMBER(ID)
+);
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('admin' , 'ROLE_ADMIN');
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('user1' , 'ROLE_MEMBERSHIP');
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('user2','ROLE_MEMBERSHIP');
+
+SELECT * FROM member_auth;
 
 -- 드랍전용 sql문
 DROP TABLE MEMBER;

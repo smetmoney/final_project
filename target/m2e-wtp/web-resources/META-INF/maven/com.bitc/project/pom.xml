@@ -13,6 +13,7 @@
 		<org.springframework-version>5.3.29</org.springframework-version>
 		<org.aspectj-version>1.9.19</org.aspectj-version>
 		<org.slf4j-version>2.0.7</org.slf4j-version>
+		<security-version>5.8.6</security-version>
 	</properties>
 	
 	<dependencies>
@@ -256,17 +257,32 @@
 		
 		
 		<!-- SecurityContextHolder사용을 위한 추가  -->
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		
+		<!-- spring - security core, web, config
+			2023 - 08 - 29 23시 03분
+		 -->
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${security-version}</version>
+		</dependency>
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
-		    <version>5.5.8</version>
+		    <version>${security-version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
-		    <version>5.5.8</version>
+		    <version>${security-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>${security-version}</version>
 		</dependency>
 
 				
