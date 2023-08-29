@@ -641,6 +641,17 @@ const collisionData = {
             "width":62,
             "x":449.333333333333,
             "y":496.666666666667
+           },
+           {
+            "height":28,
+            "id":105,
+            "name":"",
+            "rotation":0,
+            "type":"",
+            "visible":true,
+            "width":15,
+            "x":737,
+            "y":80
            }],
     "opacity":1,
     "type":"objectgroup",

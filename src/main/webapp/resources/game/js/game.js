@@ -344,7 +344,7 @@ function runWigoAndEmilyEnd() {
 	document.querySelector("#sub_game").remove();
 	subGameBox.style.display = "none";
 	gameBox.style.display = "block";
-	console.log("뭐임");
+	
 	scene++;
 	const sceneObject = window["scene"+scene];
 	displayText(sceneObject);
@@ -352,5 +352,6 @@ function runWigoAndEmilyEnd() {
 
 function gameEnd() {
 	gameBox.style.display = 'none';
-	endBox.style.display = 'block';
+	document.querySelector("#endTitle").style.display = 'block';
+	endBox.style.display = 'flex';
 }

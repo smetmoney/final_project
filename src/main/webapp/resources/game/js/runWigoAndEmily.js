@@ -7,6 +7,8 @@ const bgImg = new Image();
 bgImg.src = "../resources/game/map/lobby.png";
 const bgImg2 = new Image();
 bgImg2.src = "../resources/game/map/outside.png";
+const bgImg3 = new Image();
+bgImg3.src = "../resources/game/map/b.png";
 
 class Sprite {
   constructor({ position, image }) {
@@ -33,6 +35,14 @@ const outside = new Sprite({
     y : 125
   },
   image: bgImg2
+});
+
+const bridge = new Sprite({
+	position : {
+		x : lobby.position.x,
+		y : lobby.position.y
+	},
+	image : bgImg3
 });
 
 
@@ -99,14 +109,14 @@ function gameLoop() {
   if(map == 'lobby') {
     lobby.draw();
   }
-
+	
   if(map == 'outside'){
     outside.draw();
   }
 
   // 플레이어 그리기
   context.drawImage(playerImage , player.x , player.y , player.width , player.height);
-
+  
   // 플레이어 움직임 처리
   
   // 오른쪽
@@ -144,6 +154,10 @@ function gameLoop() {
   if (imageChangeDelay > 0) {
     imageChangeDelay--;
   } 
+  
+  if(map == 'outside'){
+     context.drawImage(bgImg3, outside.position.x , outside.position.y);
+  }
   
   // 게임 루프 반복
   if(isEnd){
