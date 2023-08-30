@@ -2,91 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<style>
-	#openChatBot{
-    	border: 1px solid black;
-	    position: fixed;
-	    height: 50px;
-	    left: 95%;
-	    top: 45%;
-    }
-
-	#chatBotBox{
-    	border: 1px solid black;
-    	position: fixed;
-    	width: 90%;
-    	margin-left: 5%;
-    	margin-right: 5%;
-    	padding: 10px;
-    	top: 33%;
-    	background: aliceblue;
-    	z-index: 2;
-    	border-radius: 10px;
-    	display:none;
-	}
-	
-	#chatBotText{
-		display: flex;
-    	flex-direction: column;
-	}
-	
-	#chatBotClient{
-		display: flex;
-    	flex-direction: row;
-	}
-	
-	#chatPrompt{
-		width:90%;
-	};
-	
-	#chatBotBtn{
-		width:10%;
-		margin-left: 3%;    
-		border: solid 1px black;
-    	padding: 3px;
-    }
-    
-	 #closeChatBot {
-		filter:none;
-		background: red;
-		font-size: 15pt;
-	    border: solid 2px black;
-	    border-radius:5px;
-	    width: 50px;
-	    height: 50px;
-	    z-index: 2;
-	    cursor: pointer;
-	    position: absolute;
-	    right: 2%;
-	}
-	
-	#closeChatBot:before, #closeChatBot:after {
-	  position: absolute;
-	  left: 22px;
-	  content: ' ';
-	  height: 48px;
-	  width: 3px;
-	  background-color: #000000;
-	}
-	
-	#closeChatBot:before {
-	  transform: rotate(45deg);
-	}
-	
-	#closeChatBot:after {
-	  transform: rotate(-45deg);
-	}
-</style>
-<div id="openChatBot">도우미키기</div>
+<link rel="stylesheet" href="${path}/resources/game/css/chatBot.css" />
+<div id="openChatBot">도우미<br>키기</div>
 <div id="chatBotBox">
 	<div id="closeChatBot"></div>
-	<h1 style="text-align:center;">안녕하세요 도우미입니다. 무엇이든 물어보세요</h1>
+	<h1 style="text-align:center;">도우미입니다. 무엇이든 물어보세요</h1>
 	<div id="chatBotText">
 	
 	</div>
 	<div id="chatBotClient">
 		<input type="text" id="chatPrompt" autocomplete="off"/>
-		<div id="chatBotBtn" style="margin-left: 3%;">보내기</div>
+		<div id="chatBotBtn">보내기</div>
 	</div>
 </div>
 <script>
@@ -114,10 +40,13 @@
 	});
 
 	function handleChat() {
-	    const prompt = document.querySelector("#chatPrompt").value;
+		const chatPromptInput = document.querySelector("#chatPrompt");
+	    const prompt = chatPromptInput.value;
 	    const trimPrompt = prompt.trim();
-	    console.log(trimPrompt);
+	    chatPromptInput.disabled = true;
+	    
 	    if (trimPrompt != '') {
+	    	document.querySelector("#chatPrompt").value = "";
 	    	switch(prompt){
 	    		case '공지사항' :
 	    			location.href = '${path}/notice/noticeList';
@@ -144,6 +73,7 @@
 	    			break;
 	    		default :
 	    			generateText(prompt);
+	    			appendMyText(prompt);
 	    			break;
 	    	}
 	    }
