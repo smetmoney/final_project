@@ -16,7 +16,7 @@
         <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" checked="checked"/>&nbsp;
         <label for="fixedNoticeF" class="fixBtn"> 미고정  </label><br> 
 <!--         <label for="content">내 &nbsp; 용</label><br> -->
-        <textarea id="content" name="content" ></textarea><br>
+        <textarea id="content" name="content"></textarea><br>
         <!-- <button type="submit" id="addBtn">작성 완료</button> -->
         <input type="button" value="작성 완료" id="addBtn">
 		<div>
@@ -93,15 +93,23 @@
   </script>
   <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
   <script>
-  	$("#addBtn").click(function(){
+  	$("#addBtn").on("click",function(){
   		/*
   		let content = tinymce.activeEditor.getContent();
   		console.log(content);
   		*/
   		let str = "";
-  		console.log("click");
+  		let title = $('#title').val();
+  		let content = tinymce.activeEditor.getContent();
+		if(title.trim() == ''){
+			alert('제목을 입력하세요!');
+			return;
+		}
+		if(content.length < 1){
+			alert('내용을 입력하세요!');
+			return;
+		}
   		let fileList = $(".uploadList .delBtn");
-  		console.log(fileList);
   		$(fileList).each(function(){
   			str += "<input type='hidden' name='files' value='"+$(this).attr("href")+"'/>";
   		});
