@@ -347,14 +347,31 @@
             </plugin>
             
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
-			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-war-plugin</artifactId>
-			    <version>3.4.0</version>
-			    <configuration>
+	   <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		<version>3.4.0</version>
+		 	<configuration>
 			    	<failOnMissingWebXml>false</failOnMissingWebXml>
-			    </configuration>
-			</plugin>
+			</configuration>
+		<executions>
+                 <execution>
+                    <id>default-war</id>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.example.MainClass</mainClass>
+                            </manifest>
+                        </archive>
+                        <fork>true</fork>
+                        <argLine>-Xmx1g</argLine>
+                    </configuration>
+                    <goals>
+                        <goal>war</goal>
+                    </goals>
+                </execution>
+            </executions>
+		</plugin>
             
         </plugins>
     </build>
