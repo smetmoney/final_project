@@ -1,15 +1,38 @@
-function generateText(prompt){
-	generateText(prompt,0.7,50);
+
+function appendMyText(text) {
+	const textBox = document.querySelector("#chatBotText");
+	let pTag = document.createElement("p");
+	pTag.setAttribute("class","myChat");
+	pTag.innerText = text;
+	textBox.appendChild(pTag);
+	scrollToBottom(textBox);
 };
+
 
 function appendText(textArray) {
 	const textBox = document.querySelector("#chatBotText");
 	textArray.forEach(text => {
 		let pTag = document.createElement("p");
+		pTag.setAttribute("class","aiChat");
 		pTag.innerText = text;
 		textBox.appendChild(pTag);
+		scrollToBottom(textBox);
 	});
+	
+	setTimeout(() => {
+        const chatPromptInput = document.querySelector("#chatPrompt");
+        chatPromptInput.disabled = false;
+        chatPromptInput.focus();
+    }, 0);
 }
+
+function scrollToBottom(div) {
+    div.scrollTo(0, div.scrollHeight);
+}
+
+function generateText(prompt){
+	generateText(prompt,0.7,50);
+};
 
 function generateText(prompt, temperature, maxTokens) {
 	    const headers = {
