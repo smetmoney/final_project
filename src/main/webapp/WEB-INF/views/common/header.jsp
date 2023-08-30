@@ -13,14 +13,14 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/style.css">
 <style>
 	body {
-		background-image: url("${path}/resources/back.png");
+		background-image: url("${path}/resources/images/headerIMG/754-2.png");
 		background-size: cover;
 	}
 	#logoBox{
 		height: 400px;
 		padding-top: 75px ;
 	}
-	
+
 </style>
 <title>Text Game</title>
 <head>
@@ -29,21 +29,20 @@
 	<c:choose>
 	    <c:when test="${not empty sessionScope.userInfo}">
 		<jsp:include page="./chatBot.jsp" />
-	       <h1>안녕하세요, ${userInfo.nname} 님</h1>
 	       <c:choose>
 	            <c:when test="${userInfo.nname eq 'admin'}">
-	                <a href="<c:url value='/management/management'/>">관리하기 | </a>
-	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
+	                <a class="headerHover" href="<c:url value='/management/management'/>">관리하기  </a><span>|</span>
+	                <a class="headerHover" href="<c:url  value='/note/note?id=${userInfo.id}'/>" target="_blank" 
 	                				onclick="window.open(this.href, 'popupWindow',
-	                				'width=800,height=600'); return false;">메세지 | </a>
-	                <a href="<c:url value='/login/logout'/>">로그아웃</a>
+	                				'width=800,height=600'); return false;">메세지  </a><span>|</span>
+	                <a class="headerHover" href="<c:url value='/login/logout'/>">로그아웃</a>
 	            </c:when>
 	            <c:otherwise>
-	                <a href="<c:url value='/user/user?id=${userInfo.id}'/>">내 정보 | </a>
-	                <a href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
+	                <a class="headerHover" href="<c:url value='/user/user?id=${userInfo.id}'/>">내 정보  </a><span>|</span>
+	                <a class="headerHover" href="<c:url value='/note/note?id=${userInfo.id}'/>" target="_blank" 
 	                				onclick="window.open(this.href, 'popupWindow',
-	                				'width=800,height=600'); return false;">메세지 | </a>
-	                <a href="<c:url value='/login/logout'/>">로그아웃</a>
+	                				'width=800,height=600'); return false;">메세지  </a><span>|</span>
+	                <a class="headerHover"href="<c:url value='/login/logout'/>">로그아웃</a>
 	            </c:otherwise>
 	         </c:choose>
 	    </c:when>

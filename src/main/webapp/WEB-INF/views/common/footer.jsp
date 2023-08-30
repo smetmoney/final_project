@@ -5,9 +5,9 @@
     <div id="home_footer">
     <div id="foot_top">
         <ul>
-            <li><a href="#">공지사항 </a></li>
+            <li><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항 </a></li>
             <li> |</li>
-            <li><a href="#">예약확인 </a></li>
+            <li><a href="${pageContext.request.contextPath}/qna/qnaPage">Q/A </a></li>
             <li> |</li>
             <li><a href="#">제휴문의 </a></li>
             <li> |</li>
@@ -17,10 +17,9 @@
     <div id="foot_bot">
         <div>
             <ul>
-                <li>COMPANY :<span> MJEnt.</span></li>
-                <li>CEO :<span> 김민준</span></li>
-                <li>ADDRESS :<span> 부산광역시 수영구 광안로49번길 21</span></li>
-                <li>TEL :<span> 010-6449-1630</span></li>
+                <li>COMPANY :<span> ㅌHㄱ1</span></li>
+                <li>CEO :<span> 김민준|김판길|김혜정|이수석</span></li>
+                <li>ADDRESS :<span> 부산IT아카데미</span></li>
             </ul>
         </div>
 
