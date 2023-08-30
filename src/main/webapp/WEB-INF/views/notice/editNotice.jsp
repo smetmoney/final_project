@@ -9,7 +9,7 @@
     <hr/>
     <form action="editNotice" method="post" id="editform">
    		<%-- <input type="hidden" name="uno" value="${userInfo.uno}"/> --%>
-    	<input type="hidden" id="title" name="bno" value="${vo.bno}" required><br>
+    	<input type="hidden" id="bno" name="bno" value="${vo.bno}" required><br>
         <label for="title">제 &nbsp; 목</label>
         <input type="text" id="title" name="title" value="${vo.title}" required><br>
 		<label for="auth">작성자</label>
@@ -67,30 +67,10 @@
 </div> 
 <div class="separate"> </div>
 
-	<script>
-		function resizeMainWrap() {
-		    var mainWrap = document.getElementById("mainWrap");
-		    var children = mainWrap.children;
-	
-		    if (children.length >= 2) { // 적어도 두 개의 자식이 있어야 함
-		        var secondChild = children[1]; // 두 번째 자식 요소 선택
-		        var contentHeight = secondChild.scrollHeight; // 두 번째 자식 요소의 실제 높이
-		        mainWrap.style.height = contentHeight + "px";
-		    }
-		}
-	
-		// 페이지 로드 후 자동으로 크기 조절
-		window.addEventListener("load", resizeMainWrap);
-	
-		// 내부 컨텐츠가 변경될 때 크기 조절
-		window.addEventListener("resize", resizeMainWrap);
-
-	</script>
 	<script src="https://cdn.tiny.cloud/1/txisexjqogc2o5hq1mpsl5obcf0exfbgxj0f053sshq2xiu1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
 	let plugins = ["link" ,"image"];
 	let edit_toolbar = "blocks fontfamily fontsize | link image forecolor backcolor"
-	
 	tinymce.init({
 		language : "ko_KR",
 		selector: '#content',
@@ -219,12 +199,19 @@
   		target.closest("li").remove();
   	});
   	
-  	$("#addBtn").click(function(){
-  		/*
-  		let content = tinymce.activeEditor.getContent();
-  		console.log(content);
-  		*/
+  	$("#addBtn").on("click",function(){
+  		
   		let str = "";
+  		let title = $('#title').val();
+		let content = tinymce.activeEditor.getContent();
+		if(title.trim() == ''){
+			alert('제목을 입력하세요!');
+			return;
+		}
+		if(content.length < 1){
+			alert('내용을 입력하세요!');
+			return;
+		}
   		console.log("click");
   		let fileList = $(".uploadList .delBtn");
   		
