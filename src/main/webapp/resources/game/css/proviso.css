@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+.items img{
+	cursor: grab;
+}
+
 div {
     position: relative;
     border: none;
