@@ -168,4 +168,4 @@
 	
 	getKey();
 </script>
-<script src="/project/resources/js/AI.js"></script> -->
+<script src="/project/resources/js/AI.js"></script> 
