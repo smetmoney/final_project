@@ -1,5 +1,7 @@
 package com.bitc.project.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -21,6 +23,9 @@ public class MemberVO {
     
     
     private boolean autoLogin;
+    
+    // 권한 목록
+ 	private List<String> authList;
 
     
 	

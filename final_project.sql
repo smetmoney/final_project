@@ -2,7 +2,7 @@
 CREATE TABLE MEMBER (
     IDN INT AUTO_INCREMENT PRIMARY KEY, 	-- 식별값
     ID VARCHAR(255) NOT NULL UNIQUE, 		-- 로그인용 ID
-    NNAME VARCHAR(255) NOT NULL UNIQUE,			-- 닉네임	
+    NNAME VARCHAR(255) NOT NULL UNIQUE,		-- 닉네임	
     PASS VARCHAR(255) NOT NULL,				-- 비밀번호
     EMAIL VARCHAR(255) NOT NULL,			-- 이메일
     NAME VARCHAR(255),						-- 이름
@@ -11,6 +11,7 @@ CREATE TABLE MEMBER (
     STOPU BOOLEAN DEFAULT FALSE,			-- 정지 유저 구분
     POINT INT DEFAULT 0						-- 포인트(구매같은거 할때 쓰는)
 );
+
 ALTER TABLE member ADD withdraw BOOLEAN DEFAULT FALSE;
 -- 닉네임 unique로 변경
 -- 회원가입시 중복 확인 처리 필요 (id,nname)
@@ -272,6 +273,29 @@ drop table notice_comment;
 drop table noticeAttach;
 --INSERT INTO notice_comment (NoticeBNO,CommentContent,CommenterID) VALUES('1','댓글','admin');
 
+-- 권한 table
+CREATE TABLE member_auth(
+	u_id VARCHAR(50) NOT NULL,
+    u_auth VARCHAR(50) NOT NULL,
+    constraint fk_member_auth FOREIGN KEY(u_id) 
+    REFERENCES MEMBER(ID) ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+DROP TABLE member_auth;
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('admin' , 'ROLE_ADMIN');
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('user1' , 'ROLE_USER');
+
+INSERT INTO member_auth(u_id,u_auth) 
+VALUES('user2', 'ROLE_USER');
+
+SELECT * FROM member_auth;
+
+DELETE FROM MEMBER;
 
 -- 드랍전용 sql문
 DROP TABLE MEMBER;

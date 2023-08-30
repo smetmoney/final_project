@@ -66,13 +66,18 @@ public interface MemberDAO {
 	String checkNick(@Param("nname")String nname);
 	
 	
-	/*
-	 * @Select("SELECT count(*) FROM member WHERE id = #{id}") int
-	 * totalCount(List<MemberVO> members);
-	 * 
-	 * @Select("SELECT * FROM member WHERE id = #{id} limit #{cri.startRow},#{cri.perPageNum}"
-	 * ) List<MemberVO> memberVOList(@Param("cri")Criteria cri,@Param("id") String
-	 * id);
+	/* security */
+	
+	/**
+	 * u_id로 권한 정보 확인
 	 */
+	@Select("SELECT u_auth FROM member_auth " + " WHERE u_id = #{u_id}")
+	List<String> getAuthList(String u_id) throws Exception;
+	
+	/**
+	 * 회원가입한 회원 기본 권한 추가 ROLE_USER
+	 */
+	@Insert("INSERT INTO member_auth " + " VALUES(#{u_id},'ROLE_USER')")
+	void insertAuth(String u_id) throws Exception;
 	
 }
