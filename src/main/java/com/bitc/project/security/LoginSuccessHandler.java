@@ -6,18 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.bitc.project.security.user.CustomUser;
-import com.bitc.project.service.MemberService;
 import com.bitc.project.vo.MemberVO;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
+	/*
 	@Autowired
-	private MemberService ms;
+	private final MemberService ms;
+	*/
 
 	@Override
 	public void onAuthenticationSuccess(
@@ -31,6 +31,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		System.out.println(user);
 		MemberVO vo = user.getVo();
 		System.out.println(vo);
+		
+		request.getSession().setAttribute("userInfo", vo);
 
 		/* 당장 필요 없는거 수정
 		try {

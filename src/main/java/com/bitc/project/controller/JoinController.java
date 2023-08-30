@@ -31,7 +31,7 @@ public class JoinController {
 			MemberVO vo,
 			RedirectAttributes rttr
 			) throws Exception {
-		ms.registerNewMember(vo);
+		ms.memberJoin(vo);
 		rttr.addFlashAttribute("message","회원가입 성공");
 		return "redirect:/login/login";
 		

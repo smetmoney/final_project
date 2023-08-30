@@ -74,4 +74,10 @@ public interface MemberDAO {
 	@Select("SELECT u_auth FROM member_auth " + " WHERE u_id = #{u_id}")
 	List<String> getAuthList(String u_id) throws Exception;
 	
+	/**
+	 * 회원가입한 회원 기본 권한 추가 ROLE_USER
+	 */
+	@Insert("INSERT INTO member_auth " + " VALUES(#{u_id},'ROLE_USER')")
+	void insertAuth(String u_id) throws Exception;
+	
 }

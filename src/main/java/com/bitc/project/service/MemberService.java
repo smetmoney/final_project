@@ -34,6 +34,8 @@ public interface MemberService {
 
 	String checkNick(String nname) throws Exception;
 
+	void memberJoin(MemberVO vo) throws Exception;
+
 	/*
 	 * PageMaker getPageMaker(Criteria cri, List<MemberVO> members) throws
 	 * Exception;

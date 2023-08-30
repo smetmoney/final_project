@@ -2,7 +2,9 @@ package com.bitc.project.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bitc.project.dao.MemberDAO;
 import com.bitc.project.util.Criteria;
@@ -21,6 +23,20 @@ public class MemberServiceImpl implements MemberService {
 	/*
 	 * public MemberServiceImpl(MemberDAO memberDAO) { this.memberDAO = memberDAO; }
 	 */
+    
+	private final PasswordEncoder encoder;
+
+	@Transactional
+	@Override
+	public void memberJoin(MemberVO vo) throws Exception {
+		String u_pw = vo.getPass();
+		System.out.println("암호화 전 : " + u_pw);
+		vo.setPass(encoder.encode(u_pw));
+		System.out.println("암호화 후 : " + vo.getPass());
+		memberDAO.insertMember(vo);
+		// 일반회원 권한 부여
+		memberDAO.insertAuth(vo.getId());
+	}
 
     @Override
     public MemberVO registerNewMember(MemberVO membervo) throws Exception {
