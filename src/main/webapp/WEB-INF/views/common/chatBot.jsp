@@ -8,7 +8,6 @@
 	<div id="closeChatBot"></div>
 	<h1 style="text-align:center;">도우미입니다. 무엇이든 물어보세요</h1>
 	<div id="chatBotText">
-	
 	</div>
 	<div id="chatBotClient">
 		<input type="text" id="chatPrompt" autocomplete="off"/>
@@ -98,4 +97,4 @@
 	
 	getKey();
 </script>
-<script src="/project/resources/js/AI.js"></script> 
+<script src="/project/resources/js/AI.js"></script>

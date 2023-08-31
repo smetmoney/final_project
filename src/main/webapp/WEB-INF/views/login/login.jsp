@@ -8,9 +8,7 @@ if (message != null) {
   out.println("</script>");
 }
 %>
-  <section id="side_logo">
-    
-  </section>
+  <section id="side_logo"></section>
   
     <section class="login-form">
       <br><br><br>
@@ -35,5 +33,3 @@ if (message != null) {
             <a href="${pageContext.request.contextPath}/join/join">회원가입</a>
         </div>
     </section>
-
-    

@@ -1,7 +1,3 @@
-/**
- *  file Upload / display
- */
- 
  /*
  	image file 확인
  */
@@ -12,7 +8,6 @@
  function getFileInfo(fullName){
  	// 이미지 경로  원본파일 이름    원본파일 요청 경로
  	let imgSrc,   fileName,      getLink;
- 	// /displayFile
  	// a tag를 통해 파일 정보를 요청할 경로
  	if(checkImageType(fullName)){
  		// 이미지 파일
@@ -37,22 +32,3 @@ function getThumbnailInfo(fullName){
  	fileName = fullName.substr(fullName.lastIndexOf("_")+1);
  	return { fileName : fileName, imgSrc : imgSrc, getLink : getLink};
 }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 

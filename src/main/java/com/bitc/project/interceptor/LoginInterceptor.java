@@ -44,16 +44,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 				response.addCookie(cookie);
 			}
 		}
-		/*
-		else {
-			// 로그인 실패
-			String message = "로그인 실패";
-			modelAndView.addObject("message",message);
-			modelAndView.setViewName("/login/login");
-		}
-		*/
+
 		
 		}
 	}
-	
-	

@@ -11,12 +11,10 @@
 	<bean id="accessDeniedHandler" 
 	 class="com.bitc.project.security.CustomAccessDeniedHandler"/>
 	 
-	 <!-- /resources/** 경로 패턴은  security를 적용 하지 않는다. -->
 	<security:http pattern="/resources/**" security="none"/>
 
 	<security:http>
 	
-	<!-- csrf_token 검증 안하겠음 -->
 	<security:csrf disabled="true"/>
 	
 		<security:form-login 
@@ -37,8 +35,7 @@
 			 max-sessions="1" 
 			 expired-url="/logOff"/>
 		</security:session-management> 
-		
-		<!-- 403 권한 불충분 사용자 핸들러 등록 accessDeniedHandler -->
+
 		<security:access-denied-handler
 				  ref="accessDeniedHandler"/>
 		
@@ -105,29 +102,12 @@
 	  <security:intercept-url 
 				  pattern="/chat/*" 
 				  access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
-		
-		<!--		  
-  		<security:intercept-url 
-				  pattern="/**" 
-				  access="authenticated"/>
-		  --> 
-				  
+				
 	</security:http>
 	
 	<bean id="customUsersDetail" 
 		  class="com.bitc.project.security.user.CustomUserDetailsService"/>
-  	<!-- 
-  		암호화 하지 않음
-  		No Operation noop
- 	-->
-  	<!-- 
-	<bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
-	 -->
-	<!-- sha-256 암호화 방식 사용 -->
-	<!-- 
-	<bean class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
-	 -->
-	<!-- scrypt 해쉬 알고리즘 (소수) 이용한 암호화 방식 -->
+
 	<bean id="bcriptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
@@ -139,7 +119,3 @@
 	</security:authentication-manager>
 	
 </beans>
-
-
-
-

@@ -42,16 +42,6 @@ tinymce.init({
 	});
 </script>
 
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
-<script>
-  ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch( error => {
-      console.error( error );
-    } );
-</script> -->
-
 <c:if test="${not empty errorMessage}">
     <p class="error">${errorMessage}</p>
 </c:if>

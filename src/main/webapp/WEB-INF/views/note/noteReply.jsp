@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <jsp:include page="../common/note_header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../resources/css/note.css">
@@ -46,12 +45,4 @@ tinymce.init({
 	});
 </script>
 
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-<script>
-  ClassicEditor
-    .create(document.querySelector('#editor'))
-    .catch( error => {
-      console.error( error );
-    } );
-</script> -->
 <jsp:include page="../common/footer.jsp" />

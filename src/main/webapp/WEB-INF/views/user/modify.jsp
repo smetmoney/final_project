@@ -1,21 +1,15 @@
 <link rel="stylesheet" href="../resources/css/common.css">
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <jsp:include page="../common/header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../resources/css/modify.css">
-
 <div class="mainWrap">
 	
     <h1>수정 페이지</h1>
     
     <section class="wrap">
-		
-		<%-- <c:forEach items="${members}" var="member"> --%>
-		
 		<form action="modify" method="post">	
 			<table class="modify">
 				<tr>
@@ -61,7 +55,6 @@
 			</table>
 		</form>
 		
-		<%-- </c:forEach> --%>
 		
 		</section>
 </div>

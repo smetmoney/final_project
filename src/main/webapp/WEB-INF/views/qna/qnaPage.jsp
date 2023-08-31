@@ -1,4 +1,3 @@
-<!-- qnaPage.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -90,12 +89,8 @@ $(document).ready(function() {
 /* 작업 수행 결과 출력 */
 var resultMessage = "${result}"; // 서버에서 전달된 메시지
 if (resultMessage !== "") {
-    alert(resultMessage); // 메시지 팝업 표시
+    alert(resultMessage); // 메시지 팝업표시
 }
 </script>
-
-
-</script>
-
 
 <jsp:include page="../common/footer.jsp" />

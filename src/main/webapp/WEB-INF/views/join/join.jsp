@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../common/header.jsp" />
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<style>
+body {
+		background-image: url("${path}/resources/images/test/back.png");
+		background-size: cover;
+		background-position-x: 15%;
+	}
+</style>
 <link rel="stylesheet" href="../resources/css/join.css">
-<!-- 스크립트 추가해놨는데 일단 주석 처리함 -->
-
-<!--
-
 <script>
 function joincheck() {
 	var confirmPassword = document.forms["join_form"]["confirmPassword"].value;
@@ -42,8 +46,6 @@ function joincheck() {
     }
 }
 </script>
-
- -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	window.onload = ()=>{
@@ -61,7 +63,7 @@ function joincheck() {
 		});
 		
 	   	$("#nname").on('keydown', function(e) {
-	        if (e.keyCode === 13) { // 13 == enter
+	        if (e.keyCode === 13) { 
 	            e.preventDefault(); 
 	            $("#check").click();
 	        }
@@ -97,8 +99,7 @@ function joincheck() {
 		});
 	}
 </script>
-    <!-- main -->
-    <form id="join_form" method="post" action="join"> <!-- onsubmit="return joincheck() -->
+    <form id="join_form" method="post" action="join" onsubmit="return joincheck()"> 
         <div id="enter1">
             <div id="content">
                 <div class="enter2">
