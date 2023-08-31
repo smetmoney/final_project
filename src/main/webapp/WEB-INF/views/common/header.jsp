@@ -20,7 +20,6 @@
 		height: 400px;
 		padding-top: 75px ;
 	}
-
 </style>
 <title>Text Game</title>
 <head>
@@ -62,10 +61,6 @@
     <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-<!--         토글 버튼
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
         <!-- 네비게이션 메뉴 -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">

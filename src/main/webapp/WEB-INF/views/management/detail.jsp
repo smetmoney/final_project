@@ -40,10 +40,6 @@
 			<th class='th'>이메일</th>
 			<td>${member.email}</td>
 		</tr>
-<%-- 		<tr>
-			<th>포인트</th>	
-			<td>${member.point}</td>
-		</tr> --%>
 		<tr>
 			<td colspan=2>
 				<input type="button" value="수정하기" onclick="location.href='${pageContext.request.contextPath}/management/modify?id=${member.id}'"/>

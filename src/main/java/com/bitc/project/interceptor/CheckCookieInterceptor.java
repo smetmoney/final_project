@@ -22,7 +22,6 @@ public class CheckCookieInterceptor implements HandlerInterceptor {
 			throws Exception {
 		
 		
-		System.out.println("CheckCookie 시작");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loggedInUser") != null) {
 			System.out.println("이미 로그인한 사용자");
@@ -39,7 +38,6 @@ public class CheckCookieInterceptor implements HandlerInterceptor {
 				session.setAttribute("userInfo", vo);
 			}
 		}
-		System.out.println("Check Cookie 종료");
 		return true;
 	}
 

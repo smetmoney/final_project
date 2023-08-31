@@ -1,4 +1,3 @@
-<!-- qnaPage.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -49,7 +48,7 @@
 					</c:otherwise>
 				</c:choose>
 		    <span class="nameSpace">최종수정일</span> <span class="space">&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${vo.updatedate}" type="both" dateStyle="full"/></span>
-		    <!-- <span class="nameSpace">내용</span> -->  <br/>${vo.content}
+		    <br/>${vo.content}
 		    
 		  
 
@@ -57,7 +56,6 @@
 		    <div class="countDiv">
 			    <span class="nameSpace">조회수</span><br/><div class="viewDiv"><b>${vo.vcnt}</b></div>
 		    </div>
-		   <%--  <span><a href="${path}/project/notice/likeCount?bno=${vo.bno}">[ 좋아요 ]</a>${vo.likeCnt}</span> --%>
 		   <div>
 		<!-- 첨부파일 목록 추가 -->
 		<ul class="uploadList">
@@ -298,8 +296,5 @@ adjustMainWrapSize();
         }
     });
 </script>
-
-
-
 
 <jsp:include page="../common/footer.jsp" />

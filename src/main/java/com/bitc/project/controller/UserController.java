@@ -38,7 +38,6 @@ public class UserController {
 
 	@RequestMapping(value = "user", method = RequestMethod.GET)
     public String list(Model model,String id) {
-		System.out.println(id);
 		MemberVO member = md.selectMemberById(id);
         model.addAttribute("member", member);
         return "user/user";
@@ -51,6 +50,4 @@ public class UserController {
 	    return "redirect:/";
 	}
 	
-	
-
 }

@@ -1,4 +1,15 @@
 @charset "UTF-8";
+.note {
+       border: 1px solid #ccc;
+       padding: 10px;
+       margin-bottom: 10px;
+       background-color: #f9f9f9;
+}
+
+.note h2 {
+       margin: 5px;
+}
+
 
 /* 공통적용 게시판 제목 */
 #titleBox{
@@ -92,7 +103,7 @@ footer {
     padding: 15px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-    position: relative; /* Position for checkbox */
+    position: relative; 
 }
 
 .note a {

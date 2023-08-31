@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../common/header.jsp" />
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> -->
 <link rel="stylesheet" href="../resources/css/notice.css">
 <div class="mainWrap">
     <h1>새 공지사항 작성하기</h1>
@@ -15,9 +14,7 @@
         <label for="fixedNoticeT" class="fixBtn"> 고정  </label>&nbsp;&nbsp;
         <input type="radio" name="fixedNotice" id ="fixedNoticeF" value="false" checked="checked"/>&nbsp;
         <label for="fixedNoticeF" class="fixBtn"> 미고정  </label><br> 
-<!--         <label for="content">내 &nbsp; 용</label><br> -->
         <textarea id="content" name="content"></textarea><br>
-        <!-- <button type="submit" id="addBtn">작성 완료</button> -->
         <input type="button" value="작성 완료" id="addBtn">
 		<div>
 			<label>FILE DROP HERE</label>
@@ -44,17 +41,9 @@
 		menubar : false,
 		plugins: plugins,
 		  toolbar: edit_toolbar,
-		  /* enable title field in the Image dialog*/
 		  image_title: true,
-		  /* enable automatic uploads of images represented by blob or data URIs*/
 		  automatic_uploads: true,
-		  /*
-		    URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
-		    images_upload_url: 'postAcceptor.php',
-		    here we add custom filepicker only to Image dialog
-		  */
 		  file_picker_types: 'image',
-		  /* and here's our custom image picker*/
 		  file_picker_callback: (cb, value, meta) => {
 		    const input = document.createElement('input');
 		    input.setAttribute('type', 'file');
@@ -65,18 +54,11 @@
 
 		      const reader = new FileReader();
 		      reader.addEventListener('load', () => {
-		        /*
-		          Note: Now we need to register the blob in TinyMCEs image blob
-		          registry. In the next release this part hopefully won't be
-		          necessary, as we are looking to handle it internally.
-		        */
 		        const id = 'blobid' + (new Date()).getTime();
 		        const blobCache =  tinymce.activeEditor.editorUpload.blobCache;
 		        const base64 = reader.result.split(',')[1];
 		        const blobInfo = blobCache.create(id, file, base64);
 		        blobCache.add(blobInfo);
-
-		        /* call the callback and populate the Title field with the file name */
 		        cb(blobInfo.blobUri(), { title: file.name });
 		      });
 		      reader.readAsDataURL(file);
@@ -94,10 +76,6 @@
   <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
   <script>
   	$("#addBtn").on("click",function(){
-  		/*
-  		let content = tinymce.activeEditor.getContent();
-  		console.log(content);
-  		*/
   		let str = "";
   		let title = $('#title').val();
   		let content = tinymce.activeEditor.getContent();

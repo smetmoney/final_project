@@ -1,4 +1,3 @@
-
 function appendMyText(text) {
 	const textBox = document.querySelector("#chatBotText");
 	let pTag = document.createElement("p");
@@ -7,7 +6,6 @@ function appendMyText(text) {
 	textBox.appendChild(pTag);
 	scrollToBottom(textBox);
 };
-
 
 function appendText(textArray) {
 	const textBox = document.querySelector("#chatBotText");

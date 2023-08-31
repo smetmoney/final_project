@@ -71,8 +71,6 @@ var room = '${roomNum}';
 var serverAddress = '/project/chat';
 var sock = new SockJS(serverAddress);
 
-/* var client = Stomp.over(sock); */
-
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 sock.onopen = onOpen;

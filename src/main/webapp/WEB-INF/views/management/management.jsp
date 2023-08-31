@@ -39,35 +39,7 @@
                  </tr>
             </c:forEach>
         </tbody>
-    </table>
-    
-     <%-- <c:if test="${!empty pm and pm.maxPage > 1}">
-        <div class="pagination">
-            <table>
-                <tr>
-                    <th colspan="3">
-                        <c:if test="${pm.first}">
-                            <a href="member_list?page=1">&lt;처음</a>
-                        </c:if>
-                        <c:if test="${pm.prev}">
-                            <a href="member_list?page=${pm.startPage-1}&id=${userInfo.id}">&lt;이전</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${pm.startPage}" end ="${pm.endPage}">
-                            <a href="member_list${pm.mkQueryStr(i)}&id=${userInfo.id}">${i}</a>
-                        </c:forEach>
-                        <c:if test="${pm.next}">
-                            <a href="member_list?page=${pm.endPage+1}&id=${userInfo.id}">다음&gt;</a>
-                        </c:if>
-                        <c:if test="${pm.last}">
-                            <a href="member_list?page=${pm.maxPage}&id=${userInfo.id}">마지막&gt;</a>
-                        </c:if>
-                    </th>
-                </tr>
-            </table>
-        </div>
-        <hr/>
-    </c:if> --%>
-    
+    </table>    
 	
 </div>
 

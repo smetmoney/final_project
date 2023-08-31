@@ -23,7 +23,6 @@ public class JoinInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		System.out.println("join Post Interceptor");
 		
 		String upw = request.getParameter("pass");
 		String repw = request.getParameter("confirmPassword");
@@ -33,18 +32,6 @@ public class JoinInterceptor implements HandlerInterceptor{
 		);
 		
 		String message = "";
-		
-		System.out.println("upw : " + upw);
-		System.out.println("repw : " + repw);
-		
-		/*
-		if(!upw.equals(repw)) {
-			message = "비밀번호가 일치하지 않습니다.";
-			request.setAttribute("message", message);
-			rd.forward(request, response);
-			return false;
-		}
-		*/
 		
 		if (upw == null || repw == null || !upw.equals(repw)) {
 		    message = "비밀번호가 일치하지 않습니다.";
@@ -70,10 +57,5 @@ public class JoinInterceptor implements HandlerInterceptor{
 		
 		
 		return true;
-		
-		
 	}
-
-	
-	
 }

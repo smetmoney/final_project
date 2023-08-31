@@ -25,28 +25,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			HttpServletResponse response, 
 			Authentication auth)
 			throws IOException, ServletException {
-		System.out.println(auth);
-		System.out.println(auth.getPrincipal());
 		CustomUser user = (CustomUser) auth.getPrincipal();
-		System.out.println(user);
 		MemberVO vo = user.getVo();
-		System.out.println(vo);
 		
 		request.getSession().setAttribute("userInfo", vo);
 
-		/* 당장 필요 없는거 수정
-		try {
-			 로그인이 성공한 사용자의
-			 최종 방문시간 업데이트
-			 ms.updateMember(vo.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
-
 		String context = request.getContextPath();
 		response.sendRedirect(context);
-		System.out.println("redirect : " + context);
 
 	}
 

@@ -1,36 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <jsp:include page="../common/note_header.jsp" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../resources/css/note.css">
-<style>
-    .note {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: #f9f9f9;
-    }
-
-    .note h2 {
-        margin: 5px;
-    }
-</style>
-
 <div class="noteList">
-	
     <h1>쪽지함</h1>
-	
 	   <form action="${pageContext.request.contextPath}/note/delete" method="post">
 	   <input type="hidden" name="from_Id" value="${userInfo.id}">
 	    <c:forEach items="${notes}" var="note">
 	        <c:choose>
 	            <c:when test="${note.to_Id eq sessionScope.userInfo.id}">
 	                <div class="note checks etrans">
-	                    <%-- <p>${note.nno}</p> --%>
 	                    <input type="checkbox" name="nno" value="${note.nno}" id="check${note.nno}"  /> 
-	                    <!--  id="ex_chk3" --> 
 	                    <label for="check${note.nno}">선택</label> 
 	                    <a href="noteDetail?nno=${note.nno}">
 	                        <h2>제목 : ${note.title}</h2>
@@ -40,7 +22,7 @@
 	        </c:choose>
 	    </c:forEach>
 	    
-	     <c:if test="${!empty pm and pm.maxPage > 1}">
+	   <c:if test="${!empty pm and pm.maxPage > 1}">
         <div class="pagination">
             <table>
                 <tr>
@@ -65,12 +47,9 @@
             </table>
         </div>
         <hr/>
-    </c:if>
-	    
+    </c:if>	    
    		<button type="submit">선택한 쪽지 삭제</button>
 	</form>
-
-    
     
 </div>
 <jsp:include page="../common/footer.jsp" />
