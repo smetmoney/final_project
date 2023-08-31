@@ -7,8 +7,8 @@ const systemZoomTextBox = document.querySelector("#systemZoomTextBox");
 const endBox = document.querySelector("#endBox");
 let idx = 0;
 let context;
-// scene을 구분하는것 ex : 'scene'+scene = scene1; default = 1
-let scene = 13; 
+// scene을 구분하는것 ex : 'scene'+scene = scene1; 
+let scene = 1; 
 // 현재 option을 뭘 골랐는지 구분할 변수
 let selNum = 0;
 // action중 ALL -> 다보고 넘어가기 위한 변수
