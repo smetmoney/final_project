@@ -34,3 +34,17 @@ function loadingStart() {
 function loadingEnd() {
     document.querySelector("#loading").style.display = 'none';
 }
+
+function audioClean() {
+	audio.pause();
+	bgmAudio.play();
+}
+
+function subGameEnd() {
+	document.querySelector("#sub_game").remove();
+	subGameBox.style.dispaly = "none";
+	gameBox.style.display = "block";
+	scene++;
+	const sceneObject = window["scene"+scene];
+	displayText(sceneObject);
+}
