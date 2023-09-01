@@ -7,7 +7,7 @@ const systemZoomTextBox = document.querySelector("#systemZoomTextBox");
 const endBox = document.querySelector("#endBox");
 let idx = 0;
 let context;
-// scene을 구분하는것 ex : 'scene'+scene = scene1; 
+// scene을 구분하는것 ex : 'scene'+scene = scene1; default = 1
 let scene = 1; 
 // 현재 option을 뭘 골랐는지 구분할 변수
 let selNum = 0;
@@ -18,7 +18,6 @@ let sceneOptionCount = 0;
 let sys_isEnter = true;
 let isSys = true;
 let isAction = false;
-
 
 // introText 타이핑 작업 후 createOptions 함수
 function displayText(sceneObject) {
@@ -43,10 +42,12 @@ function displayText(sceneObject) {
 		let prefix = "레베카:";
 		if(line.startsWith("카렌"))	{
 			prefix = "카렌:";
-		} 
+		}else if(line.startsWith(nick+":")){
+			prefix = nick+":";
+		}
 		// 캐릭터 이름 분리후 캐릭터 이름 넣어주기
-		let nick = line.substring(0,prefix.length-1);
-		document.querySelector("#char_Nick").innerHTML = nick;
+		let char_nick = line.substring(0,prefix.length-1);
+		document.querySelector("#char_Nick").innerHTML = char_nick;
 		isCheck = true;
 		line = line.substring(prefix.length);
 	}else{
@@ -211,7 +212,9 @@ function createAction(sceneObject) {
 			let prefix = "레베카:";
 			if(line.startsWith("카렌"))	{
 				prefix = "카렌:";
-			} 
+			}else if(line.startsWith(nick+":")){
+				prefix = nick+":";
+			}
 			let nick = line.substring(0,prefix.length-1);
 			document.querySelector("#char_Nick").innerHTML = nick;
 			isCheck = true;
@@ -257,7 +260,7 @@ function playSound(sound) {
 }
 
 function lineCheck(line) {
-	if(line.startsWith("마이크:") || line.startsWith("레베카:") || line.startsWith("카렌:") || 
+	if(line.startsWith(nick+":") || line.startsWith("레베카:") || line.startsWith("카렌:") || 
 	   line.startsWith("빅토르:") || line.startsWith("에밀리:")){
 		changeImage(line);
 		return true;
@@ -269,7 +272,7 @@ function changeImage(line){
 	const profile = document.querySelector("#char_Image");
 	profile.style.backgroundSize = "cover";
 	
-	if (line.startsWith("마이크:")) {
+	if (line.startsWith(nick+":")) {
         profile.style.backgroundImage = "url('../resources/game/img/mike.png')";
     } else if (line.startsWith("레베카:")) {
         profile.style.backgroundImage = "url('../resources/game/img/rebecca.png')";
@@ -352,6 +355,7 @@ function runWigoAndEmilyEnd() {
 
 function gameEnd() {
 	gameBox.style.display = 'none';
+	document.querySelector("#newsTitle").innerText = "속보 ! "+nick+"가 빛나는 별의 도둑들을 잡다";
 	document.querySelector("#endTitle").style.display = 'block';
 	endBox.style.display = 'flex';
 }
