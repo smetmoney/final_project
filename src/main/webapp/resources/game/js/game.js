@@ -215,8 +215,8 @@ function createAction(sceneObject) {
 			}else if(line.startsWith(nick+":")){
 				prefix = nick+":";
 			}
-			let nick = line.substring(0,prefix.length-1);
-			document.querySelector("#char_Nick").innerHTML = nick;
+			let char_nick = line.substring(0,prefix.length-1);
+			document.querySelector("#char_Nick").innerHTML = char_nick;
 			isCheck = true;
 			line = line.substring(prefix.length);
 		}else{
