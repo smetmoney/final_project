@@ -44,7 +44,7 @@
 	var contextPath = '${pageContext.request.contextPath}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
-<script src="https://cdn.tiny.cloud/1/txisexjqogc2o5hq1mpsl5obcf0exfbgxj0f053sshq2xiu1/tinymce/6/tinymce.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/"your api key"/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 let plugins = ["link" ,"image"];
 let edit_toolbar = "blocks fontfamily fontsize | image forecolor backcolor"
